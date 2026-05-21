@@ -17,9 +17,9 @@ public class Ex1 {
         // inverte l'array in-place
         static void reverseInPlace(int[] array) { //creo la funzione per invertire i numeri
             for (int i = 0, j = array.length - 1; i < j; i++, j--) { //i va avanti e j va indietro
-                int temp = array[i];//utilizzo la variabile temporale per fare un passagg
+                int reverse = array[i];
                 array[i] = array[j];
-                array[j] = temp;
+                array[j] = reverse;
             }
         }
 
