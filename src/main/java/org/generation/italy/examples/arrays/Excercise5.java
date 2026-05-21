@@ -17,10 +17,10 @@ public class Excercise5 {
         double max = numArr[0];
         double min = numArr[0];
 
-        for(int i = 0; i < numArr.length; i++){
-            if(numArr[i] > max){
+        for (int i = 0; i < numArr.length; i++) {
+            if (numArr[i] > max) {
                 max = numArr[i];
-            } else if(numArr[i] < min){
+            } else if (numArr[i] < min) {
                 min = numArr[i];
             }
             sum = sum + numArr[i];
@@ -31,9 +31,9 @@ public class Excercise5 {
 
         media = sum / (numArr.length - 2);
 
-        for(int i = 0; i < numArr.length; i++){
-            if(media - numArr[i] > 10 || numArr[i] - media > 10){
-               IO.println(numArr[i]);
+        for (int i = 0; i < numArr.length; i++) {
+            if (media - numArr[i] > 10 || numArr[i] - media > 10) {
+                IO.println(numArr[i]);
             }
         }
 
@@ -45,8 +45,8 @@ public class Excercise5 {
     }
 
     public static void doublePopulateArray(double[] numArr) {
-        for(int i =0; i < numArr.length; i++){
-            numArr[i] = (Math.random()*100);
+        for (int i = 0; i < numArr.length; i++) {
+            numArr[i] = (Math.random() * 100);
 
         }
 
