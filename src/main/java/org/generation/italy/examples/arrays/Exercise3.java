@@ -3,27 +3,27 @@ package org.generation.italy.examples.arrays;
 import java.util.Arrays;
 
 public class Exercise3 {
-    /*
-    * FARE UNA FUNZIONE CHE RICEVE IN INPUT UN ARRAY E
-    * LO INVERTE SENZA CREARE UN ALTRO ARRY D'APPOGGIO
-    * */
-    public static void main(String[] args) {
-        int[] array={1,51,6,1,2,5,84,6,1};
-        IO.println(Arrays.toString(array));
-        invertArray(array);
-        IO.println(Arrays.toString(array));
+    // Creiamo una funzione che riceve in input un array e lo inverte
+    // Senza creare altri array
 
+    static void main() {
+        int[] numArray = {1,4,5,2,6,3,8,3,4,8};
+        IO.println(Arrays.toString(numArray));
+        invert(numArray);
+        IO.println(Arrays.toString(numArray));
     }
 
-    public static void invertArray(int[] array) {
-        for(int i=0,j= array.length-1;i<j;i++,j--){
-            swapArray(array,i,j);
+    public static void invert(int[] numArray) {
+        for (int i=0, j =numArray.length-1; i < j; i++, j--) {
+            swap(numArray, i, j);
         }
     }
-    public static void swapArray(int[] array,int i,int j){
-        int temp=array[i];
-        array[i]=array[j];
-        array[j]=temp;
+
+    public static void swap(int[] numArray, int i, int j) {
+        int temp = numArray[i];
+        numArray[i]=numArray[j];
+        numArray[j]= temp;
     }
+
 
 }
