@@ -1,49 +1,32 @@
 package org.generation.italy.examples.arrays;
 
-public class Exercise4 {
-    // creare una funzione che riceve in input un array di interi, e ritorna
-    // il massimo numero intero all'interno dell'array
-    // facciamoci domande sugli edge cases: array vuoti, array pieni di null...
-    // è buona pratica chiamare i metodi con dei verbi
+import java.util.Arrays;
 
-    public static int findMax(int[] numbers) {
-        // since our array will have at least 1 element, this way
-        // we take the first element and make it the max,
-        // and we loop starting from the 2nd
-        int max = numbers[0];
-        for(int i = 0; i<numbers.length; i++) {
-            if(numbers[i] > max) {
-                max = numbers[i];
-            }
-        }
-        return max;
+public class Exercise4 {
+    /*
+    Dato un array di 10 elementi, scrivere una
+    funzione che popola l’array con double casuali di valore (0) - (100),
+    invocarla sull’array e stamparne la media matematica
+     */
+    void main() {
+        double[] arr = new double[10];
+        populateArrayRandDoubles(arr, 0, 100);
+        System.out.println(Arrays.toString(arr));
+        System.out.println("Avg value is: " + getAverage(arr));
     }
 
-    // creare una funzione che riceva un array di interi, e restituisca
-    // il suo valore medio (somma / n) come double
-    public static double findAverage(int[] numbers) {
+    // includes lower bound, excludes upper bound
+    public static void populateArrayRandDoubles(double[] array, double min, double max) {
+        for (int i = 0; i<array.length; i++) {
+            array[i] = (Math.random() * (max - min)) + min;
+        }
+    }
+
+    public static double getAverage(double[] numbers) {
         double sum = 0;
-        for(int i=0; i<numbers.length; i++) {
+        for (int i = 0; i < numbers.length; i++) {
             sum += numbers[i];
         }
         return sum/numbers.length;
-    }
-
-
-    // creare una funzione che riceve un array di interi
-    // e restituisce true se l'array non contiene duplicati,
-    // false se contiene almeno un numero duplicato
-    // questo algoritmo ha efficienza O(n^2) (Big O notation), perché per n iterazioni "esterne"
-    // (del primo for) abbiamo n*n iterazioni "interne" (del secondo for)
-    public static boolean hasUniqueNumbers(int[] numbers) {
-        // it doesn't make sense to check the last number cause it's already checked
-        for(int i=0; i<numbers.length-1; i++) {
-            for(int j=i+1; j<numbers.length; j++) {
-                if(numbers[i] == numbers[j]) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }

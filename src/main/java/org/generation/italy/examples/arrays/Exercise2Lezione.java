@@ -1,7 +1,7 @@
 package org.generation.italy.examples.arrays;
 import java.util.Arrays;
 
-public class Exercise2 {
+public class Exercise2Lezione {
     // given an array of integers, write a method that fills it
     // with random integers in the range 0-10
     void main() {

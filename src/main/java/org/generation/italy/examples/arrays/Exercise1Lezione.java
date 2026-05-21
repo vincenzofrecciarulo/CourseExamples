@@ -1,7 +1,7 @@
 package org.generation.italy.examples.arrays;
 
-public class Exercise1 {
-    // dato un array di 10 elementi, di qualunque tipo, invertire l'ordine degli elementi
+public class Exercise1Lezione {
+    // dato un array di 10 elementi, di qualunque tipo (?), invertire l'ordine degli elementi
     void main() {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         // il modo più semplice per farlo è creare un altro array e copiarci gli elementi

@@ -2,7 +2,7 @@ package org.generation.italy.examples.arrays;
 
 import java.util.Arrays;
 
-public class Exercise3 {
+public class Exercise3Lezione {
     // scriviamo una funzione che riceve in input un array e lo inverte
     // direttamente, senza creare array temporanei
     void main() {
