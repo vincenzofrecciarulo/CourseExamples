@@ -41,4 +41,26 @@ class Exercise4Test {
 
         assertFalse(distinct);
     }
+
+    @Test
+    void findModa() {
+        int[] numbers = { 2, 3, 3, 44, 52, 5, 66, 77, 77, 77};
+
+        int moda = Exercise4.findModa(numbers);
+
+        int expected = 77;
+
+        assertEquals(expected, moda);
+    }
+
+    @Test
+    void findModa_return_any_moda_when_same_occurence() {
+        int[] numbers = { 2, 3, 3, 44, 52, 5, 66, 77, 77};
+
+        int moda = Exercise4.findModa(numbers);
+
+        int expected = 3;
+
+        assertEquals(expected, moda);
+    }
 }
