@@ -1,10 +1,10 @@
-package org.generation.italy.examples.arrays;
+package org.generation.italy.examples.arrays.aula;
 /* dato un array di 10 elementi di qualsiasi tipo, invertire l'ordine degli elementi*/
 
 
 public class Exercise1 {
     static void main() {
-        int[]  numArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int[] numArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         int[] temp = new int[ numArray.length];
 
         for (int i = 0; i< numArray.length ; i++){
