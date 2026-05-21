@@ -39,4 +39,10 @@ class Exercise6Test {
         int[] testArray = {10, 11, 12, 10, 11, 12, 10, 11, 12};
         assertEquals(10, Exercise6.findMode(testArray));
     }
+
+    @Test
+    void findMode_only_one_value() {
+        int[] testArray = {11};
+        assertEquals(11, Exercise6.findMode(testArray));
+    }
 }
