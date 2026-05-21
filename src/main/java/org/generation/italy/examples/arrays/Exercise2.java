@@ -12,7 +12,7 @@ public class Exercise2 {
         IO.println(Arrays.toString(array));
     }
 
-    static void populateArray(int[] array) {
+    public static void populateArray(int[] array) {
             for(int i=0;i<array.length;i++){
             array[i]=(int)(Math.random()*10)+1;
         }
