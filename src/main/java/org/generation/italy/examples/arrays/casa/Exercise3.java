@@ -10,24 +10,50 @@ import java.util.Arrays;
 
 public class Exercise3 {
     public static void main(String[] args){
-        int[] array= new int[10];
+        int[] firstArray= new int[10];
+        populateFirstArray(firstArray);
+        IO.println(Arrays.toString(firstArray));
+        printFindMax(firstArray);
+        printFindMin(firstArray);
 
-        populateArray(array);
-
-        IO.println(Arrays.toString(array));
+        int[] secondArray= new int[10];
+        populateSecondArray(secondArray);
+        IO.println(Arrays.toString(secondArray));
+        printFindMax(secondArray);
+        printFindMin(secondArray);
     }
 
-    public static void populateArray(int[] array) {
+    public static void populateFirstArray(int[] array) {
         for(int i=0;i<array.length;i++){
             array[i]=(int)(Math.random()*100)+1;
         }
     }
 
-    public static void findMax(int[] array){
-        for(int i=0; i<array.length;i++){
-            int max = array[i];
-            if(max>array[i])
+    public static void populateSecondArray(int[] array) {
+        for(int i=0;i<array.length;i++){
+            array[i]=(int)(Math.random()*201)-100;
+        }
+    }
+
+    public static void printFindMax(int[] array){
+        int max = array[0];
+        for(int i=1; i<array.length;i++){
+            if(array[i]>=max){
+                max=array[i];
+            }
         }
 
+        System.out.println("Il massimo è: " + max);
+    }
+
+    public static void printFindMin(int[] array){
+        int min = array[0];
+        for(int i=1; i<array.length;i++){
+            if(array[i]<=min){
+                min=array[i];
+            }
+        }
+
+        System.out.println("Il minimo è: " + min);
     }
 }
