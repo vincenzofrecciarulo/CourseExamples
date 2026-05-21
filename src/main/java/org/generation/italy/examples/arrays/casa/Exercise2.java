@@ -15,7 +15,16 @@ public class Exercise2 {
         int[]  array= new int[10];
 
         populateArray(array);
+
         IO.println(Arrays.toString(array));
+
+        if (hasDuplicates(array)) {
+            System.out.println("Trovati i duplicati!");
+        } else {
+            System.out.println("Nessun numero duplicato.");
+        }
+
+        printDuplicates(array);
     }
 
     public static void populateArray(int[] array) {
@@ -36,7 +45,7 @@ public class Exercise2 {
     }
 
     static void printDuplicates(int[] array) {
-        System.out.print("Duplicati: ");
+        System.out.print("I numeri duplicati sono: ");
 
         for (int i = 0; i < array.length; i++) {
 
@@ -49,6 +58,6 @@ public class Exercise2 {
             }
         }
 
-        System.out.println();
+        System.out.println("\n");
     }
 }
