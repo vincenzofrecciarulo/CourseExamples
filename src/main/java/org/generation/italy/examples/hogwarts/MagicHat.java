@@ -69,6 +69,7 @@ public class MagicHat {
         assignStudents();
         assignExtraStudents();
         reportAssignments();
+        reportAssignmentsVertical();
     }
 
     // shuffleStudents altrimenti i primi in lista sarebbero favoriti nelle preferenze
@@ -173,6 +174,19 @@ public class MagicHat {
                 IO.print(houses[i][j] + " - ");
             }
             IO.println();
+        }
+    }
+    public static void reportAssignmentsVertical(){
+        for (int i = 0; i < houses.length; i++) {
+            System.out.println(House.valueOf(houses[])).name();
+
+        }
+        for (int i = 0; i < houses[0].length; i++) {
+            IO.println("\n");
+            for(int j=0;j<houses.length;j++) {
+                System.out.println(houses[j][i]);
+
+            }
         }
     }
 }
