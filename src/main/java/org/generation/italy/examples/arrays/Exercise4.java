@@ -108,4 +108,12 @@ public class Exercise4 {
         IO.println("Il massimo è: " + max);
         IO.println("Il minimo è: " + min);
     }
+
+    /*
+    Ex4
+    Dato un array di 10 elementi, scrivere una funzione che popola l’array con double
+     casuali di valore (0) - (100), invocarla sull’array e stamparne la media matematica
+     */
+
+
 }
