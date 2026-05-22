@@ -37,34 +37,16 @@ public class Exercise5 {
     }
 
     public static int moveRight(String[] path, int position) {
-        for (int i = 0; i < path.length; i++) {
-            if(path[i].equals("U")&&i+1<path.length){
-                path[i+1]="U";
-                path[i]="";
-                position=i+1;
-                break;
-            } else if (path[i].equals("U")&&i+1==path.length) {
-                position=i+1;
-                break;
-            }
-        }
+        path[position]="";
+        position+=1;
+        if (position< path.length) path[position]="U";
         return position;
     }
 
         public static int moveLeft(String[] path, int position) {
-            for (int i = 0; i < path.length; i++) {
-                if (path[i].equals("U")&&i>0) {
-                    path[i - 1] = "U";
-                    path[i] = "";
-                    position = i - 1;
-                    break;
-                }else if (path[i].equals("U")&&i==0) {
-                    position=i-1;
-                    break;
-                }
-
-
-            }
+            path[position]="";
+            position-=1;
+            if (position>=0) path[position]="U";
             return position;
         }
 }
