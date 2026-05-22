@@ -60,6 +60,7 @@ public class MagicHat {
         assignStudents();
         assignExtraStudents();
         reportAssignments();
+        reportAssignmentsTable();
     }
 
 
@@ -168,9 +169,24 @@ public class MagicHat {
         for(int i = 0; i < houses.length; i++){
             IO.print(House.values()[i].name() + " ");
             for(int j = 0; j < houses[0].length; j++){
-                IO.print(houses[i][j] + " ");
+                IO.print(houses[i][j] + " - ");
             }
             IO.println();
         }
+    }
+
+    public static void reportAssignmentsTable(){
+        for(int i = 0; i < houses[0].length; i++) {
+            IO.print(House.values()[i].name() + "                  ");
+        }
+        IO.println();
+        for(int i = 0; i < houses[0].length; i++){
+            for(int j = 0; j < houses.length; j++){
+                IO.println(houses[j][i] + "                  ");
+            }
+            IO.println();
+        }
+
+
     }
 }
