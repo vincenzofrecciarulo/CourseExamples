@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/hogwarts/House.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/hogwarts/MagicHat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise6.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise7.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +54,7 @@
   "keyToString": {
     "Application.Exercise2.executor": "Run",
     "Application.Exercise5.executor": "Run",
+    "Application.Exercise6.executor": "Run",
     "Application.Exercise7.executor": "Run",
     "Application.MagicHat.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
@@ -61,13 +62,39 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "Merging vincenzo__frecciarulo",
+    "git-widget-placeholder": "vincenzo__frecciarulo",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.Exercise3Test.invertTest">
+  <component name="RunManager" selected="Application.Exercise6">
+    <configuration name="Exercise6" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.arrays.Exercise6" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.arrays.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Exercise7" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.arrays.Exercise7" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.arrays.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Exercise3Test.invertTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CourseExamples" />
       <extension name="coverage">
@@ -118,11 +145,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Exercise6" />
+        <item itemvalue="Application.Exercise7" />
         <item itemvalue="JUnit.Exercise4Test.hasUniqueNumbers_returns_false_for_unique_numbers" />
         <item itemvalue="JUnit.Exercise4Test.hasUniqueNumbers" />
         <item itemvalue="JUnit.Exercise3Test.invertTest" />
-        <item itemvalue="JUnit.Exercise4Test.hasUniqueNumbers_returns_false_for_unique_numbers" />
-        <item itemvalue="JUnit.Exercise4Test.hasUniqueNumbers" />
       </list>
     </recent_temporary>
   </component>
@@ -143,6 +170,8 @@
       <updated>1779389754890</updated>
       <workItem from="1779389765330" duration="13225000" />
       <workItem from="1779433833820" duration="4270000" />
+      <workItem from="1779472953534" duration="738000" />
+      <workItem from="1779485555489" duration="2459000" />
     </task>
     <task id="LOCAL-00001" summary="Implementato Exercise7 e 5, con alcune modifiche agli altri">
       <option name="closed" value="true" />
@@ -160,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779439176131</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003">
+      <option name="closed" value="true" />
+      <created>1779454367640</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1779454367640</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

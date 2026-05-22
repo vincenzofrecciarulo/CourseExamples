@@ -2,10 +2,8 @@ package org.generation.italy.examples.arrays;
 
 public class Exercise7 {
 
-
-
     static void main() {
-        int[] numbers = new int [20];
+        int[] numbers = new int [50];
         Exercise2.populateArray(numbers);
 
         int maxIndex = 0;
@@ -17,9 +15,9 @@ public class Exercise7 {
             }
         }
 
-        System.out.println("Moda dell'array: " + numbers[maxIndex] + "\nRipetizioni: " + maxNumber + "\n\n\n\n\n");
+        System.out.println("Moda dell'array: " + numbers[maxIndex] + "\nRipetizioni: " + maxNumber + "\n\n");
         for (int i : numbers) {
-            System.out.println(i);
+            System.out.print(i+",");
         }
     }
 
