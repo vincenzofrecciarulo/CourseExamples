@@ -1,5 +1,6 @@
-package org.generation.italy.examples.arrays;
+package org.generation.italy.examples;
 
+import org.generation.italy.examples.arrays.Exercise4;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

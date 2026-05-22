@@ -1,4 +1,5 @@
-package org.generation.italy.examples.arrays;
+package org.generation.italy.examples;
+import org.generation.italy.examples.arrays.Exercise3;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
