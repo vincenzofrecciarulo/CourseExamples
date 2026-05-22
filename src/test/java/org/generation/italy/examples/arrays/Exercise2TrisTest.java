@@ -22,7 +22,7 @@ class Exercise2TrisTest {
             // Aspettativa: array di 10 elementi con 1 agli indici 2 (per il 3) e 6 (per il 7)
             int[] expected = {0, 0, 1, 0, 0, 0, 1, 0, 0, 0};
 
-            int[] result = Exercise2Tris.findDuplicates(input);
+            int[] result = Exercise2Tris.rollCall(input);
 
             assertArrayEquals(expected, result, "L'array dei flag non corrisponde!");
         }

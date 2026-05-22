@@ -13,29 +13,23 @@ public class Exercise2Tris {
         populateArray(numbers);
         System.out.println("L'ARRAY GENETRATO E': ");
         System.out.println(Arrays.toString(numbers));
-        int[] duplicates= findDuplicates(numbers);
+        int[] duplicates= rollCall(numbers);
         System.out.println("DUPLICATI TROVATI: ");
         for(int i=0;i<duplicates.length;i++){
-            if(duplicates[i]==1){
+            if(duplicates[i]>1){
                 System.out.print(i+1);
-                System.out.print(" ");
+                System.out.println(" trovato "+duplicates[i]+" volte");
             }
         }
 
     }
-    public static int[] findDuplicates(int[] numbers) {
-        int[] alreadyPresent = new int[10];
+    public static int[] rollCall(int[] numbers) {
+        int[] attendance = new int[10];
 
         for (int i = 0; i < numbers.length; i++) {
-            for (int j = i + 1; j < numbers.length; j++) {
-
-                if (numbers[i] == numbers[j] && alreadyPresent[numbers[i]-1]==0) {
-                    alreadyPresent[numbers[i]-1] = 1;
-                    break;
-                }
-            }
+            attendance[numbers[i]-1]++;
         }
-        return alreadyPresent;
+        return attendance;
     }
 
 }
