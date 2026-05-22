@@ -1,37 +1,26 @@
 package org.generation.italy.examples.arrays;
 
+import java.util.Arrays;
+/*
+Ex4
+Dato un array di 10 elementi,
+scrivere una funzione che popola l’array con double casuali di valore (0) - (100),
+invocarla sull’array e stamparne la media matematica
+ */
 public class Exercise4 {
-    // Creare una funzione che riceva in input un array di numeri interi e ritorna il max numero intero che trova.
-    public static int findMax(int[] numbers) {
-        int max = numbers[0];
-        for (int i = 1; i < numbers.length; i++) {
-            if (numbers[i] > max) {
-                max = numbers[i];
-            }
-        }
-        return max;
+    static void main() {
+        double[] numbers = new double[5];
+        populateRandomDoubleArrayAndFindAverage(numbers);
+        IO.println(Arrays.toString(numbers));
     }
 
-    // Creare una funzione che riceva in input un array di numeri interi e ne restituisca il suo valore medio.
-    public static double findAverage(int[] numbers) {
+    private static void populateRandomDoubleArrayAndFindAverage(double[] arr) {
         double sum = 0;
-        for (int i = 0; i < numbers.length; i++) {
-            sum += numbers[i];
+        for (int i = 0; i< arr.length; i++){
+            arr[i] = Math.random() * 100;
+            IO.println(arr[i]);
+            sum += arr[i];
         }
-        double average = sum/numbers.length;
-        return average;
-    }
-
-    // Creare una funzione che riceva in input un array di numeri interi e restituisca true se l'array non contiene
-    // duplicati, false se contiene almeno un numero duplicato.
-    public static boolean hasUniqueNumbers(int[] numbers){
-        for (int i = 0; i < numbers.length-1; i++) {
-            for (int j=i+1; j<numbers.length; j++){
-                if (numbers[i] == numbers[j]) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        IO.println("Average of array: " + sum / arr.length);
     }
 }

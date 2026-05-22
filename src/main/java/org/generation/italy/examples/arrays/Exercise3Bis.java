@@ -1,21 +1,17 @@
 package org.generation.italy.examples.arrays;
+
 import java.util.Arrays;
-/*
-Ex3
-Dato un array di 10 elementi,
-scrivere una funzione che popola l’array con numeri interi casuali di valore (1) - (100),
-invocarla sull’array e stampare il valore massimo e il valore minimo
- */
-public class Exercise3 {
+// Ex3Bis (solitaria)
+// Rifarlo ma con valori (-100) - (+100)
+public class Exercise3Bis {
     static void main() {
         int[] numbers = new int[10];
         populateArray(numbers);
         IO.println(Arrays.toString(numbers));
     }
-
     public static void populateArray(int[] arr){
         for (int i = 0; i < arr.length; i++){
-            arr[i] = (int)(Math.random()* 100) + 1;
+            arr[i] = (int)(Math.random()* (100 -(-100)+1))+(-100);
         }
         IO.println(findMaxAndMinNumbers(arr));
     }
@@ -32,5 +28,4 @@ public class Exercise3 {
         }
         return "max: " + max + " min: " + min;
     }
-
 }
