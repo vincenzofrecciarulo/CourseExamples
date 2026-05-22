@@ -68,7 +68,7 @@ public class MagicHat {
         assignPrefects();
         assignStudents();
         assignExtraStudents();
-        reportAssignments();
+        reportAssignmentsTable();
     }
 
     // shuffleStudents altrimenti i primi in lista sarebbero favoriti nelle preferenze
@@ -171,6 +171,19 @@ public class MagicHat {
             IO.print(House.values()[i].name() + " ");
             for (int j = 0; j < houses[0].length; j++) {
                 IO.print(houses[i][j] + " - ");
+            }
+            IO.println();
+        }
+    }
+
+    static void reportAssignmentsTable() {      // possiamo risolvere l'allineamento utilizzando printf
+        for (int i=0; i < houses.length; i++) {
+            IO.print(House.values()[i].name() + "     ");
+        }
+        IO.println();
+        for (int i=0; i < houses[0].length; i++) {
+            for (int j=0; j < houses.length; j++) {
+                IO.print(houses[j][i] + "     ");
             }
             IO.println();
         }
