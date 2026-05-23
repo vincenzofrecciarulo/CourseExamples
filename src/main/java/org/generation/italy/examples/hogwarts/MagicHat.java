@@ -69,6 +69,7 @@ public class MagicHat {
         assignStudents();
         assignExtraStudents();
         reportAssignmentsTable();
+
     }
 
     // shuffleStudents altrimenti i primi in lista sarebbero favoriti nelle preferenze
@@ -110,11 +111,12 @@ public class MagicHat {
                 favoriteHouse = House.valueOf(houseName);
             }
             IO.println(studentName + "...mmmmmmh...");
-//            Thread.sleep(2000 + luck.nextInt(2000));
+
+//            Thread.sleep(2000 + luck.nextInt(2000));   // we can pause the execution thread. here we do it for 2s+0..2s to simulate suspance
             if (houseName != null) {
                 int favoriteHousePos = favoriteHouse.ordinal();
                 boolean hasSpace = counters[favoriteHousePos] < PERFECT_HOUSE_SIZE;
-                // we can pause the execution thread. here we do it for 2s+0..2s to simulate suspance
+
                 if (hasSpace) {
                     int chance = luck.nextInt(3); // 0..2
                     if (chance == 0) {   // 1 on 3 possibilities
@@ -165,7 +167,7 @@ public class MagicHat {
             }
         }
     }
-
+/*
     public static void reportAssignments() {
         for (int i=0; i < houses.length; i++) {
             IO.print(House.values()[i].name() + " ");
@@ -174,16 +176,39 @@ public class MagicHat {
             }
             IO.println();
         }
-    }
+    }*/
 
-    static void reportAssignmentsTable() {      // possiamo risolvere l'allineamento utilizzando printf
-        for (int i=0; i < houses.length; i++) {
-            IO.print(House.values()[i].name() + "     ");
+    static void reportAssignmentsTable() {
+        int maxLen = 0;
+
+        for(int house = 0; house < houses.length; house++){
+            for(int student = 0; student < houses[house].length; student++){
+                if(houses[house][student] != null &&  houses[house][student].length() > maxLen){
+                    maxLen = houses[house][student].length();
+                }
+            }
+        }
+
+        for(House h : House.values()){
+            if(h.name().length() > maxLen){
+                maxLen = h.name().length();
+            }
+        }
+
+        String format = "%-" + maxLen + "s  ";
+
+        // Intestazioni (nomi delle casate)
+        for (int house = 0; house < houses.length; house++) {
+            System.out.printf(format, House.values()[house].name());
+
         }
         IO.println();
-        for (int i=0; i < houses[0].length; i++) {
-            for (int j=0; j < houses.length; j++) {
-                IO.print(houses[j][i] + "     ");
+
+        // righe (nomi studenti)
+        for (int student = 0; student < houses[0].length; student++) {
+            for (int house = 0; house < houses.length; house++) {
+                String name = (student < houses[house].length ? houses[house][student] : null);
+                System.out.printf(format, name != null ? name : "");
             }
             IO.println();
         }
