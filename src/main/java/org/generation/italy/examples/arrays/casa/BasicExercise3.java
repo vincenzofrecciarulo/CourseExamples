@@ -55,15 +55,16 @@ public class BasicExercise3 {
                 //Se sono uguali -> counter2++ incrementa il contatore di 1
             }
         }
-                 boolean findChar;                         //creo la variabile di tipo booleana per restituire true.
+                 boolean findChar=false;                        //creo la variabile di tipo booleana per restituire true o false
 
-                if (counter1>counter2) {                   //se il contatore per la s1 ha trovato piu' volte (e quindi è maggiore) il carattere
-                                                           // rispetto al contatore per la s2
-                }
+                if (counter1>counter2) {
+                    findChar=true;                             //se il contatore per la s1 ha trovato piu' volte (e quindi è maggiore) il carattere
+                                                               // rispetto al contatore per la s2
+                }else{
+                    findChar=false;
+                }                                             //la mia booleana sarà true altrimenti false.
 
-                findChar=true;                             //la mia booleana sarà true
-
-                System.out.println(findChar);
+                 System.out.println(findChar);
     }
 
 }
