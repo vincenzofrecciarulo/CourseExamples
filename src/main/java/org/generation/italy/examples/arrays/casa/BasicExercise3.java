@@ -1,0 +1,69 @@
+package org.generation.italy.examples.arrays.casa;
+
+import com.generation.library.*;
+
+public class BasicExercise3 {
+    //Scrivi una funzione che riceve in input due stringhe e un carattere
+    // e ritorna true se la prima stringa contiene quel carattere un numero di volte superiore alla seconda
+
+
+    public static void main(String[] args){
+
+        System.out.println("Inserisci una stringa: "); //input per inserire la  stringa
+        String s1=Console.readString();
+
+        System.out.println("Inserisci un'altra stringa: "); //input per inserire la stringa
+        String s2=Console.readString();
+
+        System.out.println("Inserisci un carattere: ");   //input per inserire il  carattere
+        char c1= Console.readString().charAt(0);          //così prende il primo carattere della stringa
+
+        // char è il tipo di variabile per indicare un singolo carattere. es "a".
+
+
+         int counter1= 0;                                 //dichiaro il contatore per la stringa 1 (s1)
+
+        // per il ciclo for: parto dalla posizione 0 (la prima lettera)
+        //i < s1.length()continuo finché non arrivo alla fine della stringa
+        //i++ad ogni giro vado alla lettera successiva
+
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) == c1) {
+                counter1++;
+
+                //Ad ogni giro del ciclo:
+                //s1.charAt(i) → prende la lettera alla posizione i
+                // == c1 -> la confronta con il carattere cercato
+                //Se sono uguali -> counter1++ incrementa il contatore di 1
+            }
+
+        }
+
+         int counter2=0;                                     //dichiaro il contatore per la stringa 2 (s2)
+
+        //per il ciclo for: parto dalla posizione 0 (la prima lettera)
+        //i < s1.length()continuo finché non arrivo alla fine della stringa
+        //i++ad ogni giro vado alla lettera successiva
+
+        for(int i=0;i<s2.length();i++){
+            if (s2.charAt(i) ==c1){
+                counter2++;
+
+                //Ad ogni giro del ciclo:
+                //s2.charAt(i) → prende la lettera alla posizione i
+                // == c1 -> la confronta con il carattere cercato
+                //Se sono uguali -> counter2++ incrementa il contatore di 1
+            }
+        }
+                 boolean findChar;                         //creo la variabile di tipo booleana per restituire true.
+
+                if (counter1>counter2) {                   //se il contatore per la s1 ha trovato piu' volte (e quindi è maggiore) il carattere
+                                                           // rispetto al contatore per la s2
+                }
+
+                findChar=true;                             //la mia booleana sarà true
+
+                System.out.println(findChar);
+    }
+
+}
