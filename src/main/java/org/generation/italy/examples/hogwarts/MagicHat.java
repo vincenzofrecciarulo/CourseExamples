@@ -132,12 +132,12 @@ public class MagicHat {
             if (counters[k] > maxStudents) maxStudents = counters[k];
         }
         for (int i = 0; i < houses.length; i++) {
-            System.out.printf(House.values()[i].name() + "\t");
+            System.out.printf(House.values()[i].name() + "       ");
         }
         IO.println();
         for (int j = 0; j < maxStudents; j++) {
             for (int i = 0; i < houses.length; i++) {
-                System.out.printf(houses[i][j] + "\t");
+                System.out.printf(houses[i][j] + "        ");
             }
             IO.println();
         }
