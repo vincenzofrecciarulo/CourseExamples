@@ -33,6 +33,7 @@ public class MagicHat {
             {"Corinne Mihai", null},
             {"Mattia Liguori", null},
             {"Andrea Bruno", House.GRYFFINDOR.name()},
+           {"HARRY POTTER", House.GRYFFINDOR.name()},
     };
 
     final static String[][] prefects = new String[][] {
@@ -67,7 +68,6 @@ public class MagicHat {
         shuffleStudents();
         assignPrefects();
         assignStudents();
-        assignExtraStudents();
         reportAssignmentsTable();
 
     }
@@ -101,19 +101,20 @@ public class MagicHat {
         }
     }
 
+
     static void assignStudents() throws InterruptedException {
-        for (int i=0; i<PERFECT_CLASS_SIZE - prefects.length; i++) {    // we already assigned prefects
+        for(int i = 0; i < students.length; i++){
             String[] student = students[i];
             String studentName = student[0];
             String houseName = student[1];
             House favoriteHouse = null;
-            if (houseName != null) {
+
+            if(houseName != null){
                 favoriteHouse = House.valueOf(houseName);
             }
             IO.println(studentName + "...mmmmmmh...");
 
-//            Thread.sleep(2000 + luck.nextInt(2000));   // we can pause the execution thread. here we do it for 2s+0..2s to simulate suspance
-            if (houseName != null) {
+            if(houseName != null){
                 int favoriteHousePos = favoriteHouse.ordinal();
                 boolean hasSpace = counters[favoriteHousePos] < PERFECT_HOUSE_SIZE;
 
@@ -123,15 +124,18 @@ public class MagicHat {
                         houses[favoriteHousePos][counters[favoriteHousePos]] = studentName;
                         counters[favoriteHousePos]++;
                         IO.println(studentName + " ha avuto culo ed è stato aggiunto alla sua casa preferita!");
-                        continue;     // on to the next student
+                        continue;
                     }
                 }
+
             }
-            // if we get here, either there was no space in the classroom or the student didn't get his favourite house
             int randomPos;
+
+            int limit = i < PERFECT_CLASS_SIZE - prefects.length ? PERFECT_HOUSE_SIZE : PERFECT_HOUSE_SIZE + 1;
+
             do {
                 randomPos = luck.nextInt(houses.length);
-            } while (counters[randomPos] == PERFECT_HOUSE_SIZE);    // till the house is full
+            } while (counters[randomPos] == limit);    // till the house is full
             houses[randomPos][counters[randomPos]] = studentName;
             counters[randomPos]++;
             String randomHouseName = House.values()[randomPos].name(); // we get the enum and convert it to String
@@ -146,37 +150,6 @@ public class MagicHat {
         }
     }
 
-    static void assignExtraStudents() {
-        for (int i = PERFECT_CLASS_SIZE - prefects.length; i < students.length; i++) {
-            int randomPos;
-            String[] student = students[i];
-            String studentName = student[0];
-            House favoriteHouse = House.valueOf(student[1]);
-            do {
-                randomPos = luck.nextInt(houses.length);
-            } while(counters[randomPos] == PERFECT_HOUSE_SIZE + 1);
-            houses[randomPos][counters[randomPos]] = studentName;
-            counters[randomPos]++;
-            String randomHouseName = House.values()[randomPos].name(); // we get the enum and convert it to String
-            IO.println(studentName + " è stato aggiunto casualmente alla casa " + randomHouseName);
-            if (randomHouseName.equals(favoriteHouse.name())) {
-                IO.println("Che botta di culo! Lo studente "
-                        + studentName +
-                        " e' stato aggiunto casualmente alla sua casa preferita: "
-                        + randomHouseName);
-            }
-        }
-    }
-/*
-    public static void reportAssignments() {
-        for (int i=0; i < houses.length; i++) {
-            IO.print(House.values()[i].name() + " ");
-            for (int j = 0; j < houses[0].length; j++) {
-                IO.print(houses[i][j] + " - ");
-            }
-            IO.println();
-        }
-    }*/
 
     static void reportAssignmentsTable() {
         int maxLen = 0;
