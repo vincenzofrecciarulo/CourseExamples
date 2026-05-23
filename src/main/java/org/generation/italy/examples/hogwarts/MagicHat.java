@@ -28,7 +28,7 @@ public class MagicHat {
             {"Corinne Mihai", null},
             {"Mattia Liguori", null},
             {"Andrea Bruno", House.GRYFFINDOR.name()},
-            {"Andrea Bruno2", House.GRYFFINDOR.name()},
+            {"Luca Salazar2", House.SLYTHERIN.name()},
     };
 
     final static String[][] prefects = new String[][] {
@@ -89,11 +89,14 @@ public class MagicHat {
                 favoriteHouse = House.valueOf(houseName);
             }
             IO.println(studentName + "...mmmmmmh...");
+            int totaleAssegnati = 0;
+            for (int k = 0; k < counters.length; k++) {
+                totaleAssegnati += counters[k];
+            }
+            int limiteAttuale = totaleAssegnati < PERFECT_CLASS_SIZE ? PERFECT_HOUSE_SIZE : MAX_PER_HOUSE;
+
             if (houseName != null) {
                 int favoriteHousePos = favoriteHouse.ordinal();
-                int totaleAssegnati = 0;
-                for (int c : counters) totaleAssegnati += c;
-                int limiteAttuale = totaleAssegnati < PERFECT_CLASS_SIZE ? PERFECT_HOUSE_SIZE : MAX_PER_HOUSE;
                 boolean hasSpace = counters[favoriteHousePos] < limiteAttuale;
                 if (hasSpace) {
                     int chance = luck.nextInt(3);
@@ -105,10 +108,6 @@ public class MagicHat {
                     }
                 }
             }
-
-            int totaleAssegnati = 0;
-            for (int c : counters) totaleAssegnati += c;
-            int limiteAttuale = totaleAssegnati < PERFECT_CLASS_SIZE ? PERFECT_HOUSE_SIZE : MAX_PER_HOUSE;
 
             int randomPos;
             do {
@@ -127,20 +126,10 @@ public class MagicHat {
         }
     }
 
-    public static void reportAssignments() {
-        for (int i = 0; i < houses.length; i++) {
-            IO.print(House.values()[i].name() + " ");
-            for (int j = 0; j < houses[0].length; j++) {
-                IO.print(houses[i][j] + " - ");
-            }
-            IO.println();
-        }
-    }
-
     static void reportAssignmentsTable() {
         int maxStudents = 0;
-        for (int c : counters) {
-            if (c > maxStudents) maxStudents = c;
+        for (int k = 0; k < counters.length; k++) {
+            if (counters[k] > maxStudents) maxStudents = counters[k];
         }
         for (int i = 0; i < houses.length; i++) {
             System.out.printf(House.values()[i].name() + "\t");
