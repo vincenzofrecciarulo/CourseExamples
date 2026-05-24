@@ -5,5 +5,11 @@ package org.generation.italy.examples.arrays.casa.riccardo;
 // in cui tutti i valori sono zero tranne quelli sulla diagonale
 
 public class Exercise7 {
-    public
+    public static void main(String[] args){
+
+    }
+
+    public static int[][] returnMatrix (int num){
+
+    }
 }
