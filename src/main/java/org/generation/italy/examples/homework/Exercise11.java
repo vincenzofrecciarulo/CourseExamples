@@ -1,23 +1,40 @@
 package org.generation.italy.examples.homework;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Exercise11 {
     /*
     11) Crea una semplice implementazione di gioco di battaglia navale in cui il giocatore gioca contro il computer.
      */
 
+    void  main(){
+        playNavalBattle();
+    }
+
+
+
     static void playNavalBattle(){
         int[][] playerBoard = new int[9][9];
-        int[][] cpuBoard = new int[9][9];
+        int[][] cpuBoard = {
+                {0, 0, 1, 0, 0, 0, 0, 0, 2},
+                {0, 0, 0, 0, 0, 0, 0, 0, 2},
+                {0, 0, 1, 0, 3, 3, 3, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 1, 0, 0},
+                {1, 4, 4, 4, 4, 0, 0, 0, 1},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {2, 0, 0, 0, 2, 0, 0, 0, 0},
+                {2, 0, 0, 0, 2, 0, 3, 3, 3},
+        };
 
         final int oneTileShipLength = 1;
         final int twoTileShipLength = 2;
         final int threeTileShipLength = 3;
         final int fourTileShipLength = 4;
 
-        int oneTileShipCount = 5;
-        int twoTileShipCount = 3;
+        int oneTileShipCount = 3;
+        int twoTileShipCount = 2;
         int threeTileShipCount = 2;
         int fourTileShipCount = 1;
 
@@ -25,10 +42,8 @@ public class Exercise11 {
         IO.println("Benvenuti a battaglia navale");
         IO.println("=========================");
 
-
-        while(true){
-            printBoard(playerBoard);
-
+        printBoard(playerBoard);
+        while(oneTileShipCount + twoTileShipCount + threeTileShipCount + fourTileShipCount > 0){
             IO.println("Generale dobbiamo posizionare le navi da guerra!");
             printNavalShipToDeploy(oneTileShipLength, oneTileShipCount);
             printNavalShipToDeploy(twoTileShipLength, twoTileShipCount);
@@ -97,7 +112,8 @@ public class Exercise11 {
                 xCoordinates[0] = cellX;
                 yCoordinates[0] = cellY;
 
-                String directionString = IO.readln("""
+                if(shipLength != 1){
+                    String directionString = IO.readln("""
                     Inserisci la direzione della nave:
                     _"w" diretto verso sopra
                     _"s" diretto verso sotto
@@ -106,47 +122,115 @@ public class Exercise11 {
                     """);
 
 
-                switch (directionString){
-                    case "w":
-                        for(int i = 1; i < shipLength; i++){
-                            xCoordinates[i] = cellX;
-                            yCoordinates[i] = cellY-1;
-                        }
-                        break;
-                    case "s":
-                        for(int i = 1; i < shipLength; i++){
-                            xCoordinates[i] = cellX;
-                            yCoordinates[i] = cellY+1;
-                        }
-                        break;
-                    case "a":
-                        for(int i = 1; i < shipLength; i++){
-                            xCoordinates[i] = cellX - 1;
-                            yCoordinates[i] = cellY;
-                        }
-                        break;
-                    case "d":
-                        for(int i = 1; i < shipLength; i++){
-                            xCoordinates[i] = cellX + 1;
-                            yCoordinates[i] = cellY;
-                        }
-                        break;
-                    default:
-                        IO.println("Non hai inserito una direzione valida");
+                    switch (directionString){
+                        case "w":
+                            for(int i = 1, currentYCell = cellY - 1; i < shipLength; i++, currentYCell--){
+                                xCoordinates[i] = cellX;
+                                yCoordinates[i] = currentYCell;
+                            }
+                            break;
+                        case "s":
+                            for(int i = 1, currentYCell = cellY + 1; i < shipLength; i++, currentYCell++){
+                                xCoordinates[i] = cellX;
+                                yCoordinates[i] = currentYCell;
+                            }
+                            break;
+                        case "a":
+                            for(int i = 1, currentXCell = cellX - 1; i < shipLength; i++, currentXCell--){
+                                xCoordinates[i] = currentXCell;
+                                yCoordinates[i] = cellY;
+                            }
+                            break;
+                        case "d":
+                            for(int i = 1, currentXCell = cellX + 1; i < shipLength; i++, currentXCell++){
+                                xCoordinates[i] = currentXCell;
+                                yCoordinates[i] = cellY;
+                            }
+                            break;
+                        default:
+                            IO.println("Non hai inserito una direzione valida");
+                            continue;
+                    }
                 }
+
+
                 isShipDeployed = tryInsertShip(playerBoard, xCoordinates, yCoordinates);
                 if(!isShipDeployed){
                     IO.println("Errore nell'inserimento della nave. Probabile celle non disponibili");
                 }
             }while(!isShipDeployed);
 
+            switch (shipLength){
+                case 1:
+                    oneTileShipCount--;
+                    break;
+                case 2:
+                    twoTileShipCount--;
+                    break;
+                case 3:
+                    threeTileShipCount--;
+                    break;
+                case 4:
+                    fourTileShipCount--;
+                    break;
+                default:
+                    IO.println("Errore nella diminuzione del contatore nave.");
+            }
 
+            printBoard(playerBoard);
+        }
 
+        while(true){
+            IO.println("Generale abbiamo inserito tutte le nostre navi da guerra!");
+            IO.println("E' il momento di iniziare il combattimento a turno");
 
+            int cellX = Integer.parseInt(IO.readln("Inserisci la coordinata x che vuoi attaccare: "));
+            int cellY = Integer.parseInt(IO.readln("Inserisci la coordinata y che vuoi attaccare: "));
 
+            if(cellX < 0 || cellX > 8 || cellY < 0 || cellY > 8){
+                IO.println("Generale le coordinate sono sbagliate!");
 
+            }else{
+                if(cpuBoard[cellY][cellX] != 0){
+                    IO.println("Bersaglio colpito!");
+                    cpuBoard[cellY][cellX] = 0;
+                }else{
+                    IO.println("Acqua!");
+                }
+            }
+
+            Random random = new Random();
+            cellY = random.nextInt(9);
+            cellX = random.nextInt(9);
+
+            IO.println("=====================");
+            IO.println("E' il turno del nemico");
+
+            if(cpuBoard[cellY][cellX] != 0){
+                IO.println("Bersaglio colpito!");
+                cpuBoard[cellY][cellX] = 0;
+            }else{
+                IO.println("Acqua!");
+            }
+            IO.println("======Navi alleate");
+            printBoard(playerBoard);
+            IO.println("=======Navi nemiche");
+            printBoard(cpuBoard);
+
+            boolean isPlayerDead = isBoardEmpty(playerBoard);
+            if(isPlayerDead){
+                IO.println("Tutte le nostre navi sono stati distrutte. GAME OVER");
+                break;
+            }
+            boolean isCpuDead = isBoardEmpty(cpuBoard);
+
+            if(isCpuDead){
+                IO.println("Tuttle le navi nemiche sono distrutte. WIN");
+                break;
+            }
 
         }
+
 
     }
 
@@ -156,12 +240,33 @@ public class Exercise11 {
         }
     }
 
-    static boolean tryInsertShip(int[][] shipBoard, int[] xCoordinates, int[] yCoordinates){
+    static boolean isBoardEmpty(int[][] shipBoard){
+        for(int i = 0; i < shipBoard.length; i++){
+            for(int j = 0; j < shipBoard[0].length; j++){
+                if(shipBoard[i][j] != 0){
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
+    static boolean tryInsertShip(int[][] shipBoard, int[] xCoordinates, int[] yCoordinates){
+        int shipLength = xCoordinates.length;
+        for(int i = 0; i < shipLength; i++){
+            if(xCoordinates[i] < 0 || xCoordinates[i] > 8 || yCoordinates[i] < 0 || yCoordinates[i] > 8 || shipBoard[yCoordinates[i]][xCoordinates[i]] != 0){
+                return false;
+            }
+        }
+        for(int i = 0; i < shipLength; i++){
+            shipBoard[yCoordinates[i]][xCoordinates[i]] = shipLength;
+        }
+        return true;
+
+    }
+
     static void printNavalShipToDeploy(int shipLength, int shipCount){
-        IO.println("Hai " + shipCount + shipLength + " da schierare (codice " + shipLength + ")");
+        IO.println("Hai " + shipCount + " navi di lunghezza " + shipLength + " da schierare (codice " + shipLength + ")");
     }
 
 }
