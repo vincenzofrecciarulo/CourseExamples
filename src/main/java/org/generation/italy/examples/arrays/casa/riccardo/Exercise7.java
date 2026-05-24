@@ -10,6 +10,14 @@ public class Exercise7 {
     }
 
     public static int[][] returnMatrix (int num){
+        int[][] matrix = new int[num][num];
 
+        for(int i=0; i<num; i++){
+            for(int j=0; j<num; j++){
+                if (i==j){
+                    matrix[i][j] ==
+                }
+            }
+        }
     }
 }
