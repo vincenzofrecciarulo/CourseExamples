@@ -14,7 +14,7 @@ public class Exercise3 {
         String secondWord = IO.readln("Inserisci la seconda parola: ");
         String[] secondArrayStr = secondWord.split("");
 
-        String characterStr = IO.readln("Inserisci un carattere: ")
+        String characterStr = IO.readln("Inserisci un carattere: ");
         char character = characterStr.charAt(0); // "readln" restituisce sempre una stringa.
                                                  // Il comando "charAt" converte quella stringa in un carattere.
                                                  // In questo caso, "charAt(0)" restituisce la prima posizione della stringa convertita
