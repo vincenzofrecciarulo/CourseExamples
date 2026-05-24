@@ -1,24 +1,29 @@
 package org.generation.italy.examples.arrays.casa.riccardo;
 
 import java.util.Random;
+
 // Scrivi una funzione che riceve in input un numero n
 // e ritorna un vettore bidimensionale (matrice) n x n
 // in cui tutti i valori sono zero tranne quelli sulla diagonale
 
 public class Exercise7 {
     public static void main(String[] args){
-        String numberStr = IO.readln("Inserisci un numero intero maggiore o uguale a 1 per definire la dimensione della matrice: ");
-        int number = Integer.parseInt(numberStr);
+        int number;
 
-        if(number>=1){
-            int[][] bidMatrix = returnMatrix(number);
-            System.out.println("La matrice è: ");
-            printMatrix(bidMatrix);
-        }else{
-            System.out.println("Il numero inserito non è valido!");
-            System.out.println();
-        }
+        do{
+            String numberStr = IO.readln("Inserisci un numero intero maggiore o uguale a 1 per definire la dimensione della matrice: ");
+            number = Integer.parseInt(numberStr);
 
+            if(number < 1) {
+                System.out.println("Il numero inserito non è valido!");
+                System.out.println("Reinserisci il numero!");
+                System.out.println();
+            }
+        }while(number < 1);
+
+        int[][] bidMatrix = returnMatrix(number);
+        System.out.println("La matrice è: ");
+        printMatrix(bidMatrix);
     }
 
     public static int[][] returnMatrix (int num){
