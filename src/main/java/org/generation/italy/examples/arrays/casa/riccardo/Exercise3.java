@@ -5,24 +5,30 @@ package org.generation.italy.examples.arrays.casa.riccardo;
 
 public class Exercise3 {
     public static void main(String[] args){
+        String[] firstWord = IO.readln("Inserisci la prima parola: ");
+        String[] secondWord = IO.readln("Inserisci la seconda parola: ");
+        char character "inserisci un carattere: ";
 
+        checkCharacter(firstWord, secondWord, character);
     }
 
-    public static boolean checkCharacter (String firstStr, String secondStr, char c){
+    public static boolean checkCharacter (String[] firstStr, String[] secondStr, char c){
         int countFirstStr = 0, countSecondStr = 0;
 
+        String charTarget = String.valueOf(c);
+
         for(int i=0; i<firstStr.length; i++){
-            if(c==firstStr[i]){
+            if(firstStr[i].equalsIgnoreCase(charTarget)){
                 countFirstStr++;
             }
         }
 
         for(int i=0; i<secondStr.length; i++){
-            if(c==secondStr[i]){
+            if(secondStr[i].equalsIgnoreCase(charTarget)){
                 countSecondStr++;
             }
         }
 
-        if(countFirstStr>countSecondStr)
+        return countFirstStr > countSecondStr
     }
 }
