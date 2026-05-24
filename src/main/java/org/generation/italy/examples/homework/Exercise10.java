@@ -45,8 +45,7 @@ public class Exercise10 {
 
             printBoard(trisBoard);
 
-            boolean isWon = checkWin(trisBoard,playerMark);
-            if(isWon){
+            if(checkWin(trisBoard, playerMark)){
                 IO.println("Congratulazioni hai vinto!");
                 return;
             }
