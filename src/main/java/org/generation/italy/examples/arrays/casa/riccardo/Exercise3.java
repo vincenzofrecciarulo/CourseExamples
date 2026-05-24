@@ -5,11 +5,20 @@ package org.generation.italy.examples.arrays.casa.riccardo;
 
 public class Exercise3 {
     public static void main(String[] args){
-        String[] firstWord = IO.readln("Inserisci la prima parola: ");
-        String[] secondWord = IO.readln("Inserisci la seconda parola: ");
-        char character "inserisci un carattere: ";
+        String firstWord = IO.readln("Inserisci la prima parola: ");
+        String[] firstArrayStr = firstWord.split("");
 
-        checkCharacter(firstWord, secondWord, character);
+        String secondWord = IO.readln("Inserisci la seconda parola: ");
+        String[] secondArrayStr = secondWord.split("");
+
+        char character = IO.readln("Inserisci un carattere: ").charAt(0);
+
+        if (checkCharacter(firstArrayStr, secondArrayStr, character)){
+            System.out.println("La prima stringa contiene il carattere " + character + " più volte della seconda stringa.");
+        } else{
+            System.out.println("La prima stringa NON contiene il carattere " + character + " più volte della seconda stringa.");
+        }
+
     }
 
     public static boolean checkCharacter (String[] firstStr, String[] secondStr, char c){
@@ -29,6 +38,6 @@ public class Exercise3 {
             }
         }
 
-        return countFirstStr > countSecondStr
+        return countFirstStr > countSecondStr;
     }
 }
