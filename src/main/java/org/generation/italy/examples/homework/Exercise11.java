@@ -74,7 +74,7 @@ public class Exercise11 {
             }while(!isCellAvailable);
 
             int[] xCoordinates = new int[shipLength];
-            int[] yCoordinates = new int[shipLength];s
+            int[] yCoordinates = new int[shipLength];
 
             boolean isShipDeployed = false;
 
