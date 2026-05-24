@@ -23,6 +23,7 @@ public class Exercise7 {
 
         int[][] bidMatrix = returnMatrix(number);
         System.out.println("La matrice è: ");
+        System.out.println();
         printMatrix(bidMatrix);
     }
 
