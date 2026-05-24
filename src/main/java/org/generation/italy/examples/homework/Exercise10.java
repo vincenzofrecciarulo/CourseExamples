@@ -27,9 +27,9 @@ public class Exercise10 {
         Random random = new Random();
         do{
             IO.println("");
-            IO.println("Inserisci le coordinate della cella che vuoi prendere (partendo da 0): ");
-            int rowIndex = Integer.parseInt(IO.readln("Scegli la riga:  "));
-            int columnIndex = Integer.parseInt(IO.readln("Scegli la colonna:  "));
+            IO.println("Inserisci le coordinate della cella che vuoi prendere: ");
+            int rowIndex = Integer.parseInt(IO.readln("Scegli la riga:  ")) - 1;
+            int columnIndex = Integer.parseInt(IO.readln("Scegli la colonna:  ")) - 1;
             IO.println("===================================");
 
             if((rowIndex < 0 || rowIndex > 3) || (columnIndex < 0 || columnIndex > 3)){
@@ -112,11 +112,7 @@ public class Exercise10 {
             return false;
         }
 
-        if ((trisBoard[0][0] == null || trisBoard[2][2] == null) || (trisBoard[0][2] == null || trisBoard[2][0] == null)){
-            return  false;
-        }
-
-        return (trisBoard[0][0].equalsIgnoreCase(cell) && trisBoard[2][2].equalsIgnoreCase(cell))
-                || (trisBoard[0][2].equalsIgnoreCase(cell) && trisBoard[2][0].equalsIgnoreCase(cell));
+        return (trisBoard[0][0] != null && trisBoard[2][2] != null && trisBoard[0][0].equalsIgnoreCase(cell) && trisBoard[2][2].equalsIgnoreCase(cell))
+                || (trisBoard[0][2] != null && trisBoard[2][0] != null && trisBoard[0][2].equalsIgnoreCase(cell) && trisBoard[2][0].equalsIgnoreCase(cell));
     }
 }
