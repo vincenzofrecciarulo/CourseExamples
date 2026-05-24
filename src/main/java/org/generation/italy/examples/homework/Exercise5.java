@@ -10,7 +10,7 @@ public class Exercise5 {
             throw new Exception();
         }
         int result = 1;
-        for(int i = num; num > 1; num--){
+        for(int i = num; i > 1; i--){
             result *= num;
         }
         return result;
