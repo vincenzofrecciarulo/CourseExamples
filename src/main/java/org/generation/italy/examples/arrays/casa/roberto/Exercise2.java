@@ -1,4 +1,4 @@
-package org.generation.italy.examples.arrays.casa;
+package org.generation.italy.examples.arrays.casa.roberto;
 import java.util.Arrays;
 
 // Ex.2:

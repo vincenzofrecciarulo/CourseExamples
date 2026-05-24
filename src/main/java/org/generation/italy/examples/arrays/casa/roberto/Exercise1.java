@@ -1,4 +1,4 @@
-package org.generation.italy.examples.arrays.casa;
+package org.generation.italy.examples.arrays.casa.roberto;
 
 // Stampa gli indirizzi dei vettori
 

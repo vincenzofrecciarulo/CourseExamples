@@ -1,4 +1,4 @@
-package org.generation.italy.examples.arrays.casa;
+package org.generation.italy.examples.arrays.casa.roberto;
 
 //Ex.3:
 //Dato un array di 10 elementi, scrivere una funzione che popola l’array con numeri interi casuali di valore (1) - (100), invocarla sull’array e stampare il valore massimo e il valore minimo
