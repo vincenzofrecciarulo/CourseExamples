@@ -50,6 +50,9 @@ public class Exercise11 {
                     case 3:
                         isShipAvailable = threeTileShipCount > 0;
                         break;
+                    case 4:
+                        isShipAvailable = fourTileShipCount > 0;
+                        break;
                     default:
                         IO.println("La nave di lunghezza " + shipLength +  " non è piu disponibile.");
                 }
@@ -63,13 +66,37 @@ public class Exercise11 {
                 cellX = Integer.parseInt(IO.readln("Inserisci la coordinata 'x' in numero "));
                 cellY = Integer.parseInt(IO.readln("Inserisci la coordinata 'y' in numero "));
 
-                if(playerBoard[cellY][cellX] == 0){
+                if(cellY < 9 && cellY >= 0 && cellX >= 0 && cellX < 9 && playerBoard[cellY][cellX] == 0){
                     isCellAvailable = true;
+                }else{
+                    IO.println("Hai inserito una coordinata non valida");
                 }
             }while(!isCellAvailable);
 
-            Direction direction = null;
+            int[] xCoordinates = new int[shipLength];
+            int[] yCoordinates = new int[shipLength];s
+
+            boolean isShipDeployed = false;
+
             do{
+                String s = IO.readln("Vuoi cambiare coordinate? Inserisci 'y' se si");
+                if(s.equalsIgnoreCase("y")){
+                    isCellAvailable = false;
+                    do{
+                        cellX = Integer.parseInt(IO.readln("Inserisci la coordinata 'x' in numero "));
+                        cellY = Integer.parseInt(IO.readln("Inserisci la coordinata 'y' in numero "));
+
+                        if(cellY < 9 && cellY >= 0 && cellX >= 0 && cellX < 9 && playerBoard[cellY][cellX] == 0){
+                            isCellAvailable = true;
+                        }else{
+                            IO.println("Hai inserito una coordinata non valida");
+                        }
+                    }while(!isCellAvailable);
+                }
+
+                xCoordinates[0] = cellX;
+                yCoordinates[0] = cellY;
+
                 String directionString = IO.readln("""
                     Inserisci la direzione della nave:
                     _"w" diretto verso sopra
@@ -81,23 +108,41 @@ public class Exercise11 {
 
                 switch (directionString){
                     case "w":
-                        direction = Direction.UP;
+                        for(int i = 1; i < shipLength; i++){
+                            xCoordinates[i] = cellX;
+                            yCoordinates[i] = cellY-1;
+                        }
                         break;
                     case "s":
-                        direction = Direction.DOWN;
+                        for(int i = 1; i < shipLength; i++){
+                            xCoordinates[i] = cellX;
+                            yCoordinates[i] = cellY+1;
+                        }
                         break;
                     case "a":
-                        direction = Direction.LEFT;
+                        for(int i = 1; i < shipLength; i++){
+                            xCoordinates[i] = cellX - 1;
+                            yCoordinates[i] = cellY;
+                        }
                         break;
                     case "d":
-                        direction = Direction.RIGHT;
+                        for(int i = 1; i < shipLength; i++){
+                            xCoordinates[i] = cellX + 1;
+                            yCoordinates[i] = cellY;
+                        }
                         break;
                     default:
                         IO.println("Non hai inserito una direzione valida");
                 }
-            }while(direction == null);
+                isShipDeployed = tryInsertShip(playerBoard, xCoordinates, yCoordinates);
+                if(!isShipDeployed){
+                    IO.println("Errore nell'inserimento della nave. Probabile celle non disponibili");
+                }
+            }while(!isShipDeployed);
 
-            boolean isShipDeployed = tryInsertShip(playerBoard, direction, shipLength, cellX, cellY);
+
+
+
 
 
 
@@ -111,18 +156,12 @@ public class Exercise11 {
         }
     }
 
-    static boolean tryInsertShip(int[][] shipBoard, Direction direction, int shipLength, int cellX, int cellY){
-        return false;
+    static boolean tryInsertShip(int[][] shipBoard, int[] xCoordinates, int[] yCoordinates){
+        return true;
     }
 
     static void printNavalShipToDeploy(int shipLength, int shipCount){
         IO.println("Hai " + shipCount + shipLength + " da schierare (codice " + shipLength + ")");
     }
 
-    enum Direction {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
-    }
 }
