@@ -1,6 +1,7 @@
 package org.generation.italy.examples.arrays.casa.riccardo;
 
-// Scrivi una funzione che riceve in input un numero intero e ritorna il fattoriale di quel numero
+// Scrivi una funzione che riceve in input un numero intero
+// e ritorna il fattoriale di quel numero
 
 public class Exercise5 {
     public static void main(String[] args){
