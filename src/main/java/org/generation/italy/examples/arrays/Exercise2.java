@@ -5,14 +5,14 @@ import java.util.Arrays;
 // scrivere funzione che popola array con numeri interi casuali da 1 a 10
 
 public class Exercise2 {
-    static void main(){
+   public static void main(String[]args){
         int[]  array= new int[10];
 
         populateArray(array);
         IO.println(Arrays.toString(array));
     }
 
-    static void populateArray(int[] array) {
+   public static void populateArray(int[] array) {
             for(int i=0;i<array.length;i++){
             array[i]=(int)(Math.random()*10)+1;
         }
