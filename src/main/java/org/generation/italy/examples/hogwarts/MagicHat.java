@@ -42,7 +42,7 @@ public class MagicHat {
     final static int PERFECT_CLASS_SIZE = PERFECT_HOUSE_SIZE * House.values().length;
     final static boolean EXTRA_STUDENTS = (students.length + prefects.length) > PERFECT_CLASS_SIZE;
     final static String[][] houses = new String[House.values().length][EXTRA_STUDENTS ? PERFECT_HOUSE_SIZE + 1 : PERFECT_HOUSE_SIZE];
-    final static int MAX_PER_HOUSE = (students.length + prefects.length + House.values().length - 1) / House.values().length;
+    final static int MAX_PER_HOUSE = (students.length + prefects.length + 3) / House.values().length;
     final static int[] counters = new int[House.values().length];
     final static Random luck = new Random();
 
@@ -132,14 +132,14 @@ public class MagicHat {
             if (counters[k] > maxStudents) maxStudents = counters[k];
         }
         for (int i = 0; i < houses.length; i++) {
-            System.out.printf(House.values()[i].name() + "       ");
+            System.out.printf("%-21s", House.values()[i].name());
         }
-        IO.println();
+        System.out.println();
         for (int j = 0; j < maxStudents; j++) {
             for (int i = 0; i < houses.length; i++) {
-                System.out.printf(houses[i][j] + "        ");
+                System.out.printf("%-21s", houses[i][j]);
             }
-            IO.println();
+            System.out.println();
         }
     }
 }
