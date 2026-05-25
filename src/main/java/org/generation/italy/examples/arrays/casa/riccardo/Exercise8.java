@@ -27,7 +27,7 @@ public class Exercise8 {
         int[][] firstMatrix = new int[sizeRows][sizeCols];
         int[][] secondMatrix = new int[sizeRows][sizeCols];
 
-        // qui riempiamo le matrici
+        // qui riempiamo le matrici di numeri randomici
         for(int i = 0; i < sizeRows; i++){
             for(int j = 0; j < sizeCols; j++){
                 firstMatrix[i][j] = randomNumInMat.nextInt(10);  // imponiamo che i numeri dentro le matrici vadano da 0 a 9
