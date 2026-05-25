@@ -5,6 +5,7 @@ package org.generation.italy.examples.oo;
 // we can have as many objects for a single class as we want.
 
 // a static method DOESN'T and CAN'T RUN in an object context, but only in the class context
+// it's important to use this, when calling methods on an object, if we want to reference ONLY that object
 
 public class CircleOOP {
     double radius = 10;
