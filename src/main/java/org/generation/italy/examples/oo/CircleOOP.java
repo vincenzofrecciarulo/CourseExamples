@@ -19,7 +19,7 @@ public class CircleOOP {
     }
 
     // this is a CUSTOM CONSTRUCTOR. we initialize every
-    // instance of CircleOOp with
+    // instance of CircleOOP with a custom radius, which we declared above.
     public CircleOOP(double r) {
         radius = r;
     }
