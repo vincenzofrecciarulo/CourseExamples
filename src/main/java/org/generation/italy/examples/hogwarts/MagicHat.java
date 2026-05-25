@@ -178,12 +178,13 @@ public class MagicHat {
 
     static void reportAssignmentsTable() {      // possiamo risolvere l'allineamento utilizzando printf
         for (int i=0; i < houses.length; i++) {
-            IO.print(House.values()[i].name() + "     ");
+            System.out.printf("%-25s", House.values()[i].name());
         }
         IO.println();
         for (int i=0; i < houses[0].length; i++) {
             for (int j=0; j < houses.length; j++) {
-                IO.print(houses[j][i] + "     ");
+                System.out.printf("%-25s", houses[j][i] != null ? houses[j][i] : "-");
+
             }
             IO.println();
         }
