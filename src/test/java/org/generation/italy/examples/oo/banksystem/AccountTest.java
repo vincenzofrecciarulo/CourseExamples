@@ -1,5 +1,6 @@
-package org.generation.italy.examples.banksystem;
+package org.generation.italy.examples.oo.banksystem;
 
+import org.generation.italy.examples.oo.banksystem.Account;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

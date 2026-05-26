@@ -1,4 +1,4 @@
-package org.generation.italy.examples.banksystem;
+package org.generation.italy.examples.oo.banksystem;
 
 public class Account {
     // creare una classe che rappresenti un conto corrente, con un saldo
