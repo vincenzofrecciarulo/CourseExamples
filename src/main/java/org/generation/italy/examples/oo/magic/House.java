@@ -1,14 +1,16 @@
 package org.generation.italy.examples.oo.magic;
 
+import java.util.Random;
+
 public enum House {
     GRYFFINDOR,SLYTHERIN,HUFFLEPUFF,RAVENCLAW;
     public Student[] members;
     public int studentCount;
     public static int perfectDim;
-    public Random luck = new Random();
+    public static Random luck = new Random();
 
     public void initialize(int numStudents){
-        perfectDim = numStudents / House.values().length;
+        perfectDim = numStudents  / House.values().length;
         boolean hasExtra = numStudents % House.values().length != 0;
         members = new Student[hasExtra ? perfectDim + 1 : perfectDim];
     }
@@ -27,16 +29,19 @@ public enum House {
             return false;
         }
         members[studentCount] = s;
+        s.destinationHouse = this;
         studentCount++;
         return true;
     }
 
-//    public void reportAssignmentNonOptimizated() {
-//        for (int i=0; i<House.values().length; i++) {
-//        System.out.printf("%-20s", House.values()[i].name()); // prima del valore che vogliamo stampare per dire quanti caratteri riserviamo per la stampa (x allineamento in colonna)
-//        }                                                     //- allineamento a sinistra, numero dei caratteri ed s per stringa
+//    public void reportAssignments(){
+//        String name = "Ciccio";
+//        System.out.printf("Il nome dello studente è %s%n", name);
+//        for (int i = 0; i < House.values().length; i ++){
+//            System.out.printf("%-20s", House.values()[i].name());
+//        }
 //        System.out.println();
-//        for (int i=0; i< GRYFFINDOR.members.length; i++) {
+//        for (int i = 0; i < GRYFFINDOR.members.length; i++){
 //            System.out.printf("%-20s%-20s%-20s%-20s%n",
 //                    GRYFFINDOR.members[i].name,
 //                    SLYTHERIN.members[i].name,
@@ -46,29 +51,35 @@ public enum House {
 //        }
 //    }
 
-    public void reportAssignment() {
-        for (int i=0; i<House.values().length; i++) {
-            System.out.printf("%-20s", House.values()[i].name()); // prima del valore che vogliamo stampare per dire quanti caratteri riserviamo per la stampa (x allineamento in colonna)
-        }                                                     //- allineamento a sinistra, numero dei caratteri ed s per stringa
+    public static void reportAssignments(){
+        for (int i = 0; i < House.values().length; i ++){
+            System.out.printf("%-25s", House.values()[i].name());
+        }
         System.out.println();
-        for (int i=0; i< GRYFFINDOR.members.length; i++) {
-            for (int j=0; j<House.values().length; j++) {                   //J itera sulle colonne, le case, I itera sugli studenti, la loro posizione nelle case
-            System.out.printf("%-20s,House.values()[j].members[i].name);
+        for (int i = 0; i < GRYFFINDOR.members.length; i++){
+            for (int j = 0; j < House.values().length; j++){
+                String studentName = House.values()[j].members[i] != null ? House.values()[j].members[i].name : "Posto vuoto";
+                System.out.printf("%-25s",studentName);
             }
+            System.out.println();
         }
     }
 
-    public void addPrefect (Student prefect) {
+    public void addPrefect(Student prefect) {
         members[0] = prefect;
         prefect.destinationHouse = this;
+        studentCount++;
     }
 
-    public House getRandomAvailableHouse(boolean extra){
-        House destination = null;
+    public static House getRandomAvailableHouse(boolean extra){
+        boolean isFull;
+        House destination;
         do {
-            int random = Luck.nextInt(House.values().length);
-            destination = House.values[random];
-            boolean isFull = extra ? isExtraFull() :
-        } while ();
+            int random = luck.nextInt(House.values().length);
+            destination = House.values()[random];
+            isFull = extra ? destination.isExtraFull() : destination.isPerfectlyFull();
+        } while (isFull);
+
+        return destination;
     }
 }
