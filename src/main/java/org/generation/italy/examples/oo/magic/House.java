@@ -18,12 +18,43 @@ public enum House {
         return studentCount >= members.length;
     }
     public boolean addStudent(Student s, boolean extra){
-        boolean hasSpace = extra ? isExtraFull() : isPerfectlyFull();
-        if (!hasSpace) {
+        boolean isFull = extra ? isExtraFull() : isPerfectlyFull();
+        if (isFull) {
             return false;
         }
         members[studentCount] = s;
         studentCount++;
         return true;
     }
- }
+    public void reportAssignments(){
+        for (int i = 0; i < House.values().length; i++) {
+            System.out.printf("%-21s", House.values()[i].name());
+        }
+        System.out.println();
+        for (int i = 0; i < GRYFFINDOR.members.length; i++){
+            System.out.printf("%-21s%-21s%-21s%-21s%n",
+                    GRYFFINDOR.members[i].name,
+                    HUFFLEPUFF.members[i].name,
+                    RAVENCLAW.members[i].name,
+                    SLYTHERIN.members[i].name);
+        }
+    }
+
+    public void reportAssignments2(){
+        for (int i = 0; i < House.values().length; i++) {
+            System.out.printf("%-21s", House.values()[i].name());
+        }
+        System.out.println();
+        for (int i = 0; i < GRYFFINDOR.members.length; i++){
+            for (int j = 0; j < House.values().length; j++){
+                System.out.printf("%-21s", House.values()[j].members[i]);
+            }
+        }
+    }
+
+    public void addPrefect(Student prefect) {
+            members[0]=prefect;
+            prefect.destinationHouse = this;
+    }
+
+}
