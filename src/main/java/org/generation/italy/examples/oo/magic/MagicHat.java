@@ -49,9 +49,11 @@ public class MagicHat {
         IO.println("Benvenuti ad Hogwarts!");
         shuffleStudents();
         assignPrefects();
-        for (int i=0; i < House.values().length * House.perfectDimension - prefects.length; i++) { // cycle to fill till perfect number of students (not extra)
+        // cycle to fill till perfect number of students (not extra)
+        for (int i=0; i < House.values().length * House.perfectDimension - prefects.length; i++) {
             assignStudent(students[i], false);
         }
+        // cycle to fill in extra students
         for (int i = House.values().length * House.perfectDimension - prefects.length; i < students.length; i++) {
             System.out.println("Assegnamento extra " + students[i].name);
             assignStudent(students[i], true);
