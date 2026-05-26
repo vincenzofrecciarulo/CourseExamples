@@ -6,44 +6,41 @@ Scrivi un metodo che riceve una matrice N×M e
 restituisce la sua trasposta (una matrice M×N dove righe e colonne sono scambiate).
  */
     static void main() {
-        int[][] matrix = new int[matrixSize()][matrixSize()];
+        int[][] matrix = {
+                {1, 2, 3},
+                {4, 5, 6}
+        };
 
-        assignValues(matrix);
+        System.out.println("Matrice originale (2x3): ");
         printMatrix(matrix);
-        transposed(matrix);
-        printMatrix(transposed(matrix));
+
+        int[][] result = transposed(matrix);
+
+        System.out.println("Matrice trasposta (3x2):");
+        printMatrix(result);
     }
 
-    private static int matrixSize() {
-        int number;
-        number = (int)(Math.random()*5)+1;
-        return number;
-    }
+    private static int[][] transposed(int[][] matrix) {
+        int rows = matrix.length;                //righe della matrice originali
+        int columns = matrix[0].length;          //colonne della riga originale
 
-    private static void assignValues(int[][] matrix) {
-        for(int i = 0; i < matrix.length; i++){
-            for(int j = 0; j < matrix[1].length; j++){
-                matrix[i][j] = (int)(Math.random()*30)+1;
+        int [][] transposedMatrix = new int[columns][rows];
+
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < columns; j++){
+                transposedMatrix[j][i] = matrix[i][j];
             }
         }
+        return transposedMatrix;
     }
 
     private static void printMatrix(int[][] matrix) {
         for(int i = 0; i < matrix.length; i++){
-            for(int j = 0; j < matrix[1].length; j++){
-                IO.print(matrix[i][j] + "       ");
+            for(int j = 0; j < matrix[0].length; j++){
+                System.out.printf("%-4d", matrix[i][j]);
             }
-            IO.println();
+            System.out.println();
         }
-    }
-
-    private static int[][] transposed(int[][] matrix) {
-        for(int i = 0; i < matrix.length; i++){
-            for(int j = 0; j < matrix[1].length; j++){
-                matrix[i][j] = matrix[j][i];
-            }
-        }
-        return matrix;
     }
 
 }
