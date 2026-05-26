@@ -3,11 +3,18 @@ package org.generation.italy.examples.oo.magic;
 import java.util.Random;
 
 public enum House {
-    GRYFFINDOR,SLYTHERIN,HUFFLEPUFF,RAVENCLAW;
+    GRYFFINDOR(1, "grifondoro"),SLYTHERIN(2, "serpeverde"),HUFFLEPUFF(3, "tassorosso"),RAVENCLAW(4,"corvonero");
     public Student[] members;
     public int studentCount;
     public static int perfectDim;
     public static Random luck = new Random();
+    public int customInt;
+    public String customString;
+
+    House(int i, String s) {
+        customInt = i;
+        customString = s;
+    }
 
     public void initialize(int numStudents){
         perfectDim = numStudents  / House.values().length;
