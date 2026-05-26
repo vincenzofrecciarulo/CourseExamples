@@ -24,7 +24,7 @@ public class BasicExercise4 {
                                                          //oppure "no"
              answer=IO.readln();                         //salvo la risposta nella variabile answer
 
-        }while(!answer.equals(s1) && !answer.equals(s2));  //finchè answer non(!) sarà uguale a "yes" e non(!) sarà uguale a "no"
+        }while(!answer.equals(s1) && !answer.equals(s2));  //finchè answer non(!) sarà uguale a "yes" e(&&) non(!) sarà uguale a "no"
                                                            //continua il ciclo.
 
         return answer;                                     //ritornerà la risposta corretta "yes" or "no".
