@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise6.java" afterDir="false" />
+    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Terminato gli esercizi sugli array">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/Circle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/banksystem/Account.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/oo/banksystem/AccountTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise7.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -41,6 +43,9 @@
     &quot;accountId&quot;: &quot;441b4ae7-fd5b-45ac-b9ac-0f63bc3e4f81&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
@@ -50,25 +55,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Exercise2.executor": "Run",
-    "Application.Exercise5.executor": "Run",
-    "Application.Exercise6.executor": "Run",
-    "Application.Exercise7.executor": "Run",
-    "Application.MagicHat.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "vincenzo__frecciarulo",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Circle.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise5.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise6.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise7.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MagicHat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AccountTest.deposit.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AccountTest.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;vincenzo__frecciarulo&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.Exercise6">
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.generation.italy.examples.oo.banksystem" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.AccountTest">
+    <configuration name="Circle" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.Circle" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.oo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Exercise6" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.arrays.Exercise6" />
       <module name="CourseExamples" />
@@ -95,49 +126,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Exercise3Test.invertTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AccountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CourseExamples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.arrays.*" />
+          <option name="PATTERN" value="org.generation.italy.examples.oo.banksystem.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.generation.italy.examples.arrays" />
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.arrays.Exercise3Test" />
-      <option name="METHOD_NAME" value="invertTest" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="org.generation.italy.examples.oo.banksystem" />
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.banksystem.AccountTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Exercise4Test.hasUniqueNumbers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AccountTest.deposit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CourseExamples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.arrays.*" />
+          <option name="PATTERN" value="org.generation.italy.examples.oo.banksystem.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.generation.italy.examples.arrays" />
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.arrays.Exercise4Test" />
-      <option name="METHOD_NAME" value="hasUniqueNumbers" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Exercise4Test.hasUniqueNumbers_returns_false_for_unique_numbers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CourseExamples" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.arrays.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.generation.italy.examples.arrays" />
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.arrays.Exercise4Test" />
-      <option name="METHOD_NAME" value="hasUniqueNumbers_returns_false_for_unique_numbers" />
+      <option name="PACKAGE_NAME" value="org.generation.italy.examples.oo.banksystem" />
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.banksystem.AccountTest" />
+      <option name="METHOD_NAME" value="deposit" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -145,11 +159,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AccountTest" />
+        <item itemvalue="JUnit.AccountTest.deposit" />
+        <item itemvalue="Application.Circle" />
         <item itemvalue="Application.Exercise6" />
         <item itemvalue="Application.Exercise7" />
-        <item itemvalue="JUnit.Exercise4Test.hasUniqueNumbers_returns_false_for_unique_numbers" />
-        <item itemvalue="JUnit.Exercise4Test.hasUniqueNumbers" />
-        <item itemvalue="JUnit.Exercise3Test.invertTest" />
       </list>
     </recent_temporary>
   </component>
@@ -171,7 +185,10 @@
       <workItem from="1779389765330" duration="13225000" />
       <workItem from="1779433833820" duration="4270000" />
       <workItem from="1779472953534" duration="738000" />
-      <workItem from="1779485555489" duration="2459000" />
+      <workItem from="1779485555489" duration="2571000" />
+      <workItem from="1779538344807" duration="134000" />
+      <workItem from="1779711360319" duration="9127000" />
+      <workItem from="1779783503673" duration="1224000" />
     </task>
     <task id="LOCAL-00001" summary="Implementato Exercise7 e 5, con alcune modifiche agli altri">
       <option name="closed" value="true" />
@@ -197,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779454367640</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Terminato gli esercizi sugli array">
+      <option name="closed" value="true" />
+      <created>1779488121112</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1779488121112</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,6 +230,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Implementato Exercise7 e 5, con alcune modifiche agli altri" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementato Exercise7 e 5, con alcune modifiche agli altri" />
+    <MESSAGE value="Terminato gli esercizi sugli array" />
+    <option name="LAST_COMMIT_MESSAGE" value="Terminato gli esercizi sugli array" />
   </component>
 </project>
