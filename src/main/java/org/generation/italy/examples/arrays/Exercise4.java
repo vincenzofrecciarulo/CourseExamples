@@ -34,10 +34,13 @@ public class Exercise4 {
     interi e restituisca true se l'array non contiene
     duolicati, false se contiene al,eno un numero duplicato
      */
-
     public static boolean hasUniqueNumbers(int[] numbers){
-        for(int i=0;i< numbers.length-1;i++){
-
+        for (int i = 0; i < numbers.length-1; i++) {
+            for (int j=i+1; j<numbers.length; j++){
+                if (numbers[i] == numbers[j]) {
+                    return false;
+                }
+            }
         }
-    }
+        return true;
 }
