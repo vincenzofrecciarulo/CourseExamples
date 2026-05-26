@@ -33,12 +33,42 @@ public enum House {
     }
 
     public boolean addStudent(Student s, boolean extra) {
-        boolean hasSpace = extra ? isExtraFull() : isPerfectlyFull();
-        if (!hasSpace) {
+        boolean isFull = extra ? isExtraFull() : isPerfectlyFull();
+        if (isFull) {
             return false;
         }
         members[studentCount] = s;
         studentCount++;   // this could be written in the line above members[studentCount++] = s (post-increment)
         return true;
+    }
+
+//    public void reportAssignments() {
+//        String name = "Ciccio";
+//        System.out.printf("Il nome dello studente e' %s%n", name); // string interpolation - %n: vai a capo %s: placeholder nel template
+//        for (int i=0; i < House.values().length; i++) {
+//            System.out.println("%-20s", House.values[i].name());
+//        }
+//        System.out.println();
+//        for (int i = 0; i < GRYFFINDOR.members.length; i++) {
+//            System.out.printf(
+//                    "%-20s%-20s%-20s%-20s",
+//                    GRYFFINDOR.members[i].name,
+//                    SLYTHERIN.members[i].name,
+//                    HUFFLEPUFF.members[i].name,
+//                    RAVENCLAW.members[i].name
+//                    );
+//        }
+//    }
+
+    public void reportAssignments() {
+        for (int i=0; i < House.values().length; i++) {
+            System.out.println("%-20s", House.values[i].name());
+        }
+        System.out.println();
+        for (int i = 0; i < GRYFFINDOR.members.length; i++) {
+            for (int j = 0; j < House.values().length; j++) {
+                System.out.printf("%-20s", House.values()[j].members[i].name);
+            }
+        }
     }
 }
