@@ -20,13 +20,11 @@ public enum House {
 
     public void initialize(int numStudents) {
         perfectDimension = numStudents / House.values().length;
-
         boolean hasExtra = numStudents % House.values().length != 0;
-
         members = new Student[hasExtra ? perfectDimension + 1 : perfectDimension];           // we need this cause arrays are fixed in size. we create it based on numStudents
     }
 
-    public boolean isPerfectlyFull {
+    public boolean isPerfectlyFull() {
         return studentCount >= perfectDimension;
     }
 
@@ -41,5 +39,6 @@ public enum House {
         }
         members[studentCount] = s;
         studentCount++;   // this could be written in the line above members[studentCount++] = s (post-increment)
+        return true;
     }
 }
