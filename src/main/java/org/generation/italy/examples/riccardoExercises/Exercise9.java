@@ -21,6 +21,10 @@ public class Exercise9 {
         System.out.println();
         printMatrix(matrix2);
         System.out.println();
+        int[][] product = productMatrix(matrix1,matrix2);
+        printMatrix(product);
+
+
     }
 
     public static int[][] createIntMatrix (int[][]numbers){
@@ -52,7 +56,7 @@ public class Exercise9 {
         for (int i = 0; i<m1.length;i++){
             for (int j= 0; j<columnsM2;j++){
                 for (int k = 0; k<m1[0].length;k++){
-                       
+                   product[i][j] += m1[i][k] * m2[k][j];
                 }
 
             }
