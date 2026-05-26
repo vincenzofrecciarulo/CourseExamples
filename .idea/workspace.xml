@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Implementato le prime spiegazioni sugli oggetti">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/magic/House.java" afterDir="false" />
+    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Implementato la bozza di magichat ad oggetti senza gli oggetti...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/magic/House.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/magic/House.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/magic/MagicHat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/magic/MagicHat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/magic/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/magic/Student.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,6 +189,7 @@
       <workItem from="1779538344807" duration="134000" />
       <workItem from="1779711360319" duration="9127000" />
       <workItem from="1779783503673" duration="1224000" />
+      <workItem from="1779797389677" duration="5391000" />
     </task>
     <task id="LOCAL-00001" summary="Implementato Exercise7 e 5, con alcune modifiche agli altri">
       <option name="closed" value="true" />
