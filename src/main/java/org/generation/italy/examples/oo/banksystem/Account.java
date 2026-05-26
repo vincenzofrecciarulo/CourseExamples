@@ -34,7 +34,6 @@ public class Account {
         target.balance += amount;
         balance-=amount;
         return true;
-
     }
 
     public boolean transfer2 (double amount,Account target){
@@ -46,5 +45,4 @@ public class Account {
        }
         return false;
     }
-
 }
