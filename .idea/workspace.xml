@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Terminato gli esercizi sugli array">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/Circle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/banksystem/Account.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/oo/banksystem/AccountTest.java" afterDir="false" />
+    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Implementato le prime spiegazioni sugli oggetti">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/magic/House.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -159,11 +157,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AccountTest" />
         <item itemvalue="JUnit.AccountTest.deposit" />
-        <item itemvalue="Application.Circle" />
-        <item itemvalue="Application.Exercise6" />
+        <item itemvalue="JUnit.AccountTest" />
         <item itemvalue="Application.Exercise7" />
+        <item itemvalue="Application.Exercise6" />
+        <item itemvalue="Application.Circle" />
       </list>
     </recent_temporary>
   </component>
