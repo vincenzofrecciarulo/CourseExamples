@@ -8,7 +8,7 @@ public class Account {
      ad un'altro  contocorrente
      */
 
-    double balance;
+   private double balance;
 
     public Account (double balance){
         this.balance = balance;
@@ -46,5 +46,6 @@ public class Account {
        }
         return false;
     }
+
 
 }
