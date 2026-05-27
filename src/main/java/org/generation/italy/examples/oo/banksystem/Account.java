@@ -22,7 +22,7 @@ public class Account {
     }
 
     public boolean withdraw(double amount){
-        if(balance <amount){
+        if(isBalanceUnavailable(amount)){
             return false;
         }
         balance -= amount;
@@ -30,13 +30,17 @@ public class Account {
     }
 
     public boolean transfer(double amount,Account target){
-        if(balance <amount){
+        if(isBalanceUnavailable(amount)){
             return false;
         }
         target.balance += amount;
         balance-=amount;
         return true;
 
+    }
+    //metodo helper
+    private boolean isBalanceUnavailable(double amount){
+        return !(balance >= amount);
     }
 
     public boolean transfer2 (double amount,Account target){
