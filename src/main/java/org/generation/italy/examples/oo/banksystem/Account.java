@@ -8,7 +8,9 @@ public class Account {
      ad un'altro  contocorrente
      */
 
-    double balance;
+    //l'incapsulamento è il rendere privato i nostri oggetti
+    //uno stato pubblico non è più libero di evolvere, perchè se lo cambi invalidi tutto il codice che lo utilizza
+    private double balance;
 
     public Account (double balance){
         this.balance = balance;
@@ -47,4 +49,13 @@ public class Account {
         return false;
     }
 
+    public double getBalance(){
+        return balance;
+    }
+
+    public void setBalance(double newBalance){
+        if(newBalance >= 0){        //condizione di guardia, per non avere balance negativo
+            balance = newBalance;
+        }
+    }
 }
