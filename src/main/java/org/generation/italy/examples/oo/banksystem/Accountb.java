@@ -1,6 +1,6 @@
 package org.generation.italy.examples.oo.banksystem;
 
-public class Account {
+public class Accountb {
     /*Creare una classe che rappresenti un conto corrente un saldo di tipo double
      un metodo per ritirare e in'altro per depositare
      Quando viene creato un account sarà possibile specificare il saldo iniziale
@@ -10,7 +10,7 @@ public class Account {
 
     double balance;
 
-    public Account (double balance){
+    public Accountb(double balance){
         this.balance = balance;
     }
 
@@ -27,7 +27,7 @@ public class Account {
         return true;
     }
 
-    public boolean transfer(double amount,Account target){
+    public boolean transfer(double amount, Accountb target){
         if(balance <amount){
             return false;
         }
@@ -37,7 +37,7 @@ public class Account {
 
     }
 
-    public boolean transfer2 (double amount,Account target){
+    public boolean transfer2 (double amount, Accountb target){
        boolean success =  withdraw(amount);
        balance+=10;
        if(success){

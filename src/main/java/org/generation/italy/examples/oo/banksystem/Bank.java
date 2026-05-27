@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Bank {
-    private ArrayList<Account> accounts;
+    private ArrayList<Accountb> accounts;
     private LocalDate creationDate;
 
     private static Bank instance = new Bank();

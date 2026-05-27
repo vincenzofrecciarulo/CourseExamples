@@ -1,20 +1,19 @@
 package org.generation.italy.examples.oo.banksystem;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AccountTest {
+class AccountbTest {
     final static double INITIAL_BALANCE = 100;
     final static double DEPOSIT_AMOUNT = 50;
     final static double WITHDRAW_AMOUNT = 20;
-    Account a1;
+    Accountb a1;
     @BeforeEach //Arrange
     void setUp() {
-        a1 = new Account(INITIAL_BALANCE);
+        a1 = new Accountb(INITIAL_BALANCE);
     }
 
     @AfterEach
