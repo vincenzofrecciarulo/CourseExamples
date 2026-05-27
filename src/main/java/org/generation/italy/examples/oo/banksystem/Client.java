@@ -1,7 +1,5 @@
 package org.generation.italy.examples.oo.banksystem;
 
-import java.time.LocalDate;
-
 public class Client {
 
     public String name;
@@ -32,7 +30,7 @@ public class Client {
     }
 
     public boolean removeAccount(int i) {
-        if (i < 0 || i >= accountCount) {
+        if (i >= accountCount) {
             return false;
         }
         for (int j = i; j < accountCount - 1; j++) {
@@ -57,6 +55,4 @@ public class Client {
         }
         return accounts[i].transfer(amount, accounts[j]);
     }
-
-
 }
