@@ -6,10 +6,16 @@ public class Account {
     // withdraw deve ritornare un booleano, vero se c'è abbastanza denaro per prelevare, falso altrimenti.
     // Quando viene creato un Account, dev'essere possibile specificare il saldo iniziale.
     // Il conto corrente deve avere anche un metodo che permetta di trasferire denaro in un altro conto corrente.
-    double balance;
+
+    // INCAPSULAMENTO: rendere PRIVATO lo STATO delle nostre classi. con private!
+    private double balance;
 
     public Account(double balance) {
         this.balance = balance;
+    }
+
+    public double getBalance() {
+        return balance;
     }
 
     public double deposit(double amount) {
@@ -18,7 +24,7 @@ public class Account {
     }
 
     public boolean withdraw(double amount) {
-        if (balance < amount) {
+        if (isBalanceUnavailable(amount)) {
             return false;
         }
         balance -= amount;
@@ -28,7 +34,7 @@ public class Account {
     // IMPORTANT: we pass a variable of type Account as parameter! It's our other account
     // to which we would like to transfer money
     public boolean transfer(double amount, Account target) {
-        if (balance < amount) {
+        if (isBalanceUnavailable(amount)) {
             return false;
         }
         target.balance += amount;
@@ -49,6 +55,12 @@ public class Account {
             return true;
         }
         return false;
+    }
+
+    // demonstrating PRIVATE HELPER METHODS for classes.
+    // they're methods we'll need only inside the class itself, for other methods which we'll make public.
+    private boolean isBalanceUnavailable(double amount) {
+        return !(balance >= amount);
     }
 }
 
