@@ -5,7 +5,7 @@ public class Account {
      un metodo per ritirare e in'altro per depositare
      Quando viene creato un account sarà possibile specificare il saldo iniziale
     // Il contocorrente deve avere un metoodo che permette di trasferire denaro
-     ad un'altro  contocorrente
+     ad un'altro contocorrente
      */
 
     double balance;
@@ -46,5 +46,4 @@ public class Account {
        }
         return false;
     }
-
 }
