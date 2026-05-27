@@ -38,6 +38,9 @@ public class Account {
 
     }
 
+    private boolean isBalanceAvailable(double amount){                  //metodo privato perchè usato solo come step per i metodi di questa classe (metodo helper) e che non utilizzeremo fuori
+        return balance >=amount
+    }
     public boolean transfer2 (double amount,Account target){
        boolean success =  withdraw(amount);
        balance+=10;
