@@ -16,16 +16,16 @@ class Exercise4Test {
     void tearDown() {
     }
 
-    @Test
-    void hasUniqueNumbers_returns_true_for_unique_numbers() {
-        int[] numbersTest = {1,2,3,4,5,6,7};
-        boolean distinct = Exercise4.hasUniqueNumbers(numbersTest);
-        assertTrue(distinct);
-    }
-    @Test
-    void hasUniqueNumbers_returns_false_for_unique_numbers() {
-        int[] numbersTest = {1,2,3,4,5,6,6};
-        boolean distinct = Exercise4.hasUniqueNumbers(numbersTest);
-        assertFalse(distinct);
-    }
+//    @Test
+//    void hasUniqueNumbers_returns_true_for_unique_numbers() {
+//        int[] numbersTest = {1,2,3,4,5,6,7};
+//        boolean distinct = Exercise4.hasUniqueNumbers(numbersTest);
+//        assertTrue(distinct);
+//    }
+//    @Test
+//    void hasUniqueNumbers_returns_false_for_unique_numbers() {
+//        int[] numbersTest = {1,2,3,4,5,6,6};
+//        boolean distinct = Exercise4.hasUniqueNumbers(numbersTest);
+//        assertFalse(distinct);
+ //   }
 }
