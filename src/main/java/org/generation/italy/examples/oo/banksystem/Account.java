@@ -48,4 +48,13 @@ public class Account {
         return false;
     }
 
+    public double getBalance(){
+        return balance;
+    }
+
+    public void setBalance (double newBalance) {
+        if (newBalance >= 0)
+            balance = newBalance;
+    }
+
 }
