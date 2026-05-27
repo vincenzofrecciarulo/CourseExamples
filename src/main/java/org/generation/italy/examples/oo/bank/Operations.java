@@ -17,7 +17,25 @@ public class Operations {
 
             case 2:
                 c.visualize(); // mostra tutti i conti
-                break;
+                System.out.println("A quale conto vorresti accedere?");
+                int scelta2 = Console.readInt();
+                switch (scelta2) {
+                    case 1:
+                        System.out.println("conto nr. 1");
+
+                    case 2:
+                        System.out.println("conto nr. 2");
+
+                    case 3:
+                        System.out.println("conto nr. 3");
+
+                    case 4:
+                        System.out.println("conto nr. 4");
+
+                    case 5:
+                        System.out.println("conto nr. 5");
+                   //     if (Client.account[4] != null )
+                }
             default:
                 System.out.println("Scelta non valida!");
                 break;
