@@ -32,7 +32,7 @@ public class Client {
         this.gender = gender;
     }
 
-    // ovviamente qua ho sbagliato. rifarlo utilizzando il parametro a
+    // ovviamente qua ho sbagliato. rifarlo utilizzando il parametro a...
     public boolean addAccount(Account a) {
         if (accountCounter > 5) {
             System.out.println("Too many accounts! You can have max 5. ");
