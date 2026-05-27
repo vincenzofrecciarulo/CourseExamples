@@ -8,19 +8,21 @@ public class Account {
      ad un'altro  contocorrente
      */
 
-   private double balance;
+    //l'incapsulamento è il rendere privato i nostri oggetti
+    //uno stato pubblico non è più libero di evolvere, perchè se lo cambi invalidi tutto il codice che lo utilizza
+    private double balance;
 
     public Account (double balance){
         this.balance = balance;
     }
 
     public double deposit(double amount){
-         balance += amount;
-         return balance;
+        balance += amount;
+        return balance;
     }
 
     public boolean withdraw(double amount){
-        if(balance <amount){
+        if(isBalanceUnavailable(amount)){
             return false;
         }
         balance -= amount;
@@ -28,7 +30,7 @@ public class Account {
     }
 
     public boolean transfer(double amount,Account target){
-        if(balance <amount){
+        if(isBalanceUnavailable(amount)){
             return false;
         }
         target.balance += amount;
@@ -36,16 +38,28 @@ public class Account {
         return true;
 
     }
+    //metodo helper
+    private boolean isBalanceUnavailable(double amount){
+        return !(balance >= amount);
+    }
 
     public boolean transfer2 (double amount,Account target){
-       boolean success =  withdraw(amount);
-       balance+=10;
-       if(success){
-           double finalBalance = target.deposit(amount);
-           return true;
-       }
+        boolean success =  withdraw(amount);
+        balance+=10;
+        if(success){
+            double finalBalance = target.deposit(amount);
+            return true;
+        }
         return false;
     }
 
+    public double getBalance(){
+        return balance;
+    }
 
+    public void setBalance(double newBalance){
+        if(newBalance >= 0){        //condizione di guardia, per non avere balance negativo
+            balance = newBalance;
+        }
+    }
 }
