@@ -17,6 +17,7 @@ public class Client {
     public String dateOfBirth;
     public String gender;
     public final int MAX_ACCOUNTS = 5;
+    public int counterAccounts;
     public Account[] accounts = new Account[5];
 
 
@@ -31,6 +32,7 @@ public class Client {
         for (int i = 0; i < accounts.length; i++) {
             if (accounts[i] == null) {
                 accounts[i] = new Account(0) ;
+                counterAccounts++;
                 return true;
             }
         }
@@ -43,12 +45,14 @@ public class Client {
             return false;
         } else if (indexToRemove==accounts.length-1){
             accounts[indexToRemove]=null;
+            counterAccounts--;
             return true;
         } else {
             for (int i=indexToRemove; i<accounts.length-1; i++) {
                 accounts[i]=accounts[i+1];
             }
             accounts[accounts.length-1] = null;
+            counterAccounts--;
             return true;
         }
     }
@@ -60,4 +64,27 @@ public class Client {
         }
         return totalBalance;
     }
+
+    public boolean transfer(int i, int j, double amount) {
+        int indexFrom = i-1;
+        int indexTo = j-1;
+        if (accounts[indexFrom] == null || accounts[indexTo] == null || accounts[indexFrom].balance < amount) {
+            return false;
+        }
+        accounts[indexTo].balance += amount;
+        accounts[indexFrom].balance -= amount;
+        return true;
+    }
+
+    public void spreadBalance (double a, double b, double c, double d, double e) {
+        if (a+b+c+d+e != 1)
+            return;
+        double totalBalance = getTotalBalance();
+        accounts[0].balance = totalBalance*a;
+        accounts[1].balance = totalBalance*b;
+        accounts[2].balance = totalBalance*c;
+        accounts[3].balance = totalBalance*d;
+        accounts[4].balance = totalBalance*e;
+    }
+
 }

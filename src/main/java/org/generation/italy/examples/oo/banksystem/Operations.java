@@ -29,6 +29,27 @@ public class Operations {
         pippo.accounts[4].deposit(500);
         System.out.println(pippo.getTotalBalance());
 
+        System.out.println();
+        for (Account i : pippo.accounts)
+            System.out.println(i.balance);
+
+        pippo.transfer(5,1,250);
+
+        System.out.println();
+        for (Account i : pippo.accounts)
+            System.out.println(i.balance);
+
+        System.out.println(pippo.getTotalBalance());
+
+        pippo.spreadBalance(0.25,0.25,0.25,0.25,0);
+
+        System.out.println();
+        for (Account i : pippo.accounts)
+            System.out.println(i.balance);
+
+
+
+
 
         }
 
