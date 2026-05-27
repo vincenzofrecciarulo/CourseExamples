@@ -31,7 +31,6 @@ public class Client {
     }
 
     public void divide(double p1, double p2, double p3, double p4, double p5){
-
         double[] proportion = {p1, p2, p3, p4, p5};
 
         double sumP = 0;
@@ -47,7 +46,7 @@ public class Client {
         double total = getTotalBalance();
 
         for(int i = 0; i < totalAccount; i++){
-            accounts[i].balance = total * proportion[i];
+            accounts[i].setBalance(total * proportion[i]);
         }
 
     }
@@ -79,7 +78,7 @@ public class Client {
         double total = 0;
 
         for(int i = 0; i < totalAccount; i++){
-            total += accounts[i].balance;
+            total += accounts[i].getBalance();
         }
         return total;
     }
@@ -89,7 +88,7 @@ public class Client {
             return false;
         }
 
-        if(accounts[i].balance < amount){
+        if(accounts[i].getBalance() < amount){
             return false;
         }
 
