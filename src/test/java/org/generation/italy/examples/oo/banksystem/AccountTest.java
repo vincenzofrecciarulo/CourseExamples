@@ -31,7 +31,7 @@ class AccountTest {
     }
 
     @Test//Act
-    void withdraw_should_succeed_if_amount_avaiable() {
+    void withdraw_should_succeed_if_amount_available() {
         double balance = a1.balance;
         boolean success= a1.withdraw(WITHDRAW_AMOUNT);
         assertTrue(success);
@@ -39,7 +39,7 @@ class AccountTest {
         assertEquals(expectedBalance, a1.balance);
     }
     @Test//Act
-    void withdraw_should_succeed_if_amount_not_avaiable() {
+    void withdraw_should_succeed_if_amount_not_available() {
         double balance = a1.balance; //Initial Balance
         boolean success= a1.withdraw(a1.balance +1);
         assertFalse(success);

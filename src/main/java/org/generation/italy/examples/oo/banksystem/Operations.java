@@ -4,22 +4,18 @@ import java.util.ArrayList;
 public class Operations {
     static void main() {
         Client pippo = new Client("pippo", "cane", "24/07/1957", "maschio");
-        System.out.println(pippo.addAccount());
-        System.out.println(pippo.accounts.length);
+        for (int i = 0; i < 5; i++) {
+            pippo.addAccount();
+        }
+
         for (Account i : pippo.accounts)
             System.out.println(i);
-        System.out.println(pippo.removeAccount(2));
-        System.out.println(pippo.addAccount());
-        for (Account i : pippo.accounts)
-            System.out.println(i);
-        System.out.println(pippo.addAccount());
-        System.out.println(pippo.addAccount());
-        System.out.println(pippo.addAccount());
-        for (Account i : pippo.accounts)
-            System.out.println(i);
+
+        System.out.println();
         pippo.removeAccount(3);
         for (Account i : pippo.accounts)
             System.out.println(i);
+
         System.out.println(pippo.addAccount());
 
         pippo.accounts[0].deposit(100);
@@ -27,7 +23,7 @@ public class Operations {
         pippo.accounts[2].deposit(300);
         pippo.accounts[3].deposit(400);
         pippo.accounts[4].deposit(500);
-        System.out.println(pippo.getTotalBalance());
+        System.out.println("Total Balance: " + pippo.getTotalBalance());
 
         System.out.println();
         for (Account i : pippo.accounts)
@@ -39,6 +35,7 @@ public class Operations {
         for (Account i : pippo.accounts)
             System.out.println(i.balance);
 
+        System.out.println();
         System.out.println(pippo.getTotalBalance());
 
         pippo.spreadBalance(0.25,0.25,0.25,0.25,0);

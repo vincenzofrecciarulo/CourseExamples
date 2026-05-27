@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Ultime cose in bank">
+    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Cancellata classe inutile">
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/oo/banksystem/ClientTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/banksystem/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/banksystem/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/banksystem/Operations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/banksystem/Operations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/oo/banksystem/AccountTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/oo/banksystem/AccountTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -193,7 +195,8 @@
       <workItem from="1779783503673" duration="1224000" />
       <workItem from="1779797389677" duration="5391000" />
       <workItem from="1779815960745" duration="7441000" />
-      <workItem from="1779870461802" duration="1485000" />
+      <workItem from="1779870461802" duration="1648000" />
+      <workItem from="1779881364952" duration="3621000" />
     </task>
     <task id="LOCAL-00001" summary="Implementato Exercise7 e 5, con alcune modifiche agli altri">
       <option name="closed" value="true" />
@@ -235,7 +238,23 @@
       <option name="project" value="LOCAL" />
       <updated>1779837243572</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Terminato oggetto Client">
+      <option name="closed" value="true" />
+      <created>1779872053174</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1779872053174</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Cancellata classe inutile">
+      <option name="closed" value="true" />
+      <created>1779872104427</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1779872104427</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,7 +264,9 @@
     <MESSAGE value="Implementato Exercise7 e 5, con alcune modifiche agli altri" />
     <MESSAGE value="Terminato gli esercizi sugli array" />
     <MESSAGE value="Ultime cose in bank" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ultime cose in bank" />
+    <MESSAGE value="Terminato oggetto Client" />
+    <MESSAGE value="Cancellata classe inutile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cancellata classe inutile" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

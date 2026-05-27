@@ -16,8 +16,6 @@ public class Client {
     public String surname;
     public String dateOfBirth;
     public String gender;
-    public final int MAX_ACCOUNTS = 5;
-    public int counterAccounts;
     public Account[] accounts = new Account[5];
 
 
@@ -32,7 +30,6 @@ public class Client {
         for (int i = 0; i < accounts.length; i++) {
             if (accounts[i] == null) {
                 accounts[i] = new Account(0) ;
-                counterAccounts++;
                 return true;
             }
         }
@@ -43,16 +40,11 @@ public class Client {
         int indexToRemove = removeNumber-1;                             //Considero che il numero dell'account da rimuovere sia da 1 a 5, non da 0 a 4
         if (accounts[indexToRemove]==null) {
             return false;
-        } else if (indexToRemove==accounts.length-1){
-            accounts[indexToRemove]=null;
-            counterAccounts--;
-            return true;
         } else {
             for (int i=indexToRemove; i<accounts.length-1; i++) {
                 accounts[i]=accounts[i+1];
             }
             accounts[accounts.length-1] = null;
-            counterAccounts--;
             return true;
         }
     }
@@ -71,8 +63,8 @@ public class Client {
         if (accounts[indexFrom] == null || accounts[indexTo] == null || accounts[indexFrom].balance < amount) {
             return false;
         }
-        accounts[indexTo].balance += amount;
-        accounts[indexFrom].balance -= amount;
+        accounts[indexTo].deposit(amount);
+        accounts[indexFrom].withdraw(amount);
         return true;
     }
 
