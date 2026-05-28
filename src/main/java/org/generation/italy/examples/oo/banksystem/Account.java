@@ -16,6 +16,8 @@ public class Account {
     private String serialNumber;
     private LocalDate openDate;
 
+    public Account() {}
+
     public Account (double balance){
         this.balance = balance;
         this.serialNumber="";

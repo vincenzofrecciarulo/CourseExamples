@@ -24,7 +24,37 @@ public class Start {
         removed = b.removeAccount(a);
         IO.println(removed);
         Customer c = new Customer("Ciccio", "Pasticcio", LocalDate.now());
-        Bank b = Bank.getInstance();
-        System.out.println(b);
+        IO.println(c);
+        Bank b1 = Bank.getInstance();
+        System.out.println(b1);
+
+        CaimanAccount ca = new CaimanAccount(1000,"xxx",LocalDate.now(), "very secret", 0.4);
+        IO.println(ca.getBalance());
+        ca.deposit(100);
+        ca.withdraw(50);
+        ca.transfer(25,a);
+
+        Account z = new CaimanAccount(2000,"yyy",LocalDate.now(),"very secret", 0.5);
+        Account w = new CaimanAccount(3000,"zzz", LocalDate.now(),"secret",0.2);
+        handleAccount((Account)z);      //POLIMORFISMO (handleAccount() prende Account, ma anche i figli di account, con il casting, di base implicito, qui lo esplicitiamo)
+        GoldAccount g = new GoldAccount(500,"abc",100,0);
+        handleAccount(g);      //POLIMORFISMO (Casting implicito)
+
+        Account[]as = new Account[2];
+        as[0] = z;      //POLIMORFISMO: Differenti istanze dello stesso principio, contiene oggetti di tipo x ma anche figli di x
+        as[1] = g;
+
+        z.deposit(100);
+        w.deposit(50);
+
+        if (Math.random()>0.5){
+            w = new CaimanAccount(5000,"sss", LocalDate.now(),"ss",47.4);
+        }
+    }
+
+
+    public static void handleAccount(Account x){
+        if (x.getBalance() > 5000)
+            x.deposit(1000);
     }
 }
