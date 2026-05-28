@@ -30,6 +30,10 @@ public class Client {
         this(name, surname, birth, gender, new ArrayList<>());
     }
 
+    public Client() {
+
+    }
+
     public ArrayList<Account> getAccounts() {
         return this.accounts;
     }
@@ -69,17 +73,23 @@ public class Client {
         }
         System.out.println("Il cliente e' stato registrato correttamente!");
         return new Client (name, surname, birth, gender);
+
     }
 
     public void login() {
-        System.out.println("Per effettuare il login dimmi il nome e cognome.");
-        String rispLogin = Console.readString();
-        if (rispLogin.equalsIgnoreCase(this.name + " "+ this.surname)) {
-            System.out.println("Login effettuato correttamente, puoi procedere.");
-            Operations.Operation(this);
-        } else
-            System.out.println("Accesso negato, riprova.");
-
+            System.out.println("Per effettuare il login dimmi il nome e cognome.");
+            for (int i=2; i>-1; i--) {
+                String rispLogin = Console.readString();
+                if (i > 0 && rispLogin.equalsIgnoreCase(this.name + " " + this.surname)) {
+                    System.out.println("Login effettuato correttamente, puoi procedere.");
+                    Operations.Operation(this);
+                } else if (i > 0) {
+                    System.out.println("Accesso negato, ti sono rimasti " + i + " tentativi:");
+                } else {
+                    System.out.println("Accesso negato, disconnessione.");
+                    System.exit(0);
+                }
+            }
     }
 
     public void openAccount() {

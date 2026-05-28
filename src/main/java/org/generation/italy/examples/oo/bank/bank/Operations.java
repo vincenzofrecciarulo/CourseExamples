@@ -13,6 +13,7 @@ public class Operations {
             System.out.println("2. Visualizza conti.");
             System.out.println("3. Accedi a un conto.");
             System.out.println("4. Esci.");
+            System.out.println("5. !!! CANCELLA CONTO !!!");
             int scelta = Console.readInt();
 
             switch (scelta) {
@@ -45,6 +46,7 @@ public class Operations {
                         System.out.println("2. prelievo.");
                         System.out.println("3. Bonifico.");
                         System.out.println("4. Indietro.");
+                        System.out.println("5.!!! CANCELLA CONTO !!!");
                         int scelta3 = Console.readInt();
                         switch (scelta3) {
                             case 1:
@@ -97,9 +99,26 @@ public class Operations {
                                         break;
                                     }
                                 }
+
                             case 4:
                                 running2 = false;
                                 break;
+
+                            case 5:
+                                c.visualize();
+                                    System.out.println("Sei sicuro di voler cancellare il conto '"+c.getAccounts().get(scelta2).getAccName()+"' ? (SI/NO)");
+                                    String risp2 = Console.readString();
+                                    if (risp2.equalsIgnoreCase("si")) {
+                                        System.out.println("L'operazione cancellera' il conto permanentemente, incluso tutti i dati e il saldo rimanente. Proseguire?");
+                                        String risp3 = Console.readString();
+                                        if (risp3.equalsIgnoreCase("si")) {
+                                            c.getAccounts().remove(scelta2);
+                                            System.out.println("Conto nr. " + scelta2 + " cancellato.");
+                                        } else {
+                                            System.out.println("Operazione annullata!");
+                                            break;
+                                        }
+                                    }
 
                             default:
                                 System.out.println("Scelta non valida!");
@@ -110,7 +129,26 @@ public class Operations {
                 case 4:
                     System.out.println("Arrivederci!");
                     running = false;
-                    break;
+                    System.exit(0);
+
+                case 5:
+                    c.visualize();
+                    System.out.println("Scegli il conto da cancellare:");
+                    int scelta5 = Console.readInt();
+                    if (scelta5 < 0 || scelta5 >= c.getAccounts().size()) {
+                        System.out.println("Conto inesistente!");
+                        break;
+                    } else {
+                        System.out.println("Sei sicuro di voler cancellare il conto '" + c.getAccounts().get(scelta5).getAccName() + "' ? (SI/NO)");
+                        String risp2 = Console.readString();
+                        if (risp2.equalsIgnoreCase("si")) {
+                            c.getAccounts().remove(scelta5);
+                            System.out.println("Conto nr. " + scelta5 + " cancellato.");
+                        } else {
+                            System.out.println("Operazione annullata!");
+                            break;
+                        }
+                    }
 
                 default:
                     System.out.println("Scelta non valida!");

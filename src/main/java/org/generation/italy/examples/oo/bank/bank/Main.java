@@ -8,10 +8,11 @@ public class Main {
         String risp = Console.readString();
 
         if (risp.equalsIgnoreCase("si")) {
-            Client c = Client.register(); // registra per trovarlo
+            Client c = new Client(); // registra per trovarlo
             c.login();
         } else if (risp.equalsIgnoreCase("no")) {
-            Client c = Client.register(); // registra nuovo cliente
+            Client c = Client.register();
+            c.login();// registra nuovo cliente
             Operations.Operation(c);
         } else {
             System.out.println("ERRORE, RIPROVA.");
