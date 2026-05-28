@@ -21,7 +21,7 @@ class AccountTest {
     void tearDown() {
     }
 
-    @Test//Act
+    @Test //Act
     void deposit() {
         double balance = a1.balance;
         double endBalance= a1.deposit(DEPOSIT_AMOUNT);
