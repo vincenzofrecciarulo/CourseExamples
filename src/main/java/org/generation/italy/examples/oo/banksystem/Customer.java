@@ -45,17 +45,27 @@ public class Customer {
     }
 
     public double getSpecialAccountBalance(){    // returns highest balance for females, lowest for males
-        double balance = 0;
+
+        if(accounts.isEmpty()) {
+            return 0;
+        }
+
+        // we need to declare balance after the empty check, otherwise if accounts ArrayList is empty it will throw after getFirst()
+        double balance = accounts.getFirst().getBalance();
+
         if (female) {
             for (Account a : accounts) {
+                // checks for new max balance
                 if (a.getBalance() > balance) {
                     balance = a.getBalance();
                 }
             }
         } else {
-            // setta il minimo al primo elemento dell'arrayList
             for (Account a : accounts) {
-                // checka per nuovi minimi, come sopra
+                // checks for new min balance
+                if (a.getBalance() < balance) {
+                    balance = a.getBalance();
+                }
             }
         }
         return balance;
