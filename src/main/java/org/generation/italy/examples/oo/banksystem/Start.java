@@ -19,5 +19,17 @@ public class Start {
          removed = b.removeAccount(a); // this will be true, cause a points to the same object
          IO.println(removed);
          Customer c = new Customer("Ciccio", "Pasticcio", LocalDate.now());
+         IO.println(c);
+         CaimanAccount ca = new CaimanAccount(
+                 1000,
+                 "203918",
+                 LocalDate.now(),
+                 "secret299329",
+                 0.4
+                 );
+         IO.println(ca.getBalance());
+         ca.deposit(2000);
+         ca.withdraw(1000);
+         ca.transfer(500, a);
     }
 }

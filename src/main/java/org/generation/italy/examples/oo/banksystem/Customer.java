@@ -21,7 +21,7 @@ public class Customer {
 
     // another Constructor for when we don't have a list of Accounts
     public Customer(String name, String surname, LocalDate dateofbirth, boolean female) {
-        this(name, surname, dateofbirth, female, new ArrayList<>());     // THIS CALLS OUR OTHER CONSTRUCTOR! important af
+        this(female, dateofbirth, surname, name, new ArrayList<>());     // THIS CALLS OUR OTHER CONSTRUCTOR! important af
     }
 
     public Customer(String name, String surname, LocalDate dateofbirth) {

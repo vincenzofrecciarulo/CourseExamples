@@ -1,5 +1,7 @@
 package org.generation.italy.examples.oo.banksystem;
 
+import java.time.LocalDate;
+
 public class Account {
     // creare una classe che rappresenti un conto corrente, con un saldo
     // di tipo double, un metodo per ritirare denaro e uno per depositarlo (deposit deve ritornare il saldo totale dopo il deposito).
@@ -7,12 +9,28 @@ public class Account {
     // Quando viene creato un Account, dev'essere possibile specificare il saldo iniziale.
     // Il conto corrente deve avere anche un metodo che permetta di trasferire denaro in un altro conto corrente.
 
-    // INCAPSULAMENTO: rendere PRIVATO lo STATO delle nostre classi. con private!
-    private double balance;
+    // INCAPSULAMENTO: rendere PRIVATO lo STATO delle nostre classi. con private! le abbiamo rese ora protected.
+    protected double balance;                           // protected: info in appunti.
+    protected String serialNumber;
+    protected LocalDate openDate;
 
+    // ora proviamo con chiamate dal costruttore più grande al più piccolo
     public Account(double balance) {
         this.balance = balance;
+        this.serialNumber="";             // if we don't write this line (this.serialNumber...) and the one below, serialNumber and openDate are left to null. we may want this.
+        this.openDate = LocalDate.now();  // this way instead we initialize them to defaults chosen by us: an empty String and the current date.
     }
+
+    public Account(double balance, String serialNumber) {
+        this(balance);
+        this.serialNumber=serialNumber;
+    }
+
+    public Account(double balance, String serialNumber, LocalDate openDate) {
+        this(balance, serialNumber);
+        this.openDate=openDate;
+    }
+
 
     public double getBalance() {
         return balance;
