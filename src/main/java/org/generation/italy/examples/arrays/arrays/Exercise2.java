@@ -1,4 +1,4 @@
-package org.generation.italy.examples.arrays;
+package org.generation.italy.examples.arrays.arrays;
 
 import java.util.Arrays;
 

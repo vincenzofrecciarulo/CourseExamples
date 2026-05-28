@@ -1,4 +1,4 @@
-package org.generation.italy.examples.arrays;
+package org.generation.italy.examples.arrays.arrays;
 
 public class Exercise4 {
     // Creare una funzione che riceva in input un array di numeri interi e ritorna il max numero intero che trova.
