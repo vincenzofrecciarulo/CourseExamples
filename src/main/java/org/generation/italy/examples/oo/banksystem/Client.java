@@ -48,7 +48,7 @@ public class Client {
     public double getTotalBalance(){
         double totalBalance = 0;
         for(int i = 0; i < accountCounter; i++){
-            totalBalance += accounts[i].balance;
+            totalBalance += accounts[i].getBalance();
         }
         return totalBalance;
     }

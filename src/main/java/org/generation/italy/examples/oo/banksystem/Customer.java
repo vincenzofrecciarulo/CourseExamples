@@ -57,6 +57,7 @@ public class Customer {
                 if(a.getBalance() < balance){
                     balance = a.getBalance();
                 }
+
             }
         }
         return balance;
