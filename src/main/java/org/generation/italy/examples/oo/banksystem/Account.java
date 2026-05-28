@@ -12,9 +12,9 @@ public class Account {
 
     //l'incapsulamento è il rendere privato i nostri oggetti
     //uno stato pubblico non è più libero di evolvere, perchè se lo cambi invalidi tutto il codice che lo utilizza
-    private double balance;
-    private String serialNumber;
-    private LocalDate openDate;
+    public double balance;
+    public String serialNumber;
+    public LocalDate openDate;
 
     public Account() {}
 

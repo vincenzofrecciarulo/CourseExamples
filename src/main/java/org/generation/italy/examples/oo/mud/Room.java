@@ -36,12 +36,12 @@ public class Room {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder(this.title);
-        sb.append("\n").append("this.description").append("\n")
+        sb.append("\n").append(this.description).append("\n")
                 .append("In questo luogo sono presenti:")
                 .append(getEntityNames()).append("\n")
                 .append("Vedi i seguenti oggetti")
                 .append(getItemsNames());
-        return sb;
+        return sb.toString();
     }
 
     public ArrayList<String> getEntityNames(){
