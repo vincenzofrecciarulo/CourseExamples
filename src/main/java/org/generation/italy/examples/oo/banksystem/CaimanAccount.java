@@ -11,5 +11,15 @@ public class CaimanAccount extends Account {
         this.secretCode = secretCode;
         this.percentTaxEvasion = percentTaxEvasion;
     }
+    public void evadeTaxes(){
+        deposit(percentTaxEvasion*getBalance());
+    }
+    //method override
+    @Override
+    public double deposit(double amount){
+        //balance += amount*(1+percentTaxEvasion);
+        super.deposit(amount*(1+percentTaxEvasion));
+        return balance;
+    }
 }
 
