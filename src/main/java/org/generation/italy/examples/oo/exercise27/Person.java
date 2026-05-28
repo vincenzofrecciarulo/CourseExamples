@@ -44,7 +44,7 @@ public class Person {
    }
 
    public void setAge(int age) {
-      this.age = age==0?0:age;
+      this.age = age;
    }
 
    public String getGender() {

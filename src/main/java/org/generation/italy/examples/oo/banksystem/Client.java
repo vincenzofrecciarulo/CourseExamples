@@ -50,7 +50,7 @@ public class Client {
         double totalBalance = 0;
         for(int i=0;i< account.length;i++){
             if(account[i]!=null){
-                totalBalance +=account[i].balance;
+                totalBalance +=account[i].getBalance();
             }
         }
         return totalBalance;
