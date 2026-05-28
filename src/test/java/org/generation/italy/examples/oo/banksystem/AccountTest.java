@@ -23,27 +23,27 @@ class AccountTest {
 
     @Test//Act
     void deposit() {
-        double balance = a1.balance;
+        double balance = a1.getBalance();
         double endBalance= a1.deposit(DEPOSIT_AMOUNT);
         double expected = balance + DEPOSIT_AMOUNT;
         assertEquals(expected,endBalance);
-        assertEquals(expected,a1.balance);
+        assertEquals(expected,a1.getBalance());
     }
 
     @Test//Act
-    void withdraw_should_succeed_if_amount_available() {
-        double balance = a1.balance;
+    void withdraw_should_succeed_if_amount_avaiable() {
+        double balance = a1.getBalance();
         boolean success= a1.withdraw(WITHDRAW_AMOUNT);
         assertTrue(success);
         double expectedBalance = balance -WITHDRAW_AMOUNT;
-        assertEquals(expectedBalance, a1.balance);
+        assertEquals(expectedBalance, a1.getBalance());
     }
     @Test//Act
-    void withdraw_should_succeed_if_amount_not_available() {
-        double balance = a1.balance; //Initial Balance
-        boolean success= a1.withdraw(a1.balance +1);
+    void withdraw_should_succeed_if_amount_not_avaiable() {
+        double balance = a1.getBalance(); //Initial Balance
+        boolean success= a1.withdraw(a1.getBalance() +1);
         assertFalse(success);
-        assertEquals(balance, a1.balance);
+        assertEquals(balance, a1.getBalance());
     }
 
 

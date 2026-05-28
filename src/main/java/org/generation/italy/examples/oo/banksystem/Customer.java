@@ -10,7 +10,6 @@ public class Customer {
     private boolean female;
     private ArrayList<Account> accounts;
 
-
     public Customer(String name, String surname, LocalDate dob, boolean female, ArrayList<Account> accounts) {
         this.name = name;
         this.surname = surname;
@@ -18,11 +17,10 @@ public class Customer {
         this.female = female;
         this.accounts = accounts;
     }
-
+    //questo costruttore invoca il costruttore in alto
     public Customer(String name, String surname, LocalDate dob, boolean female) {
-        this(name, surname, dob, female, new ArrayList<>());    //Invoca il costruttore in alto, il programma lo capisce dagli argomenti che gli passa, così prende tutto che gli è passato dalla classe esterna e poi gli genera un ArrayList vuoto.
+        this(name, surname, dob, female, new ArrayList<>());
     }
-
     public Customer(String name, String surname, LocalDate dob){
         this(name,surname,dob,false);                   //'Per creare questa catena ogni costruttore deve passare all'altro sopra di esso il valore mancante, come vogliamo che sia di default
     }
@@ -69,4 +67,25 @@ public class Customer {
     public boolean isFemale() {
         return female;
     }
+
+//    public double getSpecialAccountBalance(){
+//        if(accounts.isEmpty()){
+//            return 0;
+//        }
+//        double balance = accounts.getFirst().getBalance();
+//        if(female){
+//            for(Account a : accounts){
+//                if(a.getBalance() > balance){
+//                    balance = a.getBalance();
+//                }
+//            }
+//        }else{
+//            for(Account a : accounts){
+//                if(a.getBalance() < balance){
+//                    balance = a.getBalance();
+//                }
+//            }
+//        }
+//        return balance;
+//    }
 }

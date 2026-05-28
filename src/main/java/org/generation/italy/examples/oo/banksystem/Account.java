@@ -1,5 +1,6 @@
 package org.generation.italy.examples.oo.banksystem;
-import java.util.ArrayList;
+
+import java.time.LocalDate;
 
 public class Account {
     /*Creare una classe che rappresenti un conto corrente un saldo di tipo double
@@ -9,10 +10,27 @@ public class Account {
      ad un'altro  contocorrente
      */
 
-    double balance;
+    //l'incapsulamento è il rendere privato i nostri oggetti
+    //uno stato pubblico non è più libero di evolvere, perchè se lo cambi invalidi tutto il codice che lo utilizza
+    private double balance;
+    private String serialNumber;
+    private LocalDate openDate;
 
     public Account (double balance){
         this.balance = balance;
+        this.serialNumber="";
+        this.openDate=LocalDate.now();
+    }
+
+    public Account(double balance, String serialNumber){
+        this(balance); //il this può solo essere fatto come prima istruzione(qua prima invoco il costruttore sopra,
+                        // poi sovrascrivo eventualmente il valore di alcuni parametri)
+        this.serialNumber=serialNumber;
+    }
+
+    public Account(double balance, String serialNumber, LocalDate openDate){
+        this(balance, serialNumber);
+        this.openDate=openDate;
     }
 
     public double deposit(double amount){
@@ -37,10 +55,11 @@ public class Account {
         return true;
 
     }
-
-    private boolean isBalanceAvailable(double amount){                  //metodo privato perchè usato solo come step per i metodi di questa classe (metodo helper) e che non utilizzeremo fuori
-        return balance >=amount
+    //metodo helper
+    private boolean isBalanceUnavailable(double amount){
+        return !(balance >= amount);
     }
+
     public boolean transfer2 (double amount,Account target){
        boolean success =  withdraw(amount);
        balance+=10;
@@ -55,9 +74,9 @@ public class Account {
         return balance;
     }
 
-    public void setBalance (double newBalance) {
-        if (newBalance >= 0)
+    public void setBalance(double newBalance){
+        if(newBalance >= 0){        //condizione di guardia, per non avere balance negativo
             balance = newBalance;
+        }
     }
-
 }

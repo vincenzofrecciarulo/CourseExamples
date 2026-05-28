@@ -34,10 +34,16 @@ public class Bank {
 
     public double getTotalBalance() {
         double sum = 0;
-        for (Account i : accounts)
-            sum += i.balance;
+//        for(int i = 0; i < accounts.size(); i++){
+//            Account x = accounts.get(i);
+//              x = new Account(50); l'arraylist non cambia poichè viene modificata una copia e non l'originale
+//            sum += x.getBalance();
+//        }
+        //in un for each non posso cambiare il contenuto di un array
+        //nel ciclare su delle strutture dati spesso vorremmo usare un ITERATORE
+        for(Account x : accounts){
+            sum += x.getBalance();
+        }
         return sum;
     }
-
-
 }
