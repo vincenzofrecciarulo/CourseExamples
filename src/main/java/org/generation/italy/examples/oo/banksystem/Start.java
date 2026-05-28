@@ -24,5 +24,12 @@ public class Start {
         removed = b.removeAccount(a);
         IO.println(removed);
         Customer c = new Customer("Ciccio", "Pasticcio", LocalDate.now());
+        IO.println(c);
+        CaimanAccount ca = new CaimanAccount(1000, "xxx", LocalDate.now(), "very secret",
+                0.4);
+        IO.println(ca.getBalance());
+        ca.deposit(100);
+        ca.withdraw(50);
+        ca.transfer(25 , a);
     }
 }
