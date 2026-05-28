@@ -1,5 +1,7 @@
 package org.generation.italy.examples.oo.banksystem;
 
+import java.time.LocalDate;
+
 public class Account {
     /*Creare una classe che rappresenti un conto corrente un saldo di tipo double
      un metodo per ritirare e in'altro per depositare
@@ -11,9 +13,24 @@ public class Account {
     //l'incapsulamento è il rendere privato i nostri oggetti
     //uno stato pubblico non è più libero di evolvere, perchè se lo cambi invalidi tutto il codice che lo utilizza
     private double balance;
+    private String serialNumber;
+    private LocalDate openDate;
 
     public Account (double balance){
         this.balance = balance;
+        this.serialNumber="";
+        this.openDate=LocalDate.now();
+    }
+
+    public Account(double balance, String serialNumber){
+        this(balance); //il this può solo essere fatto come prima istruzione(qua prima invoco il costruttore sopra,
+                        // poi sovrascrivo eventualmente il valore di alcuni parametri)
+        this.serialNumber=serialNumber;
+    }
+
+    public Account(double balance, String serialNumber, LocalDate openDate){
+        this(balance, serialNumber);
+        this.openDate=openDate;
     }
 
     public double deposit(double amount){
