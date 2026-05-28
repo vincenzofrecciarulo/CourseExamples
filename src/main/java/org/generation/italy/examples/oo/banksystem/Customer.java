@@ -36,11 +36,17 @@ public class Customer {
     }
 
 
-
-    public double getSpecialAccountBalance(){      //ritorna la balance più alta tra gli account se il customer è female o bassa se il customer è maschio
+    /*
+    ritorna la balance più alta tra gli account se il customer è female o bassa se il customer è maschio
+    Per non ripetere il codice identico due volte che differiva soltanto nel > e < ho moltiplicato i fattori della condizione
+    per 1 se l'account è femmina così non effettuava un bel niente e per -1 se l'account era maschio, così semplicemente
+    la condizione vedeva sempre il numero matematicamente più grande, ma che nel caso dei negativi (account maschio) era il numero
+    più piccolo, dunque il minore per i numeri positivi reali.
+     */
+    public double getSpecialAccountBalance(){
         double balance = accounts.get(0).getBalance();
         int maxMin = female ? 1 : -1;
-            for (Account i : accounts) {                    // Vedere come fare per crearli tramite funzione che scorre e va bene per entrambi
+            for (Account i : accounts) {
                 if (i.getBalance()*maxMin>balance*maxMin) {
                     balance = i.getBalance();
                 }

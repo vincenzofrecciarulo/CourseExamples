@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Altri esempi di incapsulamento e programmazione oo">
+    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="un comando per getSpecial">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/banksystem/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/banksystem/Customer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +193,8 @@
       <workItem from="1779870461802" duration="1648000" />
       <workItem from="1779881364952" duration="3621000" />
       <workItem from="1779892183445" duration="5340000" />
-      <workItem from="1779905692882" duration="4527000" />
+      <workItem from="1779905692882" duration="4558000" />
+      <workItem from="1779954294715" duration="302000" />
     </task>
     <task id="LOCAL-00001" summary="Implementato Exercise7 e 5, con alcune modifiche agli altri">
       <option name="closed" value="true" />
@@ -268,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779898059999</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="un comando per getSpecial">
+      <option name="closed" value="true" />
+      <created>1779917460361</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1779917460361</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,7 +290,8 @@
     <MESSAGE value="Cancellata classe inutile" />
     <MESSAGE value="Implementato classe Bank" />
     <MESSAGE value="Altri esempi di incapsulamento e programmazione oo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Altri esempi di incapsulamento e programmazione oo" />
+    <MESSAGE value="un comando per getSpecial" />
+    <option name="LAST_COMMIT_MESSAGE" value="un comando per getSpecial" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
