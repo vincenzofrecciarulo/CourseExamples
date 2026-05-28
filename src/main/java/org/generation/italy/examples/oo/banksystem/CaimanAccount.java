@@ -26,7 +26,7 @@ public class CaimanAccount extends Account {
     }
 
     public double deposit(double amount){
-        setBalance() = getBalance() + amount*(1+percentTaxEvasion);
+        //setBalance() = getBalance() + amount*(1+percentTaxEvasion);
         super.deposit(amount*(1+percentTaxEvasion));
         return getBalance();
     }
