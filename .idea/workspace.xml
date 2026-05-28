@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="un comando per getSpecial">
+    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Terminato getSpecialAccountBalance utilizzando solo una funzione non ripetuta, aggiunto commento di spiegazione">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise6.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise7.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,6 +200,8 @@
       <workItem from="1779892183445" duration="5340000" />
       <workItem from="1779905692882" duration="4558000" />
       <workItem from="1779954294715" duration="302000" />
+      <workItem from="1779960276305" duration="225000" />
+      <workItem from="1779960554235" duration="1033000" />
     </task>
     <task id="LOCAL-00001" summary="Implementato Exercise7 e 5, con alcune modifiche agli altri">
       <option name="closed" value="true" />
@@ -276,7 +283,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779917460361</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Terminato getSpecialAccountBalance utilizzando solo una funzione non ripetuta, aggiunto commento di spiegazione">
+      <option name="closed" value="true" />
+      <created>1779960489720</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1779960489720</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,7 +306,8 @@
     <MESSAGE value="Implementato classe Bank" />
     <MESSAGE value="Altri esempi di incapsulamento e programmazione oo" />
     <MESSAGE value="un comando per getSpecial" />
-    <option name="LAST_COMMIT_MESSAGE" value="un comando per getSpecial" />
+    <MESSAGE value="Terminato getSpecialAccountBalance utilizzando solo una funzione non ripetuta, aggiunto commento di spiegazione" />
+    <option name="LAST_COMMIT_MESSAGE" value="Terminato getSpecialAccountBalance utilizzando solo una funzione non ripetuta, aggiunto commento di spiegazione" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

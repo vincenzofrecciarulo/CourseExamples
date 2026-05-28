@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Exercise3 {
     // Creiamo una funzione che riceve in input un array e lo inverte
-    // Senza creare altri array
+    // Senza creare altri array temp (termine tecnico: in-place, gli elementi rimangono all'interno dell'array
 
     static void main() {
         int[] numArray = {1,4,5,2,6,3,8,3,4,8};

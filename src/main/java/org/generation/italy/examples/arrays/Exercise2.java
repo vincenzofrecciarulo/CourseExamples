@@ -2,8 +2,10 @@ package org.generation.italy.examples.arrays;
 
 import java.util.Arrays;
 
-// scrivere funzione che popola array con numeri interi casuali da 1 a 10, li stampi,
-// e infine tramite una funzione, scriva un messaggio se contiene numeri duplicati
+/* Dato un array di 10 elementi scrivere funzione che popola array con numeri interi casuali da 1 a 10, li stampi,
+ e successivamente tramite una funzione, scriva un messaggio se contiene numeri duplicati
+ infine il programma deve stampare gli elementi duplicati. FARE QUESTO
+*/
 
 public class Exercise2 {
     public static void main(){

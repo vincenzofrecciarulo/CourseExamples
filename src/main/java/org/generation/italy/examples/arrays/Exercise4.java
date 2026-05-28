@@ -1,7 +1,10 @@
 package org.generation.italy.examples.arrays;
+/* Creare una funzione che riceva in input un array di numeri interi e ritorna il max numero intero che trova.
+   e il min numero intero FARE QUESTO
+*/
 
 public class Exercise4 {
-    // Creare una funzione che riceva in input un array di numeri interi e ritorna il max numero intero che trova.
+
     public static int findMax(int[] numbers) {
         int max = numbers[0];
         for (int i = 1; i < numbers.length; i++) {

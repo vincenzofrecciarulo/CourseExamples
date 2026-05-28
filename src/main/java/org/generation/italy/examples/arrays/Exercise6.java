@@ -2,6 +2,16 @@ package org.generation.italy.examples.arrays;
 
 import java.util.Arrays;
 
+/*
+Dato un array di 11 string di cui 10 vuote e 1 di valore "U" (default a index 5), simulare il problema del cammino
+dell'ubriaco: A ogni passo U si sposta casualmente verso sinistra o destra di 1 posizione, continua a spostarsi
+finchè non esce dall'array.
+A ogni passo stampare la visualizzazione grafica di tutto l'array per mostrarne la posizione attuale.
+Il programma non deve crashare quando l'ubriaco esce dall'array, alla fine di tutto poi stampare il numero di passi
+che ha compiuto prima di uscire.
+
+int randomInt = (int)(Math.random()*(max-min+1))+min;
+ */
 public class Exercise6 {
     static void main() {
         String[] drunkPath = new String[11];
