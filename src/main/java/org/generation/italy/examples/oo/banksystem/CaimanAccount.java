@@ -23,4 +23,17 @@ public class CaimanAccount extends Account {              // CaimanAccount IS a 
         this.percentTaxEvasion = percentTaxEvasion;
 
     }
+
+    public void evadeTaxes() { // espandiamo i comportamenti della classe madre
+        deposit(percentTaxEvasion * getBalance());          // deposita la sua balance * percentTaxEvasion, on top of la sua balance normale
+    }
+
+    // cambiamo la logica di uno dei metodi della classe madre col METHOD OVERRIDING.
+    // la FIRMA del metoo dev'essere UGUALE a quella del metodo "madre" da sovrascrivere.
+    @Override                                      // abbiamo bisogno dell'annotazione Override. in appunti.
+    public double deposit (double amount) {
+//        balance += amount * (1 + percentTaxEvasion);   // this would recurse the method and give StackOverflow!
+        super.deposit(amount*(1 + percentTaxEvasion));  // this way we can CALL THE PARENT METHOD, even though IT'S OVERRIDDEN
+        return getBalance();
+    }
 }
