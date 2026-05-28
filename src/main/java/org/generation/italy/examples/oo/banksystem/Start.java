@@ -31,5 +31,17 @@ public class Start {
         ca.deposit(100);
         ca.withdraw(50);
         ca.transfer(25 , a);
+        Account w = new CaimanAccount(3000, "zzz", LocalDate.now(), "very secret", 0.5);
+
+        CaimanAccount z = new CaimanAccount(2000, "yyy", LocalDate.now(), "very secret", 0.5);
+        handleAccount(a);
+        z.evadeTaxes();
+    }
+
+    public static void handleAccount(Account x){
+        if (x.getBalance()>5000){
+            x.deposit(1000);
+        }
+
     }
 }
