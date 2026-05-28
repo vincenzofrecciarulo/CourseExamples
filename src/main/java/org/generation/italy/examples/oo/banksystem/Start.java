@@ -31,17 +31,47 @@ public class Start {
         ca.deposit(100);
         ca.withdraw(50);
         ca.transfer(25 , a);
-        Account w = new CaimanAccount(3000, "zzz", LocalDate.now(), "very secret", 0.5);
 
-        CaimanAccount z = new CaimanAccount(2000, "yyy", LocalDate.now(), "very secret", 0.5);
-        handleAccount(a);
-        z.evadeTaxes();
+        Account w = (Account)new CaimanAccount(3000, "zzz", LocalDate.now(),
+                "very secret", 0.6);
+
+        CaimanAccount z=new CaimanAccount(2000, "yyy", LocalDate.now(),
+                "very secret", 0.5);
+
+        //handleAccount è un metodo polimorfico, accetta più forme, lavora con più elementi
+        handleAccount((Account)z); //questo è un cast implicito, una figlia viene automaticamente castata a una madre ("upcast")
+
+        GoldAccount g = new GoldAccount(500, "abc123", 100, 0);
+        handleAccount(g);
+
+        Account[] as = new Account[2];
+        as[0] = z;
+        as[1] = g;
+
+        z.deposit(100);
+        w.deposit(100);
+
+        // w.evadeTaxes();
+
+        // solo a runtime verrà eseguito Math.random()
+        if(Math.random()>0.5){
+            w = new CaimanAccount(3000, "zzz", LocalDate.now(),
+                    "very secret", 0.6);
+        }else{
+            w = new GoldAccount(500, "abc123", 100, 0);
+        }
+        w.deposit(100); // quindi qui non sappiamo a chi punterà la reference
+
+        double d = 3.0;
+        int i = (int)d;
+        // down casting che è forzato
+        // CaimanAccount z2 = (CaimanAccount)a; // eccezione Class cast exception
+
     }
 
     public static void handleAccount(Account x){
-        if (x.getBalance()>5000){
+        if(x.getBalance()>5000){
             x.deposit(1000);
         }
-
     }
 }

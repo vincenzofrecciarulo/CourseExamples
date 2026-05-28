@@ -11,15 +11,17 @@ public class CaimanAccount extends Account {
         this.secretCode = secretCode;
         this.percentTaxEvasion = percentTaxEvasion;
     }
+
     public void evadeTaxes(){
-        deposit(percentTaxEvasion*getBalance());
+        deposit(percentTaxEvasion*getBalance()); //incrementa la balance di tot percento di quello che era prima
     }
+
     //method override
-    @Override
+    @Override //il compilatore legge le annotazioni rispetto ai commenti, con l'annotazione (di compile time) stiamo descrivendo
     public double deposit(double amount){
-        //balance += amount*(1+percentTaxEvasion);
-        super.deposit(amount*(1+percentTaxEvasion));
-        return balance;
+        // balance += amount*(1+percentTaxEvasion);
+        super.deposit(amount*(1+percentTaxEvasion)); // errore: stack overflow, ho una serie infinita di chiamate a deposit, ricorsione: una funzione che richiama se stessa
+        return getBalance();  // return balance
     }
 }
 
