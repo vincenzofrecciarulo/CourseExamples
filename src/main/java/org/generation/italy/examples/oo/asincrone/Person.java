@@ -1,24 +1,65 @@
 package org.generation.italy.examples.oo.asincrone;
 
-import java.awt.*;
-
 public class Person {
 
-    String name,surname,dateOfBirth,g;
+  private  String name,surname,dateOfBirth,g;
 
-    public String toString(){
+    public Person (String name,String surname,String dateOfBirth,String g){
+        this.setName(name);
+        this.setSurname(surname);
+        this.setDateOfBirth(dateOfBirth);
+        this.setG(g);
+    }
+
+    public String getName (){
+        return name == null ?"":name;
+    }
+
+    public String getSurname (){
+        return surname == null ?"":surname;
+    }
+    public String getDateOfBirth (){
+        return dateOfBirth == null ?"":dateOfBirth;
+    }
+
+    public String getG (){
+        return g == null ?"":g;
+    }
+
+    public void setName(String name){
+        if(name== null){
+            return;
+        }
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        if(surname== null){
+            return;
+        }
+
+        this.surname = surname;
+    }
+    public void setDateOfBirth(String dateOfBirth) {
+        if(dateOfBirth== null){
+            return;
+        }
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setG(String g) {
+        if(g== null){
+            return;
+        }
+        this.g = g;
+    }
+
+
+        public String toString(){
         return name+" "+surname+" "+dateOfBirth+" "+g;
     }
 
 
 
-    static void main() {
-        Person p1 = new Person();
-        p1.name = "Andrea";
-        p1.surname = "Ferraro";
-        p1.dateOfBirth="1997-05-17";
-        p1.g = "male";
-        System.out.println(p1.toString());
-    }
 }
 

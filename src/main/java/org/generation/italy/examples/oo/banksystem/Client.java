@@ -31,7 +31,7 @@ public class Client {
         if(accountCounter == 0){
             System.out.println("Non ci sono account da rimuovere");
             return false;
-        }else if(pos >=0 && pos<accountCounter ){
+        }else if(pos < 0 || pos>=accountCounter ){
             System.out.println("Posizione non valida");
             return false;
         }
@@ -47,13 +47,26 @@ public class Client {
   public double getTotalBalance (){
         double totalBalance = 0;
         for (int i = 0; i<accountCounter;i++){
-            totalBalance += accounts[i].balance;
+            totalBalance += accounts[i].getBalance();
         }
 
         return totalBalance;
   }
 
   public boolean transfer(int i, int j,double amount){
+
+             if(i < 0 || i>=accountCounter){
+                 System.out.println("Posizione non valida");
+                 return false;
+             }else if(j < 0 || j>=accountCounter){
+                 System.out.println("Account non valido");
+                 return false;
+             }
+
+            if(!(accounts[i].transfer(amount,accounts[j]))){
+                return false;
+            }
+
         return true;
   }
 
