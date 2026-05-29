@@ -50,16 +50,16 @@ public class Room {
 
     public ArrayList<String> getObjectNames(){
         ArrayList<String> names = new ArrayList<>();
-        for(Item i : items){
-            names.add(i.getName());
+        for(Item item : items){
+            names.add(item.getName());
         }
         return names;
     }
 
     public ArrayList<String> getEntityNames(){
         ArrayList<String> names = new ArrayList<>();
-        for(Entity e : entities){
-            names.add(e.getName());
+        for(Entity entity: entities){
+            names.add(entity.getName());
         }
         return names;
     }
