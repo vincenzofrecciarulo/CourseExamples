@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.entities;
 
 public class Entity {
     protected int hp;

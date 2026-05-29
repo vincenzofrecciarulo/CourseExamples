@@ -1,4 +1,8 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.rooms;
+
+import org.generation.italy.examples.oo.mud.entities.Entity;
+import org.generation.italy.examples.oo.mud.entities.Player;
+import org.generation.italy.examples.oo.mud.items.Item;
 
 import java.util.ArrayList;
 

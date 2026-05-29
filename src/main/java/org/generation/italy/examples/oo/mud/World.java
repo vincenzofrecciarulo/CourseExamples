@@ -1,5 +1,9 @@
 package org.generation.italy.examples.oo.mud;
 
+import org.generation.italy.examples.oo.mud.entities.Entity;
+import org.generation.italy.examples.oo.mud.items.Item;
+import org.generation.italy.examples.oo.mud.rooms.Room;
+
 import java.util.ArrayList;
 
 public class World {

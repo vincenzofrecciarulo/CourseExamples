@@ -1,6 +1,6 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.entities;
 
-public class Player extends Entity{
+public class Player extends Entity {
     private int coins = 0;
 
     public Player(int hp, String name, int level) {
