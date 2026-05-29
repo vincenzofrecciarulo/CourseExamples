@@ -11,6 +11,9 @@ public class Room {
 
     public static final int NORTH = 0;
     public static final int EAST = 1;
+
+
+
     public static final int WEST = 2;
     public static final int SOUTH = 3;
 
@@ -62,6 +65,18 @@ public class Room {
             names.add(e.getName());
         }
         return names;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public void addItem (Item item){
+        items.add(item);
+    }
+
+    public void removeItem (Item item){
+        items.remove(item);
     }
 
     public String getTitle() {

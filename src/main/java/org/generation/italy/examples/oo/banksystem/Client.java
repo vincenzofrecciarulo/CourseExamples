@@ -1,58 +1,73 @@
 package org.generation.italy.examples.oo.banksystem;
 
 public class Client {
-
     public String name;
     public String surname;
-    public String birthDate;
-    public char gender;
-    public Account[] accounts;
-    public int accountCount;
+    public String gender;
+    public String dateOfBirth;
+    final static int accountMax = 5;
+    public Account[] accounts = new Account[accountMax];
+    public int accountCounter;
 
-    private static final int MAX_ACCOUNTS = 5;
 
-    public Client(String name, String surname, String birthDate, char gender) {
-        this.name = name;
-        this.surname = surname;
-        this.birthDate = birthDate;
-        this.gender = gender;
-        this.accounts = new Account[MAX_ACCOUNTS];
-        this.accountCount = 0;
+    public Client (String name,String surname,String gender,String dateOfBirth){
+        this.name  = name;
+        this.surname  = surname;
+        this.gender  = gender;
+        this.dateOfBirth  = dateOfBirth;
     }
 
-    public boolean addAccount(Account account) {
-        if (accountCount >= MAX_ACCOUNTS) {
+  public boolean addAccount (Account account){
+        if (accountCounter >= accountMax){
+            System.out.println("Puoi avere massimo 5 account");
             return false;
         }
-        accounts[accountCount] = account;
-        accountCount++;
+        accounts[accountCounter] = account;
+        accountCounter++;
         return true;
-    }
+  }
 
-    public boolean removeAccount(int i) {
-        if (i >= accountCount) {
+  public boolean removeAccount (int pos){
+        if(accountCounter == 0){
+            System.out.println("Non ci sono account da rimuovere");
+            return false;
+        }else if(pos < 0 || pos>=accountCounter ){
+            System.out.println("Posizione non valida");
             return false;
         }
-        for (int j = i; j < accountCount - 1; j++) {
-            accounts[j] = accounts[j + 1];
+
+        for (int i = pos; i<accountCounter-1;i++){
+               accounts[i] = accounts[i+1];
         }
-        accounts[accountCount - 1] = null;
-        accountCount--;
+        accounts[accountCounter-1]= null;
+        accountCounter--;
+        return  true;
+  }
+
+  public double getTotalBalance (){
+        double totalBalance = 0;
+        for (int i = 0; i<accountCounter;i++){
+            totalBalance += accounts[i].getBalance();
+        }
+
+        return totalBalance;
+  }
+
+  public boolean transfer(int i, int j,double amount){
+
+             if(i < 0 || i>=accountCounter){
+                 System.out.println("Posizione non valida");
+                 return false;
+             }else if(j < 0 || j>=accountCounter){
+                 System.out.println("Account non valido");
+                 return false;
+             }
+
+            if(!(accounts[i].transfer(amount,accounts[j]))){
+                return false;
+            }
+
         return true;
-    }
+  }
 
-    public double getTotalBalance() {
-        double total = 0;
-        for (int i = 0; i < accountCount; i++) {
-            total += accounts[i].balance;
-        }
-        return total;
-    }
-
-    public boolean transfer(int i, int j, double amount) {
-        if (i < 0 || i >= accountCount || j < 0 || j >= accountCount || i == j) {
-            return false;
-        }
-        return accounts[i].transfer(amount, accounts[j]);
-    }
 }
