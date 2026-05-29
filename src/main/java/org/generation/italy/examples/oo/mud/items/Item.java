@@ -1,5 +1,7 @@
 package org.generation.italy.examples.oo.mud.items;
 
+import org.generation.italy.examples.oo.mud.entities.Player;
+
 public class Item {
     private double weight;
     private int value;
@@ -13,5 +15,9 @@ public class Item {
 
     public String getName() {
         return name;
+    }
+
+    public void interact(Player player){
+
     }
 }

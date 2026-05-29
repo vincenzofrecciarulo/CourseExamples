@@ -3,6 +3,7 @@ package org.generation.italy.examples.oo.mud;
 import org.generation.italy.examples.oo.mud.entities.Entity;
 import org.generation.italy.examples.oo.mud.items.Item;
 import org.generation.italy.examples.oo.mud.rooms.Room;
+import org.generation.italy.examples.oo.mud.rooms.TempleRoom;
 
 import java.util.ArrayList;
 
@@ -28,11 +29,7 @@ public class World {
         os2.add(new Item(4, 8, "Ago di metallo"));
 
         // stanza del tempio
-        Room ts = new Room("Piazza del Tempio",
-                """
-                        Qui vengono a curarsi gli avventurieri malati!
-                        """, new ArrayList<>(), os2
-        );
+        Room ts = new TempleRoom(new ArrayList<>(), os2);
 
         ms.addExit(ts, Room.NORTH);
         ts.addExit(ms, Room.SOUTH);

@@ -8,10 +8,17 @@ import java.util.ArrayList;
 
 public class TempleRoom extends Room {
     private static final int HEAL_AMOUNT = 100;
+    private static final String TITLE = "Piazza del Tempio";
+    private static final String DESCRIPTION = "Qui vengono a curarsi gli avventurieri malati!";
 
     public TempleRoom(String title, String description, ArrayList<Entity> entities, ArrayList<Item> items) {
         super(title, description, entities, items);
     }
+
+    public TempleRoom(ArrayList<Entity> entities, ArrayList<Item> items){
+        super(TempleRoom.TITLE, TempleRoom.DESCRIPTION, entities,items);
+    }
+
 
     @Override
     public void interact(Player player){
