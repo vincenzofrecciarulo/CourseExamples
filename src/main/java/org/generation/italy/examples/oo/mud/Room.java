@@ -39,16 +39,21 @@ public class Room {
         return exits[direction];
     }
 
-
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder(this.title);
-        sb.append("\n").append(this.description).append("\n")
-                .append("In questo luogo sono presenti: ")
+        sb.append("\n").append(this.description).append("\n");
+        return sb.toString(); // ritorno la stringa che sta dentro lo StringBuilder
+    }
+
+
+    public String infoRoom() {
+        StringBuilder ir = new StringBuilder();
+        ir.append("In questo luogo sono presenti: ")
                 .append(getEntityNames()).append("\n")
                 .append("Vedi i seguenti oggetti: ")
                 .append(getObjectNames());
-        return sb.toString(); // ritorno la stringa che sta dentro lo StringBuilder
+        return ir.toString();
     }
 
     public ArrayList<String> getObjectNames(){
