@@ -34,6 +34,7 @@ public class World {
 
     public void startGame() {
         current = start;
+        Player p1 = new Player(100,"Pippo",10,current);
         while (true) {
             IO.println(current);
             String command = IO.readln("->");
@@ -51,6 +52,10 @@ public class World {
                 case "s":
                     success = moveTo(Room.SOUTH);
                     break;
+                case "i":
+                   p1.openInventory();
+                   break;
+
                 case "q":
                     IO.println("Grazie per aver giocato");
                     return;

@@ -68,4 +68,18 @@ public class Room {
     public String getDescription() {
         return description;
     }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public void addItem (Item item){
+        items.add(item);
+    }
+
+    public void removeItem (Item item){
+        items.remove(item);
+    }
+
+
 }
