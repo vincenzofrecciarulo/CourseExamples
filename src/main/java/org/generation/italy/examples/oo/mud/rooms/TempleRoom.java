@@ -11,18 +11,15 @@ public class TempleRoom extends Room {
     private static final String TITLE = "Piazza del Tempio";
     private static final String DESCRIPTION = "Qui vengono a curarsi gli avventurieri malati!";
 
-    public TempleRoom(String title, String description, ArrayList<Entity> entities, ArrayList<Item> items) {
-        super(title, description, entities, items);
-    }
 
-    public TempleRoom(ArrayList<Entity> entities, ArrayList<Item> items){
-        super(TempleRoom.TITLE, TempleRoom.DESCRIPTION, entities,items);
+    public TempleRoom(){
+        super(TempleRoom.TITLE, TempleRoom.DESCRIPTION, new ArrayList<>(), new ArrayList<>());
     }
-
 
     @Override
     public void interact(Player player){
-        String input = IO.readln("Vuoi riposare nel tempio per 5 monete?");
+        String input = IO.readln("""
+                """);
         if(input.equals("y")){
             if(!player.withdrawCoins(5)){
                 System.out.println("Non hai abbastanza monete");

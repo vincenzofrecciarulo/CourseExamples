@@ -27,7 +27,7 @@ public class Room {
     }
 
     public void interact(Player player){
-
+        System.out.println("Non c'è nulla da fare...");
     }
 
     // aggiungiamo una uscita ad una stanza e diciamo anche in che direzione è l'uscita
