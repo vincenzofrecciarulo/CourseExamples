@@ -33,6 +33,9 @@ public class Player  extends Entity{
         inventory.add(item);
         return true;
     }
+    public boolean WearArmor(Armor armor){
+
+    }
 
     public boolean dropItem (Item item){
         if(!(inventory.contains(item))){
