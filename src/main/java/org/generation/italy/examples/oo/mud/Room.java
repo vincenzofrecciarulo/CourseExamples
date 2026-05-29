@@ -22,6 +22,10 @@ public class Room {
         this.exits = new Room[4];
     }
 
+    public void interact(Player player){
+
+    }
+
     // aggiungiamo una uscita ad una stanza e diciamo anche in che direzione è l'uscita
     public boolean addExit(Room destination, int direction){
         if(exits[direction]!=null){
