@@ -37,6 +37,7 @@ public class World {
 
     public void startGame(){
         current = start;
+        Player p1 = new Player(100,"Banana",10,current);
         while(true){
             // IO.println(current.getTitle());
             // IO.println(current.getDescription());
@@ -56,6 +57,9 @@ public class World {
                 case "s":
                     success = moveTo(Room.SOUTH);
                     break;
+                case "i":
+                    success = p1.openInventory();
+                    break;
                 case "q":
                     IO.println("Grazie per aver giocato");
                     return;
@@ -65,7 +69,6 @@ public class World {
             }
 
             if (success){
-                IO.println("Te ne vai a " + command);
             }else{
                 IO.println("Non c'è nulla in quella direzione");
             }
@@ -84,7 +87,7 @@ public class World {
     public void main(){
         World w = new World();
         w.startGame();
-        Player p1 = new Player(100,"Banana",10,current);
+
 
 
 

@@ -11,6 +11,7 @@ public class Player  extends Entity{
     public Player (int hp ,String name, int level,Room currentRoom){
         super( hp, name,  level);
         this.currentRoom = currentRoom;
+
     }
 
     public ArrayList<Item> getInventory() {
@@ -33,6 +34,9 @@ public class Player  extends Entity{
         inventory.add(item);
         return true;
     }
+//    public boolean WearArmor(Armor armor){
+//
+//    }
 
     public boolean dropItem (Item item){
         if(!(inventory.contains(item))){
@@ -44,12 +48,10 @@ public class Player  extends Entity{
         return true;
     }
 
-    public void printInventory(){
-        ArrayList<String> itemNames = new ArrayList<>();
-        for (Item i : inventory){
-
+    public boolean openInventory() {
+        for (int i = 0; i < inventory.size(); i++) {
+            System.out.println(new StringBuilder().append(i).append(". ").append(inventory.get(i).getName()).toString());
         }
+        return true;
     }
-
-
 }
