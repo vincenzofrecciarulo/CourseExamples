@@ -11,5 +11,6 @@ public class MarketRoom extends Room{
     @Override
     public void interact(Player player) {
         System.out.println("Ciao avventuriero, vuoi comprare qualcosa?");
+
     }
 }

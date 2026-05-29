@@ -8,14 +8,27 @@ public class Player extends Entity{
     }
 
     public void heal(int heal){
-        setHp(getHp() + heal);
-    }
-
-    public void setCoins(int coins){
-        this.coins = coins;
+        hp += heal;
     }
 
     public int getCoins(){
         return coins;
     }
+
+    public boolean depositCoins(int coins){
+        if(coins < 0){
+            return false;
+        }
+        this.coins += coins;
+        return true;
+    }
+
+    public boolean withdrawCoins(int amount){
+        if(coins < amount){
+            return false;
+        }
+        coins -= amount;
+        return true;
+    }
+
 }

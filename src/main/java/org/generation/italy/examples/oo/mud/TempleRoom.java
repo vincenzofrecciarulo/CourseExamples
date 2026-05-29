@@ -13,7 +13,11 @@ public class TempleRoom extends Room {
     public void interact(Player player){
         String input = IO.readln("Vuoi riposare nel mio per 5 monete?");
         if(input.equals("y")){
-            System.out.println("Stai riposando nel tempo...");
+            if(!player.withdrawCoins(5)){
+                System.out.println("Non hai abbastanza monete");
+                return;
+            }
+            System.out.println("Stai riposando...");
             player.heal(HEAL_AMOUNT);
             System.out.println("Hai recuperato 100 punti vita.");
         }

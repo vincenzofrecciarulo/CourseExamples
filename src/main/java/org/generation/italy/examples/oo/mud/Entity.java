@@ -1,7 +1,7 @@
 package org.generation.italy.examples.oo.mud;
 
 public class Entity {
-    private int hp;
+    protected int hp;
     private String name;
     private int level;
 
@@ -17,10 +17,6 @@ public class Entity {
 
     public int getHp(){
         return hp;
-    }
-
-    public void setHp(int hp){
-        this.hp = hp;
     }
 
     public int getLevel(){
