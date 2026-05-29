@@ -31,5 +31,13 @@ public class Account {
         }
         return false;
     }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int i) {
+
+    }
 }
 

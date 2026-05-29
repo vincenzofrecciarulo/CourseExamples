@@ -8,6 +8,7 @@ public class Player  extends Entity{
 
     private Room currentRoom;
 
+
     public Player (int hp ,String name, int level,Room currentRoom){
         super( hp, name,  level);
         this.currentRoom = currentRoom;
@@ -44,10 +45,14 @@ public class Player  extends Entity{
         return true;
     }
 
-    public void printInventory(){
+    public void openInventory(){
         ArrayList<String> itemNames = new ArrayList<>();
-        for (Item i : inventory){
-
+        if (inventory.isEmpty()){
+            System.out.println("Inventario vuoto");
+            return;
+        }
+        for (int i = 0; i<inventory.size();i++){
+            IO.println(i +" "+ inventory.get(i).getName());
         }
     }
 

@@ -37,6 +37,7 @@ public class World {
 
     public void startGame(){
         current = start;
+        Player p1 = new Player(100,"Pippo",10,current);
         while(true){
             // IO.println(current.getTitle());
             // IO.println(current.getDescription());
@@ -84,7 +85,7 @@ public class World {
     public void main(){
         World w = new World();
         w.startGame();
-        Player p1 = new Player(100,"Banana",10,current);
+
 
 
 
