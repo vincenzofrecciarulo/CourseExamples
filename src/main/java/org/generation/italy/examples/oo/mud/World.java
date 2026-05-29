@@ -56,6 +56,8 @@ public class World {
                 case "s":
                     success = moveTo(Room.SOUTH);
                     break;
+                case "i":
+                    success =
                 case "q":
                     IO.println("Grazie per aver giocato");
                     return;
@@ -83,8 +85,9 @@ public class World {
 
     public void main(){
         World w = new World();
-        w.startGame();
         Player p1 = new Player(100,"Banana",10,current);
+        w.startGame();
+
 
 
 
