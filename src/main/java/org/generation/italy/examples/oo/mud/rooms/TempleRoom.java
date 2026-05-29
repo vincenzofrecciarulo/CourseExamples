@@ -22,7 +22,7 @@ public class TempleRoom extends Room {
 
     @Override
     public void interact(Player player){
-        String input = IO.readln("Vuoi riposare nel mio per 5 monete?");
+        String input = IO.readln("Vuoi riposare nel tempio per 5 monete?");
         if(input.equals("y")){
             if(!player.withdrawCoins(5)){
                 System.out.println("Non hai abbastanza monete");

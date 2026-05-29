@@ -15,5 +15,6 @@ public class HealPotion extends Item{
     public void interact(Player player){
         player.heal(value);
         player.drop(this);
+        System.out.println("Hai recuperato " + VALUE + " vita");
     }
 }
