@@ -13,6 +13,7 @@ public class HealPotion extends Item{
 
     @Override
     public void interact(Player player){
-
+        player.heal(value);
+        player.drop(this);
     }
 }

@@ -4,7 +4,7 @@ import org.generation.italy.examples.oo.mud.entities.Player;
 
 public class Item {
     private double weight;
-    private int value;
+    protected int value;
     private String name;
 
     public Item(double weight, int value, String name) {
@@ -15,6 +15,10 @@ public class Item {
 
     public String getName() {
         return name;
+    }
+
+    public double getWeight(){
+        return weight;
     }
 
     public void interact(Player player){
