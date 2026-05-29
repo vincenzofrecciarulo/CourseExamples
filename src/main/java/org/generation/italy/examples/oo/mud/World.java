@@ -84,5 +84,12 @@ public class World {
     public void main(){
         World w = new World();
         w.startGame();
+        Player p1 = new Player(100,"Banana",10,current);
+
+
+
     }
+
+
+
 }
