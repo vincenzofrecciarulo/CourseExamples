@@ -6,39 +6,44 @@ public class World {
     private Room start;
     private Room current;
 
-    public World() {
+    public World(){
         ArrayList<Entity> es = new ArrayList<>();
-        es.add(new Entity(50,"Ciro la guardia", 7));
+        es.add(new Entity(50, "Ciro la Guardia", 7));
+
         ArrayList<Item> os = new ArrayList<>();
         os.add(new Item(2, 10, "Bastone di legno"));
         os.add(new Item(3, 9, "Scudo di ferro"));
 
-        Room ms = new Room("Piazza del mercato",
+        Room ms = new Room("Piazza del Mercato",
                 """
-                          Ti trovi nella Piazza del mercato piena di artigiani
-                          fannulloni...
-                          """, es, os);
+                        Ti trovi nella Piazza del Mercato piena di artigiani e fannulloni!
+                        """, es, os
+        );
 
         ArrayList<Item> os2 = new ArrayList<>();
         os2.add(new Item(4, 8, "Ago di metallo"));
 
-        Room ts = new Room("Stanza del tempio",
+        // stanza del tempio
+        Room ts = new Room("Piazza del Tempio",
                 """
                         Qui vengono a curarsi gli avventurieri malati!
-                        """, new ArrayList<>(), os2);
+                        """, new ArrayList<>(), os2
+        );
 
         ms.addExit(ts, Room.NORTH);
         ts.addExit(ms, Room.SOUTH);
         start = ms;
     }
 
-    public void startGame() {
+    public void startGame(){
         current = start;
-        while (true) {
-            IO.println(current);
+        while(true){
+            // IO.println(current.getTitle());
+            // IO.println(current.getDescription());
+            IO.println(current); // questo fa automaticamente toString
             String command = IO.readln("->");
             boolean success = false;
-            switch (command.toLowerCase()) {
+            switch(command.toLowerCase()) {
                 case "n":
                     success = moveTo(Room.NORTH);
                     break;
@@ -55,28 +60,36 @@ public class World {
                     IO.println("Grazie per aver giocato");
                     return;
                 default:
-                    IO.println("Non ho capito cosa vuoi.");
+                    IO.println("Non ho capito che cosa vuoi!");
                     continue;
             }
-            if (success) {
-                IO.println("Te ne vai a "+command);
-            } else {
-                IO.println("Non c'e' nulla");
+
+            if (success){
+                IO.println("Te ne vai a " + command);
+            }else{
+                IO.println("Non c'è nulla in quella direzione");
             }
         }
     }
 
-        private boolean moveTo(int direction) {
-            Room destination = current.exitAt(direction);
-            if (destination!=null) {
-                current=destination;
-                return true;
-            }
-            return false;
+    private boolean moveTo(int direction) {
+        Room destination = current.exitAt(direction);
+        if(destination != null){
+            current = destination;
+            return true;
         }
+        return false;
+    }
 
-        public void main() {
+    public void main(){
         World w = new World();
         w.startGame();
-        }
+        Player p1 = new Player(100,"Banana",10,current);
+
+
+
+    }
+
+
+
 }

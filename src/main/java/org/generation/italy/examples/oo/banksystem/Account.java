@@ -39,8 +39,8 @@ public class Account {
     }
 
     public double deposit(double amount){
-         balance += amount;
-         return balance;
+        balance += amount;
+        return balance;
     }
 
     public boolean withdraw(double amount){
@@ -66,12 +66,12 @@ public class Account {
     }
 
     public boolean transfer2 (double amount,Account target){
-       boolean success =  withdraw(amount);
-       balance+=10;
-       if(success){
-           double finalBalance = target.deposit(amount);
-           return true;
-       }
+        boolean success =  withdraw(amount);
+        balance+=10;
+        if(success){
+            double finalBalance = target.deposit(amount);
+            return true;
+        }
         return false;
     }
 
