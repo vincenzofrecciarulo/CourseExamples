@@ -42,7 +42,10 @@ public class Customer {
     }
 
     public double getSpecialAccountBalance(){
-        double balance = 0;
+        if(accounts.isEmpty()){
+            return 0;
+        }
+        double balance = accounts.getFirst().getBalance();
         if(female){
             for(Account a : accounts){
                 if(a.getBalance() > balance){
@@ -51,7 +54,9 @@ public class Customer {
             }
         }else{
             for(Account a : accounts){
-
+                if(a.getBalance() < balance){
+                    balance = a.getBalance();
+                }
             }
         }
         return balance;
