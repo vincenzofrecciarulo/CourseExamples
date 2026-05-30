@@ -2,59 +2,113 @@ package org.generation.italy.examples.oo.mud;
 
 import java.util.ArrayList;
 
-public class Player  extends Entity{
+public class Player extends Entity {
 
-    private ArrayList<Item> inventory = new ArrayList<Item>();
-
+    private ArrayList<Item> inventory = new ArrayList<>();
+    private Armor wornArmor = null;
     private Room currentRoom;
 
-
-    public Player (int hp ,String name, int level,Room currentRoom){
-        super( hp, name,  level);
+    public Player(int hp, String name, int level, Room currentRoom) {
+        super(hp, name, level);
         this.currentRoom = currentRoom;
     }
 
-    public ArrayList<Item> getInventory() {
-        return inventory;
-    }
-    public Room getCurrentRoom() {
-        return currentRoom;
-    }
+    public ArrayList<Item> getInventory() { return inventory; }
+    public Room getCurrentRoom()          { return currentRoom; }
+    public Armor getWornArmor()           { return wornArmor; }
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
 
-    public boolean pickItem (Item item){
-        if((!(currentRoom.getItems().contains(item)))){
-            System.out.println("Oggetto "+item.getName()+" non c'è nella stanza");
+    // ── Raccolta / abbandono ─────────────────────────────────────────────────
+
+    public boolean pickItem(Item item) {
+        if (!currentRoom.getItems().contains(item)) {
+            IO.println("Oggetto " + item.getName() + " non c'è nella stanza.");
             return false;
         }
-        currentRoom.removeItem(item);
+        currentRoom.getItems().remove(item);
         inventory.add(item);
         return true;
     }
 
-    public boolean dropItem (Item item){
-        if(!(inventory.contains(item))){
-            System.out.println("Oggetto "+item.getName()+" non trovato");
+    public boolean dropItem(Item item) {
+        if (!inventory.contains(item)) {
+            IO.println("Oggetto " + item.getName() + " non trovato nell'inventario.");
             return false;
         }
+        // se stai buttando l'armatura indossata, prima la togli
+        if (item == wornArmor) {
+            wornArmor.remove();
+            wornArmor = null;
+        }
         inventory.remove(item);
-        currentRoom.addItem(item);
+        currentRoom.getItems().add(item);
         return true;
     }
 
-    public void openInventory(){
-        ArrayList<String> itemNames = new ArrayList<>();
-        if (inventory.isEmpty()){
-            System.out.println("Inventario vuoto");
-            return;
+    // ── Usa consumabile ──────────────────────────────────────────────────────
+
+    public boolean useItem(Item item) {
+        if (!inventory.contains(item)) {
+            IO.println("Non hai " + item.getName() + " nell'inventario.");
+            return false;
         }
-        for (int i = 0; i<inventory.size();i++){
-            IO.println(i +" "+ inventory.get(i).getName());
+        if (item instanceof Consumable) {
+            return ((Consumable) item).use(this);
         }
+        if (item instanceof Armor) {
+            return wearArmor((Armor) item);
+        }
+        IO.println("Non puoi usare " + item.getName() + " in questo modo.");
+        return false;
     }
 
+    // ── Indossa armatura ─────────────────────────────────────────────────────
 
+    public boolean wearArmor(Armor armor) {
+        if (!inventory.contains(armor)) {
+            IO.println("Non hai " + armor.getName() + " nell'inventario.");
+            return false;
+        }
+        if (wornArmor != null) {
+            IO.println("Togli " + wornArmor.getName() + " e indossi " + armor.getName() + ".");
+            wornArmor.remove();
+        } else {
+            IO.println("Indossi " + armor.getName() + " (DEF +" + armor.getDefense() + ").");
+        }
+        wornArmor = armor;
+        armor.wear();
+        return true;
+    }
+
+    // ── Difesa totale (armatura indossata) ───────────────────────────────────
+
+    public int getTotalDefense() {
+        return wornArmor != null ? wornArmor.getDefense() : 0;
+    }
+
+    // ── Inventario ───────────────────────────────────────────────────────────
+
+    public boolean openInventory() {
+        if (inventory.isEmpty()) {
+            IO.println("Inventario vuoto!");
+            return true;
+        }
+        IO.println("── Inventario ──────────────────────────");
+        IO.println("  HP: " + getHpBar());
+        IO.println("  Armatura: " + (wornArmor != null ? wornArmor.getName() + " (DEF " + wornArmor.getDefense() + ")" : "nessuna"));
+        IO.println("  Oggetti:");
+        for (int i = 0; i < inventory.size(); i++) {
+            Item item = inventory.get(i);
+            String tag = "";
+            if (item == wornArmor)             tag = " [indossata]";
+            else if (item instanceof Consumable) tag = " [consumabile]";
+            else if (item instanceof Armor)      tag = " [armatura]";
+            IO.println("    " + i + ". " + item.getName() + tag);
+        }
+        IO.println("────────────────────────────────────────");
+        return true;
+    }
 }
