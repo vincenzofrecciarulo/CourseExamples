@@ -55,7 +55,12 @@ public class World {
                 case "i":
                    p1.openInventory();
                    break;
-
+                case "p":
+                    p1.pickItem(current.getItems().getFirst());
+                    break;
+                case "d":
+                    p1.dropItem(p1.getInventory().getFirst());
+                    break;
                 case "q":
                     IO.println("Grazie per aver giocato");
                     return;

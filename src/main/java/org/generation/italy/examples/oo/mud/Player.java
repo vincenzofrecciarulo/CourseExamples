@@ -27,21 +27,21 @@ public class Player  extends Entity{
 
     public boolean pickItem (Item item){
         if((!(currentRoom.getItems().contains(item)))){
-            System.out.println("Oggetto"+item.getName()+"non c'è nella stanza");
+            System.out.println("Oggetto "+item.getName()+" non c'è nella stanza");
             return false;
         }
-        currentRoom.getItems().remove(item);
+        currentRoom.removeItem(item);
         inventory.add(item);
         return true;
     }
 
     public boolean dropItem (Item item){
         if(!(inventory.contains(item))){
-            System.out.println("Oggetto"+item.getName()+"non trovato");
+            System.out.println("Oggetto "+item.getName()+" non trovato");
             return false;
         }
         inventory.remove(item);
-        currentRoom.getItems().add(item);
+        currentRoom.addItem(item);
         return true;
     }
 
