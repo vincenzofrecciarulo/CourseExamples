@@ -8,12 +8,16 @@ import java.util.ArrayList;
 public class Player extends Entity {
     private int coins = 0;
     private ArrayList<Item> inventory = new ArrayList<>();
-    private static final double MAX_WEIGHT = 2000;
+    public static final double MAX_WEIGHT = 2000;
     private Room currentRoom;
 
     public Player(int hp, String name, int level, Room currentRoom) {
         super(hp, name, level);
         this.currentRoom = currentRoom;
+    }
+
+    public void interact(){
+        currentRoom.interact(this);
     }
 
     public void heal(int heal){
@@ -31,6 +35,7 @@ public class Player extends Entity {
         this.coins += coins;
         return true;
     }
+
 
     public boolean withdrawCoins(int amount){
         if(coins < amount){
@@ -66,5 +71,14 @@ public class Player extends Entity {
 
     public void setCurrentRoom(Room room){
         currentRoom = room;
+    }
+
+    public boolean tryMoveTo(int direction) {
+        Room destination = getCurrentRoom().exitAt(direction);
+        if(destination == null || destination.getTitle().equals("Empty room")){
+            return false;
+        }
+        setCurrentRoom(destination);
+        return true;
     }
 }

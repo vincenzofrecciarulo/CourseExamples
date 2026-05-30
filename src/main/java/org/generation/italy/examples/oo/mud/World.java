@@ -1,13 +1,10 @@
 package org.generation.italy.examples.oo.mud;
 
-import org.generation.italy.examples.oo.mud.entities.Entity;
 import org.generation.italy.examples.oo.mud.entities.Player;
-import org.generation.italy.examples.oo.mud.items.Item;
+import org.generation.italy.examples.oo.mud.rooms.EmptyRoom;
 import org.generation.italy.examples.oo.mud.rooms.MarketRoom;
 import org.generation.italy.examples.oo.mud.rooms.Room;
 import org.generation.italy.examples.oo.mud.rooms.TempleRoom;
-
-import java.util.ArrayList;
 
 public class World {
     public final static Room start = new TempleRoom();
@@ -20,9 +17,10 @@ public class World {
         //os2.add(new Item(4, 8, "Ago di metallo"));
         // stanza del tempio
 
-        Room market = new MarketRoom();
-        start.addExit(market, Room.NORTH);
-        market.addExit(start, Room.SOUTH);
+        start.addExit(new MarketRoom(), Room.NORTH);
+        start.addExit(new EmptyRoom(), Room.SOUTH);
+        start.addExit(new EmptyRoom(), Room.WEST);
+        start.addExit(new EmptyRoom(), Room.EAST);
         player = new Player(100, "Player", 1, start);
     }
 
@@ -32,19 +30,22 @@ public class World {
             // IO.println(current.getDescription());
             IO.println(player.getCurrentRoom()); // questo fa automaticamente toString
             String command = IO.readln("->");
-            boolean success = false;
+            boolean isMoveSuccess = false;
             switch(command.toLowerCase()) {
-                case "n":
-                    success = moveTo(Room.NORTH);
-                    break;
-                case "e":
-                    success = moveTo(Room.EAST);
-                    break;
                 case "w":
-                    success = moveTo(Room.WEST);
+                    isMoveSuccess = player.tryMoveTo(Room.NORTH);
+                    break;
+                case "d":
+                    isMoveSuccess = player.tryMoveTo(Room.EAST);
+                    break;
+                case "a":
+                    isMoveSuccess = player.tryMoveTo(Room.WEST);
                     break;
                 case "s":
-                    success = moveTo(Room.SOUTH);
+                    isMoveSuccess = player.tryMoveTo(Room.SOUTH);
+                    break;
+                case "x":
+                    player.interact();
                     break;
                 case "q":
                     IO.println("Grazie per aver giocato");
@@ -55,23 +56,15 @@ public class World {
                     continue;
             }
 
-            if (success){
+            if (isMoveSuccess){
                 IO.println("Te ne vai a " + command);
-            }else{
-                IO.println("Non c'è nulla in quella direzione");
             }
+
             IO.println("--------------Next---------------");
         }
     }
 
-    private boolean moveTo(int direction) {
-        Room destination = player.getCurrentRoom().exitAt(direction);
-        if(destination != null){
-            player.setCurrentRoom(destination);
-            return true;
-        }
-        return false;
-    }
+
 
     public void main(){
         World w = new World();

@@ -5,6 +5,7 @@ import org.generation.italy.examples.oo.mud.entities.Player;
 import org.generation.italy.examples.oo.mud.items.Item;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Room {
     private String title;
@@ -13,10 +14,14 @@ public class Room {
     private ArrayList<Item> items;
     private Room[] exits;
 
+    private static final Random random = new Random();
+
     public static final int NORTH = 0;
     public static final int EAST = 1;
     public static final int WEST = 2;
     public static final int SOUTH = 3;
+
+
 
     public Room(String title, String description, ArrayList<Entity> entities, ArrayList<Item> items) {
         this.title = title;
@@ -37,6 +42,24 @@ public class Room {
         }
 
         exits[direction] = destination;
+
+        switch (direction){
+            case 0:
+                destination.addExit(this, 3);
+                break;
+            case 1:
+                destination.addExit(this, 2);
+                break;
+            case 2:
+                destination.addExit(this, 1);
+                break;
+            case 3:
+                destination.addExit(this, 0);
+                break;
+            default:
+                IO.println("Qualcosa è andato storto...");
+                break;
+        }
         return true;
     }
 
@@ -79,4 +102,17 @@ public class Room {
     public String getDescription() {
         return description;
     }
+
+    public static Room getRandomRoom(){
+        int num = random.nextInt(3);
+        switch (num){
+            case 0:
+                return new MarketRoom();
+            case 1:
+                return new TempleRoom();
+            default:
+                return null;
+        }
+    }
+
 }
