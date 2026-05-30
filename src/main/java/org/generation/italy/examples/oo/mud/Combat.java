@@ -30,8 +30,6 @@ public class Combat {
             if (result == Result.DEFEAT) return Result.DEFEAT;
             if (result == Result.FLED)   return Result.FLED;
         }
-
-        // Tutti i mostri sconfitti: rimuovi i cadaveri dalla stanza
         room.removeDeadMonsters();
         return Result.VICTORY;
     }
@@ -60,7 +58,6 @@ public class Combat {
                     break;
                 case 2:
                     turnoUsoOggetto();
-                    // dopo aver usato l'oggetto il mostro attacca comunque
                     if (monster.isAlive()) turnoMostro(monster);
                     break;
                 case 3:
@@ -84,7 +81,7 @@ public class Combat {
         return Result.VICTORY;
     }
 
-    // ── Turno giocatore ──────────────────────────────────────────────────────
+    // ── Turno giocatore
 
     private void turnoAttacco(Monster monster) {
         int dannoBase = calcolaAttaccoGiocatore();

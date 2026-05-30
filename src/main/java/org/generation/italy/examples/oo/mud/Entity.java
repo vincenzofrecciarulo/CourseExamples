@@ -38,12 +38,6 @@ public class Entity {
     }
 
     public String getHpBar() {
-        int filled = (int) ((double) currentHp / maxHp * 10);
-        StringBuilder bar = new StringBuilder("[");
-        for (int i = 0; i < 10; i++) {
-            bar.append(i < filled ? "█" : "░");
-        }
-        bar.append("] ").append(currentHp).append("/").append(maxHp);
-        return bar.toString();
+        return currentHp + "/" + maxHp + " HP";
     }
 }

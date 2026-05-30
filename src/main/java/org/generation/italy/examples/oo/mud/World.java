@@ -43,7 +43,7 @@ public class World {
                 "Gli alberi si stringono intorno a te soffocando la luce.\n" +
                         "Si sentono fruscii inquietanti tra le frasche.", es3, os3);
 
-        // ── STANZA 4: Rovine del Castello ─────────────────────────────────────
+        // ── STANZA 4: Rovine del Castello
         ArrayList<Entity> es4 = new ArrayList<>();
         es4.add(Monster.scheletro());
         es4.add(Monster.scheletro());
@@ -56,7 +56,7 @@ public class World {
                 "Muri crollati e torri mozzate ricordano la grandezza perduta.\n" +
                         "Il silenzio è rotto solo dal crepitio di ossa.", es4, os4);
 
-        // ── STANZA 5: Taverna del Cinghiale Ubriaco (stanza sicura, NPC) ────────
+        // ── STANZA 5: Taverna del Cinghiale Ubriaco
         ArrayList<Entity> es5 = new ArrayList<>();
         es5.add(new Entity(80, "Bardo Malvino", 4));
         es5.add(new Entity(60, "Taberniere Grasso", 2));
@@ -69,7 +69,7 @@ public class World {
                 "Calore, rumore e fumo di pipa ti avvolgono all'ingresso.\n" +
                         "Un bardo intona una ballata scurrile tra le risate degli avventori.", es5, os5);
 
-        // ── STANZA 6: Miniera Abbandonata ─────────────────────────────────────
+        // ── STANZA 6: Miniera Abbandonata
         ArrayList<Entity> es6 = new ArrayList<>();
         es6.add(Monster.orco());
 
@@ -81,7 +81,7 @@ public class World {
                 "Gallerie buie si diramano in ogni direzione.\n" +
                         "Il rumore di qualcosa di enorme echeggia nelle profondità.", es6, os6);
 
-        // ── STANZA 7: Torre del Mago ──────────────────────────────────────────
+        // ── STANZA 7: Torre del Mago
         ArrayList<Entity> es7 = new ArrayList<>();
         es7.add(Monster.arcimago());
         es7.add(Monster.golemDiPietra());
@@ -94,7 +94,7 @@ public class World {
                 "Scaffali pieni di libri polverosi coprono ogni parete.\n" +
                         "Un vecchio mago ti fissa attraverso lenti a pince-nez.", es7, os7);
 
-        // ── STANZA 8: Cripta dei Re ───────────────────────────────────────────
+        // ── STANZA 8: Cripta dei Re
         ArrayList<Entity> es8 = new ArrayList<>();
         es8.add(Monster.vampiro());
 
@@ -106,7 +106,7 @@ public class World {
                 "Sarcofagi di pietra allineati lungo le pareti.\n" +
                         "L'aria è gelida e una presenza oscura aleggia nell'ombra.", es8, os8);
 
-        // ── STANZA 9: Tana del Drago (boss) ───────────────────────────────────
+        // ── STANZA 9: Tana del Drago (boss)
         ArrayList<Entity> es9 = new ArrayList<>();
         es9.add(Monster.drago());
 
@@ -118,7 +118,7 @@ public class World {
                 "Un calore soffocante emana dalle pareti di roccia fusa.\n" +
                         "Montagne di tesori brillano ai lati. Al centro... qualcosa si muove.", es9, os9);
 
-        // ── CONNESSIONI ────────────────────────────────────────────────────────
+        // CONNESSIONI
         //
         //          [Torre]
         //             |N

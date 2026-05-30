@@ -23,13 +23,13 @@ public class Monster extends Entity {
         this.isAlive = true;
     }
 
-    // Calcola il danno inflitto al giocatore (con variazione casuale ±20%)
+
     public int attack() {
         double variation = 0.8 + Math.random() * 0.4; // tra 0.8 e 1.2
         return (int) (attackPower * variation);
     }
 
-    // Calcola il danno subito tenendo conto della difesa e aggiorna currentHp
+
     public int takeDamage(int incomingDamage) {
         int actualDamage = Math.max(1, incomingDamage - defense);
         setCurrentHp(getCurrentHp() - actualDamage);
@@ -73,9 +73,9 @@ public class Monster extends Entity {
                 rarity, getName(), getLevel(), attackPower, defense, expReward, goldReward);
     }
 
-    // ---------------------------------------------------------------
+
     // Factory: mostri pronti da usare nel World
-    // ---------------------------------------------------------------
+
 
     public static Monster goblin() {
         return new Monster(20, "Goblin", 1, 5, 1, 10, 3, Rarity.COMUNE);
