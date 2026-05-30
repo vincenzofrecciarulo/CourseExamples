@@ -174,14 +174,31 @@ public class World {
             IO.println("\nCosa vuoi fare?");
             IO.println("  I - Inventario    M - Muoviti");
             IO.println("  E - Esplora       P - Raccogli oggetto");
-            IO.println("  U - Usa oggetto   Q - Esci");
+            IO.println("  Q - Esci");
 
             String choice = IO.readln("-> ");
 
             switch (choice.toLowerCase()) {
                 case "i":
                     p1.openInventory();
-                    break;
+                    if (p1.getInventory().isEmpty()) break;
+                    IO.println("\nCosa vuoi fare?");
+                    IO.println(" L - Lascia Oggetto    U - Usa oggetto");
+                    IO.println(" I - Indietro");
+                    String choice2 = IO.readln("-> ");
+
+                    switch(choice2.toLowerCase()){
+                        case "l":
+                            dropItemMenu(p1);
+                            break;
+                        case "u":
+                            useItemMenu(p1);
+                            break;
+                        case "i":
+                            continue;
+                        default:
+                            IO.println("Comando non riconosciuto.");
+                    }
 
                 case "m":
                     IO.println("Direzione? (N / E / S / W)");
@@ -210,10 +227,6 @@ public class World {
 
                 case "p":
                     pickItemMenu(p1);
-                    break;
-
-                case "u":
-                    useItemMenu(p1);
                     break;
 
                 case "q":
@@ -276,6 +289,21 @@ public class World {
         boolean picked = player.pickItem(items.get(idx));
         if (picked) {
             IO.println("Hai raccolto: " + nomeOggetto);
+        }
+    }
+    private void dropItemMenu(Player player) {
+        ArrayList<Item> inv = player.getInventory();
+        player.openInventory();
+        IO.println("Quale oggetto vuoi lasciare? (o -1 per annullare)");
+        int idx = Console.readInt();
+        if (idx < 0 || idx >= inv.size()) {
+            IO.println("Scelta annullata.");
+            return;
+        }
+        String nome = inv.get(idx).getName();
+        boolean dropped = player.dropItem(inv.get(idx));
+        if (dropped) {
+            IO.println("Hai lasciato a terra: " + nome);
         }
     }
 

@@ -85,7 +85,8 @@ public class Combat {
 
     private void turnoAttacco(Monster monster) {
         int dannoBase = calcolaAttaccoGiocatore();
-        int dannoInflitto = monster.takeDamage(dannoBase);
+        int attaccoGiocatore = player.getTotalPower();
+        int dannoInflitto = monster.takeDamage(dannoBase+attaccoGiocatore);
         IO.println("  Attacchi " + monster.getName() + " per " + dannoInflitto + " danni!");
         if (monster.isAlive()) {
             IO.println("   " + monster.getName() + ": " + monster.getHpBar());
