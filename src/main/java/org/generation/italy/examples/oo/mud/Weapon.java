@@ -19,8 +19,8 @@ public class Weapon extends Item {
 
     @Override
     public String toString() {
-        return String.format("%s (%.1f kg, %d oro) DEF:%d [%s]",
-                getName(), getWeight(), getValue(), power,
+        return String.format("%s (%.1f kg, %d oro) POW:%d [%s]",
+                getName(), getWeight(), getValue(), getPower(),
                 isWeared ? "indossata" : "non indossata");
     }
 
