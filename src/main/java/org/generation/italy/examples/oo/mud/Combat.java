@@ -136,6 +136,7 @@ public class Combat {
 
     private void turnoMostro(Monster monster) {
         int dannoMostro = monster.attack();
+        int attaccoGiocatore = player.getTotalPower();
         int difesaGiocatore = player.getTotalDefense();
         int dannoEffettivo = Math.max(1, dannoMostro - difesaGiocatore);
         player.setCurrentHp(player.getCurrentHp() - dannoEffettivo);

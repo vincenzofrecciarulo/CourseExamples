@@ -8,6 +8,8 @@ public class Player extends Entity {
     private Armor wornArmor = null;
     private Weapon wornWeapon = null;
     private Room currentRoom;
+    final double maxWeight = 100;
+
 
     public Player(int hp, String name, int level, Room currentRoom) {
         super(hp, name, level);
@@ -30,9 +32,23 @@ public class Player extends Entity {
             IO.println("Oggetto " + item.getName() + " non c'è nella stanza.");
             return false;
         }
-        currentRoom.getItems().remove(item);
+        currentRoom.removeItem(item);
         inventory.add(item);
+
+        if(this.getInventoryWeight() <= maxWeight){
+            IO.println("Hai raggiunto il peso massimo");
+            return false;
+        }
         return true;
+    }
+
+   // Calcolo peso totale dell'inventario
+    public double getInventoryWeight(){
+        double inventoryWeight = 0;
+        for (int i =0; i<inventory.size();i++){
+            inventoryWeight += inventory.get(i).getWeight();
+        }
+        return inventoryWeight;
     }
 
     public boolean dropItem(Item item) {
@@ -40,6 +56,7 @@ public class Player extends Entity {
             IO.println("Oggetto " + item.getName() + " non trovato nell'inventario.");
             return false;
         }
+
         // se stai buttando l'armatura indossata, prima la togli
         if (item == wornArmor) {
             wornArmor.remove();
@@ -51,7 +68,7 @@ public class Player extends Entity {
         }
 
         inventory.remove(item);
-        currentRoom.getItems().add(item);
+        currentRoom.addItem(item);
         return true;
     }
 
@@ -107,7 +124,7 @@ public class Player extends Entity {
         }
         if (wornWeapon != null) {
             IO.println("Togli " + wornWeapon.getName() + " e indossi " + weapon.getName() + ".");
-            wornArmor.remove();
+            wornWeapon.remove();
         } else {
             IO.println("Indossi " + weapon.getName() + " (POW +" + weapon.getPower() + ").");
         }
@@ -131,6 +148,7 @@ public class Player extends Entity {
         IO.println("  Armatura: " + (wornArmor != null ? wornArmor.getName() + " (DEF " + wornArmor.getDefense() + ")" : "nessuna"));
         IO.println("  Arma: " + (wornWeapon != null ? wornWeapon.getName() + " (POW " + wornWeapon.getPower() + ")" : "nessuna"));
         IO.println("  Oggetti:");
+        IO.println("  Peso Attuale:"+this.getInventoryWeight());
         for (int i = 0; i < inventory.size(); i++) {
             Item item = inventory.get(i);
             String tag = "";

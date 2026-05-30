@@ -30,4 +30,5 @@ public class Weapon extends Item {
     public static Weapon CortelloS()     { return new Weapon(1.0,  1, "Cortellino svizzero",      false, 1, 2); }
     public static Weapon Bastone()     { return new Weapon(10.0,3, "Bastone",      false,5, 5); }
     public static Weapon SpadoneR()     { return new Weapon(30.0,1000, "Spadone dell'Onniscienza di Riccardo",    false,50, 250); }
+    public static Weapon MartelloR()     { return new Weapon(30.0,1000, "Martello del Giudizio eterno di Roberto",    false,50, 250); }
 }
