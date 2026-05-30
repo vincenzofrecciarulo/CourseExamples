@@ -1,6 +1,7 @@
 package org.generation.italy.examples.oo.mud;
 
 import com.generation.library.*;
+
 import java.util.ArrayList;
 
 public class World {
@@ -14,8 +15,8 @@ public class World {
         es1.add(new Entity(50, "Ciro la Guardia", 7));
 
         ArrayList<Item> os1 = new ArrayList<>();
-        os1.add(new Item(2, 10, "Bastone di Legno"));
-        os1.add(new Item(3, 9, "Scudo di Ferro"));
+        os1.add(Item.bastoneELegno());
+        os1.add(Armor.scudoDiFerro());
 
         Room mercato = new Room("Piazza del Mercato",
                 "Ti trovi nella Piazza del Mercato, piena di artigiani e fannulloni.\n" +
@@ -23,8 +24,8 @@ public class World {
 
         // ── STANZA 2: Tempio del Sole ─────────────────────────────────────────
         ArrayList<Item> os2 = new ArrayList<>();
-        os2.add(new Item(1, 20, "Pozione di Cura"));
-        os2.add(new Item(1, 15, "Benda Sacra"));
+        os2.add(Consumable.potioneCura());
+        os2.add(Consumable.bendaSacra());
 
         Room tempio = new Room("Tempio del Sole",
                 "Colonne di marmo bianco si innalzano verso la volta stellata.\n" +
@@ -36,8 +37,8 @@ public class World {
         es3.add(Monster.ragno());
 
         ArrayList<Item> os3 = new ArrayList<>();
-        os3.add(new Item(0.5, 5, "Fungo Velenoso"));
-        os3.add(new Item(1, 12, "Ramo Appuntito"));
+        os3.add(Consumable.fungoVelenoso());
+        os3.add(Item.ramoAppuntito());
 
         Room foresta = new Room("Foresta Oscura",
                 "Gli alberi si stringono intorno a te soffocando la luce.\n" +
@@ -49,8 +50,8 @@ public class World {
         es4.add(Monster.scheletro());
 
         ArrayList<Item> os4 = new ArrayList<>();
-        os4.add(new Item(8, 50, "Spada Arrugginita"));
-        os4.add(new Armor(6, 40, "Corazza Spezzata", false));
+        os4.add(Item.spadaArrugginita());
+        os4.add(Armor.corazzaSpezzata());
 
         Room rovine = new Room("Rovine del Castello",
                 "Muri crollati e torri mozzate ricordano la grandezza perduta.\n" +
@@ -62,8 +63,8 @@ public class World {
         es5.add(new Entity(60, "Taberniere Grasso", 2));
 
         ArrayList<Item> os5 = new ArrayList<>();
-        os5.add(new Item(1, 8, "Boccale di Birra"));
-        os5.add(new Item(0.5, 25, "Mappa Sgualcita"));
+        os5.add(Item.boccaleBirra());
+        os5.add(Item.mappasgualcita());
 
         Room taverna = new Room("Taverna del Cinghiale Ubriaco",
                 "Calore, rumore e fumo di pipa ti avvolgono all'ingresso.\n" +
@@ -74,8 +75,8 @@ public class World {
         es6.add(Monster.orco());
 
         ArrayList<Item> os6 = new ArrayList<>();
-        os6.add(new Item(5, 80, "Pepita d'Oro"));
-        os6.add(new Item(3, 60, "Piccone Incantato"));
+        os6.add(Item.pepitaOro());
+        os6.add(Item.picconeIncantato());
 
         Room miniera = new Room("Miniera Abbandonata",
                 "Gallerie buie si diramano in ogni direzione.\n" +
@@ -86,8 +87,8 @@ public class World {
         es7.add(new Entity(120, "Archimago Vetharion", 12));
 
         ArrayList<Item> os7 = new ArrayList<>();
-        os7.add(new Item(0.5, 200, "Libro degli Incantesimi"));
-        os7.add(new Item(1, 150, "Amuleto del Fulmine"));
+        os7.add(Item.libroIncantesimi());
+        os7.add(Item.amuletoFulmine());
 
         Room torre = new Room("Torre del Mago",
                 "Scaffali pieni di libri polverosi coprono ogni parete.\n" +
@@ -98,8 +99,8 @@ public class World {
         es8.add(Monster.vampiro());
 
         ArrayList<Item> os8 = new ArrayList<>();
-        os8.add(new Armor(10, 300, "Armatura Reale", false));
-        os8.add(new Item(2, 250, "Corona d'Argento"));
+        os8.add(Armor.corazzaReale());
+        os8.add(Item.coronaArgento());
 
         Room cripta = new Room("Cripta dei Re",
                 "Sarcofagi di pietra allineati lungo le pareti.\n" +
@@ -110,8 +111,8 @@ public class World {
         es9.add(Monster.drago());
 
         ArrayList<Item> os9 = new ArrayList<>();
-        os9.add(new Item(1, 1000, "Uovo di Drago"));
-        os9.add(new Armor(15, 800, "Scaglia di Drago", false));
+        os9.add(Item.uovoDrago());
+        os9.add(Armor.scagliaDrago());
 
         Room tana = new Room("Tana del Drago",
                 "Un calore soffocante emana dalle pareti di roccia fusa.\n" +
@@ -172,7 +173,7 @@ public class World {
             IO.println("\nCosa vuoi fare?");
             IO.println("  I - Inventario    M - Muoviti");
             IO.println("  E - Esplora       P - Raccogli oggetto");
-            IO.println("  Q - Esci");
+            IO.println("  U - Usa oggetto   Q - Esci");
 
             String choice = IO.readln("-> ");
 
@@ -207,6 +208,10 @@ public class World {
 
                 case "p":
                     pickItemMenu(p1);
+                    break;
+
+                case "u":
+                    useItemMenu(p1);
                     break;
 
                 case "q":
@@ -249,6 +254,23 @@ public class World {
         if (picked) {
             IO.println("Hai raccolto: " + nomeOggetto);
         }
+    }
+
+    // Menu usa oggetto dall'inventario
+    private void useItemMenu(Player player) {
+        ArrayList<Item> inv = player.getInventory();
+        if (inv.isEmpty()) {
+            IO.println("Il tuo inventario è vuoto.");
+            return;
+        }
+        player.openInventory();
+        IO.println("Quale oggetto vuoi usare? (o -1 per annullare)");
+        int idx = Console.readInt();
+        if (idx < 0 || idx >= inv.size()) {
+            IO.println("Scelta annullata.");
+            return;
+        }
+        player.useItem(inv.get(idx));
     }
 
     private boolean moveTo(int direction) {
