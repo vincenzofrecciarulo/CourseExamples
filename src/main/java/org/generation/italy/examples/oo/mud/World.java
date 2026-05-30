@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class World {
     private Room start;
-    private Room current;
+    private Player player;
 
     public World(){
         ArrayList<Entity> es = new ArrayList<>();
@@ -29,32 +29,83 @@ public class World {
                         Qui vengono a curarsi gli avventurieri malati!
                         """, new ArrayList<>(), os2
         );
-
         ms.addExit(ts, Room.NORTH);
         ts.addExit(ms, Room.SOUTH);
         start = ms;
+        player = new Player(50,"Jacopo",1,start);
     }
 
     public void startGame(){
-        current = start;
         while(true){
-            // IO.println(current.getTitle());
-            // IO.println(current.getDescription());
-            IO.println(current); // questo fa automaticamente toString
-            String command = IO.readln("->");
+            IO.println(player.getCurrentPosition()); // questo fa automaticamente toString della Room
+            IO.println("1: muoverti");
+            IO.println("2: raccogliere oggetti");
+            IO.println("3: vedere l'inventario");
+            IO.println("4: combattere");
+            IO.println("5: esci dal gioco");
+            String command = IO.readln("Cosa vuoi fare?");
+            int userInput = Integer.parseInt(command);
+            switch(userInput) {
+                case 1:
+                        playerMove();
+                    break;
+                case 2:
+                        Room currentRoom = player.getCurrentPosition();
+                        IO.println(currentRoom.getObjectNames());
+                         int input = Integer.parseInt(IO.readln("scrivi l'indice del oggetto che vuoi aggiungere"));
+                        IO.println(pick(currentRoom,input));
+                    break;
+                case 3:
+                        player.inventoryToString();
+                    break;
+                case 4:
+                        IO.println("Non abbiamo ancora un sistema di combattimento :(");
+                    break;
+                case 5:
+                    IO.println("Grazie per aver giocato");
+                    return;
+                default:
+                    IO.println("Non ho capito che cosa vuoi!");
+            }
+        }
+    }
+
+    public String pick(Room room,int itemPosition){
+        if (itemPosition <= 0 || itemPosition > room.getEntityNames().size()){
+            return "Hai inserito un indice sbagliato";
+        }
+        Item item = room.getItemByIndex(itemPosition - 1);
+        boolean hasSuccess = player.tryPickItem(item);
+        if (hasSuccess){
+            room.removeItem(item);
+            return "Aggiunto al tuo inventario " + item.getName();
+        }
+        return "Inventario Pieno!";
+
+    }
+
+    public void playerMove(){
+        while(true){
+            IO.println(player.getCurrentPosition()); // questo fa automaticamente toString della Room
+            String command = IO.readln("Cosa vuoi fare?");
+            IO.println("1: muoverti");
+            IO.println("2: raccogliere oggetti");
+            IO.println("5: vedere l'inventario");
+            IO.println("4: combattere");
+            IO.println("5: esci dal gioco");
             boolean success = false;
             switch(command.toLowerCase()) {
                 case "n":
-                    success = moveTo(Room.NORTH);
+                    success = player.moveTo(Room.NORTH);
                     break;
                 case "e":
-                    success = moveTo(Room.EAST);
+                    success = player.moveTo(Room.EAST);
                     break;
                 case "w":
-                    success = moveTo(Room.WEST);
+                    success = player.moveTo(Room.WEST);
                     break;
                 case "s":
-                    success = moveTo(Room.SOUTH);
+                    success = player.moveTo(Room.SOUTH);
                     break;
                 case "q":
                     IO.println("Grazie per aver giocato");
@@ -70,15 +121,6 @@ public class World {
                 IO.println("Non c'è nulla in quella direzione");
             }
         }
-    }
-
-    private boolean moveTo(int direction) {
-        Room destination = current.exitAt(direction);
-        if(destination != null){
-            current = destination;
-            return true;
-        }
-        return false;
     }
 
     public void main(){

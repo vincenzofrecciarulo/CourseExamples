@@ -3,17 +3,20 @@ package org.generation.italy.examples.oo.mud;
 import java.util.ArrayList;
 
 public class Room {
+    // Attributi
     private String title;
     private String description;
     private ArrayList<Entity> entities;
     private ArrayList<Item> items;
     private Room[] exits;
 
+    // Attributi statici che gestiscono le nostre uscite
     public static final int NORTH = 0;
     public static final int EAST = 1;
     public static final int WEST = 2;
     public static final int SOUTH = 3;
 
+    // Costruttore che inizializza una stanza
     public Room(String title, String description, ArrayList<Entity> entities, ArrayList<Item> items) {
         this.title = title;
         this.description = description;
@@ -36,6 +39,16 @@ public class Room {
         return exits[direction];
     }
 
+    public boolean removeItem(Item item){
+        items.remove(item);
+        return true;
+    }
+
+    public boolean addItem(Item item){
+        items.add(item);
+        return true;
+    }
+
 
     @Override
     public String toString(){
@@ -54,6 +67,10 @@ public class Room {
             names.add(i.getName());
         }
         return names;
+    }
+
+    public Item getItemByIndex(int index){
+        return  items.get(index);
     }
 
     public ArrayList<String> getEntityNames(){
