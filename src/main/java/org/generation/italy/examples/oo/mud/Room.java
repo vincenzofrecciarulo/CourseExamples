@@ -7,19 +7,36 @@ public class Room {
     private String description;
     private ArrayList<Entity> entities;
     private ArrayList<Item> items;
+    private ArrayList<Monster> monsters;
+    private ArrayList<Merchant> merchants;
     private Room[] exits;
+
 
     public static final int NORTH = 0;
     public static final int EAST = 1;
     public static final int WEST = 2;
     public static final int SOUTH = 3;
 
-    public Room(String title, String description, ArrayList<Entity> entities, ArrayList<Item> items) {
+    public Room(String title, String description, ArrayList<Entity> entities, ArrayList<Item> items, ArrayList<Monster> monsters, ArrayList<Merchant> merchants) {
         this.title = title;
         this.description = description;
         this.entities = entities;
         this.items = items;
         this.exits = new Room[4];
+        this.monsters = monsters;
+        this.merchants = merchants;
+    }
+
+    public ArrayList<Entity> getEntities() {
+        return entities;
+    }
+
+    public ArrayList<Monster> getMonsters() {
+        return monsters;
+    }
+
+    public ArrayList<Merchant> getMerchants() {
+        return merchants;
     }
 
     // aggiungiamo una uscita ad una stanza e diciamo anche in che direzione è l'uscita
@@ -43,6 +60,7 @@ public class Room {
         sb.append("\n").append(this.description).append("\n")
                 .append("In questo luogo sono presenti: ")
                 .append(getEntityNames()).append("\n")
+                .append(getMerchantNames()).append("\n")
                 .append("Vedi i seguenti oggetti: ")
                 .append(getObjectNames());
         return sb.toString(); // ritorno la stringa che sta dentro lo StringBuilder
@@ -62,6 +80,14 @@ public class Room {
             names.add(entity.getName());
         }
         return names;
+    }
+
+    public ArrayList<String> getMerchantNames(){
+        ArrayList<String> merchantNames = new ArrayList<>();
+        for(Merchant merchant : merchants){
+            merchantNames.add(merchant.getName());
+        }
+        return merchantNames;
     }
 
     public String getTitle() {

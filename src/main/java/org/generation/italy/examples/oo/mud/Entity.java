@@ -53,6 +53,6 @@ public class Entity {
     }
 
     public void takeDamage(int damage){
-        currentHp -= damage;
+        currentHp = Math.max(0, currentHp - damage);
     }
 }
