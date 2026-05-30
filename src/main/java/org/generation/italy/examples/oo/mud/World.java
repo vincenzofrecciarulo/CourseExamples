@@ -1,8 +1,7 @@
 package org.generation.italy.examples.oo.mud;
 
-import com.generation.library.*;
-
 import java.util.ArrayList;
+import com.generation.library.*;
 
 public class World {
     private Room start;
@@ -57,7 +56,7 @@ public class World {
                 "Muri crollati e torri mozzate ricordano la grandezza perduta.\n" +
                         "Il silenzio è rotto solo dal crepitio di ossa.", es4, os4);
 
-        // ── STANZA 5: Taverna del Cinghiale Ubriaco ───────────────────────────
+        // ── STANZA 5: Taverna del Cinghiale Ubriaco (stanza sicura, NPC) ────────
         ArrayList<Entity> es5 = new ArrayList<>();
         es5.add(new Entity(80, "Bardo Malvino", 4));
         es5.add(new Entity(60, "Taberniere Grasso", 2));
@@ -84,7 +83,8 @@ public class World {
 
         // ── STANZA 7: Torre del Mago ──────────────────────────────────────────
         ArrayList<Entity> es7 = new ArrayList<>();
-        es7.add(new Entity(120, "Archimago Vetharion", 12));
+        es7.add(Monster.arcimago());
+        es7.add(Monster.golemDiPietra());
 
         ArrayList<Item> os7 = new ArrayList<>();
         os7.add(Item.libroIncantesimi());
@@ -196,7 +196,8 @@ public class World {
                     if (success) {
                         p1.setCurrentRoom(current);
                         newRoom = true;
-                        checkMonsters(current);
+                        boolean alive = checkMonsters(current, p1);
+                        if (!alive) return;
                     } else {
                         IO.println("Non c'è nulla in quella direzione.");
                     }
@@ -224,12 +225,33 @@ public class World {
         }
     }
 
-    // Avvisa il giocatore se ci sono mostri nella stanza
-    private void checkMonsters(Room room) {
-        ArrayList<String> nomiEntita = room.getEntityNames();
-        if (!nomiEntita.isEmpty()) {
-            IO.println("⚠ Attenzione: nella stanza sono presenti " + nomiEntita + "!");
+    // Avvisa e avvia combattimento se ci sono mostri nella stanza
+    private boolean checkMonsters(Room room, Player player) {
+        if (!room.hasLivingMonsters()) return true;
+
+        IO.println("⚠  Attenzione: " + room.getMonsters().size() + " nemici nella stanza!");
+        IO.println("   Vuoi combattere? (S / N)");
+        String risposta = IO.readln("-> ");
+
+        if (risposta.equalsIgnoreCase("s")) {
+            Combat combat = new Combat(player, room);
+            Combat.Result result = combat.startCombat();
+
+            if (result == Combat.Result.DEFEAT) {
+                IO.println("\n════════════════════════════════════");
+                IO.println("        GAME OVER");
+                IO.println("════════════════════════════════════");
+                return false; // segnala al loop che il gioco è finito
+            }
+            if (result == Combat.Result.FLED) {
+                IO.println("Sei fuggito e tornato indietro.");
+                // riporta il giocatore alla stanza precedente non è triviale
+                // per ora rimane nella stanza
+            }
+        } else {
+            IO.println("Procedi con cautela...");
         }
+        return true;
     }
 
     // Menu selezione oggetto da raccogliere

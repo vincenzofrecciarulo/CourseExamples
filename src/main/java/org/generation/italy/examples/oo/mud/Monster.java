@@ -29,9 +29,13 @@ public class Monster extends Entity {
         return (int) (attackPower * variation);
     }
 
-    // Calcola il danno subito tenendo conto della difesa
+    // Calcola il danno subito tenendo conto della difesa e aggiorna currentHp
     public int takeDamage(int incomingDamage) {
         int actualDamage = Math.max(1, incomingDamage - defense);
+        setCurrentHp(getCurrentHp() - actualDamage);
+        if (getCurrentHp() <= 0) {
+            isAlive = false;
+        }
         return actualDamage;
     }
 
@@ -95,5 +99,13 @@ public class Monster extends Entity {
 
     public static Monster drago() {
         return new Monster(200, "Drago delle Caverne", 10, 30, 15, 300, 150, Rarity.LEGGENDARIO);
+    }
+
+    public static Monster arcimago() {
+        return new Monster(90, "Archimago Vetharion", 8, 22, 6, 120, 60, Rarity.RARO);
+    }
+
+    public static Monster golemDiPietra() {
+        return new Monster(80, "Golem di Pietra", 6, 12, 12, 70, 35, Rarity.NON_COMUNE);
     }
 }
