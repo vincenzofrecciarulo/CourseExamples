@@ -230,7 +230,7 @@ public class World {
     private boolean checkMonsters(Room room, Player player) {
         if (!room.hasLivingMonsters()) return true;
 
-        IO.println("⚠  Attenzione: " + room.getMonsters().size() + " nemici nella stanza!");
+        IO.println(" Attenzione: " + room.getMonsters().size() + " nemici nella stanza!");
         IO.println("   Vuoi combattere? (S / N)");
         String risposta = IO.readln("-> ");
 
