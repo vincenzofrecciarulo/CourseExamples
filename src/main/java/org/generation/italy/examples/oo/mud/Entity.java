@@ -5,13 +5,23 @@ public class Entity {
     private String name;
     private int level;
 
-    public Entity(int hp, String name, int level){
-        this.hp = hp;
+    public Entity(){};
+
+    public Entity(String name, int hp, int level){
         this.name = name;
+        this.hp = hp;
         this.level = level;
     }
 
     public String getName(){
         return name;
+    }
+
+    public int getHp(){
+        return hp;
+    }
+
+    public int level(){
+        return level;
     }
 }

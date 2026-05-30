@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Aggiunto commenti negli esercizi sugli arrays">
+    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Commentato una cosa che mi dava errore, poi si vede...">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Inventory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/banksystem/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/banksystem/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/banksystem/CaimanAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/banksystem/CaimanAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Item.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,34 +56,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Circle.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise5.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise6.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise7.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MagicHat.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Operations.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RandomTestForMe.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Start.executor&quot;: &quot;Run&quot;,
-    &quot;Application.World.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AccountTest.deposit.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AccountTest.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;vincenzo__frecciarulo&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Circle.executor": "Run",
+    "Application.Client.executor": "Run",
+    "Application.Exercise2.executor": "Run",
+    "Application.Exercise5.executor": "Run",
+    "Application.Exercise6.executor": "Run",
+    "Application.Exercise7.executor": "Run",
+    "Application.MagicHat.executor": "Run",
+    "Application.Operations.executor": "Run",
+    "Application.RandomTestForMe.executor": "Run",
+    "Application.Start.executor": "Run",
+    "Application.World.executor": "Run",
+    "Application.org.generation.italy.examples.oo.magic.Start.executor": "Run",
+    "JUnit.AccountTest.deposit.executor": "Run",
+    "JUnit.AccountTest.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "vincenzo__frecciarulo",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -91,20 +93,7 @@
       <recent name="org.generation.italy.examples.oo.banksystem" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.World">
-    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.banksystem.Client" />
-      <module name="CourseExamples" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.oo.banksystem.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.org.generation.italy.examples.oo.magic.Start">
     <configuration name="Operations" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.banksystem.Operations" />
       <module name="CourseExamples" />
@@ -157,13 +146,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="org.generation.italy.examples.oo.magic.Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.magic.Start" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.oo.magic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.org.generation.italy.examples.oo.magic.Start" />
         <item itemvalue="Application.World" />
         <item itemvalue="Application.Start" />
         <item itemvalue="Application.RandomTestForMe" />
         <item itemvalue="Application.Operations" />
-        <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>
   </component>
@@ -200,6 +202,8 @@
       <workItem from="1779960554235" duration="1090000" />
       <workItem from="1779970981892" duration="5911000" />
       <workItem from="1779978391149" duration="5179000" />
+      <workItem from="1780151660435" duration="1142000" />
+      <workItem from="1780166406359" duration="4002000" />
     </task>
     <task id="LOCAL-00001" summary="Implementato Exercise7 e 5, con alcune modifiche agli altri">
       <option name="closed" value="true" />
@@ -297,7 +301,23 @@
       <option name="project" value="LOCAL" />
       <updated>1779961630310</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Avevo messo un comando dentro una stringa">
+      <option name="closed" value="true" />
+      <created>1779983928809</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1779983928809</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Commentato una cosa che mi dava errore, poi si vede...">
+      <option name="closed" value="true" />
+      <created>1779983944848</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1779983944848</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,7 +334,9 @@
     <MESSAGE value="un comando per getSpecial" />
     <MESSAGE value="Terminato getSpecialAccountBalance utilizzando solo una funzione non ripetuta, aggiunto commento di spiegazione" />
     <MESSAGE value="Aggiunto commenti negli esercizi sugli arrays" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunto commenti negli esercizi sugli arrays" />
+    <MESSAGE value="Avevo messo un comando dentro una stringa" />
+    <MESSAGE value="Commentato una cosa che mi dava errore, poi si vede..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commentato una cosa che mi dava errore, poi si vede..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
