@@ -56,7 +56,8 @@ public class Room {
                 .append("In questo luogo sono presenti: ")
                 .append(getEntityNames()).append("\n")
                 .append("Vedi i seguenti oggetti: ")
-                .append(getObjectNames());
+                .append(getObjectNames()).append("\n")
+                .append("Uscite: [").append(getExitString()).append("]");
         return sb.toString(); // ritorno la stringa che sta dentro lo StringBuilder
     }
 
@@ -71,9 +72,28 @@ public class Room {
     public ArrayList<String> getEntityNames(){
         ArrayList<String> names = new ArrayList<>();
         for(Entity e : getEntities()){
-            names.add(e.getName());
+            if(!(e instanceof Player)){
+                names.add(e.getName());
+            }
         }
         return names;
+    }
+
+    public String getExitString(){
+        StringBuilder exitsText = new StringBuilder();
+        if(exitAt(NORTH) != null){
+            exitsText.append("n");
+        }
+        if(exitAt(EAST) != null){
+            exitsText.append("e");
+        }
+        if(exitAt(SOUTH) != null){
+            exitsText.append("s");
+        }
+        if(exitAt(WEST) != null){
+            exitsText.append("w");
+        }
+        return exitsText.toString();
     }
 
     // Mutators for items and entities

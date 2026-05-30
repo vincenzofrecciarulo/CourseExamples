@@ -1,17 +1,36 @@
 package org.generation.italy.examples.oo.mud;
 
+import org.generation.italy.examples.oo.mud.roles.CharacterClass;
+import org.generation.italy.examples.oo.mud.roles.CharacterStats;
+import org.generation.italy.examples.oo.mud.roles.Paladin;
+import org.generation.italy.examples.oo.mud.roles.SpecialAbility;
+import org.generation.italy.examples.oo.mud.commands.CommandOutcome;
+
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 
 public class Player extends Entity {
     private ArrayList<Item> inventory;
     private Item equipped;
+    private final CharacterClass characterClass;
+    private final CharacterStats stats;
+    private final int maxHitPoints;
+    private final List<SpecialAbility> specialAbilities;
 
     public Player(int hp, String name, int level) {
+        this(hp, name, level, new Paladin(), new CharacterStats(1, 1, 1, 1, 1));
+    }
+
+    public Player(int hp, String name, int level, CharacterClass characterClass, CharacterStats stats) {
         super(hp, name, level);
         this.inventory = new ArrayList<>();
         this.equipped = null;
+        this.characterClass = characterClass;
+        this.stats = stats;
+        this.maxHitPoints = hp;
+        this.specialAbilities = new ArrayList<>(characterClass.createSpecialAbilities());
     }
 
     public boolean pickUp(Item item){
@@ -90,5 +109,54 @@ public class Player extends Entity {
 
     public Item getEquipped(){
         return equipped;
+    }
+
+    public CharacterClass getCharacterClass() {
+        return characterClass;
+    }
+
+    public CharacterStats getStats() {
+        return stats;
+    }
+
+    public int getMaxHitPoints() {
+        return maxHitPoints;
+    }
+
+    public void heal(int points) {
+        if(points <= 0){
+            return;
+        }
+        setHp(Math.min(getHp() + points, maxHitPoints));
+    }
+
+    public List<SpecialAbility> getSpecialAbilities() {
+        return specialAbilities;
+    }
+
+    public CommandOutcome useAbility(String input, GameContext context) {
+        if(input == null || input.isBlank()){
+            context.getIo().println("Quale abilita vuoi usare?");
+            return CommandOutcome.CONTINUE;
+        }
+
+        String trimmed = input.trim();
+        String normalized = trimmed.toLowerCase();
+        for(SpecialAbility ability : specialAbilities){
+            String candidateName = ability.getName().toLowerCase();
+            if(normalized.equals(candidateName)){
+                return ability.use(context, "");
+            }
+            if(normalized.startsWith(candidateName + " ")){
+                String targetName = trimmed.substring(ability.getName().length()).trim();
+                return ability.use(context, targetName);
+            }
+            if(candidateName.startsWith(normalized)){
+                return ability.use(context, "");
+            }
+        }
+
+        context.getIo().println("Non trovo questa abilita: " + trimmed);
+        return CommandOutcome.CONTINUE;
     }
 }

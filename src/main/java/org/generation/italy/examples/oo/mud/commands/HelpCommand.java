@@ -14,6 +14,9 @@ public class HelpCommand implements Command {
                   d / getta <oggetto>  - Getta un oggetto
                   i / inventario       - Mostra inventario
                   eq / equipaggia <oggetto> - Equipaggia un oggetto
+                  scheda / stats       - Mostra scheda personaggio
+                  abilita              - Elenca le abilita
+                  usa <abilita> [bersaglio] - Usa una abilita
 
                 Interazione:
                   pa / parla <personaggio>  - Parla con un personaggio

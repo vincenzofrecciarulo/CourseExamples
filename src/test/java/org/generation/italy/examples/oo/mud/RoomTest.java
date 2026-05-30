@@ -63,8 +63,8 @@ class RoomTest {
     void prefix_matching_entities() {
         Room r = new Room("Test", "desc", new ArrayList<>(), new ArrayList<>());
 
-        Entity lupo = new Entity(10, "Lupo Solitario", 2);
-        Entity oste = new Entity(5, "Oste Burlone", 1);
+        Entity lupo = new Monster(10, "Lupo Solitario", 2, 4);
+        Entity oste = new Npc(5, "Oste Burlone", 1, "Benvenuto nella mia locanda.");
         r.addEntity(lupo);
         r.addEntity(oste);
 
@@ -85,9 +85,8 @@ class RoomTest {
         Item item2 = new Item(1.0, 1, "Item2");
         assertTrue(item1.getId() != item2.getId(), "Items should have unique IDs");
 
-        Entity e1 = new Entity(10, "E1", 1);
-        Entity e2 = new Entity(10, "E2", 1);
+        Entity e1 = new Monster(10, "E1", 1, 2);
+        Entity e2 = new Npc(10, "E2", 1, "Ciao.");
         assertTrue(e1.getId() != e2.getId(), "Entities should have unique IDs");
     }
 }
-

@@ -1,13 +1,13 @@
 package org.generation.italy.examples.oo.mud;
 
-public class Entity {
+public abstract class Entity {
     private static int nextId = 1;
     private final int id;
     private int hp;
     private String name;
     private int level;
 
-    public Entity(int hp, String name, int level) {
+    protected Entity(int hp, String name, int level) {
         this.id = nextId++;
         this.hp = hp;
         this.name = name;
@@ -40,6 +40,10 @@ public class Entity {
     public boolean applyDamage(int dmg) {
         this.hp -= dmg;
         return this.hp <= 0;
+    }
+
+    public boolean isAlive() {
+        return hp > 0;
     }
 
     @Override

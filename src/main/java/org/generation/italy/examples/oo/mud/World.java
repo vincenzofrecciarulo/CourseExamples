@@ -1,13 +1,18 @@
 package org.generation.italy.examples.oo.mud;
 
 import org.generation.italy.examples.oo.mud.commands.*;
+import org.generation.italy.examples.oo.mud.roles.CharacterClass;
+import org.generation.italy.examples.oo.mud.roles.CharacterFactory;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class World {
     private final Room start;
     private final GameIO io;
     private final CommandRegistry commands;
+    private final CharacterFactory characterFactory;
 
     public World(){
         this(new ConsoleIO());
@@ -18,6 +23,7 @@ public class World {
      */
     public World(GameIO io){
          this.io = io;
+         this.characterFactory = new CharacterFactory(new Random());
          this.commands = createCommands();
          // Build a richer fantasy city map following a north-south vertical axis
 
@@ -28,7 +34,7 @@ public class World {
                          """, new ArrayList<>(), new ArrayList<>());
 
          // Populate deep forest
-         df.addEntity(new Entity(12, "Lupo Solitario", 2));
+         df.addEntity(new Monster(12, "Lupo Solitario", 2, 4));
          df.getItems().add(new Item(0.1, 8, "Pelle di Lupo"));
 
          // Bordo della Foresta (Forest Edge) - south of Foresta Profonda
@@ -58,7 +64,7 @@ public class World {
                          Esposizione di armi e armature lucenti. Il proprietario affila le lame con cura.
                          """, new ArrayList<>(), armItems);
 
-         am.addEntity(new Entity(35, "Mastro Armaiolo", 6));
+         am.addEntity(new Npc(35, "Mastro Armaiolo", 6, "Se ti serve una lama ben fatta, sei nel posto giusto."));
 
          // Fucina Laterale (Side Smithy) - WEST of Armeria
          Room fucina = new Room("Fucina Laterale",
@@ -68,7 +74,7 @@ public class World {
 
          // Piazza del Tempio (Temple Square) - south of Armeria
          ArrayList<Entity> templeEntities = new ArrayList<>();
-         templeEntities.add(new Entity(30, "Sacerdote Anziano", 6));
+         templeEntities.add(new Npc(30, "Sacerdote Anziano", 6, "La fede richiede pazienza, disciplina e silenzio."));
          ArrayList<Item> templeItems = new ArrayList<>();
          templeItems.add(new Item(0.2, 15, "Amuleto della Dea"));
          Room ts = new Room("Piazza del Tempio",
@@ -80,7 +86,7 @@ public class World {
 
          // Biblioteca della Città (Library) - EAST of Piazza del Tempio
          ArrayList<Entity> libEntities = new ArrayList<>();
-         libEntities.add(new Entity(20, "Vecchio Saggio", 8));
+         libEntities.add(new Npc(20, "Vecchio Saggio", 8, "Ogni libro è una porta. Alcune portano lontano."));
          ArrayList<Item> libItems = new ArrayList<>();
          libItems.add(new Item(0.1, 12, "Pergamena Antica"));
          Room lib = new Room("Biblioteca della Città",
@@ -89,7 +95,7 @@ public class World {
                          Chi cerca conoscenza spesso si ferma qui per ore.
                          """, libEntities, libItems);
 
-         lib.addEntity(new Entity(18, "Apprendista Bibliotecario", 2));
+         lib.addEntity(new Npc(18, "Apprendista Bibliotecario", 2, "Sto ancora imparando a trovare i tomi giusti."));
 
          // Forno di Lieta (Bakery) - WEST of Piazza del Tempio
          ArrayList<Item> bakeryItems = new ArrayList<>();
@@ -100,11 +106,11 @@ public class World {
                          Una piccola bottega dove il pane sfornato attira clienti: il profumo è irresistibile.
                          """, new ArrayList<>(), bakeryItems);
 
-         bk.addEntity(new Entity(22, "Fornaio", 3));
+         bk.addEntity(new Npc(22, "Fornaio", 3, "Il pane migliore è quello caldo, appena sfornato."));
 
          // Piazza del Mercato (Market Square) - SOUTH of Piazza del Tempio (START)
          ArrayList<Entity> marketEntities = new ArrayList<>();
-         marketEntities.add(new Entity(40, "Guardia del Mercato", 5));
+         marketEntities.add(new Npc(40, "Guardia del Mercato", 5, "Tieni gli occhi aperti e le mani lontane dalle merci."));
          ArrayList<Item> marketItems = new ArrayList<>();
          marketItems.add(new Item(1.0, 2, "Mela"));
          marketItems.add(new Item(0.5, 1, "Moneta"));
@@ -124,7 +130,7 @@ public class World {
 
          // Taverna del Pugnale Rosso (Tavern) - WEST of Piazza del Mercato
          ArrayList<Entity> tavEntities = new ArrayList<>();
-         tavEntities.add(new Entity(25, "Oste Burlone", 3));
+         tavEntities.add(new Npc(25, "Oste Burlone", 3, "Una storia migliore si serve con un bicchiere pieno."));
          ArrayList<Item> tavItems = new ArrayList<>();
          tavItems.add(new Item(0.3, 3, "Fiaschetta di vino"));
          Room tv = new Room("Taverna del Pugnale Rosso",
@@ -135,7 +141,7 @@ public class World {
 
          // Molo (Docks) - EAST of Piazza del Mercato
          ArrayList<Entity> dockEntities = new ArrayList<>();
-         dockEntities.add(new Entity(20, "Capitano del Porto", 4));
+         dockEntities.add(new Npc(20, "Capitano del Porto", 4, "Il porto non dorme mai, e neppure io."));
          ArrayList<Item> dockItems = new ArrayList<>();
          dockItems.add(new Item(2.0, 5, "Corda"));
          Room dk = new Room("Molo",
@@ -164,7 +170,7 @@ public class World {
                          Una grotta sporca, piena di cumuli di ossa e torce annerite. Sembra pericolosa.
                          """, new ArrayList<>(), new ArrayList<>());
 
-         gd.addEntity(new Entity(8, "Capo Goblin", 4));
+         gd.addEntity(new Monster(8, "Capo Goblin", 4, 5));
          gd.getItems().add(new Item(0.0, 100, "Scrigno del Tesoro"));
 
          // === LINK ALL EXITS ===
@@ -222,7 +228,7 @@ public class World {
      }
 
     public void startGame(){
-         Player player = new Player(30, "Dink Smallwood", 1);
+         Player player = createInitialPlayer();
          GameContext context = new GameContext(io, start, player);
          // create a default player and put into the start room
          context.getCurrentRoom().addEntity(player);
@@ -239,22 +245,22 @@ public class World {
              String verb = parts[0].toLowerCase();
              String arg = parts.length>1? parts[1].trim():"";
 
-            Command handler = commands.get(verb);
-            if(handler == null){
-                io.println("Non ho capito che cosa vuoi! (digita 'aiuto' per i comandi)");
-                renderCurrentRoom(context);
-                continue;
-            }
+             Command handler = commands.get(verb);
+             if(handler == null){
+                 io.println("Non ho capito che cosa vuoi! (digita 'aiuto' per i comandi)");
+                 renderCurrentRoom(context);
+                 continue;
+             }
 
-            CommandOutcome outcome = handler.execute(context, arg);
-            if(outcome == CommandOutcome.QUIT){
-                return;
-            }
-            if(outcome == CommandOutcome.REFRESH){
-                renderCurrentRoom(context);
-            }
-        }
-    }
+             CommandOutcome outcome = handler.execute(context, arg);
+             if(outcome == CommandOutcome.QUIT){
+                 return;
+             }
+             if(outcome == CommandOutcome.REFRESH){
+                 renderCurrentRoom(context);
+             }
+         }
+     }
 
      private CommandRegistry createCommands() {
          MoveCommand north = new MoveCommand(Room.NORTH, "nord");
@@ -270,6 +276,8 @@ public class World {
          TalkCommand talk = new TalkCommand();
          AttackCommand attack = new AttackCommand();
          HelpCommand help = new HelpCommand();
+         AbilityCommand ability = new AbilityCommand();
+         CharacterSheetCommand characterSheet = new CharacterSheetCommand();
 
          return new CommandRegistry()
                  .register("n", north)
@@ -278,7 +286,7 @@ public class World {
                  .register("e", east)
                  .register("est", east)
                  .register("east", east)
-                 .register("o", west)
+                 .register("w", west)
                  .register("ovest", west)
                  .register("west", west)
                  .register("s", south)
@@ -309,9 +317,58 @@ public class World {
                  .register("at", attack)
                  .register("attacca", attack)
                  .register("attack", attack)
+                 .register("abilita", ability)
+                 .register("skill", ability)
+                 .register("usa", ability)
+                 .register("scheda", characterSheet)
+                 .register("stats", characterSheet)
                  .register("h", help)
                  .register("aiuto", help)
                  .register("help", help);
+     }
+
+     private Player createInitialPlayer() {
+         io.println("Crea il tuo personaggio.");
+         List<CharacterClass> characterClasses = characterFactory.availableClasses();
+         for(int i = 0; i < characterClasses.size(); i++){
+             CharacterClass characterClass = characterClasses.get(i);
+             io.println((i + 1) + ". " + characterClass.getName() + " - " + characterClass.getDescription());
+         }
+
+         String name = io.readln("Nome del personaggio [Avventuriero]: ");
+         if(name == null || name.isBlank()){
+             name = "Avventuriero";
+         } else {
+             name = name.trim();
+         }
+
+         int chosenClassIndex = chooseClassIndex();
+         CharacterClass characterClass = characterClasses.get(chosenClassIndex - 1);
+
+         Player player = characterFactory.create(name, 1, characterClass);
+         io.println("Personaggio creato: " + player.getName() + " (" + characterClass.getName() + ")");
+         io.println("Statistiche iniziali: " + player.getStats());
+         return player;
+     }
+
+     private int chooseClassIndex() {
+         while(true){
+             String input = io.readln("Scegli la classe [1-" + characterFactory.availableClasses().size() + "]: ");
+             if(input == null || input.isBlank()){
+                 return 1;
+             }
+
+             try {
+                 int value = Integer.parseInt(input.trim());
+                 if(value >= 1 && value <= characterFactory.availableClasses().size()){
+                     return value;
+                 }
+             } catch (NumberFormatException ignored) {
+                 // Proviamo di nuovo se l'input non e' un numero valido.
+             }
+
+             io.println("Scelta non valida, riprova.");
+         }
      }
 
      private void renderCurrentRoom(GameContext context) {
