@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Commentato una cosa che mi dava errore, poi si vede...">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Inventory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Player.java" afterDir="false" />
+    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Iniziato mie modifiche sul gioco">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +64,7 @@
     "Application.Exercise7.executor": "Run",
     "Application.MagicHat.executor": "Run",
     "Application.Operations.executor": "Run",
+    "Application.Player.executor": "Run",
     "Application.RandomTestForMe.executor": "Run",
     "Application.Start.executor": "Run",
     "Application.World.executor": "Run",
@@ -93,13 +92,13 @@
       <recent name="org.generation.italy.examples.oo.banksystem" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.org.generation.italy.examples.oo.magic.Start">
-    <configuration name="Operations" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.banksystem.Operations" />
+  <component name="RunManager" selected="Application.World">
+    <configuration name="Player" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.mud.Player" />
       <module name="CourseExamples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.oo.banksystem.*" />
+          <option name="PATTERN" value="org.generation.italy.examples.oo.mud.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -161,11 +160,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.org.generation.italy.examples.oo.magic.Start" />
         <item itemvalue="Application.World" />
+        <item itemvalue="Application.Player" />
+        <item itemvalue="Application.org.generation.italy.examples.oo.magic.Start" />
         <item itemvalue="Application.Start" />
         <item itemvalue="Application.RandomTestForMe" />
-        <item itemvalue="Application.Operations" />
       </list>
     </recent_temporary>
   </component>
@@ -203,7 +202,8 @@
       <workItem from="1779970981892" duration="5911000" />
       <workItem from="1779978391149" duration="5179000" />
       <workItem from="1780151660435" duration="1142000" />
-      <workItem from="1780166406359" duration="4002000" />
+      <workItem from="1780166406359" duration="4028000" />
+      <workItem from="1780171241882" duration="308000" />
     </task>
     <task id="LOCAL-00001" summary="Implementato Exercise7 e 5, con alcune modifiche agli altri">
       <option name="closed" value="true" />
@@ -317,7 +317,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779983944848</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Iniziato mie modifiche sul gioco">
+      <option name="closed" value="true" />
+      <created>1780170431731</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1780170431731</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,7 +344,8 @@
     <MESSAGE value="Aggiunto commenti negli esercizi sugli arrays" />
     <MESSAGE value="Avevo messo un comando dentro una stringa" />
     <MESSAGE value="Commentato una cosa che mi dava errore, poi si vede..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commentato una cosa che mi dava errore, poi si vede..." />
+    <MESSAGE value="Iniziato mie modifiche sul gioco" />
+    <option name="LAST_COMMIT_MESSAGE" value="Iniziato mie modifiche sul gioco" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -25,8 +25,10 @@ public class Inventory {
         return true;
     }
 
-    public ArrayList<> getInventory(){              //Far sì che stampa in tabella ordinata tutti item e dati, e weight/maxWeight
-        return items;
+    public void printInventory(){              //Far sì che stampa in tabella ordinata tutti item e dati, e weight/maxWeight
+        for (Item i : items) {
+            System.out.println(items.get().getName());
+        }
     }
 
     public double getWeight(){

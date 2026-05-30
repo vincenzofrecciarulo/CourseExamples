@@ -12,8 +12,9 @@ public class Player {
     ArrayList<Item> playerItems = new ArrayList<>();
 
     Inventory inventoryPlayer = new Inventory(playerItems, 0, 50);
-    Item woodenSword = new Item(5,3,"Spada di legno");
-    inventoryPlayer.addToInventory(woodenSword);
 
-    }
+    Item woodenSword = new Item(5,3,"Spada di legno");
+    boolean success = inventoryPlayer.addToInventory(woodenSword);
+
+
 }
