@@ -1,12 +1,13 @@
 package org.generation.italy.examples.oo.mud;
 
+import org.generation.italy.examples.oo.mud.commands.*;
+
 import java.util.ArrayList;
 
 public class World {
-    private Room start;
-    private Room current;
-    private Player player;
-    private GameIO io;
+    private final Room start;
+    private final GameIO io;
+    private final CommandRegistry commands;
 
     public World(){
         this(new ConsoleIO());
@@ -17,6 +18,7 @@ public class World {
      */
     public World(GameIO io){
          this.io = io;
+         this.commands = createCommands();
          // Build a richer fantasy city map following a north-south vertical axis
 
          // NORTHMOST: Foresta Profonda (Deep Forest)
@@ -220,13 +222,14 @@ public class World {
      }
 
     public void startGame(){
-         current = start;
+         Player player = new Player(30, "Dink Smallwood", 1);
+         GameContext context = new GameContext(io, start, player);
          // create a default player and put into the start room
-         player = new Player(30, "Dink Smallwood", 1);
-         current.addEntity(player);
+         context.getCurrentRoom().addEntity(player);
+
+         renderCurrentRoom(context);
 
          while(true){
-             io.println(current.toString());
              String line = io.readln("-> ");
              if(line==null) break;
              String command = line.trim();
@@ -236,184 +239,83 @@ public class World {
              String verb = parts[0].toLowerCase();
              String arg = parts.length>1? parts[1].trim():"";
 
-             boolean moved = false;
-             switch(verb){
-                 // Movement: Italian + English + shortcuts
-                 case "n": case "nord": case "north":
-                     moved = moveTo(Room.NORTH);
-                     break;
-                 case "e": case "est": case "east":
-                     moved = moveTo(Room.EAST);
-                     break;
-                 case "o": case "ovest": case "west":
-                     moved = moveTo(Room.WEST);
-                     break;
-                 case "s": case "sud": case "south":
-                     moved = moveTo(Room.SOUTH);
-                     break;
+            Command handler = commands.get(verb);
+            if(handler == null){
+                io.println("Non ho capito che cosa vuoi! (digita 'aiuto' per i comandi)");
+                renderCurrentRoom(context);
+                continue;
+            }
 
-                 // Exit
-                 case "q": case "esci": case "quit":
-                     io.println("Grazie per aver giocato");
-                     return;
-
-                 // Look / Guarda
-                 case "g": case "guarda": case "look":
-                     continue; // just loop to print room again
-
-                 // Prendi (take) - with prefix matching
-                 case "p": case "prendi": case "take":
-                     if(arg.isEmpty()){
-                         io.println("Prendi cosa?");
-                     } else {
-                         Item it = current.findItemByPrefix(arg);
-                         if(it!=null){
-                             current.removeItemByName(it.getName());
-                             player.pickUp(it);
-                             io.println("Hai preso: " + it.getName());
-                         } else {
-                             io.println("Non c'è questo oggetto qui: " + arg);
-                         }
-                     }
-                     continue;
-
-                 // Getta (drop) - with prefix matching
-                 case "d": case "getta": case "drop":
-                     if(arg.isEmpty()){
-                         io.println("Getta cosa?");
-                     } else {
-                         var dropped = player.dropByPrefix(arg);
-                         if(dropped.isPresent()){
-                             current.addItem(dropped.get());
-                             io.println("Hai gettato: " + dropped.get().getName());
-                         } else {
-                             io.println("Non hai questo oggetto: " + arg);
-                         }
-                     }
-                     continue;
-
-                 // Inventario
-                 case "i": case "inventario": case "inv": case "inventory":
-                     io.println("Inventario: " + player.getInventoryNames());
-                     continue;
-
-                 // Equipaggia - with prefix matching
-                 case "eq": case "equipaggia": case "equip":
-                     if(arg.isEmpty()){
-                         io.println("Equipaggia cosa?");
-                     } else {
-                         boolean ok = player.equipByPrefix(arg);
-                         if(ok) io.println("Equipaggiato!");
-                         else io.println("Non trovato nell'inventario: " + arg);
-                     }
-                     continue;
-
-                 // Parla (talk)
-                 case "pa": case "parla": case "talk":
-                     if(arg.isEmpty()){
-                         io.println("Parlare con chi?");
-                     } else {
-                         Entity entity = current.findEntityByPrefix(arg);
-                         if(entity!=null && entity!=player){
-                             io.println("Parli con " + entity.getName() + " (ma non risponde)");
-                         } else {
-                             io.println("Non vedo '" + arg + "' qui.");
-                         }
-                     }
-                     continue;
-
-                 // Attacca (attack) - with prefix matching
-                 case "at": case "attacca": case "attack":
-                     if(arg.isEmpty()){
-                         io.println("Attaccare chi?");
-                     } else {
-                         Entity target = current.findEntityByPrefix(arg);
-                         if(target==null || target==player){
-                             io.println("Non vedo '" + arg + "' qui.");
-                         } else {
-                             int dmg = 5;
-                             boolean dead = target.applyDamage(dmg);
-                             io.println("Hai inflitto " + dmg + " danni a " + target.getName());
-                             if(dead){
-                                 io.println(target.getName() + " è morto.");
-                                 current.removeEntity(target);
-                             }
-                         }
-                     }
-                     continue;
-
-                 // Help
-                 case "h": case "aiuto": case "help":
-                     printHelp();
-                     continue;
-
-                 default:
-                     io.println("Non ho capito che cosa vuoi! (digita 'aiuto' per i comandi)");
-                     continue;
-             }
-
-             if(moved){
-                 io.println("Ti muovi verso " + getDirectionName(verb));
-             } else if(isMovementCommand(verb)){
-                 io.println("Non c'è nulla in quella direzione");
-             }
-         }
-     }
-
-     private String getDirectionName(String verb){
-         switch(verb){
-             case "n": case "nord": return "nord";
-             case "s": case "sud": return "sud";
-             case "e": case "est": return "est";
-             case "o": case "ovest": return "ovest";
-             default: return verb;
-         }
-     }
-
-     private boolean isMovementCommand(String verb){
-         return verb.equals("n") || verb.equals("nord") || verb.equals("north") ||
-                verb.equals("s") || verb.equals("sud") || verb.equals("south") ||
-                verb.equals("e") || verb.equals("est") || verb.equals("east") ||
-                verb.equals("o") || verb.equals("ovest") || verb.equals("west");
-     }
-
-     private void printHelp(){
-         io.println("""
-                 === COMANDI ===
-                 Movimento: n/nord, s/sud, e/est, o/ovest
-                 
-                 Oggetti:
-                   p / prendi <oggetto> - Prendi un oggetto
-                   d / getta <oggetto>  - Getta un oggetto
-                   i / inventario       - Mostra inventario
-                   eq / equipaggia <oggetto> - Equipaggia un oggetto
-                 
-                 Interazione:
-                   pa / parla <personaggio>  - Parla con un personaggio
-                   at / attacca <nemico>     - Attacca un nemico
-                 
-                 Altro:
-                   g / guarda - Mostra stanza
-                   h / aiuto  - Questo messaggio
-                   q / esci   - Esci dal gioco
-                 
-                 NOTA: I nomi di oggetti e personaggi rispondono a prefix matching!
-                 Es: "p man" per "prendi Mela", "at lup" per "attacca Lupo Solitario"
-                 """
-         );
-     }
-
-    private boolean moveTo(int direction) {
-        Room destination = current.exitAt(direction);
-        if(destination != null){
-            current = destination;
-            return true;
+            CommandOutcome outcome = handler.execute(context, arg);
+            if(outcome == CommandOutcome.QUIT){
+                return;
+            }
+            if(outcome == CommandOutcome.REFRESH){
+                renderCurrentRoom(context);
+            }
         }
-        return false;
     }
 
-    public void main(){
-        World w = new World();
-        w.startGame();
-    }
+     private CommandRegistry createCommands() {
+         MoveCommand north = new MoveCommand(Room.NORTH, "nord");
+         MoveCommand east = new MoveCommand(Room.EAST, "est");
+         MoveCommand west = new MoveCommand(Room.WEST, "ovest");
+         MoveCommand south = new MoveCommand(Room.SOUTH, "sud");
+         QuitCommand quit = new QuitCommand();
+         LookCommand look = new LookCommand();
+         TakeCommand take = new TakeCommand();
+         DropCommand drop = new DropCommand();
+         InventoryCommand inventory = new InventoryCommand();
+         EquipCommand equip = new EquipCommand();
+         TalkCommand talk = new TalkCommand();
+         AttackCommand attack = new AttackCommand();
+         HelpCommand help = new HelpCommand();
+
+         return new CommandRegistry()
+                 .register("n", north)
+                 .register("nord", north)
+                 .register("north", north)
+                 .register("e", east)
+                 .register("est", east)
+                 .register("east", east)
+                 .register("o", west)
+                 .register("ovest", west)
+                 .register("west", west)
+                 .register("s", south)
+                 .register("sud", south)
+                 .register("south", south)
+                 .register("q", quit)
+                 .register("esci", quit)
+                 .register("quit", quit)
+                 .register("g", look)
+                 .register("guarda", look)
+                 .register("look", look)
+                 .register("p", take)
+                 .register("prendi", take)
+                 .register("take", take)
+                 .register("d", drop)
+                 .register("getta", drop)
+                 .register("drop", drop)
+                 .register("i", inventory)
+                 .register("inventario", inventory)
+                 .register("inv", inventory)
+                 .register("inventory", inventory)
+                 .register("eq", equip)
+                 .register("equipaggia", equip)
+                 .register("equip", equip)
+                 .register("pa", talk)
+                 .register("parla", talk)
+                 .register("talk", talk)
+                 .register("at", attack)
+                 .register("attacca", attack)
+                 .register("attack", attack)
+                 .register("h", help)
+                 .register("aiuto", help)
+                 .register("help", help);
+     }
+
+     private void renderCurrentRoom(GameContext context) {
+         io.println(context.getCurrentRoom().toString());
+     }
+
 }
