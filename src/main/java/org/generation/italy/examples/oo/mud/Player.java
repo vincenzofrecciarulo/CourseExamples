@@ -1,7 +1,7 @@
 package org.generation.italy.examples.oo.mud;
 
 public class Player {
-    private String name;
+    private String name = "Alex";
     private int hp = 20;
     private int atk = 10;
     private int def = 8;
@@ -14,7 +14,7 @@ public class Player {
         checkLevelUp();
     }
     public void checkLevelUp(){
-        if(exp == level * 20){
+        if(exp >= level * 20){
             levelUp();
         }
     }
@@ -38,5 +38,11 @@ public class Player {
         IO.println("DEF: " + def);
         IO.println("LIVELLO: " + level);
     }
-
+    public void takeDamage(int damage){
+        if(this.def < damage){
+           hp -= damage - this.def;
+        }else {
+            hp--;
+        }
+    }
 }
