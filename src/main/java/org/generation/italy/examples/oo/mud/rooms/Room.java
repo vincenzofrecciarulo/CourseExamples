@@ -44,17 +44,17 @@ public class Room {
         exits[direction] = destination;
 
         switch (direction){
-            case 0:
-                destination.addExit(this, 3);
+            case Room.NORTH:
+                destination.addExit(this, Room.SOUTH);
                 break;
-            case 1:
-                destination.addExit(this, 2);
+            case Room.EAST:
+                destination.addExit(this, Room.WEST);
                 break;
-            case 2:
-                destination.addExit(this, 1);
+            case Room.WEST:
+                destination.addExit(this, Room.EAST);
                 break;
-            case 3:
-                destination.addExit(this, 0);
+            case Room.SOUTH:
+                destination.addExit(this, Room.NORTH);
                 break;
             default:
                 IO.println("Qualcosa è andato storto...");

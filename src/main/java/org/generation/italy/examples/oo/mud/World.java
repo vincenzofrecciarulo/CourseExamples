@@ -28,67 +28,18 @@ public class World {
         while(true){
             IO.println(player.getCurrentRoom()); // questo fa automaticamente toString
             String command = IO.readln("->");
-            boolean isMoveSuccess;
             switch(command.toLowerCase()) {
                 case "w":
-                    isMoveSuccess = player.tryMoveTo(Room.NORTH);
-                    if(!isMoveSuccess){
-                        IO.println("""
-                                Non c'è niente in quella direzione...
-                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                """);
-                    }else{
-                        IO.println("Stai correndo...");
-                    }
+                    moveTo(player, Room.NORTH);
                     break;
                 case "d":
-                    isMoveSuccess = player.tryMoveTo(Room.EAST);
-                    if(!isMoveSuccess){
-                        IO.println("""
-                                Non c'è niente in quella direzione...
-                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                """);
-                    }else{
-                        IO.println("Stai correndo...");
-                    }
+                    moveTo(player, Room.EAST);
                     break;
                 case "a":
-                    isMoveSuccess = player.tryMoveTo(Room.WEST);
-                    if(!isMoveSuccess){
-                        IO.println("""
-                                Non c'è niente in quella direzione...
-                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                """);
-                    }else{
-                        IO.println("Stai correndo...");
-                    }
+                    moveTo(player, Room.WEST);
                     break;
                 case "s":
-                    isMoveSuccess = player.tryMoveTo(Room.SOUTH);
-                    if(!isMoveSuccess){
-                        IO.println("""
-                                Non c'è niente in quella direzione...
-                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-                                """);
-                    }else{
-                        IO.println("Stai correndo...");
-                    }
+                    moveTo(player, Room.SOUTH);
                     break;
                 case "x":
                     player.interact();
@@ -106,7 +57,20 @@ public class World {
         }
     }
 
-
+    public void moveTo(Player player, int direction){
+        if(!player.tryMoveTo(direction)){
+            IO.println("""
+            Non c'è niente in quella direzione...
+            🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+             🧱🧱🧱🧱🧱🧱🧱🧱🧱
+            🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+             🧱🧱🧱🧱🧱🧱🧱🧱🧱
+            🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+            """);
+        }else{
+            IO.println("Stai correndo...");
+        }
+    }
 
     public void main(){
         World w = new World();
