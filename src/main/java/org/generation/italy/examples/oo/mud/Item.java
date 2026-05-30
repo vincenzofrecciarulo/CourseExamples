@@ -24,12 +24,6 @@ public class Item {
     // Factory: oggetti comuni
     // ---------------------------------------------------------------
 
-    public static Item bastoneELegno()    { return new Item(2.0,  10, "Bastone di Legno"); }
-    public static Item scudoDiCuoio()     { return new Item(3.0,  15, "Scudo di Cuoio"); }
-    public static Item spadaArrugginita() { return new Item(8.0,  50, "Spada Arrugginita"); }
-    public static Item pugnale()          { return new Item(1.0,  30, "Pugnale"); }
-    public static Item arcoLegno()        { return new Item(2.5,  45, "Arco di Legno"); }
-
     // Consumabili
     public static Item potioneCura()      { return new Item(0.5,  20, "Pozione di Cura"); }
     public static Item bendaSacra()       { return new Item(0.3,  15, "Benda Sacra"); }

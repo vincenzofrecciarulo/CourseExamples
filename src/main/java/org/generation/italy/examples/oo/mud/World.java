@@ -14,7 +14,7 @@ public class World {
         es1.add(new Entity(50, "Ciro la Guardia", 7));
 
         ArrayList<Item> os1 = new ArrayList<>();
-        os1.add(Item.bastoneELegno());
+        os1.add(Weapon.Bastone());
         os1.add(Armor.scudoDiFerro());
 
         Room mercato = new Room("Piazza del Mercato",
@@ -49,7 +49,7 @@ public class World {
         es4.add(Monster.scheletro());
 
         ArrayList<Item> os4 = new ArrayList<>();
-        os4.add(Item.spadaArrugginita());
+        os4.add(Weapon.ArtigliM());
         os4.add(Armor.corazzaSpezzata());
 
         Room rovine = new Room("Rovine del Castello",
@@ -64,6 +64,7 @@ public class World {
         ArrayList<Item> os5 = new ArrayList<>();
         os5.add(Item.boccaleBirra());
         os5.add(Item.mappasgualcita());
+        os5.add(Weapon.SpadoneR());
 
         Room taverna = new Room("Taverna del Cinghiale Ubriaco",
                 "Calore, rumore e fumo di pipa ti avvolgono all'ingresso.\n" +
@@ -111,7 +112,7 @@ public class World {
         es9.add(Monster.drago());
 
         ArrayList<Item> os9 = new ArrayList<>();
-        os9.add(Item.uovoDrago());
+        os9.add(Weapon.AsciaK());
         os9.add(Armor.scagliaDrago());
 
         Room tana = new Room("Tana del Drago",
