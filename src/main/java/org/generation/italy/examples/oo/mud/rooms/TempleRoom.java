@@ -1,5 +1,6 @@
 package org.generation.italy.examples.oo.mud.rooms;
 
+import org.generation.italy.examples.oo.mud.Inventory;
 import org.generation.italy.examples.oo.mud.entities.Player;
 import org.generation.italy.examples.oo.mud.items.HealPotion;
 
@@ -29,7 +30,7 @@ public class TempleRoom extends Room {
                 System.out.println("Hai recuperato 100 punti vita.");
                 break;
             case "2":
-                if(player.getInventoryWeight() + HealPotion.WEIGHT > Player.MAX_WEIGHT){
+                if(player.getInventoryWeight() + HealPotion.WEIGHT > Inventory.MAX_WEIGHT){
                     System.out.println("Non hai abbastanza spazio nello zaino..");
                     return;
                 }

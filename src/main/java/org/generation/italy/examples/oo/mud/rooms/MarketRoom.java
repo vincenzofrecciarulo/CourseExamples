@@ -1,5 +1,6 @@
 package org.generation.italy.examples.oo.mud.rooms;
 
+import org.generation.italy.examples.oo.mud.Inventory;
 import org.generation.italy.examples.oo.mud.entities.Player;
 import org.generation.italy.examples.oo.mud.items.HealPotion;
 import org.generation.italy.examples.oo.mud.items.ScrollOfReturn;
@@ -24,12 +25,20 @@ public class MarketRoom extends Room {
 
         switch (input){
             case "1":
+                if(player.getInventoryWeight() + HealPotion.WEIGHT > Inventory.MAX_WEIGHT){
+                    System.out.println("Non hai abbastanza spazio nello zaino..");
+                    return;
+                }
                 if(!player.withdrawCoins(10)){
                     IO.println("Eh troppo povero per comprare..?");
                 }
                 player.pick(new HealPotion());
                 break;
             case "2":
+                if(player.getInventoryWeight() + ScrollOfReturn.WEIGHT > Inventory.MAX_WEIGHT){
+                    System.out.println("Non hai abbastanza spazio nello zaino..");
+                    return;
+                }
                 if(!player.withdrawCoins(5)){
                     IO.println("Eh troppo povero per comprare..?");
                 }

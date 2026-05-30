@@ -21,7 +21,7 @@ public class World {
         start.addExit(new EmptyRoom(), Room.SOUTH);
         start.addExit(new EmptyRoom(), Room.WEST);
         start.addExit(new EmptyRoom(), Room.EAST);
-        player = new Player(100, "Player", 1, start, 100);
+        player = new Player(100, "Player", 1, start, 100, new Inventory());
     }
 
     public void startGame(){
