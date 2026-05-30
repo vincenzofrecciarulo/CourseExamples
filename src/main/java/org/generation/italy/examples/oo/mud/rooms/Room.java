@@ -58,7 +58,7 @@ public class Room {
                 break;
             default:
                 IO.println("Qualcosa è andato storto...");
-                break;
+                return false;
         }
         return true;
     }
@@ -104,14 +104,19 @@ public class Room {
     }
 
     public static Room getRandomRoom(){
-        int num = random.nextInt(3);
+        int num = random.nextInt(7);
         switch (num){
             case 0:
                 return new MarketRoom();
             case 1:
                 return new TempleRoom();
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                return new DangerRoom();
             default:
-                return null;
+                return new EmptyRoom();
         }
     }
 

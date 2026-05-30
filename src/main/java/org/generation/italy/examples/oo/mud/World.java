@@ -33,25 +33,61 @@ public class World {
                 case "w":
                     isMoveSuccess = player.tryMoveTo(Room.NORTH);
                     if(!isMoveSuccess){
-                        IO.println("Non c'è niente in quella direzione...");
+                        IO.println("""
+                                Non c'è niente in quella direzione...
+                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                """);
+                    }else{
+                        IO.println("Stai correndo...");
                     }
                     break;
                 case "d":
                     isMoveSuccess = player.tryMoveTo(Room.EAST);
                     if(!isMoveSuccess){
-                        IO.println("Non c'è niente in quella direzione...");
+                        IO.println("""
+                                Non c'è niente in quella direzione...
+                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                """);
+                    }else{
+                        IO.println("Stai correndo...");
                     }
                     break;
                 case "a":
                     isMoveSuccess = player.tryMoveTo(Room.WEST);
                     if(!isMoveSuccess){
-                        IO.println("Non c'è niente in quella direzione...");
+                        IO.println("""
+                                Non c'è niente in quella direzione...
+                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                """);
+                    }else{
+                        IO.println("Stai correndo...");
                     }
                     break;
                 case "s":
                     isMoveSuccess = player.tryMoveTo(Room.SOUTH);
                     if(!isMoveSuccess){
-                        IO.println("Non c'è niente in quella direzione...");
+                        IO.println("""
+                                Non c'è niente in quella direzione...
+                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                 🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                                """);
+                    }else{
+                        IO.println("Stai correndo...");
                     }
                     break;
                 case "x":

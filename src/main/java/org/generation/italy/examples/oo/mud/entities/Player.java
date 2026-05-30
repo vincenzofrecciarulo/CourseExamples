@@ -1,6 +1,7 @@
 package org.generation.italy.examples.oo.mud.entities;
 
 import org.generation.italy.examples.oo.mud.items.Item;
+import org.generation.italy.examples.oo.mud.rooms.EmptyRoom;
 import org.generation.italy.examples.oo.mud.rooms.Room;
 
 import java.util.ArrayList;
@@ -75,8 +76,17 @@ public class Player extends Entity {
     }
 
     public boolean tryMoveTo(int direction) {
-        Room destination = getCurrentRoom().exitAt(direction);
-        if(destination == null || destination.getTitle().equals("Empty room")){
+        Room destination = currentRoom.exitAt(direction);
+        if(destination == null){
+            Room newRoom = Room.getRandomRoom();
+            currentRoom.addExit(newRoom, direction);
+            if(newRoom.getTitle().equals(EmptyRoom.TITLE)){
+                return false;
+            }
+            setCurrentRoom(newRoom);
+            return true;
+        }
+        if(destination.getTitle().equals(EmptyRoom.TITLE)){
             return false;
         }
         setCurrentRoom(destination);
