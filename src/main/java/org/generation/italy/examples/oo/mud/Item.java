@@ -1,7 +1,5 @@
 package org.generation.italy.examples.oo.mud;
 
-import java.util.ArrayList;
-
 public class Item {
     private double weight;
     private int value;

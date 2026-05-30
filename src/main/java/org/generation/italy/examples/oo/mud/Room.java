@@ -9,10 +9,13 @@ public class Room {
     private ArrayList<Item> items;
     private Room[] exits;
 
-    public static final int NORTH=0;
-    public static final int EAST=1;
-    public static final int WEST=2;
-    public static final int SOUTH=3;
+    public static final int NORTH = 0;
+    public static final int EAST = 1;
+
+
+
+    public static final int WEST = 2;
+    public static final int SOUTH = 3;
 
     public Room(String title, String description, ArrayList<Entity> entities, ArrayList<Item> items) {
         this.title = title;
@@ -22,43 +25,63 @@ public class Room {
         this.exits = new Room[4];
     }
 
-    public boolean addExit(Room destination, int direction) {
-        if(exits[direction]!=null) {
+    // aggiungiamo una uscita ad una stanza e diciamo anche in che direzione è l'uscita
+    public boolean addExit(Room destination, int direction){
+        if(exits[direction]!=null){
             return false;
         }
-        exits[direction]= destination;
+
+        exits[direction] = destination;
         return true;
     }
 
-    public Room exitAt(int direction) {
+    public Room exitAt(int direction){
         return exits[direction];
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         StringBuilder sb = new StringBuilder(this.title);
-        sb.append("\n").append(this.description).append("\n")
-                .append("In questo luogo sono presenti: ")
+        sb.append("\n").append(this.description).append("\n");
+        return sb.toString(); // ritorno la stringa che sta dentro lo StringBuilder
+    }
+
+
+    public String infoRoom() {
+        StringBuilder ir = new StringBuilder();
+        ir.append("In questo luogo sono presenti: ")
                 .append(getEntityNames()).append("\n")
                 .append("Vedi i seguenti oggetti: ")
                 .append(getObjectNames());
-        return sb.toString();
+        return ir.toString();
     }
 
-    public ArrayList<String> getObjectNames() {
+    public ArrayList<String> getObjectNames(){
         ArrayList<String> names = new ArrayList<>();
-        for (Item i : items) {
+        for(Item i : items){
             names.add(i.getName());
         }
         return names;
     }
 
-    public ArrayList<String> getEntityNames() {
+    public ArrayList<String> getEntityNames(){
         ArrayList<String> names = new ArrayList<>();
-        for (Entity e : entities) {
+        for(Entity e : entities){
             names.add(e.getName());
         }
         return names;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public void addItem (Item item){
+        items.add(item);
+    }
+
+    public void removeItem (Item item){
+        items.remove(item);
     }
 
     public String getTitle() {

@@ -49,6 +49,9 @@ public class Player  extends Entity{
     }
 
     public boolean openInventory() {
+        if (inventory.isEmpty()) {
+            System.out.println("Inventario vuoto!");
+        return true; }
         for (int i = 0; i < inventory.size(); i++) {
             System.out.println(new StringBuilder().append(i).append(". ").append(inventory.get(i).getName()).toString());
         }
