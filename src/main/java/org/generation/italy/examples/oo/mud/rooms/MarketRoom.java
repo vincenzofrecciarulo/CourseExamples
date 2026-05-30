@@ -1,9 +1,7 @@
 package org.generation.italy.examples.oo.mud.rooms;
 
-import org.generation.italy.examples.oo.mud.entities.Entity;
 import org.generation.italy.examples.oo.mud.entities.Player;
 import org.generation.italy.examples.oo.mud.items.HealPotion;
-import org.generation.italy.examples.oo.mud.items.Item;
 import org.generation.italy.examples.oo.mud.items.ScrollOfReturn;
 
 import java.util.ArrayList;
@@ -38,13 +36,8 @@ public class MarketRoom extends Room {
                 player.pick(new ScrollOfReturn());
                 break;
             default:
-                IO.println("Eh troppo povero per comprare..?");
+                IO.println("Arrivederci avventuriero!");
                 break;
-        }
-
-        if(!input.equals("y")){
-            IO.println("Eh troppo povero per comprare..?");
-            return;
         }
 
     }
