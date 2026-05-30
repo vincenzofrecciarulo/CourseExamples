@@ -23,15 +23,19 @@ public class Monster extends Entity {
         this.isAlive = true;
     }
 
-    // Calcola il danno inflitto al giocatore (con variazione casuale ±20%)
+
     public int attack() {
         double variation = 0.8 + Math.random() * 0.4; // tra 0.8 e 1.2
         return (int) (attackPower * variation);
     }
 
-    // Calcola il danno subito tenendo conto della difesa
+
     public int takeDamage(int incomingDamage) {
         int actualDamage = Math.max(1, incomingDamage - defense);
+        setCurrentHp(getCurrentHp() - actualDamage);
+        if (getCurrentHp() <= 0) {
+            isAlive = false;
+        }
         return actualDamage;
     }
 
@@ -69,9 +73,9 @@ public class Monster extends Entity {
                 rarity, getName(), getLevel(), attackPower, defense, expReward, goldReward);
     }
 
-    // ---------------------------------------------------------------
+
     // Factory: mostri pronti da usare nel World
-    // ---------------------------------------------------------------
+
 
     public static Monster goblin() {
         return new Monster(20, "Goblin", 1, 5, 1, 10, 3, Rarity.COMUNE);
@@ -95,5 +99,13 @@ public class Monster extends Entity {
 
     public static Monster drago() {
         return new Monster(200, "Drago delle Caverne", 10, 30, 15, 300, 150, Rarity.LEGGENDARIO);
+    }
+
+    public static Monster arcimago() {
+        return new Monster(90, "Archimago Vetharion", 8, 22, 6, 120, 60, Rarity.RARO);
+    }
+
+    public static Monster golemDiPietra() {
+        return new Monster(80, "Golem di Pietra", 6, 12, 12, 70, 35, Rarity.NON_COMUNE);
     }
 }

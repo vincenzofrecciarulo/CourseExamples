@@ -1,8 +1,7 @@
 package org.generation.italy.examples.oo.mud;
 
-import com.generation.library.*;
-
 import java.util.ArrayList;
+import com.generation.library.*;
 
 public class World {
     private Room start;
@@ -44,7 +43,7 @@ public class World {
                 "Gli alberi si stringono intorno a te soffocando la luce.\n" +
                         "Si sentono fruscii inquietanti tra le frasche.", es3, os3);
 
-        // ── STANZA 4: Rovine del Castello ─────────────────────────────────────
+        // ── STANZA 4: Rovine del Castello
         ArrayList<Entity> es4 = new ArrayList<>();
         es4.add(Monster.scheletro());
         es4.add(Monster.scheletro());
@@ -57,7 +56,7 @@ public class World {
                 "Muri crollati e torri mozzate ricordano la grandezza perduta.\n" +
                         "Il silenzio è rotto solo dal crepitio di ossa.", es4, os4);
 
-        // ── STANZA 5: Taverna del Cinghiale Ubriaco ───────────────────────────
+        // ── STANZA 5: Taverna del Cinghiale Ubriaco
         ArrayList<Entity> es5 = new ArrayList<>();
         es5.add(new Entity(80, "Bardo Malvino", 4));
         es5.add(new Entity(60, "Taberniere Grasso", 2));
@@ -70,7 +69,7 @@ public class World {
                 "Calore, rumore e fumo di pipa ti avvolgono all'ingresso.\n" +
                         "Un bardo intona una ballata scurrile tra le risate degli avventori.", es5, os5);
 
-        // ── STANZA 6: Miniera Abbandonata ─────────────────────────────────────
+        // ── STANZA 6: Miniera Abbandonata
         ArrayList<Entity> es6 = new ArrayList<>();
         es6.add(Monster.orco());
 
@@ -82,9 +81,10 @@ public class World {
                 "Gallerie buie si diramano in ogni direzione.\n" +
                         "Il rumore di qualcosa di enorme echeggia nelle profondità.", es6, os6);
 
-        // ── STANZA 7: Torre del Mago ──────────────────────────────────────────
+        // ── STANZA 7: Torre del Mago
         ArrayList<Entity> es7 = new ArrayList<>();
-        es7.add(new Entity(120, "Archimago Vetharion", 12));
+        es7.add(Monster.arcimago());
+        es7.add(Monster.golemDiPietra());
 
         ArrayList<Item> os7 = new ArrayList<>();
         os7.add(Item.libroIncantesimi());
@@ -94,7 +94,7 @@ public class World {
                 "Scaffali pieni di libri polverosi coprono ogni parete.\n" +
                         "Un vecchio mago ti fissa attraverso lenti a pince-nez.", es7, os7);
 
-        // ── STANZA 8: Cripta dei Re ───────────────────────────────────────────
+        // ── STANZA 8: Cripta dei Re
         ArrayList<Entity> es8 = new ArrayList<>();
         es8.add(Monster.vampiro());
 
@@ -106,7 +106,7 @@ public class World {
                 "Sarcofagi di pietra allineati lungo le pareti.\n" +
                         "L'aria è gelida e una presenza oscura aleggia nell'ombra.", es8, os8);
 
-        // ── STANZA 9: Tana del Drago (boss) ───────────────────────────────────
+        // ── STANZA 9: Tana del Drago (boss)
         ArrayList<Entity> es9 = new ArrayList<>();
         es9.add(Monster.drago());
 
@@ -118,7 +118,7 @@ public class World {
                 "Un calore soffocante emana dalle pareti di roccia fusa.\n" +
                         "Montagne di tesori brillano ai lati. Al centro... qualcosa si muove.", es9, os9);
 
-        // ── CONNESSIONI ────────────────────────────────────────────────────────
+        // CONNESSIONI
         //
         //          [Torre]
         //             |N
@@ -196,7 +196,8 @@ public class World {
                     if (success) {
                         p1.setCurrentRoom(current);
                         newRoom = true;
-                        checkMonsters(current);
+                        boolean alive = checkMonsters(current, p1);
+                        if (!alive) return;
                     } else {
                         IO.println("Non c'è nulla in quella direzione.");
                     }
@@ -224,12 +225,33 @@ public class World {
         }
     }
 
-    // Avvisa il giocatore se ci sono mostri nella stanza
-    private void checkMonsters(Room room) {
-        ArrayList<String> nomiEntita = room.getEntityNames();
-        if (!nomiEntita.isEmpty()) {
-            IO.println("⚠ Attenzione: nella stanza sono presenti " + nomiEntita + "!");
+    // Avvisa e avvia combattimento se ci sono mostri nella stanza
+    private boolean checkMonsters(Room room, Player player) {
+        if (!room.hasLivingMonsters()) return true;
+
+        IO.println("⚠  Attenzione: " + room.getMonsters().size() + " nemici nella stanza!");
+        IO.println("   Vuoi combattere? (S / N)");
+        String risposta = IO.readln("-> ");
+
+        if (risposta.equalsIgnoreCase("s")) {
+            Combat combat = new Combat(player, room);
+            Combat.Result result = combat.startCombat();
+
+            if (result == Combat.Result.DEFEAT) {
+                IO.println("\n════════════════════════════════════");
+                IO.println("        GAME OVER");
+                IO.println("════════════════════════════════════");
+                return false; // segnala al loop che il gioco è finito
+            }
+            if (result == Combat.Result.FLED) {
+                IO.println("Sei fuggito e tornato indietro.");
+                // riporta il giocatore alla stanza precedente non è triviale
+                // per ora rimane nella stanza
+            }
+        } else {
+            IO.println("Procedi con cautela...");
         }
+        return true;
     }
 
     // Menu selezione oggetto da raccogliere

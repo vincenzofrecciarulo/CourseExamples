@@ -10,11 +10,8 @@ public class Room {
     private Room[] exits;
 
     public static final int NORTH = 0;
-    public static final int EAST = 1;
-
-
-
-    public static final int WEST = 2;
+    public static final int EAST  = 1;
+    public static final int WEST  = 2;
     public static final int SOUTH = 3;
 
     public Room(String title, String description, ArrayList<Entity> entities, ArrayList<Item> items) {
@@ -25,27 +22,40 @@ public class Room {
         this.exits = new Room[4];
     }
 
-    // aggiungiamo una uscita ad una stanza e diciamo anche in che direzione è l'uscita
-    public boolean addExit(Room destination, int direction){
-        if(exits[direction]!=null){
-            return false;
-        }
-
+    public boolean addExit(Room destination, int direction) {
+        if (exits[direction] != null) return false;
         exits[direction] = destination;
         return true;
     }
 
-    public Room exitAt(int direction){
+    public Room exitAt(int direction) {
         return exits[direction];
     }
 
-    @Override
-    public String toString(){
-        StringBuilder sb = new StringBuilder(this.title);
-        sb.append("\n").append(this.description).append("\n");
-        return sb.toString(); // ritorno la stringa che sta dentro lo StringBuilder
+    // Ritorna solo i Monster vivi presenti nella stanza
+    public ArrayList<Monster> getMonsters() {
+        ArrayList<Monster> monsters = new ArrayList<>();
+        for (Entity e : entities) {
+            if (e instanceof Monster && ((Monster) e).isAlive()) {
+                monsters.add((Monster) e);
+            }
+        }
+        return monsters;
     }
 
+    // Rimuove i mostri morti dalla lista entities
+    public void removeDeadMonsters() {
+        entities.removeIf(e -> e instanceof Monster && !((Monster) e).isAlive());
+    }
+
+    public boolean hasLivingMonsters() {
+        return !getMonsters().isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        return title + "\n" + description + "\n";
+    }
 
     public String infoRoom() {
         StringBuilder ir = new StringBuilder();
@@ -56,39 +66,21 @@ public class Room {
         return ir.toString();
     }
 
-    public ArrayList<String> getObjectNames(){
+    public ArrayList<String> getObjectNames() {
         ArrayList<String> names = new ArrayList<>();
-        for(Item i : items){
-            names.add(i.getName());
-        }
+        for (Item i : items) names.add(i.getName());
         return names;
     }
 
-    public ArrayList<String> getEntityNames(){
+    public ArrayList<String> getEntityNames() {
         ArrayList<String> names = new ArrayList<>();
-        for(Entity e : entities){
-            names.add(e.getName());
-        }
+        for (Entity e : entities) names.add(e.getName());
         return names;
     }
 
-    public ArrayList<Item> getItems() {
-        return items;
-    }
-
-    public void addItem (Item item){
-        items.add(item);
-    }
-
-    public void removeItem (Item item){
-        items.remove(item);
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
+    public ArrayList<Item> getItems()       { return items; }
+    public void addItem(Item item)          { items.add(item); }
+    public void removeItem(Item item)       { items.remove(item); }
+    public String getTitle()                { return title; }
+    public String getDescription()          { return description; }
 }
