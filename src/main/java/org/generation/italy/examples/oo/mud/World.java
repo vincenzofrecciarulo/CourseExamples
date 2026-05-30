@@ -44,6 +44,15 @@ public class World {
                 case "x":
                     player.interact();
                     break;
+                case "i":
+                    boolean isEmpty = !player.showItems();
+                    if(isEmpty){
+                        System.out.println("Inventario vuoto...");
+                        break;
+                    }
+                    int input = Integer.parseInt(IO.readln("Quale oggetto usare? ->"));
+                    player.useItem(input);
+                    break;
                 case "q":
                     IO.println("Grazie per aver giocato");
                     return;

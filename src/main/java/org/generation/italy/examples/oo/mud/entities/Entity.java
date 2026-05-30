@@ -5,6 +5,7 @@ public class Entity {
     private String name;
     private int level;
 
+
     public Entity(int hp, String name, int level) {
         this.hp = hp;
         this.name = name;

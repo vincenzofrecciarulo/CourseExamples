@@ -39,6 +39,7 @@ public class TempleRoom extends Room {
                     return;
                 }
                 player.pick(new HealPotion());
+                IO.println("Hai comprato una pozione di cura");
                 break;
             default:
                 System.out.println("Arrivederci avventuriero..");

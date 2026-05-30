@@ -14,6 +14,7 @@ public class ScrollOfReturn extends Item {
 
     @Override
     public void interact(Player player){
+        System.out.println("Inizio teletrasporto!");
         player.setCurrentRoom(World.start);
     }
 }

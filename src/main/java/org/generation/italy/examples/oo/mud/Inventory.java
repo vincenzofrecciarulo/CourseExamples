@@ -1,5 +1,6 @@
 package org.generation.italy.examples.oo.mud;
 
+import org.generation.italy.examples.oo.mud.entities.Player;
 import org.generation.italy.examples.oo.mud.items.Item;
 
 import java.util.ArrayList;
@@ -27,5 +28,24 @@ public class Inventory {
             totalWeight += item.getWeight();
         }
         return totalWeight;
+    }
+
+    public boolean showItems(){
+        if(inventory.isEmpty()){
+            return false;
+        }
+        System.out.println("Oggetti in inventario (" + getInventoryWeight() + " peso) : ");
+        for(int i = 0; i < inventory.size(); i++){
+            System.out.printf("(%s) %s \n", i, inventory.get(i).getName());
+        }
+        return true;
+    }
+
+    public boolean useItem(int index, Player player){
+        if(index >= 0 && index < inventory.size()){
+            inventory.get(index).interact(player);
+            return true;
+        }
+        return false;
     }
 }

@@ -33,6 +33,7 @@ public class MarketRoom extends Room {
                     IO.println("Eh troppo povero per comprare..?");
                 }
                 player.pick(new HealPotion());
+                IO.println("Hai comprato una pozione di cura");
                 break;
             case "2":
                 if(player.getInventoryWeight() + ScrollOfReturn.WEIGHT > Inventory.MAX_WEIGHT){
@@ -43,6 +44,7 @@ public class MarketRoom extends Room {
                     IO.println("Eh troppo povero per comprare..?");
                 }
                 player.pick(new ScrollOfReturn());
+                IO.println("Hai comprato una pergamena del ritorno");
                 break;
             default:
                 IO.println("Arrivederci avventuriero!");

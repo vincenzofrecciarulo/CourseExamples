@@ -5,8 +5,6 @@ import org.generation.italy.examples.oo.mud.items.Item;
 import org.generation.italy.examples.oo.mud.rooms.EmptyRoom;
 import org.generation.italy.examples.oo.mud.rooms.Room;
 
-import java.util.ArrayList;
-
 public class Player extends Entity {
     private int coins;
     private final Inventory inventory;
@@ -54,6 +52,14 @@ public class Player extends Entity {
 
     public void drop(Item item){
         inventory.drop(item);
+    }
+
+    public boolean showItems(){
+        return inventory.showItems();
+    }
+
+    public boolean useItem(int index){
+        return inventory.useItem(index, this);
     }
 
     public double getInventoryWeight(){
