@@ -38,7 +38,7 @@ public class Combat {
      * Combattimento a turni contro un singolo mostro.
      */
     private Result fightMonster(Monster monster) {
-        IO.println("\n⚔  Combattimento iniziato contro: " + monster.getName() +
+        IO.println("\n  Combattimento iniziato contro: " + monster.getName() +
                 " [" + monster.getRarity() + "] Liv." + monster.getLevel());
         IO.println("────────────────────────────────────────");
 
@@ -86,7 +86,7 @@ public class Combat {
     private void turnoAttacco(Monster monster) {
         int dannoBase = calcolaAttaccoGiocatore();
         int dannoInflitto = monster.takeDamage(dannoBase);
-        IO.println("⚔  Attacchi " + monster.getName() + " per " + dannoInflitto + " danni!");
+        IO.println("  Attacchi " + monster.getName() + " per " + dannoInflitto + " danni!");
         if (monster.isAlive()) {
             IO.println("   " + monster.getName() + ": " + monster.getHpBar());
             turnoMostro(monster);
@@ -153,13 +153,13 @@ public class Combat {
         // future espansioni: player.addExp(...), player.addGold(...)
     }
 
-    // ── Calcolo attacco giocatore (base 10 + livello, in futuro armi) ────────
+    // ── Calcolo attacco giocatore (base 10 + livello, in futuro armi)
 
     private int calcolaAttaccoGiocatore() {
         return 10 + player.getLevel() * 2;
     }
 
-    // ── Stampa stato combattimento ───────────────────────────────────────────
+    // ── Stampa stato combattimento
 
     private void printStatus(Monster monster) {
         IO.println("\n── Stato ───────────────────────────────");
