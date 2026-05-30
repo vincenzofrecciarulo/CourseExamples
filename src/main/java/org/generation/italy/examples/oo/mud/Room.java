@@ -69,6 +69,13 @@ public class Room {
         return names;
     }
 
+    public void itemsToString(){
+        for (Item i : items){
+            int realIndex = items.indexOf(i) + 1;
+            IO.println(realIndex + " " + i.getName());
+        }
+    }
+
     public Item getItemByIndex(int index){
         return  items.get(index);
     }

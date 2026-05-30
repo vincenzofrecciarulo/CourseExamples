@@ -37,7 +37,7 @@ public class World {
 
     public void startGame(){
         while(true){
-            IO.println(player.getCurrentPosition()); // questo fa automaticamente toString della Room
+            IO.println(player.getCurrentRoom()); // questo fa automaticamente toString della Room
             IO.println("1: muoverti");
             IO.println("2: raccogliere oggetti");
             IO.println("3: vedere l'inventario");
@@ -50,10 +50,7 @@ public class World {
                         playerMove();
                     break;
                 case 2:
-                        Room currentRoom = player.getCurrentPosition();
-                        IO.println(currentRoom.getObjectNames());
-                         int input = Integer.parseInt(IO.readln("scrivi l'indice del oggetto che vuoi aggiungere"));
-                        IO.println(pick(currentRoom,input));
+                        managePlayerPick();
                     break;
                 case 3:
                         player.inventoryToString();
@@ -70,29 +67,22 @@ public class World {
         }
     }
 
-    public String pick(Room room,int itemPosition){
-        if (itemPosition <= 0 || itemPosition > room.getEntityNames().size()){
-            return "Hai inserito un indice sbagliato";
+    public void managePlayerPick(){
+        Room currentRoom = player.getCurrentRoom();
+        boolean isRoomEmpty = currentRoom.getObjectNames().isEmpty();
+        if (isRoomEmpty){
+            IO.println("Nessun oggetto nella stanza");
+            return;
         }
-        Item item = room.getItemByIndex(itemPosition - 1);
-        boolean hasSuccess = player.tryPickItem(item);
-        if (hasSuccess){
-            room.removeItem(item);
-            return "Aggiunto al tuo inventario " + item.getName();
-        }
-        return "Inventario Pieno!";
-
+        IO.println("Scegli l'oggetto da prendere ->");
+        currentRoom.itemsToString();
+        int input = Integer.parseInt(IO.readln("scrivi l'indice del oggetto che vuoi aggiungere"));
+        IO.println(player.pick(input));
     }
 
     public void playerMove(){
         while(true){
-            IO.println(player.getCurrentPosition()); // questo fa automaticamente toString della Room
-            String command = IO.readln("Cosa vuoi fare?");
-            IO.println("1: muoverti");
-            IO.println("2: raccogliere oggetti");
-            IO.println("5: vedere l'inventario");
-            IO.println("4: combattere");
-            IO.println("5: esci dal gioco");
+            String command = IO.readln("Dove vuoi andare ->");
             boolean success = false;
             switch(command.toLowerCase()) {
                 case "n":
@@ -108,7 +98,7 @@ public class World {
                     success = player.moveTo(Room.SOUTH);
                     break;
                 case "q":
-                    IO.println("Grazie per aver giocato");
+                    IO.println("Non ti muovi");
                     return;
                 default:
                     IO.println("Non ho capito che cosa vuoi!");

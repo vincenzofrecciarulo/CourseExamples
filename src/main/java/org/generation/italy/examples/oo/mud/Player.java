@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Player extends Entity {
     // Attributi
     private ArrayList<Item> inventory;
-    private Room currentPosition;
+    private Room currentRoom;
     private double maxWeight;
     //Costruttore
     public Player(int hp, String name, int level, Room currentPosition) {
         super(hp, name, level);
-        this.currentPosition = currentPosition;
+        this.currentRoom = currentPosition;
         maxWeight = 100;
         inventory = new ArrayList<>();
         inventory.add(new Item(10,15,"Spada Semplice"));
@@ -19,9 +19,9 @@ public class Player extends Entity {
     // Metodi
 
     public boolean moveTo(int direction) {
-        Room destination = currentPosition.exitAt(direction);
+        Room destination = currentRoom.exitAt(direction);
         if(destination != null){
-            currentPosition = destination;
+            currentRoom = destination;
             return true;
         }
         return false;
@@ -46,6 +46,20 @@ public class Player extends Entity {
         return true;
     }
 
+    public String pick(int itemPosition){
+        int realIndex = itemPosition-1;
+        if (realIndex <= 0 || realIndex > currentRoom.getEntityNames().size()){
+            return "Hai inserito un indice sbagliato";
+        }
+        Item item = currentRoom.getItemByIndex(realIndex);
+        boolean hasSuccess = tryPickItem(item);
+        if (hasSuccess){
+            currentRoom.removeItem(item);
+            return "Aggiunto al tuo inventario " + item.getName();
+        }
+        return "Inventario Pieno!";
+    }
+
     // metodo che prende in input un indice e rimuove l'oggetto dell'inventario
     public boolean tryDropItem(int index){
         if (index > inventory.size() || index <= 0) return false;
@@ -65,12 +79,12 @@ public class Player extends Entity {
         return inventory;
     }
 
-    public Room getCurrentPosition() {
-        return currentPosition;
+    public Room getCurrentRoom() {
+        return currentRoom;
     }
 
-    public void setCurrentPosition(Room currentPosition) {
-        this.currentPosition = currentPosition;
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
     }
 
     public double getMaxWeight() {
