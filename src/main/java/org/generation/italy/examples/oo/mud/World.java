@@ -21,28 +21,38 @@ public class World {
         start.addExit(new EmptyRoom(), Room.SOUTH);
         start.addExit(new EmptyRoom(), Room.WEST);
         start.addExit(new EmptyRoom(), Room.EAST);
-        player = new Player(100, "Player", 1, start);
+        player = new Player(100, "Player", 1, start, 100);
     }
 
     public void startGame(){
         while(true){
-            // IO.println(current.getTitle());
-            // IO.println(current.getDescription());
             IO.println(player.getCurrentRoom()); // questo fa automaticamente toString
             String command = IO.readln("->");
-            boolean isMoveSuccess = false;
+            boolean isMoveSuccess;
             switch(command.toLowerCase()) {
                 case "w":
                     isMoveSuccess = player.tryMoveTo(Room.NORTH);
+                    if(!isMoveSuccess){
+                        IO.println("Non c'è niente in quella direzione...");
+                    }
                     break;
                 case "d":
                     isMoveSuccess = player.tryMoveTo(Room.EAST);
+                    if(!isMoveSuccess){
+                        IO.println("Non c'è niente in quella direzione...");
+                    }
                     break;
                 case "a":
                     isMoveSuccess = player.tryMoveTo(Room.WEST);
+                    if(!isMoveSuccess){
+                        IO.println("Non c'è niente in quella direzione...");
+                    }
                     break;
                 case "s":
                     isMoveSuccess = player.tryMoveTo(Room.SOUTH);
+                    if(!isMoveSuccess){
+                        IO.println("Non c'è niente in quella direzione...");
+                    }
                     break;
                 case "x":
                     player.interact();
@@ -54,10 +64,6 @@ public class World {
                     IO.println("Non ho capito che cosa vuoi!");
                     IO.println("--------------Next---------------");
                     continue;
-            }
-
-            if (isMoveSuccess){
-                IO.println("Te ne vai a " + command);
             }
 
             IO.println("--------------Next---------------");

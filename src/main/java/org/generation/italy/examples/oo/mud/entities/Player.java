@@ -6,14 +6,15 @@ import org.generation.italy.examples.oo.mud.rooms.Room;
 import java.util.ArrayList;
 
 public class Player extends Entity {
-    private int coins = 0;
+    private int coins;
     private ArrayList<Item> inventory = new ArrayList<>();
     public static final double MAX_WEIGHT = 2000;
     private Room currentRoom;
 
-    public Player(int hp, String name, int level, Room currentRoom) {
+    public Player(int hp, String name, int level, Room currentRoom, int coins) {
         super(hp, name, level);
         this.currentRoom = currentRoom;
+        this.coins = coins;
     }
 
     public void interact(){
