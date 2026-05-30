@@ -1,5 +1,7 @@
 package org.generation.italy.examples.oo.mud;
 
+import org.generation.italy.examples.oo.mud.roles.CharacterStats;
+
 public abstract class Entity {
     private static int nextId = 1;
     private final int id;
@@ -32,6 +34,20 @@ public abstract class Entity {
 
     public int getLevel() {
         return level;
+    }
+
+    public abstract CharacterStats getStats();
+
+    public int getAttackBonus() {
+        return 0;
+    }
+
+    public int getDefenseBonus() {
+        return 0;
+    }
+
+    public int getDamageBonus() {
+        return 0;
     }
 
     /**

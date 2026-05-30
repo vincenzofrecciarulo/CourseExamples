@@ -119,6 +119,21 @@ public class Player extends Entity {
         return stats;
     }
 
+    @Override
+    public int getAttackBonus() {
+        return 0;
+    }
+
+    @Override
+    public int getDefenseBonus() {
+        return 0;
+    }
+
+    @Override
+    public int getDamageBonus() {
+        return 0;
+    }
+
     public int getMaxHitPoints() {
         return maxHitPoints;
     }

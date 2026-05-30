@@ -14,14 +14,27 @@ public class AttackCommand implements Command {
         Entity target = context.getCurrentRoom().findEntityByPrefix(args);
         if(target == null || target == context.getPlayer()){
             context.getIo().println("Non vedo '" + args + "' qui.");
-        } else {
-            int dmg = 5;
-            boolean dead = target.applyDamage(dmg);
-            context.getIo().println("Hai inflitto " + dmg + " danni a " + target.getName());
-            if(dead){
-                context.getIo().println(target.getName() + " è morto.");
-                context.getCurrentRoom().removeEntity(target);
+            return CommandOutcome.CONTINUE;
+        }
+
+        if(context.getCombatCoordinator() != null){
+            if(context.getCombatCoordinator().isCombatActive()){
+                context.getIo().println("Sei già in combattimento.");
+                return CommandOutcome.CONTINUE;
             }
+
+            if(context.getCombatCoordinator().startCombat(target)){
+                context.getIo().println("Ti avventi contro " + target.getName() + ".");
+            }
+            return CommandOutcome.CONTINUE;
+        }
+
+        int dmg = 5;
+        boolean dead = target.applyDamage(dmg);
+        context.getIo().println("Hai inflitto " + dmg + " danni a " + target.getName());
+        if(dead){
+            context.getIo().println(target.getName() + " è morto.");
+            context.getCurrentRoom().removeEntity(target);
         }
         return CommandOutcome.REFRESH;
     }

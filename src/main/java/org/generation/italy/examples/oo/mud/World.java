@@ -230,16 +230,28 @@ public class World {
     public void startGame(){
          Player player = createInitialPlayer();
          GameContext context = new GameContext(io, start, player);
+         CombatCoordinator combatCoordinator = new CombatCoordinator(context, io);
+         context.setCombatCoordinator(combatCoordinator);
          // create a default player and put into the start room
          context.getCurrentRoom().addEntity(player);
 
          renderCurrentRoom(context);
 
          while(true){
-             String line = io.readln("-> ");
+             if(combatCoordinator.isGameOver()){
+                 return;
+             }
+
+             String prompt = combatCoordinator.isCombatActive() ? "combattimento> " : "-> ";
+             String line = io.readln(prompt);
              if(line==null) break;
              String command = line.trim();
              if(command.isEmpty()) continue;
+
+             if(combatCoordinator.isCombatActive()){
+                 combatCoordinator.enqueueInput(command);
+                 continue;
+             }
 
              String[] parts = command.split("\\s+", 2);
              String verb = parts[0].toLowerCase();
