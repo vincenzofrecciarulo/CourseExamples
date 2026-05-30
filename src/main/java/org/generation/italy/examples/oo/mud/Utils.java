@@ -17,4 +17,16 @@ public class Utils {
         }
         return selectedRoll;
     }
+    public static String choice(String msg,String... options){
+        String selected=IO.readln(msg).toLowerCase().trim();
+        boolean validSelection=false;
+        for(String s : options){
+            if(selected.equalsIgnoreCase(s)){
+                validSelection=true;
+                break;
+            }
+        }
+        if(validSelection) return selected;
+        return Utils.choice("SCELTA NON VALIDA \n"+msg,options);
+    }
 }

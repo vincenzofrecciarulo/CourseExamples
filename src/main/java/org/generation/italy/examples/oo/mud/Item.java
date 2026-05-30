@@ -5,25 +5,26 @@ public class Item {
     private double value;
     private double weight;
     private boolean droppable;
-    private int id;
 
-    public Item(String name, double value, double weight, boolean droppable, int id) {
-        this.id = id;
+    public Item(String name, double value, double weight, boolean droppable) {
         this.name = name;
         this.value = value;
         this.weight = weight;
         this.droppable = droppable;
     }
-    public Item(String name, double value, double weight, int id){
-        this(name,value,weight,true,id);
+    public Item(String name, double value, double weight){
+        this(name,value,weight,true);
     }
-    public Item(String name, double value, int id){
-        this(name,value,1,id);
+    public Item(String name, double value){
+        this(name,value,1);
     }
 
     @Override
     public boolean equals(Object o){
-        return this.getId()==((Item)o).getId();
+        return this.getName().equalsIgnoreCase(((Item)o).getName());
+    }
+    public boolean isNamed(String item){
+        return this.getName().equalsIgnoreCase(item);
     }
     public boolean isDroppable(){
         return droppable;
@@ -38,6 +39,5 @@ public class Item {
     public double getWeight() {
         return weight;
     }
-    public int getId(){return id;}
 
 }
