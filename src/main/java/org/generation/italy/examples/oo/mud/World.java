@@ -94,7 +94,6 @@ public class World {
                 - 'd' per andare a Est
                 - 'z' per aprire l'inventario
                 - 'x' per interagire con la stanza
-                - 'f' per raccogliere oggetti nella stanza
                 """);
     }
 

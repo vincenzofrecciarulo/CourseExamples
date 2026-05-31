@@ -107,6 +107,14 @@ public class Room {
         return entities.get(index);
     }
 
+    public Item getItem(int index){
+        return items.get(index);
+    }
+
+    public boolean removeItem(Item item){
+        return items.remove(item);
+    }
+
     public static Room getRandomRoom(){
         int num = random.nextInt(7);
         switch (num){
