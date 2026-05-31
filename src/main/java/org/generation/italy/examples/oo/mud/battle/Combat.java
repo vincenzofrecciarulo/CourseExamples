@@ -1,4 +1,7 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.battle;
+
+import org.generation.italy.examples.oo.mud.characters.Player;
+import org.generation.italy.examples.oo.mud.characters.enemies.Monster;
 
 public class Combat {
     private Player player;

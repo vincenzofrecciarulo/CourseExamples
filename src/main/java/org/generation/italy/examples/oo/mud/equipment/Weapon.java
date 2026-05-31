@@ -1,6 +1,6 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.equipment;
 
-public class Weapon extends Item{
+public class Weapon extends Item {
     private int damage;
 
     public Weapon(double weight, int value, String name, int damage){

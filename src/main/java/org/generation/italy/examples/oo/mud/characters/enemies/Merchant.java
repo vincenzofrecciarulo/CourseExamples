@@ -1,4 +1,10 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.characters.enemies;
+
+import org.generation.italy.examples.oo.mud.characters.Player;
+import org.generation.italy.examples.oo.mud.equipment.Item;
+import org.generation.italy.examples.oo.mud.equipment.Weapon;
+import org.generation.italy.examples.oo.mud.rpg.DndClass;
+import org.generation.italy.examples.oo.mud.rpg.Race;
 
 import java.util.ArrayList;
 

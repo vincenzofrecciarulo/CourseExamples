@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.equipment;
 
 import java.util.ArrayList;
 
@@ -11,6 +11,18 @@ public class Inventory {
         this.items = new ArrayList<>();
         this.maxWeight = maxWeight;
         this.maxSlot = maxSlot;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public double getMaxWeight() {
+        return maxWeight;
+    }
+
+    public int getMaxSlot() {
+        return maxSlot;
     }
 
     public double getCurrentWeight(){

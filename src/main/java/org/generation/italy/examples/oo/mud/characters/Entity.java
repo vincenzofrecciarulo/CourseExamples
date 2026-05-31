@@ -1,9 +1,14 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.characters;
+
+import org.generation.italy.examples.oo.mud.rpg.DndClass;
+import org.generation.italy.examples.oo.mud.rpg.Race;
+import org.generation.italy.examples.oo.mud.equipment.Weapon;
 
 public class Entity {
     private String name;
     private Race race;
     private String gender;
+    private int maxHp;
     private int currentHp;
     private int level;
     private DndClass dndClass;
@@ -18,11 +23,14 @@ public class Entity {
         this.gender = gender;
         this.dndClass = dndClass;
         this.equippedWeapon = equippedWeapon;
+        this.maxHp = dndClass != null ? dndClass.getHpBase() : currentHp;
     }
 
     public Entity(int currentHp, String name, int level, Race race, String gender){
         this(currentHp, name, level, race, gender, null, null);
     }
+
+
 
     public String getName() {
         return name;
@@ -55,4 +63,14 @@ public class Entity {
     public void takeDamage(int damage){
         currentHp = Math.max(0, currentHp - damage);
     }
+
+    public void setEquippedWeapon(Weapon weapon){
+        this.equippedWeapon = weapon;
+    }
+
+    public void healAmount(int amount){
+        currentHp = Math.min(currentHp + amount, maxHp);
+    }
 }
+
+

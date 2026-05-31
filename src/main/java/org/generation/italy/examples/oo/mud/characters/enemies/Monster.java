@@ -1,6 +1,8 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.characters.enemies;
 
-public class Monster extends Npc{
+import org.generation.italy.examples.oo.mud.rpg.Race;
+
+public class Monster extends Npc {
     private int attackDmg;
 
     public Monster(int currentHp, String name, int level, Race race, String gender, int attackDmg) {

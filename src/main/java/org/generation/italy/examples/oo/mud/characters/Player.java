@@ -1,4 +1,9 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.characters;
+
+import org.generation.italy.examples.oo.mud.rpg.DndClass;
+import org.generation.italy.examples.oo.mud.equipment.Inventory;
+import org.generation.italy.examples.oo.mud.rpg.Race;
+import org.generation.italy.examples.oo.mud.equipment.Weapon;
 
 public class Player extends Entity {
     private Inventory inventory;
@@ -14,6 +19,7 @@ public class Player extends Entity {
         return coins;
     }
 
+
     public void addGold(int amount){
         coins -= amount;
     }
@@ -25,5 +31,6 @@ public class Player extends Entity {
     public Inventory getInventory() {
         return inventory;
     }
+
 
 }

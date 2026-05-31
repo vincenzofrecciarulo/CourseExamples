@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.rpg;
 
 public class DndClass {
     private int hpBase;
