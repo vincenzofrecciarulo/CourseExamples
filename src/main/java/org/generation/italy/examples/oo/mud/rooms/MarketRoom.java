@@ -20,15 +20,18 @@ public class MarketRoom extends Room {
 
     @Override
     public void interact(Player player) {
-        String input = IO.readln("Vuoi interagire con un npc (1) o raccogliere degli oggetti (2) ?");
+        String input = IO.readln("Vuoi interagire con un npc (1) o raccogliere degli oggetti (2) ?\n->");
 
         switch (input){
             case "1":
-                int index = Integer.parseInt(IO.readln("Inserisci l'npc con cui vuoi interagire."));
+                showNpc();
+                int index = Integer.parseInt(IO.readln("Inserisci l'npc con cui vuoi interagire\n->"));
                 getEntity(index).interact(player);
                 break;
             case "2":
-                int index2 = Integer.parseInt(IO.readln("Inserisci l'oggetto che vuoi raccogliere."));
+                showItems();
+                int index2 = Integer.parseInt(IO.readln("Inserisci l'oggetto che vuoi raccogliere\n->"));
+
                 Item item = getItem(index2);
                 if(!player.pick(item)){
                     break;

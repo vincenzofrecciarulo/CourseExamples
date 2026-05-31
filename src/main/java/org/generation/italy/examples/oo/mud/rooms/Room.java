@@ -95,6 +95,20 @@ public class Room {
         return names;
     }
 
+    public void showItems(){
+        IO.println("Oggetti che puoi raccogliere:");
+        for(int i = 0; i < items.size(); i++){
+            System.out.printf("(%s) %s \n", i, items.get(i).getName());
+        }
+    }
+
+    public void showNpc(){
+        IO.println("Oggetti che puoi raccogliere:");
+        for(int i = 0; i < entities.size(); i++){
+            System.out.printf("(%s) %s \n", i, entities.get(i).getName());
+        }
+    }
+
     public String getTitle() {
         return title;
     }
