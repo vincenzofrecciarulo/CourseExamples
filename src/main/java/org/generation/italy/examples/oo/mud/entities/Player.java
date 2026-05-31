@@ -17,10 +17,6 @@ public class Player extends Entity {
         this.inventory = inventory;
     }
 
-    public void interact(){
-        currentRoom.interact(this);
-    }
-
     public void heal(int heal){
         hp += heal;
     }

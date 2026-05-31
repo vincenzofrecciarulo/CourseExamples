@@ -46,7 +46,7 @@ public class World {
                     moveTo(player, Room.SOUTH);
                     break;
                 case "x":
-                    player.interact();
+                    player.getCurrentRoom().interact(player);
                     break;
                 case "z":
                     boolean isEmpty = !player.showItems();

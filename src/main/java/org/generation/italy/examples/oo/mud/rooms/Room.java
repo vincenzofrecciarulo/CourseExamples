@@ -103,6 +103,10 @@ public class Room {
         return description;
     }
 
+    public Entity getEntity(int index){
+        return entities.get(index);
+    }
+
     public static Room getRandomRoom(){
         int num = random.nextInt(7);
         switch (num){

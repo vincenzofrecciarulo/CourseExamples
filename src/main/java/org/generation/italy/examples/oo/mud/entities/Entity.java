@@ -12,6 +12,11 @@ public class Entity {
         this.level = level;
     }
 
+
+    public void interact(Player player){
+
+    }
+
     public String getName() {
         return name;
     }
