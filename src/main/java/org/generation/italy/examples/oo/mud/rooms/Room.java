@@ -124,7 +124,7 @@ public class Room {
     }
 
     public void showNpc(){
-        IO.println("Oggetti che puoi raccogliere:");
+        IO.println("Npc nella stanza:");
         for(int i = 0; i < entities.size(); i++){
             System.out.printf("(%s) %s \n", i, entities.get(i).getName());
         }
