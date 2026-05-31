@@ -1,13 +1,15 @@
 package org.generation.italy.examples.oo.mud;
 
 import org.generation.italy.examples.oo.mud.entities.Player;
-import org.generation.italy.examples.oo.mud.rooms.EmptyRoom;
+import org.generation.italy.examples.oo.mud.enums.Direction;
 import org.generation.italy.examples.oo.mud.rooms.MarketRoom;
 import org.generation.italy.examples.oo.mud.rooms.Room;
 import org.generation.italy.examples.oo.mud.rooms.TempleRoom;
 
+
 public class World {
     public final static Room start = new TempleRoom();
+    public static final Map map = new Map();
     private final Player player;
 
     public World(){
@@ -16,17 +18,12 @@ public class World {
         //os.add(new Item(3, 9, "Scudo di ferro"));
         //os2.add(new Item(4, 8, "Ago di metallo"));
         // stanza del tempio
-
-        start.addExit(new MarketRoom(), Room.NORTH);
-        start.addExit(new EmptyRoom(), Room.SOUTH);
-        start.addExit(new EmptyRoom(), Room.WEST);
-        start.addExit(new EmptyRoom(), Room.EAST);
-        player = new Player(100, "Player", 1, start, 100, new Inventory());
+        player = new Player(100, "Player", 1, 100, new Inventory());
     }
 
     public void startGame(){
         while(true){
-            IO.println(player.getCurrentRoom()); // questo fa automaticamente toString
+            IO.println(map.getCurrentRoom()); // questo fa automaticamente toString
             IO.println("Inserisci 'i' per consultare i comandi");
             String command = IO.readln("->");
             switch(command.toLowerCase()) {
@@ -34,19 +31,19 @@ public class World {
                     showCommands();
                     break;
                 case "w":
-                    moveTo(player, Room.NORTH);
+                    map.moveTo(player, Direction.NORTH);
                     break;
                 case "d":
-                    moveTo(player, Room.EAST);
+                    map.moveTo(player, Direction.EAST);
                     break;
                 case "a":
-                    moveTo(player, Room.WEST);
+                    map.moveTo(player, Direction.WEST);
                     break;
                 case "s":
-                    moveTo(player, Room.SOUTH);
+                    map.moveTo(player, Direction.SOUTH);
                     break;
                 case "x":
-                    player.getCurrentRoom().interact(player);
+                    map.getCurrentRoom().interact(player);
                     break;
                 case "z":
                     boolean isEmpty = !player.showItems();
@@ -70,20 +67,7 @@ public class World {
         }
     }
 
-    public void moveTo(Player player, int direction){
-        if(!player.tryMoveTo(direction)){
-            IO.println("""
-            Non c'è niente in quella direzione...
-            🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-             🧱🧱🧱🧱🧱🧱🧱🧱🧱
-            🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-             🧱🧱🧱🧱🧱🧱🧱🧱🧱
-            🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
-            """);
-        }else{
-            IO.println("Stai correndo...");
-        }
-    }
+
 
     private static void showCommands(){
         System.out.print("""

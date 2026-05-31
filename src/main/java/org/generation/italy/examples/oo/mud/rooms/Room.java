@@ -12,23 +12,14 @@ public class Room {
     private String description;
     private ArrayList<Entity> entities;
     private ArrayList<Item> items;
-    private Room[] exits;
 
     private static final Random random = new Random();
-
-    public static final int NORTH = 0;
-    public static final int EAST = 1;
-    public static final int WEST = 2;
-    public static final int SOUTH = 3;
-
-
 
     public Room(String title, String description, ArrayList<Entity> entities, ArrayList<Item> items) {
         this.title = title;
         this.description = description;
         this.entities = entities;
         this.items = items;
-        this.exits = new Room[4];
     }
 
     public void interact(Player player){
@@ -55,39 +46,6 @@ public class Room {
                 break;
         }
     }
-
-    // aggiungiamo una uscita ad una stanza e diciamo anche in che direzione è l'uscita
-    public boolean addExit(Room destination, int direction){
-        if(exits[direction]!=null){
-            return false;
-        }
-
-        exits[direction] = destination;
-
-        switch (direction){
-            case Room.NORTH:
-                destination.addExit(this, Room.SOUTH);
-                break;
-            case Room.EAST:
-                destination.addExit(this, Room.WEST);
-                break;
-            case Room.WEST:
-                destination.addExit(this, Room.EAST);
-                break;
-            case Room.SOUTH:
-                destination.addExit(this, Room.NORTH);
-                break;
-            default:
-                IO.println("Qualcosa è andato storto...");
-                return false;
-        }
-        return true;
-    }
-
-    public Room exitAt(int direction){
-        return exits[direction];
-    }
-
 
     @Override
     public String toString(){

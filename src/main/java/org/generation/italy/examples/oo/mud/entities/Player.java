@@ -2,17 +2,15 @@ package org.generation.italy.examples.oo.mud.entities;
 
 import org.generation.italy.examples.oo.mud.Inventory;
 import org.generation.italy.examples.oo.mud.items.Item;
-import org.generation.italy.examples.oo.mud.rooms.EmptyRoom;
+
 import org.generation.italy.examples.oo.mud.rooms.Room;
 
 public class Player extends Entity {
     private int coins;
     private final Inventory inventory;
-    private Room currentRoom;
 
-    public Player(int hp, String name, int level, Room currentRoom, int coins, Inventory inventory) {
+    public Player(int hp, String name, int level, int coins, Inventory inventory) {
         super(hp, name, level);
-        this.currentRoom = currentRoom;
         this.coins = coins;
         this.inventory = inventory;
     }
@@ -62,14 +60,7 @@ public class Player extends Entity {
         return inventory.getInventoryWeight();
     }
 
-    public Room getCurrentRoom(){
-        return currentRoom;
-    }
-
-    public void setCurrentRoom(Room room){
-        currentRoom = room;
-    }
-
+    /*
     public boolean tryMoveTo(int direction) {
         Room destination = currentRoom.exitAt(direction);
         if(destination == null){
@@ -87,4 +78,6 @@ public class Player extends Entity {
         setCurrentRoom(destination);
         return true;
     }
+    */
+
 }
