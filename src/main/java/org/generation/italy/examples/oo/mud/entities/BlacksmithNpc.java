@@ -6,7 +6,7 @@ import org.generation.italy.examples.oo.mud.items.ScrollOfReturn;
 
 public class BlacksmithNpc extends Entity{
     private static final int HP = 1;
-    private static final String NAME = "Ciro Il Fabbro";
+    private static final String NAME = "Biron Il Fabbro";
     private static final int LEVEL = 1;
 
     public BlacksmithNpc() {

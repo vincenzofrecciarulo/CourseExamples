@@ -18,32 +18,6 @@ public class MarketRoom extends Room {
         super(TITLE, DESCRIPTION, MarketRoom.getThreeRandomNpc(), MarketRoom.getThreeRandomItems());
     }
 
-    @Override
-    public void interact(Player player) {
-        String input = IO.readln("Vuoi interagire con un npc (1) o raccogliere degli oggetti (2) ?\n->");
-
-        switch (input){
-            case "1":
-                showNpc();
-                int index = Integer.parseInt(IO.readln("Inserisci l'npc con cui vuoi interagire\n->"));
-                getEntity(index).interact(player);
-                break;
-            case "2":
-                showItems();
-                int index2 = Integer.parseInt(IO.readln("Inserisci l'oggetto che vuoi raccogliere\n->"));
-
-                Item item = getItem(index2);
-                if(!player.pick(item)){
-                    break;
-                }
-                removeItem(item);
-                IO.println("Hai raccolto " + item.getName());
-                break;
-            default:
-                break;
-        }
-
-    }
 
     private static Entity getRandomNpc(){
         int randomNum = new Random().nextInt(2);
