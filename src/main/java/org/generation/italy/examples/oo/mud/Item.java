@@ -23,8 +23,8 @@ public class Item {
     public boolean equals(Object o){
         return this.getName().equalsIgnoreCase(((Item)o).getName());
     }
-    public boolean isNamed(String item){
-        return this.getName().equalsIgnoreCase(item);
+    public boolean isNamed(String name){
+        return this.getName().equalsIgnoreCase(name);
     }
     public boolean isDroppable(){
         return droppable;

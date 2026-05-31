@@ -110,4 +110,12 @@ public class Room {
     public String getDescription(){
         return description;
     }
+    public boolean hasItems() {
+        if(roomItems.isEmpty()) return false;
+        else return true;
+    }
+
+    public Item[] getRoomItems() {
+        return roomItems.toArray(new Item[0]);
+    }
 }
