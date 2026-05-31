@@ -27,8 +27,12 @@ public class World {
     public void startGame(){
         while(true){
             IO.println(player.getCurrentRoom()); // questo fa automaticamente toString
+            IO.println("Inserisci 'i' per consultare i comandi");
             String command = IO.readln("->");
             switch(command.toLowerCase()) {
+                case "i":
+                    showCommands();
+                    break;
                 case "w":
                     moveTo(player, Room.NORTH);
                     break;
@@ -44,7 +48,7 @@ public class World {
                 case "x":
                     player.interact();
                     break;
-                case "i":
+                case "z":
                     boolean isEmpty = !player.showItems();
                     if(isEmpty){
                         System.out.println("Inventario vuoto...");
@@ -79,6 +83,19 @@ public class World {
         }else{
             IO.println("Stai correndo...");
         }
+    }
+
+    private static void showCommands(){
+        System.out.print("""
+                Inserisci:
+                - 'w' per andare a Nord
+                - 's' per andare a Sud
+                - 'a' per andare a Ovest
+                - 'd' per andare a Est
+                - 'z' per aprire l'inventario
+                - 'x' per interagire con la stanza
+                - 'f' per raccogliere oggetti nella stanza
+                """);
     }
 
     public void main(){
