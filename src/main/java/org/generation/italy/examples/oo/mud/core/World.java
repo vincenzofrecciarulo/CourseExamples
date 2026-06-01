@@ -27,7 +27,6 @@ public class World {
 
         player = new Player("Eroe", Race.HUMAN, "male", new Warrior(), null, 10);
 
-
         ArrayList<Item> merchantItems = new ArrayList<>(List.of(
                 new Item(2.0, 50, "Libro di Magia"),
                 new Weapon(3.0, 5, "Bastone di Legno", 4),
@@ -86,6 +85,7 @@ public class World {
     public void startGame() {
         current = start;
         boolean firstTime = true;
+
 
 
         while (true) {
@@ -225,8 +225,5 @@ public class World {
         return false;
     }
 
-    public void main() {
-        World w = new World();
-        w.startGame();
-    }
+
 }
