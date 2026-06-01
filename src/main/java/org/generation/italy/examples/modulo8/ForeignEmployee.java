@@ -1,5 +1,7 @@
 package org.generation.italy.examples.modulo8;
 
+import java.util.Objects;
+
 public class ForeignEmployee extends Person{
     private String nativeLanguage;
     private String company;
@@ -40,5 +42,32 @@ public class ForeignEmployee extends Person{
     public String toString(){
         // return super.toString() + " " + nativeLanguage + " " + company + " " + salary;
         return super.toString() + " " + getNativeLanguage() + " " + getCompany() + " " + getSalary();
+    }
+
+    // molto importante
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), company, salary);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        // Se le proprità della classe Person non sono uguali a quelle dell'oggetto, allora basta così, cioè sono diversi
+        if (super.equals(obj) == false) {
+            return false;
+        }
+
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+
+        ForeignEmployee employee = (ForeignEmployee) obj;
+
+        return Objects.equals(company, employee.company) &&
+                salary == employee.salary;
     }
 }
