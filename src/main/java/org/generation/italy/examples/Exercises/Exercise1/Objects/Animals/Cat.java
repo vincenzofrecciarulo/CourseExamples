@@ -1,4 +1,10 @@
 package org.generation.italy.examples.Exercises.Exercise1.Objects.Animals;
 
-public class Cat {
+import java.util.ArrayList;
+
+public class Cat extends Animal{
+    @Override
+    public void sound(){
+        IO.println("Miaoo..");
+    }
 }
