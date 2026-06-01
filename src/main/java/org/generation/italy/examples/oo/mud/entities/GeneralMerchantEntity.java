@@ -4,13 +4,13 @@ import org.generation.italy.examples.oo.mud.Inventory;
 import org.generation.italy.examples.oo.mud.items.HealPotionItem;
 import org.generation.italy.examples.oo.mud.items.ScrollOfReturnItem;
 
-public class BlacksmithEntity extends Entity{
+public class GeneralMerchantEntity extends Entity{
     private static final int HP = 1;
-    private static final String NAME = "Biron Il Fabbro";
+    private static final String NAME = "Therion Il Mercante";
     private static final int LEVEL = 1;
 
-    public BlacksmithEntity() {
-        super(BlacksmithEntity.HP, BlacksmithEntity.NAME, BlacksmithEntity.LEVEL);
+    public GeneralMerchantEntity() {
+        super(GeneralMerchantEntity.HP, GeneralMerchantEntity.NAME, GeneralMerchantEntity.LEVEL);
     }
 
     @Override

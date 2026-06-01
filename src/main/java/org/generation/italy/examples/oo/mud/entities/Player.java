@@ -46,11 +46,11 @@ public class Player extends Entity {
     }
 
     public boolean pick(Item item){
-        return inventory.pick(item);
+        return inventory.add(item);
     }
 
     public void drop(Item item){
-        inventory.drop(item);
+        inventory.remove(item);
     }
 
     public boolean showItems(){

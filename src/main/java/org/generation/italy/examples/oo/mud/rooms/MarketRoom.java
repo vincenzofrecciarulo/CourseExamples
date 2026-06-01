@@ -1,6 +1,6 @@
 package org.generation.italy.examples.oo.mud.rooms;
 
-import org.generation.italy.examples.oo.mud.entities.BlacksmithEntity;
+import org.generation.italy.examples.oo.mud.entities.GeneralMerchantEntity;
 import org.generation.italy.examples.oo.mud.entities.Entity;
 import org.generation.italy.examples.oo.mud.items.HealPotionItem;
 import org.generation.italy.examples.oo.mud.items.Item;
@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class MarketRoom extends Room {
     private static final String TITLE = "Piazza del Mercato";
-    private static final String DESCRIPTION = "Qui vengono a curarsi gli avventurieri malati!";
+    private static final String DESCRIPTION = "Qua risiedono i mercanti e i nullafacenti!";
     private static final String MAP_ICON = "M";
 
     public MarketRoom(){
@@ -24,11 +24,11 @@ public class MarketRoom extends Room {
 
         switch (randomNum){
             case 0:
-                return new BlacksmithEntity();
+                return new GeneralMerchantEntity();
             case 1:
-                return new BlacksmithEntity();
+                return new GeneralMerchantEntity();
             default:
-                return new BlacksmithEntity();
+                return new GeneralMerchantEntity();
 
         }
     }

@@ -1,13 +1,10 @@
 package org.generation.italy.examples.oo.mud;
 
 import org.generation.italy.examples.oo.mud.entities.Player;
-import org.generation.italy.examples.oo.mud.enums.Direction;
-import org.generation.italy.examples.oo.mud.rooms.EmptyRoom;
 import org.generation.italy.examples.oo.mud.rooms.MarketRoom;
 import org.generation.italy.examples.oo.mud.rooms.Room;
 import org.generation.italy.examples.oo.mud.rooms.TempleRoom;
 
-import java.util.Arrays;
 
 public class Map {
     private final Room[][] map = new Room[20][20];

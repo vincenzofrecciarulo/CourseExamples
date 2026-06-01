@@ -15,7 +15,7 @@ public class Inventory {
         inventory.add(new MapItem());
     }
 
-    public boolean pick(Item item){
+    public boolean add(Item item){
         if(getInventoryWeight() + item.getWeight() > MAX_WEIGHT){
             return false;
         }
@@ -23,7 +23,7 @@ public class Inventory {
         return true;
     }
 
-    public void drop(Item item){
+    public void remove(Item item){
         inventory.remove(item);
     }
 
