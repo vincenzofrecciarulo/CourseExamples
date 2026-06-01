@@ -2,22 +2,27 @@ package org.generation.italy.examples.oo.mud.entities;
 
 import org.generation.italy.examples.oo.mud.Inventory;
 import org.generation.italy.examples.oo.mud.Map;
+import org.generation.italy.examples.oo.mud.entities.pokemon.Pokemon;
 import org.generation.italy.examples.oo.mud.enums.Direction;
 import org.generation.italy.examples.oo.mud.items.Item;
 
 import org.generation.italy.examples.oo.mud.rooms.EmptyRoom;
 import org.generation.italy.examples.oo.mud.rooms.Room;
 
+import java.util.ArrayList;
+
 public class Player extends Entity {
     private int coins;
     private final Inventory inventory;
     private int currentY = 10;
     private int currentX = 10;
+    private final ArrayList<Pokemon> pokemons;
 
-    public Player(int hp, String name, int level, int coins, Inventory inventory) {
+    public Player(int hp, String name, int level, int coins, Inventory inventory, ArrayList<Pokemon> pokemons) {
         super(hp, name, level);
         this.coins = coins;
         this.inventory = inventory;
+        this.pokemons = pokemons;
     }
 
     public void heal(int heal){
