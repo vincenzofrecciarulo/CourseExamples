@@ -14,7 +14,7 @@ public class Entity {
 
 
     public void interact(Player player){
-
+        IO.println(name + " si gratta il culo");
     }
 
     public String getName() {
