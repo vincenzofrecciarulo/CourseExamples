@@ -28,17 +28,20 @@ public class Player extends Entity {
     // ── Raccolta / abbandono ─────────────────────────────────────────────────
 
     public boolean pickItem(Item item) {
+       //Controllo se l'oggetto è presente nella stanza
         if (!currentRoom.getItems().contains(item)) {
             IO.println("Oggetto " + item.getName() + " non c'è nella stanza.");
             return false;
         }
-        currentRoom.removeItem(item);
-        inventory.add(item);
-
-        if(this.getInventoryWeight() <= maxWeight){
-            IO.println("Hai raggiunto il peso massimo");
+        //Calcolo peso dell'inventario + peso dell'oggetto
+        double futureWeight = this.getInventoryWeight()+ item.getWeight();
+        //Controllo se peso dell'oggetto + peso totale dell'inventario > peso massimo
+        if(futureWeight > maxWeight){
+            IO.println("Non puoi trasportare altro peso");
             return false;
         }
+        currentRoom.removeItem(item);
+        inventory.add(item);
         return true;
     }
 
@@ -148,7 +151,7 @@ public class Player extends Entity {
         IO.println("  Armatura: " + (wornArmor != null ? wornArmor.getName() + " (DEF " + wornArmor.getDefense() + ")" : "nessuna"));
         IO.println("  Arma: " + (wornWeapon != null ? wornWeapon.getName() + " (POW " + wornWeapon.getPower() + ")" : "nessuna"));
         IO.println("  Oggetti:");
-        IO.println("  Peso Attuale:"+this.getInventoryWeight());
+        IO.println("  Peso Attuale:"+this.getInventoryWeight()+ "/100");
         for (int i = 0; i < inventory.size(); i++) {
             Item item = inventory.get(i);
             String tag = "";
