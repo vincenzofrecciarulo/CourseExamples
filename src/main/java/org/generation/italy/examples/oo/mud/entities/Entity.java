@@ -30,6 +30,10 @@ public class Entity {
         strength+=newStrength;
         return level;
     }
+    public String interact(Player player) {
+        return getName() + " non sembra intenzionato a parlare con te.";
+    }
+
     public boolean moveTo(String direction){
         boolean moved=false;
         Room destination= currentRoom.getExitAt(direction);
@@ -112,7 +116,7 @@ public class Entity {
     public int getShield() {
         return shield;
     }
-    public boolean getHostility(){
+    public boolean isHostile(){
         return isHostile;
     }
 }

@@ -36,10 +36,9 @@ public class Goblin extends Enemy{
                     sb.append("- ").append(i.getName());
                 }
             }
-            if(drop) IO.println(sb.toString());
-            setCurrentRoom(null);
-
         }
+        if(drop) IO.println(sb.toString());
+        setCurrentRoom(null);
     }
     public void stealRandomItem(Player player){
         if(player.inventoryIsEmpty()) return;

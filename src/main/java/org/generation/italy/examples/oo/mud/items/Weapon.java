@@ -15,7 +15,7 @@ public class Weapon extends Item {
         if(this.isInUse()) return "Arma già equipaggiata";
         int equipped=0;
         for(Item i: player.getInventory()){
-            if(i.isInUse()) equipped++;
+            if(i.isInUse()&&i.getType()=='w') equipped++;
         }
         if (equipped>=2)    return "Non puoi equipaggiare piu' di 2" +
                                     "armi alla volta.";

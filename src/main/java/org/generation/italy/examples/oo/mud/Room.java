@@ -33,6 +33,15 @@ public class Room {
     public void kickOut(Entity entity){
         population.remove(entity);
     }
+    public int getHostileCount() {
+        int count = 0;
+        for (Entity e : population) {
+            if (e.isHostile()) {
+                count++;
+            }
+        }
+        return count;
+    }
     public boolean isEmpty(){
         return population.isEmpty();
     }
@@ -63,6 +72,18 @@ public class Room {
         msg=sb.toString();
         return msg;
     }
+    public String showPopulation() {
+        StringBuilder sb = new StringBuilder();
+        if (population.isEmpty()) {
+            return "";
+        }
+        sb.append("ENTITA' PRESENTI: \n");
+        for (Entity e : population) {
+            sb.append("- ").append(e.getName()).append(" [Lvl ").append(e.getLevel()).append("]\n");
+        }
+        return sb.toString();
+    }
+
     public Room getExitAt(String direction){
         switch(direction.toLowerCase()){
             case "n":

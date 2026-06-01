@@ -45,17 +45,23 @@ public class Utils {
         }
     }
     public static void startCombat(Player player, Enemy enemy) throws InterruptedException {
-        IO.println("IL COMBATTIMENTO TRA "+player.getName()+" E "
-        +enemy.getName()+" HA INIZIO:\n");
+        IO.println("IL COMBATTIMENTO TRA " + player.getName() + " E " + enemy.getName() + " HA INIZIO:\n");
         Thread.sleep(700);
-
-        while (player.getHp()>0){
-            IO.println(player.attack(enemy));
-            if (enemy.getCurrentRoom()==null) break;
-            IO.println(enemy.attack(player));
+        while (player.getHp() > 0 && enemy.getHp() > 0) {
+            String playerAttackResult = player.attack(enemy);
+            IO.println(playerAttackResult);
+            if (enemy.getHp() <= 0) {
+                break;
+            }
+            Thread.sleep(400);
+            if (player.getHp() > 0) {
+                String enemyAttackResult = enemy.attack(player);
+                IO.println(enemyAttackResult);
+            }
         }
-        if (player.getHp()<=0)   gameOver(player);
+        if (player.getHp() <= 0) gameOver(player);
     }
+
     public static void gameOver(Player player){
         IO.println("IL NOSTRO EROE E' MORTO");
         IO.println("LIVELLO RAGGIUNTO: "+player.getLevel());
