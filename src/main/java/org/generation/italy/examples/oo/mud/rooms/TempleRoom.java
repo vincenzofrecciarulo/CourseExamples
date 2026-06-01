@@ -11,9 +11,10 @@ public class TempleRoom extends Room {
 
     private static final String TITLE = "Piazza del Tempio";
     private static final String DESCRIPTION = "Qui vengono a curarsi gli avventurieri malati!";
+    private static final String MAP_ICON = "T";
 
     public TempleRoom(){
-        super(TempleRoom.TITLE, TempleRoom.DESCRIPTION, getThreeRandomNpc(), getThreeRandomItems());
+        super(TempleRoom.TITLE, TempleRoom.DESCRIPTION, getThreeRandomNpc(), getThreeRandomItems(), TempleRoom.MAP_ICON);
     }
 
     private static Entity getRandomNpc(){

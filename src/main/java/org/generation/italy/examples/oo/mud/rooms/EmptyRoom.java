@@ -6,9 +6,10 @@ import org.generation.italy.examples.oo.mud.items.Item;
 import java.util.ArrayList;
 
 public class EmptyRoom extends Room{
-    public static final String TITLE = "Empty room";
+    private static final String TITLE = "Empty room";
+    private static final String MAP_ICON = "X";
 
     public EmptyRoom() {
-        super(EmptyRoom.TITLE, "", new ArrayList<>(), new ArrayList<>());
+        super(EmptyRoom.TITLE, "", new ArrayList<>(), new ArrayList<>(), EmptyRoom.MAP_ICON);
     }
 }

@@ -8,8 +8,9 @@ import java.util.ArrayList;
 public class DangerRoom extends Room{
     private static final String TITLE = "Foresta oscura";
     private static final String DESCRIPTION = "Qui risiedono mostri pericolosi";
+    private static final String MAP_ICON = "D";
 
     public DangerRoom() {
-        super(DangerRoom.TITLE, DangerRoom.DESCRIPTION, new ArrayList<>(), new ArrayList<>());
+        super(DangerRoom.TITLE, DangerRoom.DESCRIPTION, new ArrayList<>(), new ArrayList<>(), DangerRoom.MAP_ICON);
     }
 }

@@ -12,9 +12,10 @@ import java.util.Random;
 public class MarketRoom extends Room {
     private static final String TITLE = "Piazza del Mercato";
     private static final String DESCRIPTION = "Qui vengono a curarsi gli avventurieri malati!";
+    private static final String MAP_ICON = "M";
 
     public MarketRoom(){
-        super(TITLE, DESCRIPTION, MarketRoom.getThreeRandomNpc(), MarketRoom.getThreeRandomItems());
+        super(TITLE, DESCRIPTION, MarketRoom.getThreeRandomNpc(), MarketRoom.getThreeRandomItems(), MarketRoom.MAP_ICON);
     }
 
 

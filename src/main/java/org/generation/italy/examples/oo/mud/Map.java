@@ -26,9 +26,27 @@ public class Map {
         map[y][x] = room;
     }
 
-    public void showRooms(){
-        for(Room[] row : map){
-            IO.println(Arrays.toString(row));
+    public void showRooms(Player player){
+        IO.println("""
+                Legenda:
+                'M' - Mercato
+                'T' - Tempio
+                'X' - Muro
+                'D' - Zona pericolosa
+                'P' - Player
+                '-' - Inesplorata
+                """);
+        for(int i = 0; i < map.length; i++){
+            StringBuilder row = new StringBuilder();
+            Room playerLocation = player.getCurrentRoom(this);
+            for(int j = 0; j < map[0].length; j++){
+                if(map[i][j] == null){
+                    row = new StringBuilder(row + "  -");
+                }else{
+                    row.append("  ").append(playerLocation == map[i][j] ? 'P' : map[i][j].getMapIcon());
+                }
+            }
+            IO.println(row);
         }
     }
 

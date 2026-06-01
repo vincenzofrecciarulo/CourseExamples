@@ -12,14 +12,16 @@ public class Room {
     private String description;
     private ArrayList<Entity> entities;
     private ArrayList<Item> items;
+    private String mapIcon;
 
     private static final Random random = new Random();
 
-    public Room(String title, String description, ArrayList<Entity> entities, ArrayList<Item> items) {
+    public Room(String title, String description, ArrayList<Entity> entities, ArrayList<Item> items, String mapIcon) {
         this.title = title;
         this.description = description;
         this.entities = entities;
         this.items = items;
+        this.mapIcon = mapIcon;
     }
 
     public void interact(Player player){
@@ -47,12 +49,12 @@ public class Room {
         }
     }
 
-    @Override
-    public String toString(){
-        return title;
+    public String getMapIcon(){
+        return mapIcon;
     }
 
-    public String showRoomInfo(){
+    @Override
+    public String toString(){
         StringBuilder sb = new StringBuilder(this.title);
         sb.append("\n").append(this.description).append("\n")
                 .append("In questo luogo sono presenti: ")

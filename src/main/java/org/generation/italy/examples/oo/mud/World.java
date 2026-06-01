@@ -19,7 +19,7 @@ public class World {
 
     public void startGame(){
         while(true){
-            IO.println(player.getCurrentRoom(map).showRoomInfo()); // questo fa automaticamente toString
+            IO.println(player.getCurrentRoom(map)); // questo fa automaticamente toString
             IO.println("Inserisci 'i' per consultare i comandi");
             String command = IO.readln("->");
             switch(command.toLowerCase()) {

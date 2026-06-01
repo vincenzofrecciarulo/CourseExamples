@@ -10,6 +10,6 @@ public class MapItem extends Item{
 
     @Override
     public void interact(Player player){
-        World.map.showRooms();
+        World.map.showRooms(player);
     }
 }
