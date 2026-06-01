@@ -23,7 +23,7 @@ public class Main {
                     + s.getSection());
         }
 
-        // qui utiliziamo il polimorfismo con l'up-casting
+        // qui utiliziamo il polimorfismo con l'up-casting (visto a lezione)
         Person p2 = (Person) new ForeignEmployee(
                 "Matteo",
                 "De Cata",
@@ -46,6 +46,8 @@ public class Main {
 
         // metodo 3 con il "toString"
         IO.println(p2.toString());
+
+        IO.println("\n");
 
         // Ora creiamo due oggetti di tipo Employee nel main.
         // Hanno lo stesso contenuto e sono in due variabili di nome a e b.
