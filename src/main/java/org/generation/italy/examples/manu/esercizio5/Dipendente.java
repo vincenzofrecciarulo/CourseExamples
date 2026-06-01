@@ -10,7 +10,6 @@ package org.generation.italy.examples.manu.esercizio5;
 // Metodo:
 // calcolaStipendio()
 
-
 public class Dipendente {
     private String name;    // nome del dipendente
     private double salary;  // stipendio del dipendente
