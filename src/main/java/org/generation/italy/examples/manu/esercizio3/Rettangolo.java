@@ -27,23 +27,13 @@ public class Rettangolo {
 
     public double findPerimeter(){
         double perimeter = 0;
-        if((getBase()>0) && (getHeight()>0)){
-            perimeter = ((getBase()*2) + (getHeight()*2));
-        }else{
-            IO.println("Reinserisci i dati (>0) perchè non vanno bene per il calcolo del perimetro!");
-        }
-
+        perimeter = (2*(getBase() + getHeight()));
         return perimeter;
     }
 
     public double findArea(){
         double area = 0;
-        if((getBase()>0) && (getHeight()>0)){
-            area = (getBase()*getHeight());
-        }else{
-            IO.println("Reinserisci i dati (>0) perchè non vanno bene per il calcolo dell'area!");
-        }
-
+        area = (getBase()*getHeight());
         return area;
     }
 }
