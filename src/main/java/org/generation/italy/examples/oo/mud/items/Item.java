@@ -1,11 +1,14 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.items;
+
+import org.generation.italy.examples.oo.mud.entities.Player;
 
 public class Item {
     private String name;
     private double value;
     private double weight;
     private boolean droppable;
-
+    protected char type;
+    private boolean inUse=false;
     public Item(String name, double value, double weight, boolean droppable) {
         this.name = name;
         this.value = value;
@@ -26,6 +29,15 @@ public class Item {
     public boolean isNamed(String name){
         return this.getName().equalsIgnoreCase(name);
     }
+    public String use(Player player) {
+        this.inUse=true;
+        return "Questo oggetto non può essere usato direttamente.";
+    }
+    public String unUse(Player player){
+        this.inUse=false;
+        return "Non hai piu' questo oggetto in mano";
+    }
+
     public boolean isDroppable(){
         return droppable;
     }
@@ -40,4 +52,11 @@ public class Item {
         return weight;
     }
 
+    public boolean isInUse() {
+        return inUse;
+    }
+
+    public char getType() {
+        return type;
+    }
 }

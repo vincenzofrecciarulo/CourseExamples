@@ -1,6 +1,6 @@
 package org.generation.italy.examples.oo.mud.entities.enemies;
 
-import org.generation.italy.examples.oo.mud.Item;
+import org.generation.italy.examples.oo.mud.items.Item;
 import org.generation.italy.examples.oo.mud.Room;
 import org.generation.italy.examples.oo.mud.Utils;
 import org.generation.italy.examples.oo.mud.entities.Entity;
@@ -25,12 +25,18 @@ public class Goblin extends Enemy{
     @Override
     public void die(){
         IO.println("GOBLIN e' morto ");
+        boolean drop=false;
+        StringBuilder sb=new StringBuilder();
         if(!loot.isEmpty()){
-            IO.println("Morendo ha lasciato cadere: ");
+            sb.append("Morendo ha lasciato cadere: \n");
             for (Item i : loot) {
-                getCurrentRoom().addItem(i);
-                IO.println("- " + i.getName());
+                if(i.isDroppable()) {
+                    drop=true;
+                    getCurrentRoom().addItem(i);
+                    sb.append("- ").append(i.getName());
+                }
             }
+            if(drop) IO.println(sb.toString());
             setCurrentRoom(null);
 
         }

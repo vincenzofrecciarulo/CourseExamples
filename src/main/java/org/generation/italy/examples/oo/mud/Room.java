@@ -1,5 +1,8 @@
 package org.generation.italy.examples.oo.mud;
 
+import org.generation.italy.examples.oo.mud.entities.Entity;
+import org.generation.italy.examples.oo.mud.items.Item;
+
 import java.util.ArrayList;
 
 public class Room {
@@ -7,6 +10,7 @@ public class Room {
     private String description;
     private Room north,south,east,west;
     private ArrayList<Item> roomItems = new ArrayList<>();
+    private ArrayList<Entity> population = new ArrayList<>();
     boolean keepMenu=true;
 
     public Room(String name,String description,Room north,Room south,Room east,Room west){
@@ -20,7 +24,18 @@ public class Room {
     public Room(String name,String description){
         this(name,description,null,null,null,null);
     }
-
+    public void populate(Entity entity){
+        population.add(entity);
+    }
+    public Entity[] getPopulation(){
+        return population.toArray(new Entity[0]);
+    }
+    public void kickOut(Entity entity){
+        population.remove(entity);
+    }
+    public boolean isEmpty(){
+        return population.isEmpty();
+    }
     public boolean addItem(Item item){
         this.roomItems.add(item);
         return true;

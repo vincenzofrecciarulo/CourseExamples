@@ -1,5 +1,8 @@
 package org.generation.italy.examples.oo.mud;
 
+import org.generation.italy.examples.oo.mud.entities.Player;
+import org.generation.italy.examples.oo.mud.entities.enemies.Enemy;
+
 import java.util.Random;
 
 public class Utils {
@@ -40,5 +43,22 @@ public class Utils {
             msg=sb.toString();
             return Utils.choice(msg,options);
         }
+    }
+    public static void startCombat(Player player, Enemy enemy) throws InterruptedException {
+        IO.println("IL COMBATTIMENTO TRA "+player.getName()+" E "
+        +enemy.getName()+" HA INIZIO:\n");
+        Thread.sleep(700);
+
+        while (player.getHp()>0){
+            IO.println(player.attack(enemy));
+            if (enemy.getCurrentRoom()==null) break;
+            IO.println(enemy.attack(player));
+        }
+        if (player.getHp()<=0)   gameOver(player);
+    }
+    public static void gameOver(Player player){
+        IO.println("IL NOSTRO EROE E' MORTO");
+        IO.println("LIVELLO RAGGIUNTO: "+player.getLevel());
+        Main.running=false;
     }
 }

@@ -1,7 +1,7 @@
 package org.generation.italy.examples.oo.mud.entities.enemies;
 
 
-import org.generation.italy.examples.oo.mud.Item;
+import org.generation.italy.examples.oo.mud.items.Item;
 import org.generation.italy.examples.oo.mud.Room;
 import org.generation.italy.examples.oo.mud.entities.Entity;
 
@@ -12,6 +12,7 @@ public class Enemy extends Entity {
     protected ArrayList<Item> loot;
     public Enemy(String name, int level, int strength, int hp,String difficulty, Room startingRoom) {
         super(name, level, strength, hp,startingRoom);
+        isHostile=true;
         switch(difficulty){
             case "easy":
                 setLuck(0);

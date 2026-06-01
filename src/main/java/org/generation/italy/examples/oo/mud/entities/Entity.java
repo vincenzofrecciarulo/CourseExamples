@@ -10,8 +10,9 @@ public class Entity {
     private int strength;
     private int luck;
     private Room currentRoom;
-    private int armour=0;
+    private int armor =0;
     private int shield=0;
+    protected boolean isHostile=false;
     public Entity(String name,int level,int strength,int hp,Room startingRoom){
         this.name=name;
         this.level=level;
@@ -24,8 +25,9 @@ public class Entity {
         level+=levels;
         int newStrength=0;
         for (int i = 0; i < levels; i++) {
-            newStrength+= (int) (strength*(15/100.0));
+            newStrength+= Math.max(1,(int) (strength*(15/100.0)));
         }
+        strength+=newStrength;
         return level;
     }
     public boolean moveTo(String direction){
@@ -47,8 +49,11 @@ public class Entity {
         if(hit>0)   return getName()+" Ha colpito "+target.getName();
         else        return target.getName()+" Non ha subito danno";
     }
+    public void addStrength(int strength){
+        this.strength+=strength;
+    }
     public int getHit(int damage){
-        damage-=this.armour;
+        damage-=this.armor;
         damage-=(int)(this.shield*(Utils.throwDice(this.luck)/100.0));
         if(damage>0){
             this.hp-=damage;
@@ -60,13 +65,17 @@ public class Entity {
         IO.println(getName()+" E' MORTO");
         this.setCurrentRoom(null);
     }
-
+    public int heal(int healAmount){
+        this.hp+=healAmount;
+        if(this.getHp()>100) this.hp=100;
+        return this.getHp();
+    }
     public void setCurrentRoom(Room destination){
         this.currentRoom=destination;
     }
 
-    public void setArmour(int armour) {
-        this.armour = armour;
+    public void setArmor(int armor) {
+        this.armor = armor;
     }
     public void setShield(int shield){
         this.shield=shield;
@@ -96,11 +105,14 @@ public class Entity {
     public int getLuck() {
         return luck;
     }
-    public int getArmour(){
-        return armour;
+    public int getArmor(){
+        return armor;
     }
 
     public int getShield() {
         return shield;
+    }
+    public boolean getHostility(){
+        return isHostile;
     }
 }

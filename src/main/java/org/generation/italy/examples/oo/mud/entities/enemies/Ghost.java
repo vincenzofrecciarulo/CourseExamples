@@ -1,6 +1,6 @@
 package org.generation.italy.examples.oo.mud.entities.enemies;
 
-import org.generation.italy.examples.oo.mud.Item;
+import org.generation.italy.examples.oo.mud.items.Item;
 import org.generation.italy.examples.oo.mud.Room;
 import org.generation.italy.examples.oo.mud.Utils;
 import org.generation.italy.examples.oo.mud.entities.Entity;

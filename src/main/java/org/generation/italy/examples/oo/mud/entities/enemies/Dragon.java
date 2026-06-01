@@ -3,7 +3,7 @@ package org.generation.italy.examples.oo.mud.entities.enemies;
 import org.generation.italy.examples.oo.mud.Room;
 import org.generation.italy.examples.oo.mud.Utils;
 import org.generation.italy.examples.oo.mud.entities.Entity;
-import org.generation.italy.examples.oo.mud.entities.Player;
+import org.generation.italy.examples.oo.mud.items.Item;
 
 public class Dragon extends Enemy {
     private final int FIRE_BREATH_CHANCE = 40;
@@ -11,7 +11,7 @@ public class Dragon extends Enemy {
 
     public Dragon(String difficulty, Room startingRoom, int level) {
         super("Drago", 1, 15, 150, difficulty, startingRoom);
-        this.setArmour(10);
+        this.setArmor(10);
         if (level > 1) this.levelUp(level - 1);
     }
 
@@ -30,7 +30,7 @@ public class Dragon extends Enemy {
         }
 
         // Forziamo il bypass dell'armatura aggiungendola temporaneamente al danno da infliggere
-        target.getHit(damage + target.getArmour());
+        target.getHit(damage + target.getArmor());
         return getName() + " ha bruciato " + target.getName() + " per " + damage + " danni puri!";
     }
     @Override
@@ -38,7 +38,7 @@ public class Dragon extends Enemy {
         IO.println("Il maestoso " + getName() + " crolla a terra esanime, facendo tremare le pareti!");
         if (!loot.isEmpty()) {
             IO.println("Tra le sue scaglie dorate trovi: ");
-            for (org.generation.italy.examples.oo.mud.Item i : loot) {
+            for (Item i : loot) {
                 getCurrentRoom().addItem(i);
                 IO.println("- " + i.getName());
             }
