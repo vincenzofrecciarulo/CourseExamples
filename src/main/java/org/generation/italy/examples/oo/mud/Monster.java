@@ -1,6 +1,6 @@
 package org.generation.italy.examples.oo.mud;
 
-public class Monster extends Entity {
+public class Monster extends Entity implements Fightable {
 
     public enum Rarity {
         COMUNE, NON_COMUNE, RARO, LEGGENDARIO

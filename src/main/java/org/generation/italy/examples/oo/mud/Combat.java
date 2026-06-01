@@ -26,7 +26,7 @@ public class Combat {
         ArrayList<Monster> monsters = room.getMonsters();
 
         for (Monster monster : monsters) {
-            Result result = fightMonster(monster);
+            Result result = fightFightable(monster);
             if (result == Result.DEFEAT) return Result.DEFEAT;
             if (result == Result.FLED)   return Result.FLED;
         }
@@ -35,15 +35,26 @@ public class Combat {
     }
 
     /**
-     * Combattimento a turni contro un singolo mostro.
+     * Avvia il combattimento contro un singolo NPC (provocato durante conversazione).
+     * Al termine rimuove l'NPC dalla stanza se sconfitto.
      */
-    private Result fightMonster(Monster monster) {
-        IO.println("\n  Combattimento iniziato contro: " + monster.getName() +
-                " [" + monster.getRarity() + "] Liv." + monster.getLevel());
+    public Result startCombat(NPC npc) {
+        Result result = fightFightable(npc);
+        if (result == Result.VICTORY) {
+            room.removeEntity(npc);
+        }
+        return result;
+    }
+
+    /**
+     * Logica a turni condivisa tra Monster e NPC — lavora su Fightable.
+     */
+    private Result fightFightable(Fightable enemy) {
+        IO.println("\n  Combattimento iniziato contro: " + enemy.getName());
         IO.println("────────────────────────────────────────");
 
-        while (player.isAlive() && monster.isAlive()) {
-            printStatus(monster);
+        while (player.isAlive() && enemy.isAlive()) {
+            printStatus(enemy);
 
             IO.println("\nCosa fai?");
             IO.println("  1 - Attacca");
@@ -54,43 +65,41 @@ public class Combat {
 
             switch (scelta) {
                 case 1:
-                    turnoAttacco(monster);
+                    turnoAttacco(enemy);
                     break;
                 case 2:
                     turnoUsoOggetto();
-                    if (monster.isAlive()) turnoMostro(monster);
+                    if (enemy.isAlive()) turnoNemico(enemy);
                     break;
                 case 3:
                     if (tentaFuga()) return Result.FLED;
-                    // fuga fallita: il mostro attacca
-                    turnoMostro(monster);
+                    turnoNemico(enemy);
                     break;
                 default:
                     IO.println("Comando non valido, perdi il turno!");
-                    turnoMostro(monster);
+                    turnoNemico(enemy);
             }
         }
 
         if (!player.isAlive()) {
-            IO.println("\n Sei stato sconfitto da " + monster.getName() + "...");
+            IO.println("\n Sei stato sconfitto da " + enemy.getName() + "...");
             return Result.DEFEAT;
         }
 
-        // Mostro sconfitto
-        onMonsterDefeated(monster);
+        onEnemyDefeated(enemy);
         return Result.VICTORY;
     }
 
-    // ── Turno giocatore
+    // ── Turno giocatore ───────────────────────────────────────────────────────
 
-    private void turnoAttacco(Monster monster) {
+    private void turnoAttacco(Fightable enemy) {
         int dannoBase = calcolaAttaccoGiocatore();
         int attaccoGiocatore = player.getTotalPower();
-        int dannoInflitto = monster.takeDamage(dannoBase+attaccoGiocatore);
-        IO.println("  Attacchi " + monster.getName() + " per " + dannoInflitto + " danni!");
-        if (monster.isAlive()) {
-            IO.println("   " + monster.getName() + ": " + monster.getHpBar());
-            turnoMostro(monster);
+        int dannoInflitto = enemy.takeDamage(dannoBase + attaccoGiocatore);
+        IO.println("  Attacchi " + enemy.getName() + " per " + dannoInflitto + " danni!");
+        if (enemy.isAlive()) {
+            IO.println("   " + enemy.getName() + ": " + enemy.getCurrentHp() + " HP");
+            turnoNemico(enemy);
         }
     }
 
@@ -123,7 +132,6 @@ public class Combat {
     }
 
     private boolean tentaFuga() {
-        // 50% di probabilità di fuga
         boolean fuggito = Math.random() < 0.5;
         if (fuggito) {
             IO.println(" Sei riuscito a fuggire!");
@@ -133,39 +141,40 @@ public class Combat {
         return fuggito;
     }
 
-    // ── Turno mostro ─────────────────────────────────────────────────────────
+    // ── Turno nemico (Monster o NPC) ─────────────────────────────────────────
 
-    private void turnoMostro(Monster monster) {
-        int dannoMostro = monster.attack();
+    private void turnoNemico(Fightable enemy) {
+        int dannoNemico = enemy.attack();
         int difesaGiocatore = player.getTotalDefense();
-        int dannoEffettivo = Math.max(1, dannoMostro - difesaGiocatore);
+        int dannoEffettivo = Math.max(1, dannoNemico - difesaGiocatore);
         player.setCurrentHp(player.getCurrentHp() - dannoEffettivo);
 
-        IO.println("🐾 " + monster.getName() + " ti attacca per " + dannoEffettivo + " danni!" +
-                (difesaGiocatore > 0 ? " (armatura ha assorbito " + (dannoMostro - dannoEffettivo) + ")" : ""));
+        IO.println("⚔ " + enemy.getName() + " ti attacca per " + dannoEffettivo + " danni!" +
+                (difesaGiocatore > 0 ? " (armatura ha assorbito " + (dannoNemico - dannoEffettivo) + ")" : ""));
         IO.println("   Tu: " + player.getHpBar());
     }
 
     // ── Ricompensa ───────────────────────────────────────────────────────────
 
-    private void onMonsterDefeated(Monster monster) {
-        IO.println("\n Hai sconfitto " + monster.getName() + "!");
-        IO.println("   +" + monster.getExpReward() + " EXP  |  +" + monster.getGoldReward() + " oro");
-        // future espansioni: player.addExp(...), player.addGold(...)
+    private void onEnemyDefeated(Fightable enemy) {
+        IO.println("\n Hai sconfitto " + enemy.getName() + "!");
+        IO.println("   +" + enemy.getExpReward() + " EXP  |  +" + enemy.getGoldReward() + " oro");
+        player.gainExp(enemy.getExpReward());
+        player.gainGold(enemy.getGoldReward());
     }
 
-    // ── Calcolo attacco giocatore (base 10 + livello, in futuro armi)
+    // ── Calcolo attacco giocatore ─────────────────────────────────────────────
 
     private int calcolaAttaccoGiocatore() {
         return 10 + player.getLevel() * 2;
     }
 
-    // ── Stampa stato combattimento
+    // ── Stampa stato combattimento ────────────────────────────────────────────
 
-    private void printStatus(Monster monster) {
+    private void printStatus(Fightable enemy) {
         IO.println("\n── Stato ───────────────────────────────");
         IO.println("  Tu      : " + player.getHpBar());
-        IO.println("  " + monster.getName() + ": " + monster.getHpBar());
+        IO.println("  " + enemy.getName() + ": " + enemy.getCurrentHp() + " HP");
         IO.println("────────────────────────────────────────");
     }
 }

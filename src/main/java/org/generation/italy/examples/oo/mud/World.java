@@ -2,6 +2,7 @@ package org.generation.italy.examples.oo.mud;
 
 import java.util.ArrayList;
 import com.generation.library.*;
+import org.generation.italy.examples.oo.mud.conversation.*;
 
 public class World {
     private Room start;
@@ -11,7 +12,7 @@ public class World {
 
         // ── STANZA 1: Piazza del Mercato (spawn) ──────────────────────────────
         ArrayList<Entity> es1 = new ArrayList<>();
-        es1.add(new Entity(50, "Ciro la Guardia", 7));
+        es1.add(NPC.CiroLaGuardia());
 
         ArrayList<Item> os1 = new ArrayList<>();
         os1.add(Weapon.Bastone());
@@ -120,17 +121,6 @@ public class World {
                         "Montagne di tesori brillano ai lati. Al centro... qualcosa si muove.", es9, os9);
 
         // CONNESSIONI
-        //
-        //          [Torre]
-        //             |N
-        //  [Taverna]-W[Mercato]-E-[Foresta]
-        //             |S               |S
-        //          [Tempio]        [Rovine]
-        //             |S               |S
-        //          [Miniera]       [Cripta]
-        //                              |S
-        //                           [Tana]
-
         mercato.addExit(tempio,   Room.SOUTH);
         mercato.addExit(foresta,  Room.EAST);
         mercato.addExit(taverna,  Room.WEST);
@@ -172,9 +162,9 @@ public class World {
             }
 
             IO.println("\nCosa vuoi fare?");
-            IO.println("  I - Inventario    M - Muoviti");
-            IO.println("  E - Esplora       P - Raccogli oggetto");
-            IO.println("  Q - Esci");
+            IO.println("  I - Inventario      M - Muoviti");
+            IO.println("  E - Esplora         P - Raccogli oggetto");
+            IO.println("  B - Parla con...    Q - Esci");
 
             String choice = IO.readln("-> ");
 
@@ -229,6 +219,46 @@ public class World {
                     pickItemMenu(p1);
                     break;
 
+                case "b":
+                    ArrayList<NPC> npcs = current.getNPCs();
+                    if (npcs.isEmpty()) {
+                        IO.println("Non c'è nessuno con cui interagire!");
+                    } else {
+                        // Mostra la lista
+                        IO.println("Con chi vuoi parlare?");
+                        for (int i = 0; i < npcs.size(); i++) {
+                            IO.println("  " + i + ". " + npcs.get(i).getName());
+                        }
+                        IO.println("Inserisci il numero (o -1 per annullare):");
+                        int idx = Console.readInt();
+                        if (idx < 0 || idx >= npcs.size()) {
+                            IO.println("Scelta annullata.");
+                            break;
+                        }
+
+                        NPC npc = npcs.get(idx);
+                        IO.println(npc.getOpening());
+
+                        while (true) {
+                            String choice3 = IO.readln("-> ");
+                            IO.println(npc.respond(choice3));
+
+                            if (npc.triggersFight(choice3)) {
+                                Combat combat = new Combat(p1, current);
+                                Combat.Result result = combat.startCombat(npc);
+                                if (result == Combat.Result.DEFEAT) {
+                                    IO.println("\n════════════════════════════════════");
+                                    IO.println("        GAME OVER");
+                                    IO.println("════════════════════════════════════");
+                                    return;
+                                }
+                                break;
+                            }
+                            if (npc.endsConversation(choice3)) break;
+                        }
+                    }
+                    break;
+
                 case "q":
                     IO.println("Grazie per aver giocato. A presto, avventuriero!");
                     return;
@@ -255,12 +285,10 @@ public class World {
                 IO.println("\n════════════════════════════════════");
                 IO.println("        GAME OVER");
                 IO.println("════════════════════════════════════");
-                return false; // segnala al loop che il gioco è finito
+                return false;
             }
             if (result == Combat.Result.FLED) {
                 IO.println("Sei fuggito e tornato indietro.");
-                // riporta il giocatore alla stanza precedente non è triviale
-                // per ora rimane nella stanza
             }
         } else {
             IO.println("Procedi con cautela...");
@@ -291,6 +319,7 @@ public class World {
             IO.println("Hai raccolto: " + nomeOggetto);
         }
     }
+
     private void dropItemMenu(Player player) {
         ArrayList<Item> inv = player.getInventory();
         player.openInventory();

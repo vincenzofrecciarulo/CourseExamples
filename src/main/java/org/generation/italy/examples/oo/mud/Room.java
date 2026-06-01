@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Room {
     private String title;
     private String description;
+    private ArrayList<NPC> npcs;
     private ArrayList<Entity> entities;
     private ArrayList<Item> items;
     private Room[] exits;
@@ -66,6 +67,14 @@ public class Room {
         return ir.toString();
     }
 
+    public String interact() {
+        StringBuilder in = new StringBuilder();
+        for (String name : getNPCNames()) {
+            in.append(name).append("\n");
+        }
+      return in.toString();
+    }
+
     public ArrayList<String> getObjectNames() {
         ArrayList<String> names = new ArrayList<>();
         for (Item i : items) names.add(i.getName());
@@ -76,6 +85,44 @@ public class Room {
         ArrayList<String> names = new ArrayList<>();
         for (Entity e : entities) names.add(e.getName());
         return names;
+    }
+
+    public ArrayList<String> getNPCNames() {
+        ArrayList<String> names = new ArrayList<>();
+        for (Entity e : entities) {
+            if (e instanceof NPC n) {        // pattern matching Java 16+
+                names.add(n.getName());
+            }
+        }
+        return names;
+    }
+
+    public NPC getFirstNPC() {
+        for (Entity e : entities) {
+            if (e instanceof NPC) return (NPC) e;
+        }
+        return null;
+    }
+
+    public void removeEntity(Entity e) {
+        entities.remove(e);
+    }
+
+    public ArrayList<NPC> getNPCs() {
+        ArrayList<NPC> npcs = new ArrayList<>();
+        for (Entity e : entities) {
+            if (e instanceof NPC n && n.isAlive()) {
+                npcs.add(n);
+            }
+        }
+        return npcs;
+    }
+
+    public boolean hasNPCs() {
+        for (Entity e : entities) {
+            if (e instanceof NPC) return true;
+        }
+        return false;
     }
 
     public ArrayList<Item> getItems()       { return items; }

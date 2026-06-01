@@ -127,7 +127,7 @@ public class Player extends Entity {
             return true;
         }
         IO.println("── Inventario ──────────────────────────");
-        IO.println("  HP: " + getHpBar());
+        IO.println("  HP: " + getHpBar()+"|  EXP: " + exp + " | Oro: " + gold);
         IO.println("  Armatura: " + (wornArmor != null ? wornArmor.getName() + " (DEF " + wornArmor.getDefense() + ")" : "nessuna"));
         IO.println("  Arma: " + (wornWeapon != null ? wornWeapon.getName() + " (POW " + wornWeapon.getPower() + ")" : "nessuna"));
         IO.println("  Oggetti:");
@@ -143,4 +143,41 @@ public class Player extends Entity {
         IO.println("────────────────────────────────────────");
         return true;
     }
+
+    // ── Combattimento ────────────────────────────────────────────────────────
+
+    public int attack() {
+        int base = 10; // danno base senza arma
+        double variation = 0.8 + Math.random() * 0.4;
+        return (int) ((base + getTotalPower()) * variation);
+    }
+
+    public int takeDamage(int incomingDamage) {
+        int actualDamage = Math.max(1, incomingDamage - getTotalDefense());
+        setCurrentHp(getCurrentHp() - actualDamage);
+        return actualDamage;
+    }
+
+    public boolean isAlive() {
+        return getCurrentHp() > 0;
+    }
+
+// ── Esperienza e oro ─────────────────────────────────────────────────────
+
+    private int exp = 0;
+    private int gold = 0;
+
+    public void gainExp(int amount) {
+        exp += amount;
+        IO.println("Hai guadagnato " + amount + " EXP! (Totale: " + exp + ")");
+    }
+
+    public void gainGold(int amount) {
+        gold += amount;
+        IO.println("Hai guadagnato " + amount + " oro! (Totale: " + gold + ")");
+    }
+
+    public int getExp()  { return exp; }
+    public int getGold() { return gold; }
+
 }
