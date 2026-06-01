@@ -1,10 +1,12 @@
-package org.generation.italy.examples.oo.mud.entities;
+package org.generation.italy.examples.oo.mud.entities.npc;
 
 import org.generation.italy.examples.oo.mud.Inventory;
-import org.generation.italy.examples.oo.mud.items.HealPotionItem;
-import org.generation.italy.examples.oo.mud.items.ScrollOfReturnItem;
+import org.generation.italy.examples.oo.mud.entities.Entity;
+import org.generation.italy.examples.oo.mud.entities.Player;
+import org.generation.italy.examples.oo.mud.items.HealPotion;
+import org.generation.italy.examples.oo.mud.items.ScrollOfReturn;
 
-public class GeneralMerchantEntity extends Entity{
+public class GeneralMerchantEntity extends Entity {
     private static final int HP = 1;
     private static final String NAME = "Therion Il Mercante";
     private static final int LEVEL = 1;
@@ -23,25 +25,25 @@ public class GeneralMerchantEntity extends Entity{
 
         switch (input){
             case "1":
-                if(player.getInventoryWeight() + HealPotionItem.WEIGHT > Inventory.MAX_WEIGHT){
+                if(player.getInventoryWeight() + HealPotion.WEIGHT > Inventory.MAX_WEIGHT){
                     System.out.println("Non hai abbastanza spazio nello zaino..");
                     return;
                 }
                 if(!player.withdrawCoins(10)){
                     IO.println("Eh troppo povero per comprare..?");
                 }
-                player.pick(new HealPotionItem());
+                player.pick(new HealPotion());
                 IO.println("Hai comprato una pozione di cura");
                 break;
             case "2":
-                if(player.getInventoryWeight() + ScrollOfReturnItem.WEIGHT > Inventory.MAX_WEIGHT){
+                if(player.getInventoryWeight() + ScrollOfReturn.WEIGHT > Inventory.MAX_WEIGHT){
                     System.out.println("Non hai abbastanza spazio nello zaino..");
                     return;
                 }
                 if(!player.withdrawCoins(5)){
                     IO.println("Eh troppo povero per comprare..?");
                 }
-                player.pick(new ScrollOfReturnItem());
+                player.pick(new ScrollOfReturn());
                 IO.println("Hai comprato una pergamena del ritorno");
                 break;
             default:

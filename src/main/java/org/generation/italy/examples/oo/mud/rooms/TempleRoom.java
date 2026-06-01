@@ -1,7 +1,9 @@
 package org.generation.italy.examples.oo.mud.rooms;
 
 import org.generation.italy.examples.oo.mud.entities.*;
-import org.generation.italy.examples.oo.mud.items.HealPotionItem;
+import org.generation.italy.examples.oo.mud.entities.npc.GuardEntity;
+import org.generation.italy.examples.oo.mud.entities.npc.HealerEntity;
+import org.generation.italy.examples.oo.mud.items.HealPotion;
 import org.generation.italy.examples.oo.mud.items.Item;
 
 import java.util.Random;
@@ -37,11 +39,11 @@ public class TempleRoom extends Room {
 
         switch (randomNum){
             case 0:
-                return new HealPotionItem();
+                return new HealPotion();
             case 1:
-                return new HealPotionItem();
+                return new HealPotion();
             default:
-                return new HealPotionItem();
+                return new HealPotion();
         }
     }
 

@@ -1,11 +1,11 @@
 package org.generation.italy.examples.oo.mud.rooms;
 
-import org.generation.italy.examples.oo.mud.entities.GeneralMerchantEntity;
+import org.generation.italy.examples.oo.mud.entities.npc.GeneralMerchantEntity;
 import org.generation.italy.examples.oo.mud.entities.Entity;
-import org.generation.italy.examples.oo.mud.entities.GuardEntity;
-import org.generation.italy.examples.oo.mud.items.HealPotionItem;
+import org.generation.italy.examples.oo.mud.entities.npc.GuardEntity;
+import org.generation.italy.examples.oo.mud.items.HealPotion;
 import org.generation.italy.examples.oo.mud.items.Item;
-import org.generation.italy.examples.oo.mud.items.ScrollOfReturnItem;
+import org.generation.italy.examples.oo.mud.items.ScrollOfReturn;
 
 
 import java.util.Random;
@@ -41,10 +41,10 @@ public class MarketRoom extends Room {
 
         switch (randomNum){
             case 0:
-                return new HealPotionItem();
+                return new HealPotion();
             case 1:
             default:
-                return new ScrollOfReturnItem();
+                return new ScrollOfReturn();
         }
     }
 

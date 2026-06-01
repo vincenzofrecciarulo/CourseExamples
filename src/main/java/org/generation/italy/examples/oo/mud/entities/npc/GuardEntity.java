@@ -1,6 +1,9 @@
-package org.generation.italy.examples.oo.mud.entities;
+package org.generation.italy.examples.oo.mud.entities.npc;
 
-public class GuardEntity extends Entity{
+import org.generation.italy.examples.oo.mud.entities.Entity;
+import org.generation.italy.examples.oo.mud.entities.Player;
+
+public class GuardEntity extends Entity {
     private static final int HP = 1;
     private static final String NAME = "Ciro La Guardia";
     private static final int LEVEL = 1;
