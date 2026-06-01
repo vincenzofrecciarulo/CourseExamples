@@ -4,7 +4,6 @@ import org.generation.italy.examples.oo.mud.entities.*;
 import org.generation.italy.examples.oo.mud.items.HealPotionItem;
 import org.generation.italy.examples.oo.mud.items.Item;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class TempleRoom extends Room {
@@ -14,11 +13,12 @@ public class TempleRoom extends Room {
     private static final String MAP_ICON = "T";
 
     public TempleRoom(){
-        super(TempleRoom.TITLE, TempleRoom.DESCRIPTION, getThreeRandomNpc(), getThreeRandomItems(), TempleRoom.MAP_ICON);
+        super(TempleRoom.TITLE, TempleRoom.DESCRIPTION, TempleRoom.MAP_ICON);
     }
 
-    private static Entity getRandomNpc(){
-        int randomNum = new Random().nextInt(2);
+    @Override
+    protected Entity getRandomNpc(){
+        int randomNum = new Random().nextInt(3);
 
         switch (randomNum){
             case 0:
@@ -31,15 +31,8 @@ public class TempleRoom extends Room {
         }
     }
 
-    private static ArrayList<Entity> getThreeRandomNpc(){
-        ArrayList<Entity> npcs = new ArrayList<>();
-        for(int i = 0; i < 3; i++){
-            npcs.add(getRandomNpc());
-        }
-        return npcs;
-    }
-
-    public static Item getRandomItem(){
+    @Override
+    protected Item getRandomItem(){
         int randomNum = new Random().nextInt(2);
 
         switch (randomNum){
@@ -52,11 +45,4 @@ public class TempleRoom extends Room {
         }
     }
 
-    private static ArrayList<Item> getThreeRandomItems(){
-        ArrayList<Item> items = new ArrayList<>();
-        for(int i = 0; i < 3; i++){
-            items.add(getRandomItem());
-        }
-        return items;
-    }
 }

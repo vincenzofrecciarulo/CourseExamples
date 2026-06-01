@@ -1,11 +1,16 @@
 package org.generation.italy.examples.oo.mud.rooms;
 
 import org.generation.italy.examples.oo.mud.entities.Entity;
+import org.generation.italy.examples.oo.mud.entities.GeneralMerchantEntity;
+import org.generation.italy.examples.oo.mud.entities.GuardEntity;
 import org.generation.italy.examples.oo.mud.entities.Player;
+import org.generation.italy.examples.oo.mud.items.HealPotionItem;
 import org.generation.italy.examples.oo.mud.items.Item;
+import org.generation.italy.examples.oo.mud.items.ScrollOfReturnItem;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.function.Supplier;
 
 public class Room {
     private String title;
@@ -16,11 +21,11 @@ public class Room {
 
     private static final Random random = new Random();
 
-    public Room(String title, String description, ArrayList<Entity> entities, ArrayList<Item> items, String mapIcon) {
+    public Room(String title, String description, String mapIcon) {
         this.title = title;
         this.description = description;
-        this.entities = entities;
-        this.items = items;
+        this.entities = getRandomNpcs();
+        this.items = getRandomItems();
         this.mapIcon = mapIcon;
     }
 
@@ -142,4 +147,40 @@ public class Room {
                     """);
     }
 
+    private ArrayList<Entity> getRandomNpcs(){
+        if(getRandomNpc() == null){
+            return new ArrayList<>();
+        }
+
+        int randomNum = new Random().nextInt(1,4);
+        ArrayList<Entity> npcs = new ArrayList<>();
+        for(int i = 0; i < randomNum; i++){
+            npcs.add(getRandomNpc());
+        }
+        return npcs;
+    }
+
+    private ArrayList<Item> getRandomItems(){
+        if(getRandomItem() == null){
+            return new ArrayList<>();
+        }
+
+        int randomNum = new Random().nextInt(1,4);
+        ArrayList<Item> items = new ArrayList<>();
+
+        for(int i = 0; i < randomNum; i++){
+            items.add(getRandomItem());
+        }
+        return items;
+    }
+
+
+    protected Entity getRandomNpc(){
+        return null;
+    }
+
+
+    protected Item getRandomItem(){
+        return null;
+    }
 }

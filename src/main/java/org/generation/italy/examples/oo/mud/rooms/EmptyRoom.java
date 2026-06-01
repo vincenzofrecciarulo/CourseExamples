@@ -10,6 +10,6 @@ public class EmptyRoom extends Room{
     private static final String MAP_ICON = "X";
 
     public EmptyRoom() {
-        super(EmptyRoom.TITLE, "", new ArrayList<>(), new ArrayList<>(), EmptyRoom.MAP_ICON);
+        super(EmptyRoom.TITLE, "",  EmptyRoom.MAP_ICON);
     }
 }
