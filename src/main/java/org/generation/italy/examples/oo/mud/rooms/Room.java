@@ -1,23 +1,17 @@
 package org.generation.italy.examples.oo.mud.rooms;
 
 import org.generation.italy.examples.oo.mud.entities.Entity;
-import org.generation.italy.examples.oo.mud.entities.GeneralMerchantEntity;
-import org.generation.italy.examples.oo.mud.entities.GuardEntity;
 import org.generation.italy.examples.oo.mud.entities.Player;
-import org.generation.italy.examples.oo.mud.items.HealPotionItem;
 import org.generation.italy.examples.oo.mud.items.Item;
-import org.generation.italy.examples.oo.mud.items.ScrollOfReturnItem;
-
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.function.Supplier;
 
 public class Room {
-    private String title;
-    private String description;
-    private ArrayList<Entity> entities;
-    private ArrayList<Item> items;
-    private String mapIcon;
+    private final String title;
+    private final String description;
+    private final ArrayList<Entity> entities;
+    private final ArrayList<Item> items;
+    private final String mapIcon;
 
     private static final Random random = new Random();
 
@@ -60,13 +54,11 @@ public class Room {
 
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder(this.title);
-        sb.append("\n").append(this.description).append("\n")
-                .append("In questo luogo sono presenti: ")
-                .append(getEntityNames()).append("\n")
-                .append("Vedi i seguenti oggetti: ")
-                .append(getObjectNames());
-        return sb.toString(); // ritorno la stringa che sta dentro lo StringBuilder
+        return this.title + "\n" + this.description + "\n" +
+                "In questo luogo sono presenti: " +
+                getEntityNames() + "\n" +
+                "Vedi i seguenti oggetti: " +
+                getObjectNames(); // ritorno la stringa che sta dentro lo StringBuilder
     }
 
     public ArrayList<String> getObjectNames(){

@@ -3,9 +3,9 @@ package org.generation.italy.examples.oo.mud.items;
 import org.generation.italy.examples.oo.mud.entities.Player;
 
 public class Item {
-    private double weight;
+    private final double weight;
     protected int value;
-    private String name;
+    private final String name;
 
     public Item(double weight, int value, String name) {
         this.weight = weight;

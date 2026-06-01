@@ -2,8 +2,8 @@ package org.generation.italy.examples.oo.mud.entities;
 
 public class Entity {
     protected int hp;
-    private String name;
-    private int level;
+    private final String name;
+    private final int level;
 
 
     public Entity(int hp, String name, int level) {

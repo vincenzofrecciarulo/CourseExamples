@@ -4,11 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Customer {
-    private String name;
-    private String surname;
-    private LocalDate dob;
-    private boolean female;
-    private ArrayList<Account> accounts;
+    private final String name;
+    private final String surname;
+    private final LocalDate dob;
+    private final boolean female;
+    private final ArrayList<Account> accounts;
 
     public Customer(String name, String surname, LocalDate dob, boolean female, ArrayList<Account> accounts) {
         this.name = name;

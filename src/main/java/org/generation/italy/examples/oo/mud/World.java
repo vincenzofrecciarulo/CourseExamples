@@ -77,7 +77,7 @@ public class World {
                 """);
     }
 
-    public void main(){
+    void main(){
         World w = new World();
         w.startGame();
     }

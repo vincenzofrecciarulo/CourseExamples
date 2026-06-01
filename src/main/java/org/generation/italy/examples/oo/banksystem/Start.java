@@ -32,14 +32,14 @@ public class Start {
         ca.withdraw(50);
         ca.transfer(25 , a);
 
-        Account w = (Account)new CaimanAccount(3000, "zzz", LocalDate.now(),
+        Account w = new CaimanAccount(3000, "zzz", LocalDate.now(),
                 "very secret", 0.6);
 
         CaimanAccount z=new CaimanAccount(2000, "yyy", LocalDate.now(),
                 "very secret", 0.5);
 
         //handleAccount è un metodo polimorfico, accetta più forme, lavora con più elementi
-        handleAccount((Account)z); //questo è un cast implicito, una figlia viene automaticamente castata a una madre ("upcast")
+        handleAccount(z); //questo è un cast implicito, una figlia viene automaticamente castata a una madre ("upcast")
 
         GoldAccount g = new GoldAccount(500, "abc123", 100, 0);
         handleAccount(g);
