@@ -1,8 +1,7 @@
 package org.generation.italy.examples.oo.mud.rooms;
 
-import org.generation.italy.examples.oo.mud.Inventory;
 import org.generation.italy.examples.oo.mud.entities.*;
-import org.generation.italy.examples.oo.mud.items.HealPotion;
+import org.generation.italy.examples.oo.mud.items.HealPotionItem;
 import org.generation.italy.examples.oo.mud.items.Item;
 
 import java.util.ArrayList;
@@ -22,11 +21,11 @@ public class TempleRoom extends Room {
 
         switch (randomNum){
             case 0:
-                return new HealerNpc();
+                return new HealerEntity();
             case 1:
-                return new HealerNpc();
+                return new HealerEntity();
             default:
-                return new GuardNpc();
+                return new GuardEntity();
 
         }
     }
@@ -44,11 +43,11 @@ public class TempleRoom extends Room {
 
         switch (randomNum){
             case 0:
-                return new HealPotion();
+                return new HealPotionItem();
             case 1:
-                return new HealPotion();
+                return new HealPotionItem();
             default:
-                return new HealPotion();
+                return new HealPotionItem();
         }
     }
 

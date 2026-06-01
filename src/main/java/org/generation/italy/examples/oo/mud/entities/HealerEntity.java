@@ -1,16 +1,15 @@
 package org.generation.italy.examples.oo.mud.entities;
 
 import org.generation.italy.examples.oo.mud.Inventory;
-import org.generation.italy.examples.oo.mud.items.HealPotion;
-import org.generation.italy.examples.oo.mud.rooms.TempleRoom;
+import org.generation.italy.examples.oo.mud.items.HealPotionItem;
 
-public class HealerNpc extends Entity{
+public class HealerEntity extends Entity{
     private static final int HP = 1;
     private static final String NAME = "Natasha La Curatrice";
     private static final int LEVEL = 1;
     private static final int HEAL_AMOUNT = 100;
-    public HealerNpc() {
-        super(HealerNpc.HP, HealerNpc.NAME, HealerNpc.LEVEL);
+    public HealerEntity() {
+        super(HealerEntity.HP, HealerEntity.NAME, HealerEntity.LEVEL);
     }
 
     @Override
@@ -22,11 +21,11 @@ public class HealerNpc extends Entity{
         switch (input){
             case "1":
                 System.out.println("Stai riposando...");
-                player.heal(HealerNpc.HEAL_AMOUNT);
+                player.heal(HealerEntity.HEAL_AMOUNT);
                 System.out.println("Hai recuperato 100 punti vita.");
                 break;
             case "2":
-                if(player.getInventoryWeight() + HealPotion.WEIGHT > Inventory.MAX_WEIGHT){
+                if(player.getInventoryWeight() + HealPotionItem.WEIGHT > Inventory.MAX_WEIGHT){
                     System.out.println("Non hai abbastanza spazio nello zaino..");
                     return;
                 }
@@ -34,7 +33,7 @@ public class HealerNpc extends Entity{
                     System.out.println("Non hai abbastanza monete");
                     return;
                 }
-                player.pick(new HealPotion());
+                player.pick(new HealPotionItem());
                 IO.println("Hai comprato una pozione di cura");
                 break;
             default:

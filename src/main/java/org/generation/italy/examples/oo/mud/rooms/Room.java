@@ -49,6 +49,10 @@ public class Room {
 
     @Override
     public String toString(){
+        return title;
+    }
+
+    public String showRoomInfo(){
         StringBuilder sb = new StringBuilder(this.title);
         sb.append("\n").append(this.description).append("\n")
                 .append("In questo luogo sono presenti: ")
@@ -123,6 +127,17 @@ public class Room {
             default:
                 return new EmptyRoom();
         }
+    }
+
+    public static void showDeadEnd(){
+        IO.println("""
+                    Non c'è niente in quella direzione...
+                    🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                     🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                    🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                     🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                    🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+                    """);
     }
 
 }

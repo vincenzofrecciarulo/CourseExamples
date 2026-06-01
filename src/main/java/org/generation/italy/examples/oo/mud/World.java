@@ -2,13 +2,9 @@ package org.generation.italy.examples.oo.mud;
 
 import org.generation.italy.examples.oo.mud.entities.Player;
 import org.generation.italy.examples.oo.mud.enums.Direction;
-import org.generation.italy.examples.oo.mud.rooms.MarketRoom;
-import org.generation.italy.examples.oo.mud.rooms.Room;
-import org.generation.italy.examples.oo.mud.rooms.TempleRoom;
 
 
 public class World {
-    public final static Room start = new TempleRoom();
     public static final Map map = new Map();
     private final Player player;
 
@@ -23,7 +19,7 @@ public class World {
 
     public void startGame(){
         while(true){
-            IO.println(map.getCurrentRoom()); // questo fa automaticamente toString
+            IO.println(player.getCurrentRoom(map).showRoomInfo()); // questo fa automaticamente toString
             IO.println("Inserisci 'i' per consultare i comandi");
             String command = IO.readln("->");
             switch(command.toLowerCase()) {
@@ -31,19 +27,19 @@ public class World {
                     showCommands();
                     break;
                 case "w":
-                    map.moveTo(player, Direction.NORTH);
+                    player.moveTo(map, Direction.NORTH);
                     break;
                 case "d":
-                    map.moveTo(player, Direction.EAST);
+                    player.moveTo(map, Direction.EAST);
                     break;
                 case "a":
-                    map.moveTo(player, Direction.WEST);
+                    player.moveTo(map, Direction.WEST);
                     break;
                 case "s":
-                    map.moveTo(player, Direction.SOUTH);
+                    player.moveTo(map, Direction.SOUTH);
                     break;
                 case "x":
-                    map.getCurrentRoom().interact(player);
+                    player.getCurrentRoom(map).interact(player);
                     break;
                 case "z":
                     boolean isEmpty = !player.showItems();

@@ -2,6 +2,7 @@ package org.generation.italy.examples.oo.mud;
 
 import org.generation.italy.examples.oo.mud.entities.Player;
 import org.generation.italy.examples.oo.mud.items.Item;
+import org.generation.italy.examples.oo.mud.items.MapItem;
 
 import java.util.ArrayList;
 
@@ -9,6 +10,10 @@ public class Inventory {
     private final ArrayList<Item> inventory = new ArrayList<>();
     public static final double MAX_WEIGHT = 2000;
 
+
+    public Inventory(){
+        inventory.add(new MapItem());
+    }
 
     public boolean pick(Item item){
         if(getInventoryWeight() + item.getWeight() > MAX_WEIGHT){

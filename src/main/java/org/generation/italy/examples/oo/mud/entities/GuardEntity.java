@@ -1,12 +1,12 @@
 package org.generation.italy.examples.oo.mud.entities;
 
-public class GuardNpc extends Entity{
+public class GuardEntity extends Entity{
     private static final int HP = 1;
     private static final String NAME = "Ciro La Guardia";
     private static final int LEVEL = 1;
 
-    public GuardNpc() {
-        super(GuardNpc.HP, GuardNpc.NAME, GuardNpc.LEVEL);
+    public GuardEntity() {
+        super(GuardEntity.HP, GuardEntity.NAME, GuardEntity.LEVEL);
     }
 
     @Override

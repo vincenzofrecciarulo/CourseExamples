@@ -1,9 +1,8 @@
 package org.generation.italy.examples.oo.mud.rooms;
 
-import org.generation.italy.examples.oo.mud.entities.BlacksmithNpc;
+import org.generation.italy.examples.oo.mud.entities.BlacksmithEntity;
 import org.generation.italy.examples.oo.mud.entities.Entity;
-import org.generation.italy.examples.oo.mud.entities.Player;
-import org.generation.italy.examples.oo.mud.items.HealPotion;
+import org.generation.italy.examples.oo.mud.items.HealPotionItem;
 import org.generation.italy.examples.oo.mud.items.Item;
 
 
@@ -24,11 +23,11 @@ public class MarketRoom extends Room {
 
         switch (randomNum){
             case 0:
-                return new BlacksmithNpc();
+                return new BlacksmithEntity();
             case 1:
-                return new BlacksmithNpc();
+                return new BlacksmithEntity();
             default:
-                return new BlacksmithNpc();
+                return new BlacksmithEntity();
 
         }
     }
@@ -46,11 +45,11 @@ public class MarketRoom extends Room {
 
         switch (randomNum){
             case 0:
-                return new HealPotion();
+                return new HealPotionItem();
             case 1:
-                return new HealPotion();
+                return new HealPotionItem();
             default:
-                return new HealPotion();
+                return new HealPotionItem();
         }
     }
 
