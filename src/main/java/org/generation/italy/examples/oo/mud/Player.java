@@ -30,6 +30,10 @@ public class Player extends Entity{
         this.inventory = new ArrayList<Item>();
     }
 
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
     public int calculateDamage(){
         int damage = (int)(Math.random() * (this.maxDamage - this.minDamage + 1)) + this.minDamage;
         return damage;

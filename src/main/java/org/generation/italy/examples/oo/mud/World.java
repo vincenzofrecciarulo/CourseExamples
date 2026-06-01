@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class World {
     private Room start;
     private Room current;
+    private Player player;
 
     public World(){
         ArrayList<Entity> es = new ArrayList<>();
@@ -35,6 +36,10 @@ public class World {
         start = ms;
     }
 
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     public void startGame(){
         current = start;
         while(true){
@@ -55,6 +60,17 @@ public class World {
                     break;
                 case "s":
                     success = moveTo(Room.SOUTH);
+                    break;
+                case "inventory":
+                    ArrayList<Item> inventory= this.player.getInventory();
+                    if (inventory.isEmpty()){
+                        IO.println("mi dispiace, il tuo zaino è vuoto");
+                    }else {
+                        IO.println("nel tuo inventario sono presenti i seguenti oggetti:");
+                        for(Item i : inventory){
+                            IO.println("- "+i.getName());
+                        }
+                    }
                     break;
                 case "q":
                     IO.println("Grazie per aver giocato");
@@ -83,6 +99,15 @@ public class World {
 
     public void main(){
         World w = new World();
+        System.out.println("Benvenuto nel MUD, inserisci il nome del tuo eroe:");
+        String nameSelected = IO.readln("-> ");
+        System.out.println("""
+                Seleziona la difficoltà: scrivi 'comandante' se ti senti un principiante e vuoi avere più possibilità
+                 di infliggere danni. Se ti piacciono le sfide invece scrivi 'guerriero'. Ma in realtà puoi scrivere
+                 quello che vuoi, ma a tuo rischio e pericolo...""");
+        String classSelected = IO.readln("-> ");
+        Player p = new Player(nameSelected, classSelected);
+        w.setPlayer(p);
         w.startGame();
     }
 }
