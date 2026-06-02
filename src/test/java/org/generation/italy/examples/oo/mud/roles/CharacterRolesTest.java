@@ -1,6 +1,6 @@
 package org.generation.italy.examples.oo.mud.roles;
 
-import org.generation.italy.examples.oo.mud.Player;
+import org.generation.italy.examples.oo.mud.world.Player;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

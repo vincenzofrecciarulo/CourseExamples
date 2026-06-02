@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.world;
 
 import org.generation.italy.examples.oo.mud.roles.CharacterStats;
 
@@ -8,7 +8,7 @@ public abstract class Entity {
     private int hp;
     private String name;
     private int level;
-
+    private boolean fled;
     protected Entity(int hp, String name, int level) {
         this.id = nextId++;
         this.hp = hp;
@@ -65,5 +65,12 @@ public abstract class Entity {
     @Override
     public String toString() {
         return String.format("%s (lvl %d, hp %d)", name, level, hp);
+    }
+
+    public void setHasFled(boolean fled) {
+        this.fled = fled;
+    }
+    public boolean hasFled() {
+        return fled;
     }
 }

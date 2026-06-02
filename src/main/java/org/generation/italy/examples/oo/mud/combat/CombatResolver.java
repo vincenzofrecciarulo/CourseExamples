@@ -1,4 +1,7 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.combat;
+
+import org.generation.italy.examples.oo.mud.world.DiceRoller;
+import org.generation.italy.examples.oo.mud.world.Entity;
 
 public class CombatResolver {
     private final DiceRoller diceRoller;

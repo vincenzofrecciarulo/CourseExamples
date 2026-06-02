@@ -1,16 +1,17 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.combat;
+
+import org.generation.italy.examples.oo.mud.world.Entity;
+import org.generation.italy.examples.oo.mud.world.GameContext;
 
 import java.util.concurrent.atomic.AtomicReference;
 
 public class CombatCoordinator {
     private final GameContext context;
-    private final GameIO io;
     private final AtomicReference<CombatSession> activeSession = new AtomicReference<>();
     private volatile boolean gameOver;
 
-    public CombatCoordinator(GameContext context, GameIO io) {
+    public CombatCoordinator(GameContext context) {
         this.context = context;
-        this.io = io;
     }
 
     public boolean isCombatActive() {
@@ -27,7 +28,7 @@ public class CombatCoordinator {
             return false;
         }
 
-        CombatSession session = new CombatSession(context, io, opponent, this);
+        CombatSession session = new CombatSession(context, opponent, this);
         if(!activeSession.compareAndSet(null, session)){
             return false;
         }
@@ -89,7 +90,7 @@ public class CombatCoordinator {
             return CombatAction.useAbility(trimmed.substring(6).trim());
         }
 
-        io.println("Durante il combattimento puoi usare: flee, ability <abilita>, wait");
+        context.getSession().send("Durante il combattimento puoi usare: flee, ability <abilita>, wait");
         return null;
     }
 }

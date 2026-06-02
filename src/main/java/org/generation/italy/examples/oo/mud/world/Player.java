@@ -1,13 +1,13 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.world;
 
 import org.generation.italy.examples.oo.mud.roles.CharacterClass;
 import org.generation.italy.examples.oo.mud.roles.CharacterStats;
 import org.generation.italy.examples.oo.mud.roles.Paladin;
+import org.generation.italy.examples.oo.mud.roles.AbilityContext;
 import org.generation.italy.examples.oo.mud.roles.SpecialAbility;
 import org.generation.italy.examples.oo.mud.commands.CommandOutcome;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +18,7 @@ public class Player extends Entity {
     private final CharacterStats stats;
     private final int maxHitPoints;
     private final List<SpecialAbility> specialAbilities;
+
 
     public Player(int hp, String name, int level) {
         this(hp, name, level, new Paladin(), new CharacterStats(1, 1, 1, 1, 1));
@@ -149,9 +150,9 @@ public class Player extends Entity {
         return specialAbilities;
     }
 
-    public CommandOutcome useAbility(String input, GameContext context) {
+    public CommandOutcome useAbility(String input, AbilityContext context) {
         if(input == null || input.isBlank()){
-            context.getIo().println("Quale abilita vuoi usare?");
+            context.getSession().send("Quale abilita vuoi usare?");
             return CommandOutcome.CONTINUE;
         }
 
@@ -171,7 +172,9 @@ public class Player extends Entity {
             }
         }
 
-        context.getIo().println("Non trovo questa abilita: " + trimmed);
+        context.getSession().send("Non trovo questa abilita: " + trimmed);
         return CommandOutcome.CONTINUE;
     }
+
+
 }

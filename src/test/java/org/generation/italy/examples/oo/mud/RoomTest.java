@@ -1,5 +1,6 @@
 package org.generation.italy.examples.oo.mud;
 
+import org.generation.italy.examples.oo.mud.world.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
