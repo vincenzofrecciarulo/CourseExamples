@@ -11,6 +11,14 @@ public class Entity {
         this.level = level;
     }
 
+    public int getHp() {
+        return hp;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
     public String getName() {
         return name;
     }

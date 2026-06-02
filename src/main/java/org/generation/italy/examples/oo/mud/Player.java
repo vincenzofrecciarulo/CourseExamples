@@ -1,6 +1,7 @@
 package org.generation.italy.examples.oo.mud;
 
 import java.util.ArrayList;
+import java.util.StringJoiner;
 
 public class Player extends Entity {
     // Attributi
@@ -62,9 +63,12 @@ public class Player extends Entity {
 
     // metodo che prende in input un indice e rimuove l'oggetto dell'inventario
     public boolean tryDropItem(int index){
-        if (index > inventory.size() || index <= 0) return false;
-        inventory.remove(index -1);
-        return true;
+        return index <= inventory.size() && index > 0;
+    }
+
+    public Item dropItem(int index){
+        int realIndex = index -1;
+        return inventory.remove(realIndex);
     }
 
     // metodo di stampa dell'inventario con indici
@@ -73,6 +77,27 @@ public class Player extends Entity {
             int realIndex = inventory.indexOf(i) + 1;
             IO.println(realIndex + " " + i.getName());
         }
+    }
+
+    public String showItem(int index){
+        int realIndex = index -1;
+        if (index <= inventory.size() && index > 0){
+            Item item = inventory.get(realIndex);
+            StringBuilder sb = new StringBuilder(item.getName());
+            sb.append("\n").append("Valore: ").append(item.getValue())
+                    .append("\n").append("Peso ").append(item.getWeight());
+            return sb.toString();
+        }
+        return "Elemento non trovato!";
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder(this.getName());
+        sb.append("\n").append("Punti salute: ").append(this.getHp())
+                .append("\n").append("Livello: ").append(this.getLevel())
+                .append("\n").append("Ti trovi: ").append(this.getCurrentRoom().getTitle());
+        return sb.toString();
     }
 
     public ArrayList<Item> getInventory() {

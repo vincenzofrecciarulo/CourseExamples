@@ -40,7 +40,7 @@ public class World {
             IO.println(player.getCurrentRoom()); // questo fa automaticamente toString della Room
             IO.println("1: muoverti");
             IO.println("2: raccogliere oggetti");
-            IO.println("3: vedere l'inventario");
+            IO.println("3: entra nel menù");
             IO.println("4: combattere");
             IO.println("5: esci dal gioco");
             String command = IO.readln("Cosa vuoi fare?");
@@ -53,7 +53,7 @@ public class World {
                         managePlayerPick();
                     break;
                 case 3:
-                        player.inventoryToString();
+                        managePlayerMenu();
                     break;
                 case 4:
                         IO.println("Non abbiamo ancora un sistema di combattimento :(");
@@ -65,6 +65,74 @@ public class World {
                     IO.println("Non ho capito che cosa vuoi!");
             }
         }
+    }
+    // creare un metodo che gestisce l'intero inventario, il giocatore puo accedere come sotto menu
+    // puo scegliere diverse opzioni, vedere il proprio inventario, stampare le proprie statistiche, fare un drop di
+    // un oggetto.
+    public void managePlayerMenu(){
+        while (true){
+            IO.println("Benvenuto nel menù");
+            IO.println("1: Vedi le tue statistiche");
+            IO.println("2: Vedi il tuo inventario");
+            IO.println("3: Esci");
+            String userInput = IO.readln("-> ");
+            int choice = Integer.parseInt(userInput);
+            switch (choice){
+                case 1:
+                    IO.println(player.toString());
+                    break;
+                case 2:
+                    managePlayerInventory();
+                    break;
+                case 3:
+                    IO.println("Ritorno al mondo di gioco");
+                    return;
+                default:
+                    IO.println("Non ho capito!");
+                    break;
+            }
+
+        }
+    }
+
+    public void managePlayerInventory(){
+        // stampare l'inventario, l'utente puo selezionare un oggetto,
+        // selezionato facciamo leggere l'item e se vuole buttarlo altrimenti ritorna nell'inventario
+        while(!player.getInventory().isEmpty()) {
+            player.inventoryToString();
+            IO.println("Scegli l'item su cui vuoi sapere di più");
+            IO.println("Premi 0 per tornare indietro");
+            String item = IO.readln("-> ");
+            int indexItem = Integer.parseInt(item);
+            if (indexItem == 0) return;
+            IO.println(player.showItem(indexItem));
+            IO.println("1: Drop");
+            IO.println("2: Indietro");
+            String command = IO.readln("-> ");
+            int intCommand = Integer.parseInt(command);
+            switch (intCommand) {
+                    case 1:
+                        managePlayerDrop(indexItem);
+                        break;
+                    case 2:
+                        break;
+                    default:
+                        IO.println("Non ho capito cosa vuoi fare!");
+                }
+        }
+        IO.println("Inventario Vuoto!");
+    }
+
+    private void managePlayerDrop(int indexItem) {
+            boolean hasSuccess = player.tryDropItem(indexItem);
+            if (hasSuccess){
+                Item item = player.dropItem(indexItem);
+                IO.println(item.getName() + " droppato con successo");
+                Room currRoom = player.getCurrentRoom();
+                currRoom.addItem(item);
+            } else {
+                IO.println("Qualcosa è andato storto");
+            }
     }
 
     public void managePlayerPick(){
