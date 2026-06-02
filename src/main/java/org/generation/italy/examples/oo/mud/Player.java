@@ -7,7 +7,7 @@ public class Player extends Entity {
     // Attributi
     private ArrayList<Item> inventory;
     private Room currentRoom;
-    private double maxWeight;
+    private final double maxWeight;
     //Costruttore
     public Player(int hp, String name, int level, Room currentPosition) {
         super(hp, name, level);
@@ -19,6 +19,7 @@ public class Player extends Entity {
     }
     // Metodi
 
+    // metodo per muoversi tramite una direzione
     public boolean moveTo(int direction) {
         Room destination = currentRoom.exitAt(direction);
         if(destination != null){
@@ -47,13 +48,20 @@ public class Player extends Entity {
         return true;
     }
 
+    // Metodo per prendere un oggetto tramite l'indice
     public String pick(int itemPosition){
+        // indice reale dell'item
         int realIndex = itemPosition-1;
+        // controllo valori dell'indice errati
         if (realIndex <= 0 || realIndex > currentRoom.getEntityNames().size()){
             return "Hai inserito un indice sbagliato";
         }
+
+        // indice giusto chiamiamo il metodo per prendere l'item
         Item item = currentRoom.getItemByIndex(realIndex);
+        // metodo per controllare se possiamo aggiungere l'oggetto
         boolean hasSuccess = tryPickItem(item);
+        // se ha successo aggiungiamo
         if (hasSuccess){
             currentRoom.removeItem(item);
             return "Aggiunto al tuo inventario " + item.getName();
@@ -61,11 +69,12 @@ public class Player extends Entity {
         return "Inventario Pieno!";
     }
 
-    // metodo che prende in input un indice e rimuove l'oggetto dell'inventario
+    // metodo che prende in input un indice e controlla se l'indice è corretto
     public boolean tryDropItem(int index){
         return index <= inventory.size() && index > 0;
     }
 
+    // Metodo che rimuove l'oggetto dall'inventario del player e lo restituisce
     public Item dropItem(int index){
         int realIndex = index -1;
         return inventory.remove(realIndex);
@@ -79,6 +88,7 @@ public class Player extends Entity {
         }
     }
 
+    // Metodo che mostra l'item con tutti i suo parametri
     public String showItem(int index){
         int realIndex = index -1;
         if (index <= inventory.size() && index > 0){
