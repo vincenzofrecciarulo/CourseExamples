@@ -5,37 +5,71 @@ import java.util.ArrayList;
 public class World {
     private Room start;
     private Room current;
+    private Player player;
 
     public World(){
+
+        //---------AGORA-----------
         ArrayList<Entity> es = new ArrayList<>();
-        es.add(new Entity(50, "Ciro la Guardia", 7));
+        es.add(new Entity(20, "Ciro il naïve", 2));
 
         ArrayList<Item> os = new ArrayList<>();
-        os.add(new Item(2, 10, "Bastone di legno"));
-        os.add(new Item(3, 9, "Scudo di ferro"));
+        os.add(new Item(5, 3, "Pentola di lenticchie"));
+        os.add(new Item(2, 1, "Bastone di legno"));
 
-        Room ms = new Room("Piazza del Mercato",
+        Room agorà = new Room("Agorà",
                 """
-                        Ti trovi nella Piazza del Mercato piena di artigiani e fannulloni!
+                        Vociare confuso e gente accalcata: sei nell'Agorà, 
+                        la piazza dove la città si affacenda e, meno spesso di quanto si pensi, 
+                        si ferma a pensare.
+                        Tra colonne consumate e capannelli di gente che discute, 
+                        qui ogni domanda trova qualcuno pronto a metterla in dubbio.
                         """, es, os
         );
 
-        ArrayList<Item> os2 = new ArrayList<>();
-        os2.add(new Item(4, 8, "Ago di metallo"));
+        start = agorà;
 
-        // stanza del tempio
-        Room ts = new Room("Piazza del Tempio",
+        //----------TEMPIO-----------
+        ArrayList<Entity> es2 = new ArrayList<>();
+        es2.add(new Entity(20, "Cassandra la Sacerdotessa", 100));
+
+        ArrayList<Item> os2 = new ArrayList<>();
+        os2.add(new Item(1, 8, "Penna"));
+
+        Room tempioDiAtena = new Room("Tempio di Atena",
                 """
-                        Qui vengono a curarsi gli avventurieri malati!
-                        """, new ArrayList<>(), os2
+                        Entri nel Tempio di Atena. 
+                        Il chiasso dell'Agorà resta fuori: 
+                        qui c'è solo penombra fresca, l'odore dell'incenso e lo sguardo di pietra della dea, 
+                        che sembra soppesare ogni tuo pensiero.
+                        """, es2, os2
         );
 
-        ms.addExit(ts, Room.NORTH);
-        ts.addExit(ms, Room.SOUTH);
-        start = ms;
+        agorà.addExit(tempioDiAtena, Room.NORTH);
+        tempioDiAtena.addExit(agorà, Room.SOUTH);
+
+
+        //---------CASA-----------
+        ArrayList<Entity> es3 = new ArrayList<>();
+        es3.add(new Entity(5, "Ignazio il topo sofista", 3));
+
+        ArrayList<Item> os3 = new ArrayList<>();
+        os3.add(new Item(2, 10, "Ethica di Baruch Spinoza"));
+
+        Room casa = new Room("Casa",
+                """
+                        Sei a casa.
+                        """, es3, os3
+        );
+
+        agorà.addExit(casa, Room.EAST);
+        casa.addExit(agorà, Room.WEST);
+
+
     }
 
     public void startGame(){
+        Player player = new Player(IO.readln("Come ti chiami?"), chooseRole());  // riga attuale
         current = start;
         while(true){
             // IO.println(current.getTitle());
@@ -81,8 +115,52 @@ public class World {
         return false;
     }
 
-    public void main(){
-        World w = new World();
-        w.startGame();
+
+
+    public Role chooseRole(){
+        boolean notChosenYet=true;
+        Role role=null;
+        while (notChosenYet){
+            String roleString=IO.readln("""
+                        Con che scuola di pensiero ti identifichi?
+                        Stoicismo (s), Epicureismo (e) o Cinismo (c)?
+                        """).toLowerCase();
+            switch (roleString){
+                case "c":
+                    role=Role.CINICO;
+                    IO.println(
+                            """
+                            Complimenti, brutta canaglia! 
+                            Vivi in una botte e il tuo motto è:      
+                            """+"\n"+Role.CINICO.getMotto()
+                            );
+                    break;
+                case "s":
+                    role=Role.STOICO;
+                    IO.println(
+                            """
+                            La perturbabilità non ti fa un baffo. 
+                            Vivi nella  Stoà e il tuo motto è:
+                            """+"\n"+Role.STOICO.getMotto()
+                            );
+                    break;
+                case "e":
+                    role=Role.EPICUREO;
+                    IO.println(
+                            """
+                            Nonostante la gente pensi il contrario, sei una persona seria. 
+                            Vivi in un ostello e il tuo motto è:                                    
+                            """+"\n"+Role.EPICUREO.getMotto()
+                            );
+                    break;
+                default:
+                    IO.println("Scelta non valida");
+                    continue;
+            }
+            if (role != null){
+                notChosenYet=false;
+            }
+        }
+        return role;
     }
 }

@@ -1,6 +1,7 @@
 package org.generation.italy.examples.oo.mud;
 
 public class Item {
+
     private double weight;
     private int value;
     private String name;
@@ -13,5 +14,13 @@ public class Item {
 
     public String getName() {
         return name;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public int getValue() {
+        return value;
     }
 }

@@ -64,6 +64,22 @@ public class Room {
         return names;
     }
 
+    public boolean addItem(Item itemToAdd){
+        //ArrayList<Item> updatedItems = items;
+            items.add(itemToAdd);
+            return true;
+    }
+
+    public Item removeItem(String nameItemToRemove){
+        for (Item i:items){
+            if(nameItemToRemove.equals(i.getName())){
+                items.remove(i);
+                return i;
+            }
+        }
+        return null;
+    }
+
     public String getTitle() {
         return title;
     }
