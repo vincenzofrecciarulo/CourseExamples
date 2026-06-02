@@ -107,7 +107,7 @@ public class Player extends Entity {
         }
         if (wornWeapon != null) {
             IO.println("Togli " + wornWeapon.getName() + " e indossi " + weapon.getName() + ".");
-            wornArmor.remove();
+            wornWeapon.remove();
         } else {
             IO.println("Indossi " + weapon.getName() + " (POW +" + weapon.getPower() + ").");
         }

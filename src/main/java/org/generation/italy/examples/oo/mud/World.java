@@ -189,11 +189,11 @@ public class World {
 
                     switch(choice2.toLowerCase()){
                         case "l":
-                            dropItemMenu(p1);
-                            break;
+
+                            continue;
                         case "u":
                             useItemMenu(p1);
-                            break;
+                            continue;
                         case "i":
                             continue;
                         default:
