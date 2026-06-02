@@ -6,9 +6,9 @@ public class Player extends Entity{
     ArrayList<Item> inventory;
     int gold;
 
-    public Player(int hp, String name, int level) {
-        super(hp, name, level);
-        this.inventory = inventory;
+    public Player(int hp, String name, int level, int attack, int defense, boolean hostile) {
+        super(hp, name, level, attack, defense,hostile);
+        this.inventory = new ArrayList<>();
         this.gold = 0;
     }
 }

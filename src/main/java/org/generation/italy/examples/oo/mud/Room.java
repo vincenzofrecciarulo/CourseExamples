@@ -71,4 +71,14 @@ public class Room {
     public String getDescription() {
         return description;
     }
+
+    public ArrayList<Entity> getEnemies(){
+        ArrayList<Entity> enemies = new ArrayList<>();
+        for(Entity i : entities){
+            if(i.isHostile()){
+                    enemies.add(i);
+            }
+        }
+        return enemies;
+    }
 }

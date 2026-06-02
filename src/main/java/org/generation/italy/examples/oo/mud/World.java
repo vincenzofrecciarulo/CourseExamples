@@ -6,13 +6,17 @@ public class World {
     private Room start;
     private Room current;
 
+    private Player player;
+
+
     public World(){
         ArrayList<Entity> es = new ArrayList<>();
-        es.add(new Entity(50, "Ciro la Guardia", 7));
+        es.add(new Entity(50, "Ciro la Guardia", 7, 5, 6, false));
+        player = new Player(100, "Haru", 1, 3, 2, false);
 
         ArrayList<Item> os = new ArrayList<>();
         os.add(new Item(2, 10, "Bastone di legno"));
-        os.add(new Item(3, 9, "Scudo di ferro"));
+        os.add(new Item(3, 9, "Scudo di legno"));
 
         Room ms = new Room("Piazza del Mercato",
                 """
@@ -40,6 +44,7 @@ public class World {
         while(true){
             // IO.println(current.getTitle());
             // IO.println(current.getDescription());
+            System.out.println("Benvenuto "+player.getName()+", il tuo livello attuale è "+player.getLevel());
             IO.println(current); // questo fa automaticamente toString
             String command = IO.readln("->");
             boolean success = false;
@@ -56,6 +61,35 @@ public class World {
                 case "s":
                     success = moveTo(Room.SOUTH);
                     break;
+                case "attack":
+                    ArrayList<Entity> enemies = current.getEnemies();
+                    if(enemies.isEmpty()) {
+                        System.out.print("Non ci sono nemici presenti nella stanza.");
+                        return;
+                    }
+                    else{
+                        for (int i = 0; i < enemies.size(); i++) {
+                            System.out.println(i + " - " + enemies.get(i).getName());
+                        }
+                        String input = IO.readln("Chi vuoi attaccare?");
+                        int index = Integer.parseInt(input);
+                        Entity target = enemies.get(index);
+                        DiceRoller dice = new DiceRoller();
+                        int roll = dice.rollD20();
+                        int total = roll + player.getAttack();
+
+                        if (total >= target.getDefense()) {
+                            int damage = dice.rollD6() + player.getAttack();
+                            target.takeDamage(damage);
+                            if (target.getHp() == 0) {
+                                current.getEnemies().remove(target);
+                                System.out.println(target.getName() + " è stato sconfitto!");
+                            }
+
+                        } else {
+                            System.out.println("Mancato!");
+                        }
+                    }
                 case "q":
                     IO.println("Grazie per aver giocato");
                     return;
