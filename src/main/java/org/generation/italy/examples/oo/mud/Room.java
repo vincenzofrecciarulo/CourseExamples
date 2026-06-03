@@ -68,4 +68,21 @@ public class Room {
     public String getDescription() {
         return description;
     }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public boolean removeItem(Item item) {
+        return items.remove(item);
+    }
+
+    public Item findItem(String name) {
+        for (Item i : items) {
+            if (i.getName().equalsIgnoreCase(name)) {
+                return i;
+            }
+        }
+        return null;    // not found
+    }
 }

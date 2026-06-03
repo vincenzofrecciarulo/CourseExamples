@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class World {
     private Room start;    // our starting room
     private Room current;
+    private Player player;
 
     public World() {    // we create some rooms at the start of the game. this is the class Constructor
         ArrayList<Entity> es = new ArrayList<>();
@@ -46,6 +47,8 @@ public class World {
     }
 
     public void startGame() {
+        String name = IO.readln("What's your name, adventurer? ");
+        player = new Player(name);
         current = start;
         while(true) {  // mostro descrizione stanza, chiedo azione, compio e ricomincio il loop
 //            IO.println(current.getTitle());
@@ -70,8 +73,38 @@ public class World {
                     IO.println("Thanks for playing! ");
                     return;
                 default:
-                    IO.println("I didn't quite understand what you want to do...");
-                    continue;
+                    if (command.startsWith("pick ")) {
+                        String itemName = command.substring(5).trim();
+                        if (current.findItem(itemName) == null) {
+                            IO.println("I didn't quite understand what you want to do...");
+                            continue;
+                        } else {
+                            Item item = current.findItem(itemName);
+                            player.getInventory().addItem(item);
+                            current.removeItem(item);
+                            continue;
+                        }
+                    } else if (command.startsWith("drop ")) {
+                        String itemName = command.substring(5).trim();
+                        if (player.getInventory().findItem(itemName) == null) {
+                            IO.println("I didn't quite understand what you want to do...");
+                        } else {
+                            Item item = player.getInventory().findItem(itemName);
+                            current.addItem(item);
+                            player.getInventory().removeItem(item);
+                        }
+                        continue;
+                    } else if (command.equals("inventory") || command.equals("i")) {
+                        if (player.getInventory().getItemList().isEmpty()) {
+                            System.out.println("Your inventory is empty!");
+                        } else {
+                            System.out.println(player.getInventory().getItemList().toString());
+                        }
+                        continue;
+                    } else {
+                        IO.println("I didn't quite understand what you want to do...");
+                        continue;
+                    }
             }
             if (success) {
                 IO.println("You went to " + command);   // temporary solution
