@@ -179,10 +179,10 @@ public class World {
                     switch(choice2.toLowerCase()){
                         case "l":
                             dropItemMenu(p1);
-                            break;
+                            continue;
                         case "u":
                             useItemMenu(p1);
-                            break;
+                            continue;
                         case "i":
                             continue;
                         default:
@@ -247,8 +247,8 @@ public class World {
                                 Combat.Result result = combat.startCombat(npc);
                                 if (result == Combat.Result.DEFEAT) {
                                     IO.println("\n════════════════════════════════════");
-                                    IO.println("        GAME OVER");
-                                    IO.println("════════════════════════════════════");
+                                    IO.println("             GAME OVER");
+                                    IO.println("══════════════════════════════════════");
                                     return;
                                 }
                                 break;
@@ -282,8 +282,8 @@ public class World {
 
             if (result == Combat.Result.DEFEAT) {
                 IO.println("\n════════════════════════════════════");
-                IO.println("        GAME OVER");
-                IO.println("════════════════════════════════════");
+                IO.println("              GAME OVER");
+                IO.println("══════════════════════════════════════");
                 return false;
             }
             if (result == Combat.Result.FLED) {
