@@ -1,7 +1,6 @@
 package org.generation.italy.examples.oo.mud.roles;
 
-import org.generation.italy.examples.oo.mud.GameContext;
-import org.generation.italy.examples.oo.mud.Player;
+import org.generation.italy.examples.oo.mud.world.Player;
 import org.generation.italy.examples.oo.mud.commands.CommandOutcome;
 
 import java.util.List;
@@ -29,10 +28,10 @@ public class Paladin extends CharacterClass {
             }
 
             @Override
-            public CommandOutcome use(GameContext context, String targetName) {
+            public CommandOutcome use(AbilityContext context, String targetName) {
                 Player player = context.getPlayer();
                 player.heal(8 + player.getStats().getWisdom());
-                context.getIo().println("Una luce calda ti avvolge. Ti senti più forte.");
+                context.getSession().send("Una luce calda ti avvolge. Ti senti più forte.");
                 return CommandOutcome.REFRESH;
             }
         });

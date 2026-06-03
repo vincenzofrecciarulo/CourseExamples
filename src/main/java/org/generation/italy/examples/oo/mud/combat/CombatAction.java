@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.combat;
 
 public class CombatAction {
     private final CombatActionType type;

@@ -1,24 +1,26 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.world;
+
+import org.generation.italy.examples.oo.mud.combat.CombatCoordinator;
 
 public class GameContext {
-    private final GameIO io;
+    private final PlayerSession session;
     private final Player player;
     private volatile CombatCoordinator combatCoordinator;
     private volatile Room currentRoom;
 
-    public GameContext(GameIO io, Room currentRoom, Player player) {
-        this(io, currentRoom, player, null);
+    public GameContext(PlayerSession session, Room currentRoom, Player player) {
+        this(session, currentRoom, player, null);
     }
 
-    public GameContext(GameIO io, Room currentRoom, Player player, CombatCoordinator combatCoordinator) {
-        this.io = io;
+    public GameContext(PlayerSession session, Room currentRoom, Player player, CombatCoordinator combatCoordinator) {
+        this.session = session;
         this.currentRoom = currentRoom;
         this.player = player;
         this.combatCoordinator = combatCoordinator;
     }
 
-    public GameIO getIo() {
-        return io;
+    public PlayerSession getSession() {
+        return session;
     }
 
     public Player getPlayer() {

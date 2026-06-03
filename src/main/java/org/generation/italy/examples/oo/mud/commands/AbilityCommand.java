@@ -1,7 +1,8 @@
 package org.generation.italy.examples.oo.mud.commands;
 
-import org.generation.italy.examples.oo.mud.GameContext;
-import org.generation.italy.examples.oo.mud.Player;
+import org.generation.italy.examples.oo.mud.world.GameContext;
+import org.generation.italy.examples.oo.mud.world.Player;
+import org.generation.italy.examples.oo.mud.roles.AbilityContextFactory;
 import org.generation.italy.examples.oo.mud.roles.SpecialAbility;
 
 public class AbilityCommand implements Command {
@@ -10,13 +11,13 @@ public class AbilityCommand implements Command {
         Player player = context.getPlayer();
 
         if(args == null || args.isBlank()){
-            context.getIo().println("Abilita disponibili:");
+            context.getSession().send("Abilita disponibili:");
             for(SpecialAbility ability : player.getSpecialAbilities()){
-                context.getIo().println("- " + ability.getName() + ": " + ability.getDescription());
+                context.getSession().send("- " + ability.getName() + ": " + ability.getDescription());
             }
             return CommandOutcome.CONTINUE;
         }
 
-        return player.useAbility(args.trim(), context);
+        return player.useAbility(args.trim(), AbilityContextFactory.from(context));
     }
 }

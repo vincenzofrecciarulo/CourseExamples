@@ -1,6 +1,6 @@
 package org.generation.italy.examples.oo.mud.roles;
 
-import org.generation.italy.examples.oo.mud.Player;
+import org.generation.italy.examples.oo.mud.world.Player;
 
 import java.util.List;
 import java.util.Random;

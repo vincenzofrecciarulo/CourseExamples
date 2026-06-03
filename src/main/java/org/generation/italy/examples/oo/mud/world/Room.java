@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.world;
 
 import java.util.ArrayList;
 import java.util.Iterator;
