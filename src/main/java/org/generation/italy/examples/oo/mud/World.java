@@ -14,7 +14,7 @@ public class World {
         //os.add(new Item(3, 9, "Scudo di ferro"));
         //os2.add(new Item(4, 8, "Ago di metallo"));
         // stanza del tempio
-        player = new Player(100, "Player", 1, 100, new Inventory());
+        player = new Player("Player", 1, new Inventory());
     }
 
     public void startGame(){
@@ -50,6 +50,9 @@ public class World {
                     int input = Integer.parseInt(IO.readln("Quale oggetto usare? ->"));
                     player.useItem(input);
                     break;
+                case "p":
+                    player.showPokemon();
+                    break;
                 case "q":
                     IO.println("Grazie per aver giocato");
                     return;
@@ -74,6 +77,7 @@ public class World {
                 - 'd' per andare a Est
                 - 'z' per aprire l'inventario
                 - 'x' per interagire con la stanza
+                - 'p' per controllare pokemon
                 """);
     }
 

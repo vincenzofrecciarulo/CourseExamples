@@ -13,8 +13,8 @@ public class HealPotion extends Item{
 
     @Override
     public void interact(Player player){
-        player.heal(value);
-        player.drop(this);
-        System.out.println("Hai recuperato " + VALUE + " vita");
+        if(player.healPokemon(value)){
+            player.drop(this);
+        }
     }
 }

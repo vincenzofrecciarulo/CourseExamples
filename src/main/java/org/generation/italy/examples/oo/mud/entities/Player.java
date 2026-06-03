@@ -2,8 +2,9 @@ package org.generation.italy.examples.oo.mud.entities;
 
 import org.generation.italy.examples.oo.mud.Inventory;
 import org.generation.italy.examples.oo.mud.Map;
-import org.generation.italy.examples.oo.mud.entities.pokemon.Pokemon;
+import org.generation.italy.examples.oo.mud.entities.pokemon.PokemonEntity;
 import org.generation.italy.examples.oo.mud.enums.Direction;
+import org.generation.italy.examples.oo.mud.enums.Pokemon;
 import org.generation.italy.examples.oo.mud.items.Item;
 
 import org.generation.italy.examples.oo.mud.rooms.EmptyRoom;
@@ -16,17 +17,14 @@ public class Player extends Entity {
     private final Inventory inventory;
     private int currentY = 10;
     private int currentX = 10;
-    private final ArrayList<Pokemon> pokemons;
+    private final ArrayList<PokemonEntity> pokemonEntities;
 
-    public Player(int hp, String name, int level, int coins, Inventory inventory, ArrayList<Pokemon> pokemons) {
-        super(hp, name, level);
+    public Player(String name, int coins, Inventory inventory) {
+        super(name);
         this.coins = coins;
         this.inventory = inventory;
-        this.pokemons = pokemons;
-    }
-
-    public void heal(int heal){
-        hp += heal;
+        this.pokemonEntities = new ArrayList<>();
+        pokemonEntities.add(new PokemonEntity(Pokemon.PICHU,1));
     }
 
     public int getCoins(){
@@ -41,6 +39,32 @@ public class Player extends Entity {
         return true;
     }
 
+    public boolean healPokemon(int healAmount){
+        IO.println("Quale pokemon vuoi curare?");
+        for(int i = 0; i < pokemonEntities.size(); i++){
+            System.out.printf("(%s) %S \n", i, pokemonEntities.get(i).getName());
+        }
+        int input = Integer.parseInt(IO.readln("->"));
+        if(input < pokemonEntities.size()){
+            if(!pokemonEntities.get(input).heal(healAmount)){
+                System.out.println(pokemonEntities.get(input).getName() + " ha già vita massima");
+                return false;
+            }
+        }
+        System.out.println(pokemonEntities.get(input).getName() + " ha recuperato " + healAmount + " vita");
+        return true;
+    }
+
+    public void showPokemon(){
+        IO.println("Quale pokemon vuoi selezionare?:");
+        for(int i = 0; i < pokemonEntities.size(); i++){
+            System.out.printf("(%s) %S \n", i, pokemonEntities.get(i).getName());
+        }
+        int input = Integer.parseInt(IO.readln("->"));
+        if(input < pokemonEntities.size()){
+            pokemonEntities.get(input).showStats();
+        }
+    }
 
     public boolean withdrawCoins(int amount){
         if(coins < amount){

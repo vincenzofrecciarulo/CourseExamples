@@ -6,12 +6,10 @@ import org.generation.italy.examples.oo.mud.entities.Player;
 import org.generation.italy.examples.oo.mud.items.HealPotion;
 
 public class HealerEntity extends Entity {
-    private static final int HP = 1;
     private static final String NAME = "Natasha La Curatrice";
-    private static final int LEVEL = 1;
     private static final int HEAL_AMOUNT = 100;
     public HealerEntity() {
-        super(HealerEntity.HP, HealerEntity.NAME, HealerEntity.LEVEL);
+        super(HealerEntity.NAME);
     }
 
     @Override
@@ -23,7 +21,7 @@ public class HealerEntity extends Entity {
         switch (input){
             case "1":
                 System.out.println("Stai riposando...");
-                player.heal(HealerEntity.HEAL_AMOUNT);
+                //player.heal(HealerEntity.HEAL_AMOUNT);
                 System.out.println("Hai recuperato 100 punti vita.");
                 break;
             case "2":

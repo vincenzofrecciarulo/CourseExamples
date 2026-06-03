@@ -7,12 +7,10 @@ import org.generation.italy.examples.oo.mud.items.HealPotion;
 import org.generation.italy.examples.oo.mud.items.ScrollOfReturn;
 
 public class GeneralMerchantEntity extends Entity {
-    private static final int HP = 1;
     private static final String NAME = "Therion Il Mercante";
-    private static final int LEVEL = 1;
 
     public GeneralMerchantEntity() {
-        super(GeneralMerchantEntity.HP, GeneralMerchantEntity.NAME, GeneralMerchantEntity.LEVEL);
+        super(GeneralMerchantEntity.NAME);
     }
 
     @Override
