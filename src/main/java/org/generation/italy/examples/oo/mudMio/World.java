@@ -59,11 +59,11 @@ public class World {
 
         // ── STANZA 5: Taverna del Cinghiale Ubriaco
         ArrayList<Entity> es5 = new ArrayList<>();
-        es5.add(new Entity(80, "Bardo Malvino", 4));
+        es5.add(NPC.BardoMalvino());
         es5.add(new Entity(60, "Taberniere Grasso", 2));
 
         ArrayList<Item> os5 = new ArrayList<>();
-        os5.add(Item.mappasgualcita());
+        os5.add(Consumable.Birra());
         os5.add(Weapon.SpadoneR());
 
         Room taverna = new Room("Taverna del Cinghiale Ubriaco",
