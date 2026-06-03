@@ -1,6 +1,11 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.combat;
 
+import org.generation.italy.examples.oo.mud.world.Entity;
+import org.generation.italy.examples.oo.mud.world.GameContext;
+import org.generation.italy.examples.oo.mud.world.RandomDiceRoller;
+import org.generation.italy.examples.oo.mud.world.Room;
 import org.generation.italy.examples.oo.mud.commands.CommandOutcome;
+import org.generation.italy.examples.oo.mud.roles.AbilityContextFactory;
 
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
@@ -8,7 +13,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class CombatSession implements Runnable {
     private final GameContext context;
-    private final GameIO io;
     private final Entity opponent;
     private final CombatCoordinator coordinator;
     private final BlockingQueue<CombatAction> actionQueue = new LinkedBlockingQueue<>();
@@ -17,9 +21,8 @@ public class CombatSession implements Runnable {
     private volatile boolean running = true;
     private Thread thread;
 
-    public CombatSession(GameContext context, GameIO io, Entity opponent, CombatCoordinator coordinator) {
+    public CombatSession(GameContext context, Entity opponent, CombatCoordinator coordinator) {
         this.context = context;
-        this.io = io;
         this.opponent = opponent;
         this.coordinator = coordinator;
     }
@@ -48,25 +51,27 @@ public class CombatSession implements Runnable {
 
     @Override
     public void run() {
-        io.println("Combattimento contro " + opponent.getName() + "!");
+        context.getSession().send("Combattimento contro " + opponent.getName() + "!");
 
-        while(running && context.getPlayer().isAlive() && opponent.isAlive() && context.getCurrentRoom().getEntities().contains(opponent)){
-            io.println(context.getPlayer().getName() + " vs " + opponent.getName() + " | PF " + context.getPlayer().getHp() + "/" + opponent.getHp());
+        while(running && context.getPlayer().isAlive() && opponent.isAlive() &&
+                context.getCurrentRoom().getEntities().contains(opponent)){
+            context.getSession().send(context.getPlayer().getName() + " vs " + opponent.getName() + " | PF " + context.getPlayer().getHp() + "/" + opponent.getHp());
             resolvePlayerTurn();
             if(!running || !context.getPlayer().isAlive() || !opponent.isAlive()){
                 break;
             }
 
-            sleepQuietly(500);
+            sleepQuietly(2000);
             resolveOpponentTurn();
-            sleepQuietly(500);
+            sleepQuietly(2000);
         }
 
         if(!context.getPlayer().isAlive()){
-            io.println("Sei stato sconfitto.");
+            context.getSession().send("Sei stato sconfitto.");
             coordinator.markGameOver();
-        } else if(!opponent.isAlive() || !context.getCurrentRoom().getEntities().contains(opponent)){
-            io.println(opponent.getName() + " cade.");
+        } else if(context.getPlayer().hasFled()){
+            context.getSession().send("Hai salvato la pelle , a prezzo dell' onore!");
+            context.getPlayer().setHasFled(false);
         }
 
         running = false;
@@ -82,13 +87,13 @@ public class CombatSession implements Runnable {
         switch(action.getType()){
             case ATTACK -> resolveAttack(context.getPlayer(), opponent);
             case USE_ABILITY -> {
-                CommandOutcome outcome = context.getPlayer().useAbility(action.getPayload(), context);
+                CommandOutcome outcome = context.getPlayer().useAbility(action.getPayload(), AbilityContextFactory.inCombat(context, opponent));
                 if(outcome == CommandOutcome.QUIT){
                     running = false;
                 }
             }
             case FLEE -> attemptFlee();
-            case WAIT -> io.println(context.getPlayer().getName() + " aspetta.");
+            case WAIT -> context.getSession().send(context.getPlayer().getName() + " aspetta.");
         }
     }
 
@@ -102,15 +107,15 @@ public class CombatSession implements Runnable {
     private void resolveAttack(Entity attacker, Entity defender) {
         AttackResult result = combatResolver.resolveAttack(attacker, defender);
         if(!result.isHit()){
-            io.println(attacker.getName() + " manca " + defender.getName() + ".");
+            context.getSession().send(attacker.getName() + " manca " + defender.getName() + ".");
             return;
         }
 
         boolean dead = defender.applyDamage(result.getDamage());
-        io.println(attacker.getName() + " colpisce " + defender.getName()
+        context.getSession().send(attacker.getName() + " colpisce " + defender.getName()
                 + " per " + result.getDamage() + " danni.");
         if(dead){
-            io.println(defender.getName() + " crolla a terra.");
+            context.getSession().send(defender.getName() + " crolla a terra.");
             if(defender != context.getPlayer()){
                 context.getCurrentRoom().removeEntity(defender);
             }
@@ -123,16 +128,17 @@ public class CombatSession implements Runnable {
         int chosenDirection = directions[random.nextInt(directions.length)];
         Room destination = room.exitAt(chosenDirection);
         if(destination == null){
-            io.println(context.getPlayer().getName() + " prova a fuggire ma non trova una via d'uscita.");
+            context.getSession().send(context.getPlayer().getName() + " prova a fuggire ma non trova una via d'uscita.");
             return;
         }
 
         room.removeEntity(context.getPlayer());
         context.setCurrentRoom(destination);
         destination.addEntity(context.getPlayer());
-        io.println(context.getPlayer().getName() + " fugge verso " + directionName(chosenDirection) + ".");
-        io.println(destination.toString());
+        context.getSession().send(context.getPlayer().getName() + " fugge verso " + directionName(chosenDirection) + ".");
+        context.getSession().send(destination.toString());
         running = false;
+        context.getPlayer().setHasFled(true);
     }
 
     private String directionName(int direction) {

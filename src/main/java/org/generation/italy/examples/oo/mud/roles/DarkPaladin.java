@@ -1,8 +1,7 @@
 package org.generation.italy.examples.oo.mud.roles;
 
-import org.generation.italy.examples.oo.mud.Entity;
-import org.generation.italy.examples.oo.mud.GameContext;
-import org.generation.italy.examples.oo.mud.Player;
+import org.generation.italy.examples.oo.mud.world.Entity;
+import org.generation.italy.examples.oo.mud.world.Player;
 import org.generation.italy.examples.oo.mud.commands.CommandOutcome;
 
 import java.util.List;
@@ -30,19 +29,19 @@ public class DarkPaladin extends CharacterClass {
             }
 
             @Override
-            public CommandOutcome use(GameContext context, String targetName) {
+            public CommandOutcome use(AbilityContext context, String targetName) {
                 Player player = context.getPlayer();
-                Entity target = context.getCurrentRoom().findEntityByPrefix(targetName);
+                Entity target = context.resolveTarget(targetName);
                 if(target == null || target == player){
-                    context.getIo().println("Non vedo un bersaglio valido per il drenaggio.");
+                    context.getSession().send("Non vedo un bersaglio valido per il drenaggio.");
                     return CommandOutcome.CONTINUE;
                 }
                 int damage = 6 + player.getStats().getStrength() / 2;
                 boolean dead = target.applyDamage(damage);
                 player.heal(3 + player.getStats().getWisdom() / 2);
-                context.getIo().println("L'ombra lacera " + target.getName() + " e ne assorbe la forza.");
+                context.getSession().send("L'ombra lacera " + target.getName() + " e ne assorbe la forza.");
                 if(dead){
-                    context.getIo().println(target.getName() + " è caduto nell'oscurità.");
+                    context.getSession().send(target.getName() + " è caduto nell'oscurità.");
                     context.getCurrentRoom().removeEntity(target);
                 }
                 return CommandOutcome.REFRESH;

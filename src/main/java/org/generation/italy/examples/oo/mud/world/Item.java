@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.world;
 
 public class Item {
     private static int nextId = 1;

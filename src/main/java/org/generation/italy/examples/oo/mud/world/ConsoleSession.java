@@ -1,20 +1,20 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.world;
 
 import java.util.Scanner;
 
-public class ConsoleIO implements GameIO {
+public class ConsoleSession implements PlayerSession {
     private final Scanner scanner = new Scanner(System.in);
     private final Object outputLock = new Object();
 
     @Override
-    public void println(String s) {
+    public void send(String message) {
         synchronized(outputLock){
-            System.out.println(s);
+            System.out.println(message);
         }
     }
 
     @Override
-    public String readln(String prompt) {
+    public String readCommand(String prompt) {
         synchronized(outputLock){
             System.out.print(prompt);
         }
