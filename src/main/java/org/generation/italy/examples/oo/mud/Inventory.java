@@ -37,6 +37,8 @@ public class Inventory {
         return null;
     }
 
+    //come si farebbe qua l'override del toString?
+
     public String printInventory(){
         ArrayList<String> printedInventory = new ArrayList<String>();
         for (Item i:items){

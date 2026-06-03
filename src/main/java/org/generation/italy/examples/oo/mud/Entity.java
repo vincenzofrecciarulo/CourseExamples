@@ -8,13 +8,29 @@ public class Entity {
     private String name;
     private int level;
     private Inventory inventory;
+    private ArrayList<Move> moves;
+    private Question question;
+    private boolean defeated=false;
 
-    public Entity(int hp, String name, int level) {
+    public Entity(int hp, String name, int level, ArrayList<Move> moves, Question question) {
         this.hp = hp;
         this.name = name;
         this.level = level;
+        this.moves=moves;
+        this.question=question;
     }
-    public Entity(){}
+
+    public Entity(int hp, String name, int level, ArrayList<Move> moves) {
+        this(hp, name, level, moves, null);
+    }
+
+    public boolean hasQuestion(){
+        return question != null;
+    }
+
+    public ArrayList<Move> getMoves() {
+        return moves;
+    }
 
     public String getName() {
         return name;
@@ -29,6 +45,18 @@ public class Entity {
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public Question getQuestion(){
+        return question;
+    }
+
+    public boolean isDefeated() {
+        return defeated;
+    }
+
+    public void setDefeated(boolean defeated) {
+        this.defeated = defeated;
     }
 
     public void setHp(int hp) {
