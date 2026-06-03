@@ -1,5 +1,6 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mud.world;
 
+import org.generation.italy.examples.oo.mud.combat.CombatCoordinator;
 import org.generation.italy.examples.oo.mud.commands.*;
 import org.generation.italy.examples.oo.mud.roles.CharacterClass;
 import org.generation.italy.examples.oo.mud.roles.CharacterFactory;
@@ -10,19 +11,19 @@ import java.util.Random;
 
 public class World {
     private final Room start;
-    private final GameIO io;
+    private final PlayerSession session;
     private final CommandRegistry commands;
     private final CharacterFactory characterFactory;
 
     public World(){
-        this(new ConsoleIO());
+        this(new ConsoleSession());
     }
 
     /**
-     * Create a world using a provided GameIO (useful for tests)
+     * Create a world using a provided PlayerSession (useful for tests)
      */
-    public World(GameIO io){
-         this.io = io;
+    public World(PlayerSession session){
+         this.session = session;
          this.characterFactory = new CharacterFactory(new Random());
          this.commands = createCommands();
          // Build a richer fantasy city map following a north-south vertical axis
@@ -111,6 +112,7 @@ public class World {
          // Piazza del Mercato (Market Square) - SOUTH of Piazza del Tempio (START)
          ArrayList<Entity> marketEntities = new ArrayList<>();
          marketEntities.add(new Npc(40, "Guardia del Mercato", 5, "Tieni gli occhi aperti e le mani lontane dalle merci."));
+         marketEntities.add(new Monster(18, "Troll", 5, 6));
          ArrayList<Item> marketItems = new ArrayList<>();
          marketItems.add(new Item(1.0, 2, "Mela"));
          marketItems.add(new Item(0.5, 1, "Moneta"));
@@ -229,8 +231,8 @@ public class World {
 
     public void startGame(){
          Player player = createInitialPlayer();
-         GameContext context = new GameContext(io, start, player);
-         CombatCoordinator combatCoordinator = new CombatCoordinator(context, io);
+         GameContext context = new GameContext(session, start, player);
+         CombatCoordinator combatCoordinator = new CombatCoordinator(context);
          context.setCombatCoordinator(combatCoordinator);
          // create a default player and put into the start room
          context.getCurrentRoom().addEntity(player);
@@ -243,7 +245,7 @@ public class World {
              }
 
              String prompt = combatCoordinator.isCombatActive() ? "combattimento> " : "-> ";
-             String line = io.readln(prompt);
+             String line = session.readCommand(prompt);
              if(line==null) break;
              String command = line.trim();
              if(command.isEmpty()) continue;
@@ -259,7 +261,7 @@ public class World {
 
              Command handler = commands.get(verb);
              if(handler == null){
-                 io.println("Non ho capito che cosa vuoi! (digita 'aiuto' per i comandi)");
+                 session.send("Non ho capito che cosa vuoi! (digita 'aiuto' per i comandi)");
                  renderCurrentRoom(context);
                  continue;
              }
@@ -340,14 +342,14 @@ public class World {
      }
 
      private Player createInitialPlayer() {
-         io.println("Crea il tuo personaggio.");
+         session.send("Crea il tuo personaggio.");
          List<CharacterClass> characterClasses = characterFactory.availableClasses();
          for(int i = 0; i < characterClasses.size(); i++){
              CharacterClass characterClass = characterClasses.get(i);
-             io.println((i + 1) + ". " + characterClass.getName() + " - " + characterClass.getDescription());
+             session.send((i + 1) + ". " + characterClass.getName() + " - " + characterClass.getDescription());
          }
 
-         String name = io.readln("Nome del personaggio [Avventuriero]: ");
+         String name = session.readCommand("Nome del personaggio [Avventuriero]: ");
          if(name == null || name.isBlank()){
              name = "Avventuriero";
          } else {
@@ -358,14 +360,14 @@ public class World {
          CharacterClass characterClass = characterClasses.get(chosenClassIndex - 1);
 
          Player player = characterFactory.create(name, 1, characterClass);
-         io.println("Personaggio creato: " + player.getName() + " (" + characterClass.getName() + ")");
-         io.println("Statistiche iniziali: " + player.getStats());
+         session.send("Personaggio creato: " + player.getName() + " (" + characterClass.getName() + ")");
+         session.send("Statistiche iniziali: " + player.getStats());
          return player;
      }
 
      private int chooseClassIndex() {
          while(true){
-             String input = io.readln("Scegli la classe [1-" + characterFactory.availableClasses().size() + "]: ");
+             String input = session.readCommand("Scegli la classe [1-" + characterFactory.availableClasses().size() + "]: ");
              if(input == null || input.isBlank()){
                  return 1;
              }
@@ -379,12 +381,12 @@ public class World {
                  // Proviamo di nuovo se l'input non e' un numero valido.
              }
 
-             io.println("Scelta non valida, riprova.");
+             session.send("Scelta non valida, riprova.");
          }
      }
 
      private void renderCurrentRoom(GameContext context) {
-         io.println(context.getCurrentRoom().toString());
+         session.send(context.getCurrentRoom().toString());
      }
 
 }

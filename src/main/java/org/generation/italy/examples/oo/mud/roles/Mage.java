@@ -1,8 +1,7 @@
 package org.generation.italy.examples.oo.mud.roles;
 
-import org.generation.italy.examples.oo.mud.Entity;
-import org.generation.italy.examples.oo.mud.GameContext;
-import org.generation.italy.examples.oo.mud.Player;
+import org.generation.italy.examples.oo.mud.world.Entity;
+import org.generation.italy.examples.oo.mud.world.Player;
 import org.generation.italy.examples.oo.mud.commands.CommandOutcome;
 
 import java.util.List;
@@ -30,18 +29,18 @@ public class Mage extends CharacterClass {
             }
 
             @Override
-            public CommandOutcome use(GameContext context, String targetName) {
+            public CommandOutcome use(AbilityContext context, String targetName) {
                 Player player = context.getPlayer();
-                Entity target = context.getCurrentRoom().findEntityByPrefix(targetName);
+                Entity target = context.resolveTarget(targetName);
                 if(target == null || target == player){
-                    context.getIo().println("Nessun bersaglio per la palla di fuoco.");
+                    context.getSession().send("Nessun bersaglio per la palla di fuoco.");
                     return CommandOutcome.CONTINUE;
                 }
                 int damage = 7 + player.getStats().getIntelligence() / 2;
                 boolean dead = target.applyDamage(damage);
-                context.getIo().println("Una palla di fuoco investe " + target.getName() + ".");
+                context.getSession().send("Una palla di fuoco investe " + target.getName() + ".");
                 if(dead){
-                    context.getIo().println(target.getName() + " brucia fino a sparire.");
+                    context.getSession().send(target.getName() + " brucia fino a sparire.");
                     context.getCurrentRoom().removeEntity(target);
                 }
                 return CommandOutcome.REFRESH;

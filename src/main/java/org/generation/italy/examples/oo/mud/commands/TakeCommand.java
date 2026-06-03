@@ -1,13 +1,13 @@
 package org.generation.italy.examples.oo.mud.commands;
 
-import org.generation.italy.examples.oo.mud.GameContext;
-import org.generation.italy.examples.oo.mud.Item;
+import org.generation.italy.examples.oo.mud.world.GameContext;
+import org.generation.italy.examples.oo.mud.world.Item;
 
 public class TakeCommand implements Command {
     @Override
     public CommandOutcome execute(GameContext context, String args) {
         if(args.isEmpty()){
-            context.getIo().println("Prendi cosa?");
+            context.getSession().send("Prendi cosa?");
             return CommandOutcome.CONTINUE;
         }
 
@@ -15,9 +15,9 @@ public class TakeCommand implements Command {
         if(item != null){
             context.getCurrentRoom().removeItemByName(item.getName());
             context.getPlayer().pickUp(item);
-            context.getIo().println("Hai preso: " + item.getName());
+            context.getSession().send("Hai preso: " + item.getName());
         } else {
-            context.getIo().println("Non c'è questo oggetto qui: " + args);
+            context.getSession().send("Non c'è questo oggetto qui: " + args);
         }
         return CommandOutcome.REFRESH;
     }

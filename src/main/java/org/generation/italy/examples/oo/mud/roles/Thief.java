@@ -1,8 +1,7 @@
 package org.generation.italy.examples.oo.mud.roles;
 
-import org.generation.italy.examples.oo.mud.Entity;
-import org.generation.italy.examples.oo.mud.GameContext;
-import org.generation.italy.examples.oo.mud.Player;
+import org.generation.italy.examples.oo.mud.world.Entity;
+import org.generation.italy.examples.oo.mud.world.Player;
 import org.generation.italy.examples.oo.mud.commands.CommandOutcome;
 
 import java.util.List;
@@ -30,18 +29,18 @@ public class Thief extends CharacterClass {
             }
 
             @Override
-            public CommandOutcome use(GameContext context, String targetName) {
+            public CommandOutcome use(AbilityContext context, String targetName) {
                 Player player = context.getPlayer();
-                Entity target = context.getCurrentRoom().findEntityByPrefix(targetName);
+                Entity target = context.resolveTarget(targetName);
                 if(target == null || target == player){
-                    context.getIo().println("Non vedo un bersaglio adatto al colpo rapido.");
+                    context.getSession().send("Non vedo un bersaglio adatto al colpo rapido.");
                     return CommandOutcome.CONTINUE;
                 }
                 int damage = 4 + player.getStats().getAgility();
                 boolean dead = target.applyDamage(damage);
-                context.getIo().println("Colpisci " + target.getName() + " prima che possa reagire.");
+                context.getSession().send("Colpisci " + target.getName() + " prima che possa reagire.");
                 if(dead){
-                    context.getIo().println(target.getName() + " crolla a terra.");
+                    context.getSession().send(target.getName() + " crolla a terra.");
                     context.getCurrentRoom().removeEntity(target);
                 }
                 return CommandOutcome.REFRESH;
