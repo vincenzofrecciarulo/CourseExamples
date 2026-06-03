@@ -166,6 +166,51 @@ public class MagicHat {
         }
     }
 
+
+    public static void assignToHouse() {
+        for (int i=0; i<PERFECT_CLASS_SIZE - prefects.length; i++) {    // we already assigned prefects
+            String[] student = students[i];
+            String studentName = student[0];
+            String houseName = student[1];
+            House favoriteHouse = null;
+            if (houseName != null) {
+                favoriteHouse = House.valueOf(houseName);
+            }
+            IO.println(studentName + "...mmmmmmh...");
+//            Thread.sleep(2000 + luck.nextInt(2000));
+            if (houseName != null) {
+                int favoriteHousePos = favoriteHouse.ordinal();
+                boolean hasSpace = counters[favoriteHousePos] < PERFECT_HOUSE_SIZE;
+                // we can pause the execution thread. here we do it for 2s+0..2s to simulate suspance
+                if (hasSpace) {
+                    int chance = luck.nextInt(3); // 0..2
+                    if (chance == 0) {   // 1 on 3 possibilities
+                        houses[favoriteHousePos][counters[favoriteHousePos]] = studentName;
+                        counters[favoriteHousePos]++;
+                        IO.println(studentName + " ha avuto culo ed è stato aggiunto alla sua casa preferita!");
+                        continue;     // on to the next student
+                    }
+                }
+            }
+            // if we get here, either there was no space in the classroom or the student didn't get his favourite house
+            int randomPos;
+            do {
+                randomPos = luck.nextInt(houses.length);
+            } while (counters[randomPos] == PERFECT_HOUSE_SIZE);    // till the house is full
+            houses[randomPos][counters[randomPos]] = studentName;
+            counters[randomPos]++;
+            String randomHouseName = House.values()[randomPos].name(); // we get the enum and convert it to String
+            IO.println(studentName + " è stato aggiunto casualmente alla casa " + randomHouseName);
+            // lazy evaluation - we never risk giving null to randomHouseName.equals
+            if (favoriteHouse != null && randomHouseName.equals(favoriteHouse.name())) {
+                IO.println("Che botta di culo! Lo studente "
+                        + studentName +
+                        " e' stato aggiunto casualmente alla sua casa preferita: "
+                        + randomHouseName);
+            }
+        }
+    }
+
     public static void reportAssignments() {
         for (int i=0; i < houses.length; i++) {
             IO.print(House.values()[i].name() + " ");
