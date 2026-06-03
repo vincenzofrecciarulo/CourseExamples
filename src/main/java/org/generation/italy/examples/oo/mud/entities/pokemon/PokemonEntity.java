@@ -32,6 +32,10 @@ public class PokemonEntity extends Entity {
         return true;
     }
 
+    public void healMax(){
+        currentHp += pokemonStat.getHp(level);
+    }
+
     public void showStats(){
         System.out.printf("""
                 %s

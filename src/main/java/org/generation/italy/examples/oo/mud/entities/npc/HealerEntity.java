@@ -21,8 +21,8 @@ public class HealerEntity extends Entity {
         switch (input){
             case "1":
                 System.out.println("Stai riposando...");
-                //player.heal(HealerEntity.HEAL_AMOUNT);
-                System.out.println("Hai recuperato 100 punti vita.");
+                player.healAllPokemon();
+                System.out.println("I tuoi pokemon hanno recuperato vita");
                 break;
             case "2":
                 if(player.getInventoryWeight() + HealPotion.WEIGHT > Inventory.MAX_WEIGHT){

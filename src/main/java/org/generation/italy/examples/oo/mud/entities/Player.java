@@ -55,6 +55,12 @@ public class Player extends Entity {
         return true;
     }
 
+    public void healAllPokemon(){
+        for(PokemonEntity pokemon : pokemonEntities){
+            pokemon.healMax();
+        }
+    }
+
     public void showPokemon(){
         IO.println("Quale pokemon vuoi selezionare?:");
         for(int i = 0; i < pokemonEntities.size(); i++){
