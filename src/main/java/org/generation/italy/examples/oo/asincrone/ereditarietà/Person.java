@@ -1,8 +1,8 @@
-package org.generation.italy.examples.oo.asincrone;
+package org.generation.italy.examples.oo.asincrone.ereditarietà;
 
 public class Person {
 
-  private  String name,surname,dateOfBirth,g;
+    protected  String name,surname,dateOfBirth,g;
 
     public Person (String name,String surname,String dateOfBirth,String g){
         this.setName(name);
