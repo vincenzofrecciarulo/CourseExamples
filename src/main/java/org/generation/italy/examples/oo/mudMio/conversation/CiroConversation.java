@@ -1,4 +1,8 @@
-package org.generation.italy.examples.oo.mud.conversation;
+package org.generation.italy.examples.oo.mudMio.conversation;
+
+import org.generation.italy.examples.oo.mudMio.Player;
+import org.generation.italy.examples.oo.mudMio.Consumable;
+import org.generation.italy.examples.oo.mudMio.Item;
 
 public class CiroConversation implements Conversation {
 
@@ -25,12 +29,17 @@ public class CiroConversation implements Conversation {
 }
 
     @Override
-    public String respond(String choice) {
+    public String respond(String choice, Player player) {
         return switch (choice.toLowerCase()) {
             case "a" -> "MOSTRI! TANTI MOSTRI! ARMATI E TIENI LE POZIONI IN MANO!\n" + getOpening();
-            case "b" -> "Mi e' rimasta un ultima pozione, non posso condividerla.\n" + getOpening();
-            case "c" -> "COME OSI! ASSAGGIA LA MIA LAMA!";
-            case "d" -> "E' stato un piacere! Torna presto per una birra!";
+            case "b" -> {
+                player.getInventory().add(Consumable.pozioneCura(2));
+                yield "Sei fortunato! Ti do due pozioni di cura.\n" + getOpening();
+            }
+            case "c" -> "COME OSI MANCARMI DI RISPETTO! ASSAGGIA LA MIA LAMA!";
+            case "d" -> "Aspetta! Prendi questa mappa, ti sara' utile...alla prossima!"
+                    + player.getInventory().add(Item.MappaSgualcita());
+
             default  -> "Non ho capito.\n" + getOpening();
         };
     }

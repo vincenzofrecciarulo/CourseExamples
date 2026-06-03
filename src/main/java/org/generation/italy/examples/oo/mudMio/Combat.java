@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mudMio;
 
 import java.util.ArrayList;
 import com.generation.library.*;

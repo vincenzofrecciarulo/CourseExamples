@@ -1,0 +1,188 @@
+package org.generation.italy.examples.oo.mudMio;
+
+import java.util.ArrayList;
+
+public class Player extends Entity {
+
+    private ArrayList<Item> inventory = new ArrayList<>();
+    private Armor wornArmor = null;
+    private Weapon wornWeapon = null;
+    private Room currentRoom;
+
+    public Player(int hp, String name, int level, Room currentRoom) {
+        super(hp, name, level);
+        this.currentRoom = currentRoom;
+    }
+
+    public ArrayList<Item> getInventory() { return inventory; }
+    public Room getCurrentRoom()          { return currentRoom; }
+    public Armor getWornArmor()           { return wornArmor; }
+    public Weapon getWornWeapon()         { return wornWeapon; }
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+
+    // ── Raccolta / abbandono ─────────────────────────────────────────────────
+
+    public boolean pickItem(Item item) {
+        if (!currentRoom.getItems().contains(item)) {
+            IO.println("Oggetto " + item.getName() + " non c'è nella stanza.");
+            return false;
+        }
+        currentRoom.getItems().remove(item);
+        inventory.add(item);
+        return true;
+    }
+
+    public boolean dropItem(Item item) {
+        if (!inventory.contains(item)) {
+            IO.println("Oggetto " + item.getName() + " non trovato nell'inventario.");
+            return false;
+        }
+        // se stai buttando l'armatura indossata, prima la togli
+        if (item == wornArmor) {
+            wornArmor.remove();
+            wornArmor = null;
+        }
+         else if (item == wornWeapon) {
+            wornWeapon.remove();
+            wornWeapon = null;
+        }
+
+        inventory.remove(item);
+        currentRoom.getItems().add(item);
+        return true;
+    }
+
+    // ── Usa consumabile ──────────────────────────────────────────────────────
+
+    public boolean useItem(Item item) {
+        if (!inventory.contains(item)) {
+            IO.println("Non hai " + item.getName() + " nell'inventario.");
+            return false;
+        }
+        if (item instanceof Consumable) {
+            return ((Consumable) item).use(this);
+        }
+        if (item instanceof Armor) {
+            return wearArmor((Armor) item);
+        }
+        if (item instanceof Weapon) {
+            return wearWeapon((Weapon) item);
+        }
+        if (item.getName().equals("Mappa sgualcita")) {
+            item.useMappaSgualcita();
+            return true;
+        }
+        IO.println("Non puoi usare " + item.getName() + " in questo modo.");
+        return false;
+    }
+
+    // ── Indossa armatura ─────────────────────────────────────────────────────
+
+    public boolean wearArmor(Armor armor) {
+        if (!inventory.contains(armor)) {
+            IO.println("Non hai " + armor.getName() + " nell'inventario.");
+            return false;
+        }
+        if (wornArmor != null) {
+            IO.println("Togli " + wornArmor.getName() + " e indossi " + armor.getName() + ".");
+            wornArmor.remove();
+        } else {
+            IO.println("Indossi " + armor.getName() + " (DEF +" + armor.getDefense() + ").");
+        }
+        wornArmor = armor;
+        armor.wear();
+        return true;
+    }
+
+    // ── Difesa totale (armatura indossata) ───────────────────────────────────
+
+    public int getTotalDefense() {
+        return wornArmor != null ? wornArmor.getDefense() : 0;
+    }
+
+
+    public boolean wearWeapon(Weapon weapon) {
+        if (!inventory.contains(weapon)) {
+            IO.println("Non hai " + weapon.getName() + " nell'inventario.");
+            return false;
+        }
+        if (wornWeapon != null) {
+            IO.println("Togli " + wornWeapon.getName() + " e indossi " + weapon.getName() + ".");
+            wornArmor.remove();
+        } else {
+            IO.println("Indossi " + weapon.getName() + " (POW +" + weapon.getPower() + ").");
+        }
+        wornWeapon = weapon;
+        weapon.wear();
+        return true;
+    }
+
+    public int getTotalPower() {
+        return wornWeapon != null ? wornWeapon.getPower() : 0;
+    }
+    // ── Inventario ───────────────────────────────────────────────────────────
+
+    public boolean openInventory() {
+        if (inventory.isEmpty()) {
+            IO.println("Inventario vuoto!");
+            return true;
+        }
+        IO.println("── Inventario ──────────────────────────");
+        IO.println("  HP: " + getHpBar()+"|  EXP: " + exp + " | Oro: " + gold);
+        IO.println("  Armatura: " + (wornArmor != null ? wornArmor.getName() + " (DEF " + wornArmor.getDefense() + ")" : "nessuna"));
+        IO.println("  Arma: " + (wornWeapon != null ? wornWeapon.getName() + " (POW " + wornWeapon.getPower() + ")" : "nessuna"));
+        IO.println("  Oggetti:");
+        for (int i = 0; i < inventory.size(); i++) {
+            Item item = inventory.get(i);
+            String tag = "";
+            if (item == wornArmor)               tag = " [indossata]";
+            else if (item instanceof Consumable) tag = " [consumabile]";
+            else if (item instanceof Armor)      tag = " [armatura]";
+            else if (item instanceof Weapon)     tag = " [arma]";
+            IO.println("    " + i + ". " + item.getName() + tag +
+                    (item instanceof Consumable c ? " x" + c.getQuantity() : ""));  // ← dentro il for
+        }
+        IO.println("────────────────────────────────────────");
+        return true;
+    }
+
+    // ── Combattimento ────────────────────────────────────────────────────────
+
+    public int attack() {
+        int base = 10; // danno base senza arma
+        double variation = 0.8 + Math.random() * 0.4;
+        return (int) ((base + getTotalPower()) * variation);
+    }
+
+    public int takeDamage(int incomingDamage) {
+        int actualDamage = Math.max(1, incomingDamage - getTotalDefense());
+        setCurrentHp(getCurrentHp() - actualDamage);
+        return actualDamage;
+    }
+
+    public boolean isAlive() {
+        return getCurrentHp() > 0;
+    }
+
+// ── Esperienza e oro ─────────────────────────────────────────────────────
+
+    private int exp = 0;
+    private int gold = 0;
+
+    public void gainExp(int amount) {
+        exp += amount;
+        IO.println("Hai guadagnato " + amount + " EXP! (Totale: " + exp + ")");
+    }
+
+    public void gainGold(int amount) {
+        gold += amount;
+        IO.println("Hai guadagnato " + amount + " oro! (Totale: " + gold + ")");
+    }
+
+    public int getExp()  { return exp; }
+    public int getGold() { return gold; }
+
+}

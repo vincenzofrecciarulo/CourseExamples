@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mudMio;
 
 public class Consumable extends Item {
 
@@ -10,15 +10,34 @@ public class Consumable extends Item {
 
     private Effect effect;
     private int power; // entità dell'effetto (es. quanti HP cura)
+    private int quantity;
 
-    public Consumable(double weight, int value, String name, Effect effect, int power) {
+    public Consumable(double weight, int value, String name, Effect effect, int power, int quantity) {
         super(weight, value, name);
         this.effect = effect;
         this.power = power;
+        this.quantity = quantity;
     }
 
-    public Effect getEffect() { return effect; }
-    public int getPower()     { return power; }
+    public Effect getEffect() {
+        return effect;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public static Consumable pozioneCura(int quantity) {
+        return new Consumable(0.5, 20, "Pozione di Cura", Effect.HEAL, 30, quantity);
+    }
 
     /**
      * Applica l'effetto al giocatore e consuma l'oggetto dall'inventario.
@@ -48,9 +67,13 @@ public class Consumable extends Item {
                 // in futuro: player.addTemporaryBonus(...)
                 break;
         }
-        player.getInventory().remove(this);
+        quantity--;
+        if (quantity <= 0) {
+            player.getInventory().remove(this);
+        }
         return true;
     }
+
 
     @Override
     public String toString() {
@@ -61,20 +84,23 @@ public class Consumable extends Item {
     // Factory
     // ---------------------------------------------------------------
 
-    public static Consumable potioneCura()   {
-        return new Consumable(0.5, 20, "Pozione di Cura",  Effect.HEAL,     30);
+   public static Consumable pozioneCura() {
+        return new Consumable(0.3, 10, "Pozione di Cura", Effect.HEAL, 10, 1);
+   }
+
+    public static Consumable bendaSacra() {
+        return new Consumable(0.3, 15, "Benda Sacra", Effect.HEAL, 15, 1);
     }
-    public static Consumable bendaSacra()    {
-        return new Consumable(0.3, 15, "Benda Sacra",      Effect.HEAL,     15);
+
+    public static Consumable antidoto() {
+        return new Consumable(0.3, 18, "Antidoto", Effect.ANTIDOTE, 0, 1);
     }
-    public static Consumable antidoto()      {
-        return new Consumable(0.3, 18, "Antidoto",         Effect.ANTIDOTE,  0);
-    }
+
     public static Consumable fungoVelenoso() {
-        // oggetto ambiguo: può curare poco ma rischia effetti — per ora cura 5
-        return new Consumable(0.2, 5,  "Fungo Velenoso",   Effect.HEAL,      5);
+        return new Consumable(0.2, 5, "Fungo Velenoso", Effect.HEAL, 5, 1);
     }
-    public static Consumable elisirForza()   {
-        return new Consumable(0.5, 80, "Elisir di Forza",  Effect.BOOST_ATK,20);
+
+    public static Consumable elisirForza() {
+        return new Consumable(0.5, 80, "Elisir di Forza", Effect.BOOST_ATK, 20, 1);
     }
 }

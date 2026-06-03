@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.mud;
+package org.generation.italy.examples.oo.mudMio;
 
 public class Weapon extends Item {
     private boolean isWeared;
