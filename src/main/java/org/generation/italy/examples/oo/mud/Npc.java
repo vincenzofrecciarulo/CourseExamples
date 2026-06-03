@@ -28,22 +28,20 @@ public class Npc extends Entity{
     public String getInteractText() {
         return interactText;
     }
+
     public boolean interact(Player player){
         if(!isFirstInteraction) {
             IO.println(this.getNpcText());
             return false;
         }
-        boolean tempResult=false;
         if (hasDialogue) {
             IO.println(interactText);
-            tempResult=true;
         } else {
             IO.println("Non ho nulla da dirti");
-            tempResult=false;
         }
         giveReward(player);
         isFirstInteraction = false;
-        return tempResult;
+        return true;
     }
 
 
