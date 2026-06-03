@@ -27,15 +27,12 @@ public class Room {
         if(exits[direction]!=null){
             return false;
         }
-
         exits[direction] = destination;
         return true;
     }
-
     public Room exitAt(int direction){
         return exits[direction];
     }
-
 
     @Override
     public String toString(){
@@ -63,6 +60,12 @@ public class Room {
         }
         return names;
     }
+    public void removeItem(Item item){
+        items.remove(item);
+    }
+    public void addItem(Item item){
+        items.add(item);
+    }
 
     public String getTitle() {
         return title;
@@ -70,5 +73,13 @@ public class Room {
 
     public String getDescription() {
         return description;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public ArrayList<Entity> getEntities() {
+        return entities;
     }
 }

@@ -14,4 +14,11 @@ public class Item {
     public String getName() {
         return name;
     }
+
+    public double getWeight() {
+        return weight;
+    }
+    public int getValue(){
+        return value;
+    }
 }
