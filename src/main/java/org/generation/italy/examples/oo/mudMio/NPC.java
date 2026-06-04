@@ -94,6 +94,11 @@ public class NPC extends Entity implements Fightable {
         return new NPC(20, "Bardo Malvino",1,20,12,30,100,
                 new MalvinoConversation());
     }
+    public static NPC TaberniereGrasso() {
+        return new NPC(30,"Taberniere Grasso",1,30,15,50,300,
+                new TaberniereConversation());
+    }
+
 }
 
 

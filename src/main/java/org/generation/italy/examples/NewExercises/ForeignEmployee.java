@@ -21,10 +21,12 @@ public class ForeignEmployee {
 
         };
 
-           Employee e = new Employee("Marco", 1998, 2023, 1550, "JJD");
-            System.out.println(e.getYearStart());
-            e.setYearStart(2024);
-        System.out.println(e.getYearStart());
+           Employee a = new Employee("Marco", 1998, 2023, 1550, "JJD");
+     //       System.out.println(e.getYearStart());
+      //      e.setYearStart(2024);
+      //  System.out.println(e.getYearStart());
+            Employee b = new Employee("Marco", 1998, 2023, 1550, "JJD");
 
+        System.out.println(a.equals(b));
     }
 }

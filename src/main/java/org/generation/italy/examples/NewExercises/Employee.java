@@ -1,5 +1,7 @@
 package org.generation.italy.examples.NewExercises;
 
+import java.util.Objects;
+
 public class Employee extends ForeignEmployee{
 
     protected int yearStart;
@@ -24,5 +26,17 @@ public class Employee extends ForeignEmployee{
     @Override
     public String toString() {
        return super.toString() +" "+ yearStart+" "+salary+" "+job;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return yearStart == employee.yearStart && Double.compare(salary, employee.salary) == 0 && Objects.equals(job, employee.job);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(yearStart, salary, job);
     }
 }
