@@ -1,41 +1,30 @@
 package org.generation.italy.examples.oo.mud.commands;
 
-import org.generation.italy.examples.oo.mud.Entity;
-import org.generation.italy.examples.oo.mud.GameContext;
+import org.generation.italy.examples.oo.mud.world.Entity;
+import org.generation.italy.examples.oo.mud.world.GameContext;
 
 public class AttackCommand implements Command {
     @Override
     public CommandOutcome execute(GameContext context, String args) {
-        if(args.isEmpty()){
-            context.getIo().println("Attaccare chi?");
+        if (args.isEmpty()) {
+            context.getSession().send("Attaccare chi?");
             return CommandOutcome.CONTINUE;
         }
 
         Entity target = context.getCurrentRoom().findEntityByPrefix(args);
-        if(target == null || target == context.getPlayer()){
-            context.getIo().println("Non vedo '" + args + "' qui.");
+        if (target == null || target == context.getPlayer()) {
+            context.getSession().send("Non vedo '" + args + "' qui.");
             return CommandOutcome.CONTINUE;
         }
 
-        if(context.getCombatCoordinator() != null){
-            if(context.getCombatCoordinator().isCombatActive()){
-                context.getIo().println("Sei già in combattimento.");
-                return CommandOutcome.CONTINUE;
-            }
-
-            if(context.getCombatCoordinator().startCombat(target)){
-                context.getIo().println("Ti avventi contro " + target.getName() + ".");
-            }
+        if (context.getCombatCoordinator().isCombatActive()) {
+            context.getSession().send("Sei già in combattimento.");
             return CommandOutcome.CONTINUE;
         }
 
-        int dmg = 5;
-        boolean dead = target.applyDamage(dmg);
-        context.getIo().println("Hai inflitto " + dmg + " danni a " + target.getName());
-        if(dead){
-            context.getIo().println(target.getName() + " è morto.");
-            context.getCurrentRoom().removeEntity(target);
+        if (context.getCombatCoordinator().startCombat(target)) {
+            context.getSession().send("Ti avventi contro " + target.getName() + ".");
         }
-        return CommandOutcome.REFRESH;
+        return CommandOutcome.CONTINUE;
     }
 }

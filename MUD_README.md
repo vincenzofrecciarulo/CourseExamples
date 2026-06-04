@@ -209,7 +209,7 @@ Tests cover:
 
 ```bash
 mvn -q package
-java -cp target/classes org.generation.italy.examples.oo.mud.MudMain
+java -cp target/classes org.generation.italy.examples.oo.mud.world.MudMain
 ```
 
 Or run directly from your IDE.

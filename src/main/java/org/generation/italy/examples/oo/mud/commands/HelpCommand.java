@@ -1,11 +1,11 @@
 package org.generation.italy.examples.oo.mud.commands;
 
-import org.generation.italy.examples.oo.mud.GameContext;
+import org.generation.italy.examples.oo.mud.world.GameContext;
 
 public class HelpCommand implements Command {
     @Override
     public CommandOutcome execute(GameContext context, String args) {
-        context.getIo().println("""
+        context.getSession().send("""
                 === COMANDI ===
                 Movimento: n/nord, s/sud, e/est, o/ovest
 

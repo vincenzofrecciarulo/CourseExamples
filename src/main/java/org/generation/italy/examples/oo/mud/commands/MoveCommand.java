@@ -1,6 +1,6 @@
 package org.generation.italy.examples.oo.mud.commands;
 
-import org.generation.italy.examples.oo.mud.GameContext;
+import org.generation.italy.examples.oo.mud.world.GameContext;
 
 public class MoveCommand implements Command {
     private final int direction;
@@ -14,9 +14,9 @@ public class MoveCommand implements Command {
     @Override
     public CommandOutcome execute(GameContext context, String args) {
         if(context.moveTo(direction)){
-            context.getIo().println("Ti muovi verso " + directionName);
+            context.getSession().send("Ti muovi verso " + directionName);
         } else {
-            context.getIo().println("Non c'è nulla in quella direzione");
+            context.getSession().send("Non c'è nulla in quella direzione");
         }
         return CommandOutcome.REFRESH;
     }

@@ -1,7 +1,5 @@
 package org.generation.italy.examples.oo.mud.roles;
 
-import org.generation.italy.examples.oo.mud.GameContext;
-import org.generation.italy.examples.oo.mud.Player;
 import org.generation.italy.examples.oo.mud.commands.CommandOutcome;
 
 import java.util.List;
@@ -30,9 +28,10 @@ public class JuniorJavaProgrammer extends CharacterClass {
                     }
 
                     @Override
-                    public CommandOutcome use(GameContext context, String targetName) {
+                    public CommandOutcome use(AbilityContext context, String targetName) {
+                        context.getSession().send(String.format("***** ABILITA' SPECIALE, %s ******", getName()));
+                        context.getSession().send("Dopo qualche minuto su Stack Overflow, il codice sembra funzionare.");
                         context.getPlayer().heal(4);
-                        context.getIo().println("Dopo qualche minuto su Stack Overflow, il codice sembra funzionare.");
                         return CommandOutcome.CONTINUE;
                     }
                 },
@@ -48,8 +47,8 @@ public class JuniorJavaProgrammer extends CharacterClass {
                     }
 
                     @Override
-                    public CommandOutcome use(GameContext context, String targetName) {
-                        context.getIo().println("Apri i log mentali e noti dettagli sospetti nella stanza.");
+                    public CommandOutcome use(AbilityContext context, String targetName) {
+                        context.getSession().send("Apri i log mentali e noti dettagli sospetti nella stanza.");
                         return CommandOutcome.CONTINUE;
                     }
                 }
