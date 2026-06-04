@@ -71,6 +71,8 @@ public class Employee extends Person{
                 salary == employee.salary;
     }
 
+    // Il costo di un Employee per la scuola è la retribuzione annua moltiplicata per due.
+    // Abbiamo castato a int perchè salary è double e ci è stato richiesto che getCost fosse int
     @Override
     public int getCost() {
         return (int) (salary * 2);

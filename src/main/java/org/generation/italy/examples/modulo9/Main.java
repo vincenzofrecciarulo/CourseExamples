@@ -2,8 +2,6 @@ package org.generation.italy.examples.modulo9;
 
 public class Main {
     public static void main (){
-        // Person p = new Person();
-        // Student s = new Student();
 
         // qui utiliziamo il polimorfismo con istanceof (così come è presente nel modulo 8)
         Person student = new Student(
@@ -29,7 +27,7 @@ public class Main {
                      + s.isHasFailingGrades()
             );
         }
-        IO.println("Il costo dello studente: " + student.getCost() + "\n");
+        IO.println("Il costo dello studente alla scuola è di: " + student.getCost() + "\n");
 
         // qui utiliziamo il polimorfismo con l'up-casting (visto a lezione)
         Person employee = (Person) new Employee(
@@ -41,14 +39,13 @@ public class Main {
                                           30000
                                                 );
 
-        // metodo 1
         IO.println(employee);
-        IO.println("Il costo del dipendente: " + employee.getCost());
+        IO.println("Il costo del dipendente alla scuola è di: " + employee.getCost());
 
         /*
-        Potevamo stampare l'impiegato anche con questi altri due metodi
+        Potevamo stampare l'impiegato anche con questi altri due metodi:
 
-        // metodo 2
+        // metodo 1 (che abbiamo utilizzato per stampare lo studente
         IO.println(
                 employee.getName() + " "
                         + employee.getSurname() + " "
@@ -57,7 +54,7 @@ public class Main {
                         + ((Employee)employee).getCompany() + " "
                         + ((Employee)employee).getSalary());
 
-        // metodo 3 con il "toString"
+        // metodo 2 con il "toString"
         IO.println(employee.toString());
 
          */
