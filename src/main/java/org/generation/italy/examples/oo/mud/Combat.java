@@ -5,6 +5,10 @@ import com.generation.library.*;
 
 public class Combat {
 
+    public enum Result {
+        VICTORY, DEFEAT, FLED
+    }
+
     private Player player;
     private Room room;
 
@@ -13,10 +17,7 @@ public class Combat {
         this.room = room;
     }
 
-    /**
-     * Avvia il combattimento con tutti i mostri vivi nella stanza,
-     * uno alla volta. Se il giocatore muore o fugge, si ferma.
-     */
+
     public Result startCombat() {
         ArrayList<Monster> monsters = room.getMonsters();
 
@@ -29,9 +30,7 @@ public class Combat {
         return Result.VICTORY;
     }
 
-    /**
-     * Combattimento a turni contro un singolo mostro.
-     */
+
     private Result fightMonster(Monster monster) {
         IO.println("\n  Combattimento iniziato contro: " + monster.getName() +
                 " [" + monster.getRarity() + "] Liv." + monster.getLevel());
@@ -57,7 +56,6 @@ public class Combat {
                     break;
                 case 3:
                     if (tentaFuga()) return Result.FLED;
-
                     turnoMostro(monster);
                     break;
                 default:
@@ -71,12 +69,10 @@ public class Combat {
             return Result.DEFEAT;
         }
 
-        // Mostro sconfitto
-        onMonsterDefeated(monster);
+        MonsterDefeated(monster);
         return Result.VICTORY;
     }
 
-    // ── Turno giocatore
 
     private void turnoAttacco(Monster monster) {
         int dannoBase = calcolaAttaccoGiocatore();
@@ -143,7 +139,7 @@ public class Combat {
 
 
 
-    private void onMonsterDefeated(Monster monster) {
+    private void MonsterDefeated(Monster monster) {
         IO.println("\n Hai sconfitto " + monster.getName() + "!");
     }
 

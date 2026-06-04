@@ -25,7 +25,44 @@ public class Player extends Entity {
         this.currentRoom = currentRoom;
     }
 
+    public void pickItemMenu() {
+        ArrayList<Item> items = currentRoom.getItems();
+        if (items.isEmpty()) {
+            IO.println("Non ci sono oggetti da raccogliere qui.");
+            return;
+        }
+        IO.println("Oggetti presenti:");
+        for (int i = 0; i < items.size(); i++) {
+            IO.println("  " + i + ". " + items.get(i).getName());
+        }
+        IO.println("Inserisci il numero dell'oggetto (o -1 per annullare):");
+        int idx = Console.readInt();
+        if (idx < 0 || idx >= items.size()) {
+            IO.println("Scelta annullata.");
+            return;
+        }
+        String nomeOggetto = items.get(idx).getName();
+        boolean picked = this.pickItem(items.get(idx));
+        if (picked) {
+            IO.println("Hai raccolto: " + nomeOggetto);
+        }
+    }
 
+    public void dropItemMenu() {
+        ArrayList<Item> inv = getInventory();
+        openInventory();
+        IO.println("Quale oggetto vuoi lasciare? (o -1 per annullare)");
+        int idx = Console.readInt();
+        if (idx < 0 || idx >= inv.size()) {
+            IO.println("Scelta annullata.");
+            return;
+        }
+        String nome = inv.get(idx).getName();
+        boolean dropped = dropItem(inv.get(idx));
+        if (dropped) {
+            IO.println("Hai lasciato a terra: " + nome);
+        }
+    }
 
     public boolean pickItem(Item item) {
         if (!currentRoom.getItems().contains(item)) {
@@ -56,9 +93,6 @@ public class Player extends Entity {
         currentRoom.getItems().add(item);
         return true;
     }
-
-
-
     public boolean useItem(Item item) {
         if (!inventory.contains(item)) {
             IO.println("Non hai " + item.getName() + " nell'inventario.");
@@ -76,8 +110,6 @@ public class Player extends Entity {
         IO.println("Non puoi usare " + item.getName() + " in questo modo.");
         return false;
     }
-
-
     public boolean wearArmor(Armor armor) {
         if (!inventory.contains(armor)) {
             IO.println("Non hai " + armor.getName() + " nell'inventario.");
@@ -93,13 +125,9 @@ public class Player extends Entity {
         armor.wear();
         return true;
     }
-
-
     public int getTotalDefense() {
         return wornArmor != null ? wornArmor.getDefense() : 0;
     }
-
-
     public boolean wearWeapon(Weapon weapon) {
         if (!inventory.contains(weapon)) {
             IO.println("Non hai " + weapon.getName() + " nell'inventario.");
@@ -115,12 +143,9 @@ public class Player extends Entity {
         weapon.wear();
         return true;
     }
-
     public int getTotalPower() {
         return wornWeapon != null ? wornWeapon.getPower() : 0;
     }
-
-
     public boolean openInventory() {
         if (inventory.isEmpty()) {
             IO.println("Inventario vuoto!");

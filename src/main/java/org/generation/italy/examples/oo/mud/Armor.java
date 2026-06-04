@@ -22,9 +22,6 @@ public class Armor extends Item {
                 isWeared ? "indossata" : "non indossata");
     }
 
-    // ---------------------------------------------------------------
-    // Factory: armature
-    // ---------------------------------------------------------------
 
     public static Armor corazzaSpezzata()  { return new Armor(6.0,  40, "Corazza Spezzata",  false, 2); }
     public static Armor elmoFerraglia()    { return new Armor(3.0,  35, "Elmo di Ferraglia",  false, 1); }

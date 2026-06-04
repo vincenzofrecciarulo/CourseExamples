@@ -15,10 +15,7 @@ public class Consumable extends Item {
     public Effect getEffect() { return effect; }
     public int getPower()     { return power; }
 
-    /**
-     * Applica l'effetto al giocatore e consuma l'oggetto dall'inventario.
-     * Ritorna true se l'uso ha avuto effetto.
-     */
+
     public boolean use(Player player) {
         switch (effect) {
             case HEAL:
@@ -52,9 +49,7 @@ public class Consumable extends Item {
         return String.format("%s (consumabile, effetto: %s +%d)", getName(), effect, power);
     }
 
-    // ---------------------------------------------------------------
-    // Factory
-    // ---------------------------------------------------------------
+
 
     public static Consumable potioneCura()   {
         return new Consumable(0.5, 20, "Pozione di Cura",  Effect.HEAL,     30);

@@ -20,9 +20,7 @@ public class Item {
         return String.format("%s (%.1f kg, %d oro)", name, weight, value);
     }
 
-    // ---------------------------------------------------------------
-    // Factory: oggetti comuni
-    // ---------------------------------------------------------------
+
 
     // Consumabili
     public static Item potioneCura()      { return new Item(0.5,  20, "Pozione di Cura"); }

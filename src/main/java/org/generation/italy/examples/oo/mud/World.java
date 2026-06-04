@@ -189,7 +189,7 @@ public class World {
 
                     switch(choice2.toLowerCase()){
                         case "l":
-                            dropItemMenu(p1);
+                            p1.dropItemMenu();
                             continue;
                         case "u":
                             p1.useItemMenu();
@@ -226,7 +226,7 @@ public class World {
                     break;
 
                 case "p":
-                    pickItemMenu(p1);
+                    p1.pickItemMenu();
                     break;
 
                 case "q":
@@ -265,48 +265,6 @@ public class World {
         }
         return true;
     }
-
-    private void pickItemMenu(Player player) {
-        ArrayList<Item> items = current.getItems();
-        if (items.isEmpty()) {
-            IO.println("Non ci sono oggetti da raccogliere qui.");
-            return;
-        }
-        IO.println("Oggetti presenti:");
-        for (int i = 0; i < items.size(); i++) {
-            IO.println("  " + i + ". " + items.get(i).getName());
-        }
-        IO.println("Inserisci il numero dell'oggetto (o -1 per annullare):");
-        int idx = Console.readInt();
-        if (idx < 0 || idx >= items.size()) {
-            IO.println("Scelta annullata.");
-            return;
-        }
-        String nomeOggetto = items.get(idx).getName();
-        boolean picked = player.pickItem(items.get(idx));
-        if (picked) {
-            IO.println("Hai raccolto: " + nomeOggetto);
-        }
-    }
-    private void dropItemMenu(Player player) {
-        ArrayList<Item> inv = player.getInventory();
-        player.openInventory();
-        IO.println("Quale oggetto vuoi lasciare? (o -1 per annullare)");
-        int idx = Console.readInt();
-        if (idx < 0 || idx >= inv.size()) {
-            IO.println("Scelta annullata.");
-            return;
-        }
-        String nome = inv.get(idx).getName();
-        boolean dropped = player.dropItem(inv.get(idx));
-        if (dropped) {
-            IO.println("Hai lasciato a terra: " + nome);
-        }
-    }
-
-
-
-
     private boolean moveTo(int direction) {
         Room destination = current.exitAt(direction);
         if (destination != null) {
