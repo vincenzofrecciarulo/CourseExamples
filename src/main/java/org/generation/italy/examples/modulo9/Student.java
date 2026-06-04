@@ -1,6 +1,6 @@
 package org.generation.italy.examples.modulo9;
 
-public class Student extends Person{
+public class Student extends Person {
     private int year;       // anno di iscrizione al corso
     private String section; // nome della classe
 
@@ -55,7 +55,7 @@ public class Student extends Person{
         // per ottenere la borsa di studio, la media dello studente deve essere maggiore di 8 e senza insufficienze
         if (average > 8 && !hasFailingGrades) {
             cost += 1000; // questi 1000 euro sono il costo base della borsa di studio e quindi uscirebbero 3000 euro
-                          // che sono i soldi che lo sudente costa alla scuola
+            // che sono i soldi che lo sudente costa alla scuola
         }
 
         return cost;
