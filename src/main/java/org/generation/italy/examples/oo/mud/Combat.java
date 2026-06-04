@@ -5,11 +5,6 @@ import com.generation.library.*;
 
 public class Combat {
 
-    // Risultato del combattimento
-    public enum Result {
-        VICTORY, DEFEAT, FLED
-    }
-
     private Player player;
     private Room room;
 
@@ -62,7 +57,7 @@ public class Combat {
                     break;
                 case 3:
                     if (tentaFuga()) return Result.FLED;
-                    // fuga fallita: il mostro attacca
+
                     turnoMostro(monster);
                     break;
                 default:
@@ -100,9 +95,9 @@ public class Combat {
             IO.println("Non hai oggetti da usare!");
             return;
         }
-        // mostra solo consumabili
+
         ArrayList<Integer> indiciConsumabili = new ArrayList<>();
-        IO.println("── Consumabili ─────────────────────────");
+        IO.println("── Consumabili ──");
         for (int i = 0; i < inv.size(); i++) {
             if (inv.get(i) instanceof Consumable) {
                 IO.println("  " + i + ". " + inv.get(i).getName());
@@ -133,7 +128,7 @@ public class Combat {
         return fuggito;
     }
 
-    // ── Turno mostro ─────────────────────────────────────────────────────────
+
 
     private void turnoMostro(Monster monster) {
         int dannoMostro = monster.attack();
@@ -146,26 +141,23 @@ public class Combat {
         IO.println("   Tu: " + player.getHpBar());
     }
 
-    // ── Ricompensa ───────────────────────────────────────────────────────────
+
 
     private void onMonsterDefeated(Monster monster) {
         IO.println("\n Hai sconfitto " + monster.getName() + "!");
-        IO.println("   +" + monster.getExpReward() + " EXP  |  +" + monster.getGoldReward() + " oro");
-        // future espansioni: player.addExp(...), player.addGold(...)
     }
 
-    // ── Calcolo attacco giocatore (base 10 + livello, in futuro armi)
+
 
     private int calcolaAttaccoGiocatore() {
         return 10 + player.getLevel() * 2;
     }
 
-    // ── Stampa stato combattimento
 
     private void printStatus(Monster monster) {
-        IO.println("\n── Stato ───────────────────────────────");
+        IO.println("\nStato");
         IO.println("  Tu      : " + player.getHpBar());
         IO.println("  " + monster.getName() + ": " + monster.getHpBar());
-        IO.println("────────────────────────────────────────");
+        IO.println(" ");
     }
 }

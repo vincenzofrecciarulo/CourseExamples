@@ -2,11 +2,6 @@ package org.generation.italy.examples.oo.mud;
 
 public class Consumable extends Item {
 
-    public enum Effect {
-        HEAL,       // ripristina HP
-        ANTIDOTE,   // rimuove veleno (per ora stampa messaggio, pronto per futuri status)
-        BOOST_ATK   // bonus temporaneo attacco (pronto per futuri combattimenti)
-    }
 
     private Effect effect;
     private int power; // entità dell'effetto (es. quanti HP cura)

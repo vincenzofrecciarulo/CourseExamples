@@ -189,10 +189,10 @@ public class World {
 
                     switch(choice2.toLowerCase()){
                         case "l":
-
+                            dropItemMenu(p1);
                             continue;
                         case "u":
-                            useItemMenu(p1);
+                            p1.useItemMenu();
                             continue;
                         case "i":
                             continue;
@@ -239,7 +239,6 @@ public class World {
         }
     }
 
-    // Avvisa e avvia combattimento se ci sono mostri nella stanza
     private boolean checkMonsters(Room room, Player player) {
         if (!room.hasLivingMonsters()) return true;
 
@@ -255,12 +254,11 @@ public class World {
                 IO.println("\n════════════════════════════════════");
                 IO.println("        GAME OVER");
                 IO.println("════════════════════════════════════");
-                return false; // segnala al loop che il gioco è finito
+                return false;
             }
             if (result == Combat.Result.FLED) {
                 IO.println("Sei fuggito e tornato indietro.");
-                // riporta il giocatore alla stanza precedente non è triviale
-                // per ora rimane nella stanza
+
             }
         } else {
             IO.println("Procedi con cautela...");
@@ -268,7 +266,6 @@ public class World {
         return true;
     }
 
-    // Menu selezione oggetto da raccogliere
     private void pickItemMenu(Player player) {
         ArrayList<Item> items = current.getItems();
         if (items.isEmpty()) {
@@ -307,22 +304,8 @@ public class World {
         }
     }
 
-    // Menu usa oggetto dall'inventario
-    private void useItemMenu(Player player) {
-        ArrayList<Item> inv = player.getInventory();
-        if (inv.isEmpty()) {
-            IO.println("Il tuo inventario è vuoto.");
-            return;
-        }
-        player.openInventory();
-        IO.println("Quale oggetto vuoi usare? (o -1 per annullare)");
-        int idx = Console.readInt();
-        if (idx < 0 || idx >= inv.size()) {
-            IO.println("Scelta annullata.");
-            return;
-        }
-        player.useItem(inv.get(idx));
-    }
+
+
 
     private boolean moveTo(int direction) {
         Room destination = current.exitAt(direction);

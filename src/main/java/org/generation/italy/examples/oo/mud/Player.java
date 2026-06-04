@@ -1,5 +1,7 @@
 package org.generation.italy.examples.oo.mud;
 
+import com.generation.library.Console;
+
 import java.util.ArrayList;
 
 public class Player extends Entity {
@@ -23,7 +25,7 @@ public class Player extends Entity {
         this.currentRoom = currentRoom;
     }
 
-    // ── Raccolta / abbandono ─────────────────────────────────────────────────
+
 
     public boolean pickItem(Item item) {
         if (!currentRoom.getItems().contains(item)) {
@@ -40,7 +42,7 @@ public class Player extends Entity {
             IO.println("Oggetto " + item.getName() + " non trovato nell'inventario.");
             return false;
         }
-        // se stai buttando l'armatura indossata, prima la togli
+
         if (item == wornArmor) {
             wornArmor.remove();
             wornArmor = null;
@@ -55,7 +57,7 @@ public class Player extends Entity {
         return true;
     }
 
-    // ── Usa consumabile ──────────────────────────────────────────────────────
+
 
     public boolean useItem(Item item) {
         if (!inventory.contains(item)) {
@@ -75,7 +77,6 @@ public class Player extends Entity {
         return false;
     }
 
-    // ── Indossa armatura ─────────────────────────────────────────────────────
 
     public boolean wearArmor(Armor armor) {
         if (!inventory.contains(armor)) {
@@ -93,7 +94,6 @@ public class Player extends Entity {
         return true;
     }
 
-    // ── Difesa totale (armatura indossata) ───────────────────────────────────
 
     public int getTotalDefense() {
         return wornArmor != null ? wornArmor.getDefense() : 0;
@@ -119,7 +119,7 @@ public class Player extends Entity {
     public int getTotalPower() {
         return wornWeapon != null ? wornWeapon.getPower() : 0;
     }
-    // ── Inventario ───────────────────────────────────────────────────────────
+
 
     public boolean openInventory() {
         if (inventory.isEmpty()) {
@@ -143,4 +143,20 @@ public class Player extends Entity {
         IO.println("────────────────────────────────────────");
         return true;
     }
+    public void useItemMenu() {
+        ArrayList<Item> inv = getInventory();
+        if (inv.isEmpty()) {
+            IO.println("Il tuo inventario è vuoto.");
+            return;
+        }
+        openInventory();
+        IO.println("Quale oggetto vuoi usare? (o -1 per annullare)");
+        int idx = Console.readInt();
+        if (idx < 0 || idx >= inv.size()) {
+            IO.println("Scelta annullata.");
+            return;
+        }
+        useItem(inv.get(idx));
+    }
+
 }

@@ -32,7 +32,7 @@ public class Room {
         return exits[direction];
     }
 
-    // Ritorna solo i Monster vivi presenti nella stanza
+
     public ArrayList<Monster> getMonsters() {
         ArrayList<Monster> monsters = new ArrayList<>();
         for (Entity e : entities) {
@@ -43,7 +43,7 @@ public class Room {
         return monsters;
     }
 
-    // Rimuove i mostri morti dalla lista entities
+
     public void removeDeadMonsters() {
         entities.removeIf(e -> e instanceof Monster && !((Monster) e).isAlive());
     }
