@@ -7,42 +7,46 @@ public class Main {
 
         // qui utiliziamo il polimorfismo con istanceof (così come è presente nel modulo 8)
         Person student = new Student(
-                "Matteo",
-                "De Cata",
-                "22/04/1999",
-                2026,
-                "JAVITA157",
-                8.5,
-                false);
+                               "Matteo",
+                             "De Cata",
+                           "22/04/1999",
+                                2026,
+                              "JAVITA157",
+                              8.5,
+                        false
+                                      );
 
+        // qui riutiliziamo l'instance of presente nel modulo 8
         if(student instanceof Student){
             Student s = (Student) student;
             IO.println(
-                    s.getName() + " "
-                            + s.getSurname() + " "
-                            + s.getDateOfBirth() + " "
-                            + s.getYear() + " "
-                            + s.getSection());
+                       s.getName() + " "
+                     + s.getSurname() + " "
+                     + s.getDateOfBirth() + " "
+                     + s.getYear() + " "
+                     + s.getSection() + " "
+                     + s.getAverage() + " "
+                     + s.isHasFailingGrades()
+            );
         }
-
-        IO.println(student);
-        IO.println("Costo studente: " + student.getCost());
+        IO.println("Il costo dello studente: " + student.getCost() + "\n");
 
         // qui utiliziamo il polimorfismo con l'up-casting (visto a lezione)
         Person employee = (Person) new Employee(
-                "Matteo",
-                "De Cata",
-                "22/04/1999",
-                "Italian",
-                "Intesa Sanpaolo",
-                30000);
+                                          "Matteo",
+                                        "De Cata",
+                                      "22/04/1999",
+                                   "Italian",
+                                        "Intesa Sanpaolo",
+                                          30000
+                                                );
 
         // metodo 1
         IO.println(employee);
-        IO.println("Costo dipendente: " + employee.getCost());
+        IO.println("Il costo del dipendente: " + employee.getCost());
 
         /*
-        Potevamo stampare limpiegato anche con questi altri metodi
+        Potevamo stampare l'impiegato anche con questi altri due metodi
 
         // metodo 2
         IO.println(
