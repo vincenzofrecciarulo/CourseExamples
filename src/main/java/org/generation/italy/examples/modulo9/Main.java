@@ -42,7 +42,7 @@ public class Main {
         IO.println("Costo dipendente: " + employee.getCost());
 
         /*
-        Potevamo stampare
+        Potevamo stampare limpiegato anche con questi altri metodi
 
         // metodo 2
         IO.println(
