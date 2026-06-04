@@ -100,7 +100,7 @@ public class Consumable extends Item {
         return new Consumable(0.2, 5, "Fungo Velenoso", Effect.HEAL, 5, 1);
     }
 
-    public static Consumable Birra()          { return new Consumable(1.0, 2, "Birra", Effect.HEAL, 5, 1); }
+    public static Consumable Birra(int quantity)          { return new Consumable(1.0, 2, "Birra", Effect.HEAL, 5, 1); }
 
     public static Consumable elisirForza() {
         return new Consumable(0.5, 80, "Elisir di Forza", Effect.BOOST_ATK, 20, 1);
