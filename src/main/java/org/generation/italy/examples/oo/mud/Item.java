@@ -18,4 +18,9 @@ public class Item {
     public double getWeight() {
         return weight;
     }
+
+    @Override
+    public String toString() {
+        return name + " (weight: " + weight + ", value: " + value + ")";
+    }
 }
