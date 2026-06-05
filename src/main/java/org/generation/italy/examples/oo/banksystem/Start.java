@@ -2,7 +2,7 @@ package org.generation.italy.examples.oo.banksystem;
 
 import java.time.LocalDate;
 
-public class Start {
+public class   Start {
     static void main() {
         Account a = new Account(1000.0);
        // IO.println(a.balance);
