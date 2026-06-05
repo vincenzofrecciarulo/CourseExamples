@@ -55,10 +55,10 @@ public class Person {
     }
 
 
-        public String toString(){
+       /* public String toString(){
         return name+" "+surname+" "+dateOfBirth+" "+g;
     }
-
+*/
 
 
 }
