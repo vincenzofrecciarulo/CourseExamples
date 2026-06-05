@@ -1,5 +1,10 @@
 package org.generation.italy.examples.oo.abstraction.interfaces;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Stream;
+
 public class Start {
     static void main() {
         Human h = new Student();
@@ -11,6 +16,11 @@ public class Start {
         SuperHero sh = new SuperHero();
         goOnADateWith(sh);
         saveTheWorld(sh);
+        double w = 300;
+        double mh = FlyingObject.calcMaxHeight(w);
+        //libreria stream
+        Collection<Human> population = new ArrayList<>();
+        Stream<Human> sh1 = population.stream();
     }
     //le interfacce SIMULANO l'ereditarietà multipla, poichè posso scrivere un codice polimorfico ereditando metodi
     // da interfacce diverse

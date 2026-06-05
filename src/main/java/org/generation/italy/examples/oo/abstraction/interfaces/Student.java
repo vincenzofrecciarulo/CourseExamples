@@ -2,10 +2,10 @@ package org.generation.italy.examples.oo.abstraction.interfaces;
 
 public class Student implements Human{
 
-    @Override
-    public void eat() {
-        IO.println("Mi faccio una carbonara");
-    }
+//    @Override
+//    public void eat() {
+//        IO.println("Mi faccio una amatriciana");
+//    }
     @Override
     public void speak() {
         IO.println("Mi piace parlare di Java");
