@@ -1,8 +1,12 @@
 package org.generation.italy.examples.oo.mud;
 
+import org.generation.italy.examples.oo.mud.roles.CharacterStats;
+import org.generation.italy.examples.oo.mud.world.Entity;
+import org.generation.italy.examples.oo.mud.world.Item;
+
 import java.util.ArrayList;
 
-public class Player extends Entity{
+public class Player extends Entity {
 
     private int minDamage;
     private int maxDamage;
@@ -50,4 +54,8 @@ public class Player extends Entity{
     }
 
 
+    @Override
+    public CharacterStats getStats() {
+        return null;
+    }
 }
