@@ -2,6 +2,7 @@ package org.generation.italy.examples.oo.mudPersonale.entities.pokemon;
 
 import org.generation.italy.examples.oo.mudPersonale.Helper;
 import org.generation.italy.examples.oo.mudPersonale.entities.Entity;
+import org.generation.italy.examples.oo.mudPersonale.entities.Player;
 import org.generation.italy.examples.oo.mudPersonale.enums.Nature;
 import org.generation.italy.examples.oo.mudPersonale.enums.Pokemon;
 
@@ -12,12 +13,18 @@ public class PokemonEntity extends Entity {
     private int level;
     private int currentHp;
 
+
     public PokemonEntity(Pokemon pokemon, int level) {
         super(pokemon.getName());
         this.nature = getRandomNature();
         this.level = level;
         this.pokemonStat = pokemon.getPokemonStat();
         currentHp = pokemonStat.getHp(level);
+    }
+
+    @Override
+    public void interact(Player player) {
+        //inizia combattimento
     }
 
     public boolean heal(int healAmount){
@@ -70,4 +77,6 @@ public class PokemonEntity extends Entity {
         int level = Helper.getRandomNumber(areaMaxLevel, areaMinLevel);
         return new PokemonEntity(pokemon, level);
     }
+
+
 }

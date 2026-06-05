@@ -7,7 +7,6 @@ import org.generation.italy.examples.oo.mudPersonale.items.HealPotion;
 
 public class HealerEntity extends Entity {
     private static final String NAME = "Natasha La Curatrice";
-    private static final int HEAL_AMOUNT = 100;
     public HealerEntity() {
         super(HealerEntity.NAME);
     }

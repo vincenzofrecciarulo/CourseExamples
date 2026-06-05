@@ -17,7 +17,7 @@ public class World {
         player = new Player("Player", 1, new Inventory());
     }
 
-    public void startGame(){
+    public void startGame() throws Exception {
         while(true){
             IO.println(player.getCurrentRoom(map)); // questo fa automaticamente toString
             IO.println("Inserisci 'i' per consultare i comandi");
@@ -47,8 +47,14 @@ public class World {
                         System.out.println("Inventario vuoto...");
                         break;
                     }
-                    int input = Integer.parseInt(IO.readln("Quale oggetto usare? ->"));
-                    player.useItem(input);
+                    int input = Integer.parseInt(IO.readln("Seleziona un item ->"));
+                    String useOrDrop = IO.readln("Usare (0) o buttare (1)? ");
+                    if(useOrDrop.equals("0")){
+                        player.useItem(input);
+                    }else if(useOrDrop.equals("1")){
+                        throw new Exception("Da fare");
+                    }
+
                     break;
                 case "p":
                     player.showPokemon();
@@ -81,7 +87,7 @@ public class World {
                 """);
     }
 
-    void main(){
+    void main() throws Exception {
         World w = new World();
         w.startGame();
     }

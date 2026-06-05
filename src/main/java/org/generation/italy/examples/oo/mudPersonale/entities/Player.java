@@ -27,6 +27,12 @@ public class Player extends Entity {
         pokemonEntities.add(new PokemonEntity(Pokemon.PICHU,1));
     }
 
+    @Override
+    public void interact(Player player) {
+        //scambio pokemon
+        //combatti
+    }
+
     public int getCoins(){
         return coins;
     }
@@ -95,6 +101,7 @@ public class Player extends Entity {
     public boolean useItem(int index){
         return inventory.useItem(index, this);
     }
+
 
     public double getInventoryWeight(){
         return inventory.getInventoryWeight();
@@ -182,5 +189,6 @@ public class Player extends Entity {
         currentX = 10;
         currentY = 10;
     }
+
 
 }
