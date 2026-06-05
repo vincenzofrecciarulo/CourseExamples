@@ -6,7 +6,7 @@ import org.generation.italy.examples.oo.mudPersonale.items.Item;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Room {
+public abstract class Room {
     private final String title;
     private final String description;
     private final ArrayList<Entity> entities;
@@ -167,12 +167,8 @@ public class Room {
     }
 
 
-    protected Entity getRandomNpc(){
-        return null;
-    }
+    protected abstract Entity getRandomNpc();
 
 
-    protected Item getRandomItem(){
-        return null;
-    }
+    protected abstract Item getRandomItem();
 }

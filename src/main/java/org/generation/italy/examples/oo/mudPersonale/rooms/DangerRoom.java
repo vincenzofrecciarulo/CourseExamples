@@ -2,6 +2,7 @@ package org.generation.italy.examples.oo.mudPersonale.rooms;
 
 import org.generation.italy.examples.oo.mudPersonale.entities.Entity;
 import org.generation.italy.examples.oo.mudPersonale.entities.pokemon.PokemonEntity;
+import org.generation.italy.examples.oo.mudPersonale.items.Item;
 
 
 public class DangerRoom extends Room{
@@ -16,5 +17,10 @@ public class DangerRoom extends Room{
     @Override
     protected Entity getRandomNpc(){
         return PokemonEntity.getRandomPokemon(5,10);
+    }
+
+    @Override
+    protected Item getRandomItem() {
+        return null;
     }
 }

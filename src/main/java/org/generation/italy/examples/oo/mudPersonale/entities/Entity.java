@@ -1,6 +1,6 @@
 package org.generation.italy.examples.oo.mudPersonale.entities;
 
-public class Entity {
+public abstract class Entity {
     private final String name;
 
 
@@ -9,9 +9,7 @@ public class Entity {
     }
 
 
-    public void interact(Player player){
-        IO.println(name + " si gratta il culo");
-    }
+    public abstract void interact(Player player);
 
     public String getName() {
         return name;
