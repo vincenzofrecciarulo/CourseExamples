@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Player extends Entity {
-    private Random luck = new Random();
     private ArrayList<Item> inventory = new ArrayList<>();
     private final int INVENTORY_SLOTS = 20;
     private final double MAX_WEIGHT = 50.0;
