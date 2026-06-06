@@ -1,21 +1,23 @@
 package org.generation.italy.examples.oo.mud;
 
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class Inventory {
 
-     private ArrayList<Item> backPack;
+     private List<Item> items;
      private static final int maxWeight=20;
      private double currentWeight;
 
     public Inventory() {
-        this.backPack = new ArrayList<>();
+        this.items = new ArrayList<>();
         this.currentWeight = 0;
 
     }
 
-    public ArrayList<Item> getBackPack() {
-        return backPack;
+    public List<Item> getBackPack() {
+        return items;
     }
 
     public double getCurrentWeight() {
@@ -30,7 +32,7 @@ public class Inventory {
     }
 
     public Item findItem(String itemSearched,Player player){
-        for(Item item: backPack){
+        for(Item item: items){
             if(itemSearched.equalsIgnoreCase(item.getName())){
                 return item;
             }
@@ -43,27 +45,26 @@ public class Inventory {
             IO.println("Inventario pieno togli qualcosa");
             return false;
         }else {
-            backPack.add(itemAdded);
+            items.add(itemAdded);
             currentWeight+=itemAdded.getWeight();
         }
         return true;
     }
-    public boolean removeItem(Item itemRemoved){
-        backPack.remove(itemRemoved);
+    public void removeItem(Item itemRemoved){
+        items.remove(itemRemoved);
         if(itemRemoved!=null){
-            backPack.remove(itemRemoved);
+            items.remove(itemRemoved);
             currentWeight-=itemRemoved.getWeight();
-            return true;
+            return;
         }
         IO.println("Impossibile rimuovere,oggetto inesistente");
-        return false;
     }
     public boolean isEmpty(){
-        return backPack.isEmpty();
+        return items.isEmpty();
     }
-    public ArrayList<String> getItemsNames(){
-        ArrayList<String> names = new ArrayList<>();
-        for(Item item:backPack){
+    public List<String> getItemsNames(){
+        List<String> names = new ArrayList<>();
+        for(Item item:items){
             names.add(item.getName());
         }
         return names;

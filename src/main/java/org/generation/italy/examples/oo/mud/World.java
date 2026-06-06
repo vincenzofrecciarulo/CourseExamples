@@ -1,6 +1,7 @@
 package org.generation.italy.examples.oo.mud;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class World {
     private Room start;
@@ -8,24 +9,19 @@ public class World {
 
     public World(){
         Item babba=new Item(1,5,"Babba napoletano");
-        ArrayList<Entity> es = new ArrayList<>();
-        es.add(new Npc("Ciro la Guardia",
+        List<Item>ciroLoot=new ArrayList<>();
+        ciroLoot.add(babba);
+        List<Entity> es = new ArrayList<>();
+        es.add(new Npc("Ciruzzo",
                 50,
-                7,
+                ciroLoot,
+                2,
                 true,
-                 babba,
                 "Ciao wagliu come stai? ",
                 "Ecco a te pigliatell nu bell "+babba.getName()));
-        Item affilaSpade=new Item(3,10,"Affilatore di Spade");
-        es.add(new Npc("Luca il fabbro",
-                50,
-                7,
-                true,
-                affilaSpade,
-                "Ciao avventuriero,come mai da queste parti? ",
-                "Prendi questo ti sarà utile"+affilaSpade.getName()));
+        es.add(new Npc("Nino il nullafacente",7,2,current,"Sono un fallito"));
 
-        ArrayList<Item> os = new ArrayList<>();
+        List<Item> os = new ArrayList<>();
         os.add(new Item(2, 10, "Bastone di legno"));
         os.add(new Item(3, 9, "Scudo di ferro"));
 
@@ -48,13 +44,16 @@ public class World {
         ms.addExit(ts, Room.NORTH);
         ts.addExit(ms, Room.SOUTH);
         start = ms;
+
     }
 
     public void startGame(){
-        Player player1=new Player("Daniele");
+        String playerName= IO.readln("Inserisci il tuo nick...");
+        List<Item>backpack=new ArrayList<>();
+        Player player1=new Player("playerName",20,backpack,5);
         current=start;
         player1.setCurrent(start);
-        while(true) {
+        while(player1.isAlive()) {
             IO.println(player1.getCurrent());
             String pickCommand;
             boolean picked;
@@ -80,7 +79,7 @@ public class World {
 
             String dropCommand;
             boolean isDropped=false;
-            if(player1.getBackpack().isEmpty()) {
+            if(player1.getItems().isEmpty()) {
                 IO.println("Il tuo zaino è vuoto");
             }else{
                 do {
@@ -89,7 +88,7 @@ public class World {
                         case "n":
                             break;
                         case "y":
-                            IO.println(player1.getBackpack());
+                            IO.println(player1.getItems());
                             isDropped=player1.dropItem();
                             if(isDropped){
                                 IO.println("Item droppato con successo");

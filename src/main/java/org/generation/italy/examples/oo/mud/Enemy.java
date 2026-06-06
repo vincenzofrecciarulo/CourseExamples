@@ -1,28 +1,18 @@
 package org.generation.italy.examples.oo.mud;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Enemy extends Entity{
-    private int damage;
-    private Item weapon;
-    private Inventory deathLoot;
 
-    public Enemy(int hp,String name,int level,Item weapon,int damage,Inventory deathLoot){
-        super(name,hp, level);
-        this.weapon=weapon;
-        this.damage=damage;
-        this.deathLoot=deathLoot;
-    }
-    public Item getWeapon(){
-        return weapon;
-    }
-    public int getDamage(){
-        return damage;
-    }
-    public Inventory getDeathLoot(){
-        return deathLoot;
+    public Enemy(String name,int hp ,List<Item>items,Inventory item, int damage){
+        super(name,hp,items,damage);
     }
 
-
-
+    @Override
+    public void onDeath() {
+        for(Item item:getItems()){
+            currentRoom.addItem(item);
+        }
+    }
 }

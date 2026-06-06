@@ -1,36 +1,15 @@
 package org.generation.italy.examples.oo.mud;
-
 import java.util.ArrayList;
+import java.util.List;
 
-public class Player {
-
-    private String name;
-    private int hp;
-    public static final int BASE_PLAYER_HP=100;
-    private Inventory backpack;
-    private Room currentRoom;
+public class Player extends Entity {
 
 
 
-    public Player(String name) {
-        this.name = name;
-        this.hp=BASE_PLAYER_HP;
-        this.backpack=new Inventory();
+    public Player(String name, int hp, List<Item> items, int damage) {
+        super(name,hp,items,5);
 
     }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Inventory getBackpack(){
-        return backpack;
-    }
-
 
     public boolean pickItem(String itemName){
         for(Item item:currentRoom.getItems()){
@@ -38,10 +17,9 @@ public class Player {
                 continue;
             }else {
                 currentRoom.removeItem(item);
-                backpack.addItem(item);
+                this.getItems().add(item);
                 return true;
             }
-
         }
         return false;
         }
@@ -52,9 +30,9 @@ public class Player {
             if(itemDropped.equalsIgnoreCase("quit")){
                 return false;
             }
-            for(Item item: backpack.getBackPack()){
+            for(Item item: items){
                 if(itemDropped.equalsIgnoreCase(item.getName())){
-                    backpack.removeItem(item);
+                    items.remove(item);
                     currentRoom.addItem(item);
                     return true;
                 }
@@ -65,7 +43,7 @@ public class Player {
 
     public void talkToNpc() {
         boolean hasTalked=false;
-        ArrayList<Npc>npcsInRoom=new ArrayList<>();
+        java.util.ArrayList<Npc> npcsInRoom=new java.util.ArrayList<>();
         for(Entity e: currentRoom.getEntities()) {
             if(e instanceof Npc){
                 npcsInRoom.add((Npc)e);
@@ -75,7 +53,7 @@ public class Player {
                 return;
             }
             if(npcsInRoom.size()==1){
-                Npc alone=npcsInRoom.get(0);
+                Npc alone=npcsInRoom.getFirst();
                 alone.interact(this);
                 hasTalked=true;
             }else {
@@ -105,4 +83,9 @@ public class Player {
         this.currentRoom=room;
     }
 
+
+    @Override
+    public void onDeath() {
+        IO.println("Sei morto");
+    }
 }

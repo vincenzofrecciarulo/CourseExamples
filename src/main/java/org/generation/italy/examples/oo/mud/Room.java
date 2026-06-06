@@ -1,12 +1,13 @@
 package org.generation.italy.examples.oo.mud;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Room {
     private String title;
     private String description;
-    private ArrayList<Entity> entities;
-    private ArrayList<Item> items;
+    private List<Entity> entities;
+    private List<Item> items;
     private Room[] exits;
 
     public static final int NORTH = 0;
@@ -14,12 +15,15 @@ public class Room {
     public static final int WEST = 2;
     public static final int SOUTH = 3;
 
-    public Room(String title, String description, ArrayList<Entity> entities, ArrayList<Item> items) {
+    public Room(String title, String description, List<Entity> entities, List<Item> items) {
         this.title = title;
         this.description = description;
         this.entities = entities;
         this.items = items;
         this.exits = new Room[4];
+        for(Entity e: entities){
+            e.setCurrentRoom(this);
+        }
     }
 
     // aggiungiamo una uscita ad una stanza e diciamo anche in che direzione è l'uscita
@@ -34,6 +38,8 @@ public class Room {
         return exits[direction];
     }
 
+
+
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder(this.title);
@@ -45,8 +51,8 @@ public class Room {
         return sb.toString(); // ritorno la stringa che sta dentro lo StringBuilder
     }
 
-    public ArrayList<String> getObjectNames(){
-        ArrayList<String> names = new ArrayList<>();
+    public List<String> getObjectNames(){
+        List<String> names = new ArrayList<>();
         for(Item i : items){
             names.add(i.getName());
         }
@@ -75,11 +81,11 @@ public class Room {
         return description;
     }
 
-    public ArrayList<Item> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
-    public ArrayList<Entity> getEntities() {
+    public List<Entity> getEntities() {
         return entities;
     }
 }

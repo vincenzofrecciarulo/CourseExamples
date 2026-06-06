@@ -1,27 +1,28 @@
 package org.generation.italy.examples.oo.mud;
 
+import java.util.List;
+import java.util.Random;
+
 public class Npc extends Entity{
-    private boolean hasDialogue=true;
-    private Item reward;
+    private boolean hasDialogue;
     private String npcText;
     private String interactText;
     private boolean isFirstInteraction=true;
 
-    public Npc(String name,int hp,int level,boolean hasDialogue,Item reward,String npcText,String interactText){
-        super(name,hp,level);
+
+    public Npc(String name, int hp, List<Item> items, int damage, boolean hasDialogue,
+                String npcText, String interactText){
+        super(name,hp,items,damage);
         this.hasDialogue=hasDialogue;
-        this.reward=reward;
         this.npcText=npcText;
         this.interactText = interactText;
     }
 
-    public boolean isHasDialogue() {
-        return hasDialogue;
+    public Npc(String name,int hp, int damage, Room currentRoom,String npcText) {
+        super(name, hp, damage);
+        this.npcText = npcText;
     }
 
-    public Item getReward() {
-        return reward;
-    }
     public String getNpcText(){
         return npcText;
     }
@@ -44,16 +45,23 @@ public class Npc extends Entity{
         return true;
     }
 
-
-
     public boolean giveReward(Player player){
-        if(reward!=null){
-            player.getBackpack().addItem(reward);
-            reward=null;
+        Random luck=new Random();
+        if(!items.isEmpty()){
+            int casual=luck.nextInt(getItems().size());
+            Item chosed =getItems().get(casual);
+            player.getItems().add(chosed);
             return true;
         }
         return false;
     }
 
+    @Override
+    public void onDeath() {
+        for(Item item:getItems()){
+            currentRoom.addItem(item);
+        }
+
+    }
 }
 
