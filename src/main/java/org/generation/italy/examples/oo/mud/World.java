@@ -11,8 +11,8 @@ public class World {
 
     public World(){
         ArrayList<Entity> es = new ArrayList<>();
-        es.add(new Entity(50, "Ciro la Guardia", 7, 5, 6, false));
-        player = new Player(100, "Haru", 1, 3, 2, false);
+        NPC ciro = new NPC(50, "Ciro la Guardia", 7, 5, 6, "Benvenuto in città!");
+        player = new Player(100, "Haru", 1, 3, 2);
 
         ArrayList<Item> os = new ArrayList<>();
         os.add(new Item(2, 10, "Bastone di legno"));
@@ -115,8 +115,4 @@ public class World {
         return false;
     }
 
-    public void main(){
-        World w = new World();
-        w.startGame();
-    }
 }

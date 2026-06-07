@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo;
+package org.generation.italy.examples.oo.cardealer;
 
 public interface Vehicle {
     String getPlate();

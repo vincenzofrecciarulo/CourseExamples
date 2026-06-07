@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo;
+package org.generation.italy.examples.oo.cardealer;
 
 public class Car implements Vehicle{
     private String plate;

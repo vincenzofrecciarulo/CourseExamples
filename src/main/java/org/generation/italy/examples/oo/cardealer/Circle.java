@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo;
+package org.generation.italy.examples.oo.cardealer;
 
 public class Circle {
     double radius; //Variabile statica 1 sola copia nella classe (appartiene alla classe)
