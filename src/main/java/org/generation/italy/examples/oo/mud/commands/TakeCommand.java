@@ -1,7 +1,8 @@
 package org.generation.italy.examples.oo.mud.commands;
 
 import org.generation.italy.examples.oo.mud.world.GameContext;
-import org.generation.italy.examples.oo.mud.world.Item;
+import org.generation.italy.examplesMio.ooMio.mudMio.equipmentMio.Item;
+
 
 public class TakeCommand implements Command {
     @Override

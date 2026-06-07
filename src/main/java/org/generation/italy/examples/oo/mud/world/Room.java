@@ -1,5 +1,7 @@
 package org.generation.italy.examples.oo.mud.world;
 
+import org.generation.italy.examplesMio.ooMio.mudMio.equipmentMio.Item;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 

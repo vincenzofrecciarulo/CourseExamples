@@ -4,6 +4,7 @@ import org.generation.italy.examples.oo.mud.combat.CombatCoordinator;
 import org.generation.italy.examples.oo.mud.commands.*;
 import org.generation.italy.examples.oo.mud.roles.CharacterClass;
 import org.generation.italy.examples.oo.mud.roles.CharacterFactory;
+import org.generation.italy.examplesMio.ooMio.mudMio.equipmentMio.Item;
 
 import java.util.ArrayList;
 import java.util.List;

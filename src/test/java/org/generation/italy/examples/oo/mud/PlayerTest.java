@@ -1,7 +1,8 @@
 package org.generation.italy.examples.oo.mud;
 
-import org.generation.italy.examples.oo.mud.world.Item;
+
 import org.generation.italy.examples.oo.mud.world.Player;
+import org.generation.italy.examplesMio.ooMio.mudMio.equipmentMio.Item;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

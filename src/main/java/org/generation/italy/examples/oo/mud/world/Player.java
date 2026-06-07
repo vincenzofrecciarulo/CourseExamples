@@ -6,6 +6,7 @@ import org.generation.italy.examples.oo.mud.roles.Paladin;
 import org.generation.italy.examples.oo.mud.roles.AbilityContext;
 import org.generation.italy.examples.oo.mud.roles.SpecialAbility;
 import org.generation.italy.examples.oo.mud.commands.CommandOutcome;
+import org.generation.italy.examplesMio.ooMio.mudMio.equipmentMio.Item;
 
 import java.util.ArrayList;
 import java.util.List;
