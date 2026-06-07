@@ -1,8 +1,13 @@
 package org.generation.italy.examples.oo.mudPersonale.rooms;
 
+import org.generation.italy.examples.oo.mudPersonale.Helper;
 import org.generation.italy.examples.oo.mudPersonale.entities.Entity;
 import org.generation.italy.examples.oo.mudPersonale.entities.pokemon.PokemonEntity;
+import org.generation.italy.examples.oo.mudPersonale.enums.Pokemon;
 import org.generation.italy.examples.oo.mudPersonale.items.Item;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 
 public class DangerRoom extends Room{
@@ -15,12 +20,14 @@ public class DangerRoom extends Room{
     }
 
     @Override
-    protected Entity getRandomNpc(){
-        return PokemonEntity.getRandomPokemon(5,10);
+    protected ArrayList<Entity> spawnEntities(){
+        int randomNum = Helper.getRandomNumber(4, 1);
+        ArrayList<Entity> npcs = new ArrayList<>();
+        for(int i = 0; i < randomNum; i++){
+            npcs.add(PokemonEntity.getRandomPokemon(5, 10));
+        }
+        return npcs;
     }
 
-    @Override
-    protected Item getRandomItem() {
-        return null;
-    }
+
 }

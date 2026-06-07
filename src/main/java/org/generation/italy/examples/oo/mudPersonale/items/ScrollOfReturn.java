@@ -3,12 +3,12 @@ package org.generation.italy.examples.oo.mudPersonale.items;
 import org.generation.italy.examples.oo.mudPersonale.entities.Player;
 
 public class ScrollOfReturn extends Item {
-    private static final String NAME = "Scroll of return";
-    private static final int VALUE = 0;
+    public static final String NAME = "Scroll of return";
+    public static final int PRICE = 5;
     public static final double WEIGHT = 5.0;
 
     public ScrollOfReturn() {
-        super(ScrollOfReturn.WEIGHT, ScrollOfReturn.VALUE, ScrollOfReturn.NAME);
+        super(ScrollOfReturn.WEIGHT, ScrollOfReturn.PRICE, ScrollOfReturn.NAME);
     }
 
     @Override

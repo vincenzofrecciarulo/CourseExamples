@@ -98,8 +98,8 @@ public class Player extends Entity {
         return inventory.showItems();
     }
 
-    public boolean useItem(int index){
-        return inventory.useItem(index, this);
+    public Item findItem(int index){
+        return inventory.findItem(index);
     }
 
 

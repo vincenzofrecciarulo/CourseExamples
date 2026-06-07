@@ -3,6 +3,8 @@ package org.generation.italy.examples.oo.mudPersonale.rooms;
 import org.generation.italy.examples.oo.mudPersonale.entities.Entity;
 import org.generation.italy.examples.oo.mudPersonale.items.Item;
 
+import java.util.ArrayList;
+
 public class EmptyRoom extends Room{
     private static final String TITLE = "Empty room";
     private static final String MAP_ICON = "X";
@@ -11,13 +13,9 @@ public class EmptyRoom extends Room{
         super(EmptyRoom.TITLE, "",  EmptyRoom.MAP_ICON);
     }
 
-    @Override
-    protected Entity getRandomNpc() {
-        return null;
-    }
 
     @Override
-    protected Item getRandomItem() {
+    protected ArrayList<Entity> spawnEntities() {
         return null;
     }
 }

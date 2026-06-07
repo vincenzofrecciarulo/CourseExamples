@@ -2,14 +2,14 @@ package org.generation.italy.examples.oo.mudPersonale.items;
 
 import org.generation.italy.examples.oo.mudPersonale.entities.Player;
 
-public class Item {
+public abstract class Item {
     private final double weight;
-    protected int value;
+    protected int price;
     private final String name;
 
-    public Item(double weight, int value, String name) {
+    public Item(double weight, int price, String name) {
         this.weight = weight;
-        this.value = value;
+        this.price = price;
         this.name = name;
     }
 
@@ -21,7 +21,5 @@ public class Item {
         return weight;
     }
 
-    public void interact(Player player){
-
-    }
+    public abstract void interact(Player player);
 }

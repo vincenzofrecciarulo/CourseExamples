@@ -1,9 +1,9 @@
 package org.generation.italy.examples.oo.mudPersonale;
 
 import org.generation.italy.examples.oo.mudPersonale.entities.Player;
-import org.generation.italy.examples.oo.mudPersonale.rooms.MarketRoom;
+import org.generation.italy.examples.oo.mudPersonale.rooms.ShopRoom;
 import org.generation.italy.examples.oo.mudPersonale.rooms.Room;
-import org.generation.italy.examples.oo.mudPersonale.rooms.TempleRoom;
+import org.generation.italy.examples.oo.mudPersonale.rooms.PokecenterRoom;
 
 
 public class Map {
@@ -11,8 +11,8 @@ public class Map {
 
 
     public Map(){
-        map[10][10] = new TempleRoom();
-        map[9][10] = new MarketRoom();
+        map[10][10] = new PokecenterRoom();
+        map[9][10] = new ShopRoom();
     }
 
     public Room getRoom(int y, int x){

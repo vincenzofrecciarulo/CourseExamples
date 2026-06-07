@@ -2,6 +2,7 @@ package org.generation.italy.examples.oo.mudPersonale;
 
 import org.generation.italy.examples.oo.mudPersonale.entities.Player;
 import org.generation.italy.examples.oo.mudPersonale.enums.Direction;
+import org.generation.italy.examples.oo.mudPersonale.items.Item;
 
 
 public class World {
@@ -14,7 +15,7 @@ public class World {
         //os.add(new Item(3, 9, "Scudo di ferro"));
         //os2.add(new Item(4, 8, "Ago di metallo"));
         // stanza del tempio
-        player = new Player("Player", 1, new Inventory());
+        player = new Player("Player", 100, new Inventory());
     }
 
     public void startGame() throws Exception {
@@ -48,11 +49,17 @@ public class World {
                         break;
                     }
                     int input = Integer.parseInt(IO.readln("Seleziona un item ->"));
+                    Item item = player.findItem(input);
+                    if(item == null){
+                        IO.println("Item non trovato");
+                        break;
+                    }
                     String useOrDrop = IO.readln("Usare (0) o buttare (1)? ");
                     if(useOrDrop.equals("0")){
-                        player.useItem(input);
+                        item.interact(player);
                     }else if(useOrDrop.equals("1")){
-                        throw new Exception("Da fare");
+                        player.drop(item);
+                        IO.println("Hai buttato " + item.getName());
                     }
 
                     break;

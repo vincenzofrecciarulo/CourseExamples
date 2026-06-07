@@ -46,11 +46,12 @@ public class Inventory {
         return true;
     }
 
-    public boolean useItem(int index, Player player){
-        if(index >= 0 && index < inventory.size()){
-            inventory.get(index).interact(player);
-            return true;
+
+
+    public Item findItem(int index){
+        if(index > inventory.size()){
+            return null;
         }
-        return false;
+        return inventory.get(index);
     }
 }

@@ -2,7 +2,12 @@ package org.generation.italy.examples.oo.mudPersonale.rooms;
 
 import org.generation.italy.examples.oo.mudPersonale.entities.Entity;
 import org.generation.italy.examples.oo.mudPersonale.entities.Player;
+import org.generation.italy.examples.oo.mudPersonale.enums.HealPotion;
+import org.generation.italy.examples.oo.mudPersonale.items.HealPotionItem;
 import org.generation.italy.examples.oo.mudPersonale.items.Item;
+import org.generation.italy.examples.oo.mudPersonale.items.Pokeball;
+import org.generation.italy.examples.oo.mudPersonale.items.ScrollOfReturn;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,8 +23,8 @@ public abstract class Room {
     public Room(String title, String description, String mapIcon) {
         this.title = title;
         this.description = description;
-        this.entities = getRandomNpcs();
-        this.items = getRandomItems();
+        this.entities = spawnEntities();
+        this.items = spawnRandomItems();
         this.mapIcon = mapIcon;
     }
 
@@ -115,9 +120,9 @@ public abstract class Room {
         int num = random.nextInt(7);
         switch (num){
             case 0:
-                return new MarketRoom();
+                return new ShopRoom();
             case 1:
-                return new TempleRoom();
+                return new PokecenterRoom();
             case 2:
             case 3:
             case 4:
@@ -139,21 +144,10 @@ public abstract class Room {
                     """);
     }
 
-    private ArrayList<Entity> getRandomNpcs(){
-        if(getRandomNpc() == null){
-            return new ArrayList<>();
-        }
+    protected abstract ArrayList<Entity> spawnEntities();
 
-        int randomNum = new Random().nextInt(1,4);
-        ArrayList<Entity> npcs = new ArrayList<>();
-        for(int i = 0; i < randomNum; i++){
-            npcs.add(getRandomNpc());
-        }
-        return npcs;
-    }
-
-    private ArrayList<Item> getRandomItems(){
-        if(getRandomItem() == null){
+    private ArrayList<Item> spawnRandomItems(){
+        if(spawnRandomItem() == null){
             return new ArrayList<>();
         }
 
@@ -161,14 +155,22 @@ public abstract class Room {
         ArrayList<Item> items = new ArrayList<>();
 
         for(int i = 0; i < randomNum; i++){
-            items.add(getRandomItem());
+            items.add(spawnRandomItem());
         }
         return items;
     }
 
 
-    protected abstract Entity getRandomNpc();
+    protected Item spawnRandomItem(){
+        int randomNum = new Random().nextInt(3);
 
-
-    protected abstract Item getRandomItem();
+        switch (randomNum){
+            case 0:
+                return HealPotionItem.getRandomHealPotionItem();
+            case 1:
+                return new ScrollOfReturn();
+            default:
+                return new Pokeball();
+        }
+    }
 }
