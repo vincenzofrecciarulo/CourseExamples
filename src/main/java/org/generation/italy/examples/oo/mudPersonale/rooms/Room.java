@@ -164,13 +164,10 @@ public abstract class Room {
     protected Item spawnRandomItem(){
         int randomNum = new Random().nextInt(3);
 
-        switch (randomNum){
-            case 0:
-                return HealPotionItem.getRandomHealPotionItem();
-            case 1:
-                return new ScrollOfReturn();
-            default:
-                return new Pokeball();
-        }
+        return switch (randomNum) {
+            case 0 -> HealPotionItem.getRandomHealPotionItem();
+            case 1 -> new ScrollOfReturn();
+            default -> new Pokeball();
+        };
     }
 }

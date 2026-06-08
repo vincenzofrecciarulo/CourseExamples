@@ -13,6 +13,8 @@ public abstract class Item {
         this.name = name;
     }
 
+    public abstract void interact(Player player);
+
     public String getName() {
         return name;
     }
@@ -21,5 +23,9 @@ public abstract class Item {
         return weight;
     }
 
-    public abstract void interact(Player player);
+    public int getPrice(){
+        return price;
+    }
+
+
 }

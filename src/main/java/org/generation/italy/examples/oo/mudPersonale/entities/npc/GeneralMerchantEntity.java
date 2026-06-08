@@ -5,6 +5,7 @@ import org.generation.italy.examples.oo.mudPersonale.entities.Entity;
 import org.generation.italy.examples.oo.mudPersonale.entities.Player;
 import org.generation.italy.examples.oo.mudPersonale.enums.HealPotion;
 import org.generation.italy.examples.oo.mudPersonale.items.HealPotionItem;
+import org.generation.italy.examples.oo.mudPersonale.items.Item;
 import org.generation.italy.examples.oo.mudPersonale.items.ScrollOfReturn;
 
 public class GeneralMerchantEntity extends Entity {
@@ -31,58 +32,37 @@ public class GeneralMerchantEntity extends Entity {
 
         switch (input){
             case "1":
-                if(player.getInventoryWeight() + HealPotion.SMALL.getWeight() > Inventory.MAX_WEIGHT){
-                    System.out.println("Non hai abbastanza spazio nello zaino..");
-                    return;
-                }
-                if(!player.withdrawCoins(HealPotion.SMALL.getPrice())){
-                    IO.println("Eh troppo povero per comprare..?");
-                    return;
-                }
-                player.pick(new HealPotionItem(HealPotion.SMALL));
-                IO.println("Hai comprato una pozione di cura");
+                buyItem(HealPotion.SMALL, player);
                 break;
-
             case "2":
-                if(player.getInventoryWeight() + HealPotion.MEDIUM.getWeight() > Inventory.MAX_WEIGHT){
-                    System.out.println("Non hai abbastanza spazio nello zaino..");
-                    return;
-                }
-                if(!player.withdrawCoins(HealPotion.MEDIUM.getPrice())){
-                    IO.println("Eh troppo povero per comprare..?");
-                    return;
-                }
-                player.pick(new HealPotionItem(HealPotion.MEDIUM));
-                IO.println("Hai comprato una pozione di cura");
+                buyItem(HealPotion.MEDIUM, player);
                 break;
-
             case "3":
-                if(player.getInventoryWeight() + HealPotion.LARGE.getWeight() > Inventory.MAX_WEIGHT){
-                    System.out.println("Non hai abbastanza spazio nello zaino..");
-                    return;
-                }
-                if(!player.withdrawCoins(HealPotion.MEDIUM.getPrice())){
-                    IO.println("Eh troppo povero per comprare..?");
-                    return;
-                }
-                player.pick(new HealPotionItem(HealPotion.MEDIUM));
-                IO.println("Hai comprato una pozione di cura");
+                buyItem(HealPotion.LARGE, player);
                 break;
             case "4":
-                if(player.getInventoryWeight() + ScrollOfReturn.WEIGHT > Inventory.MAX_WEIGHT){
-                    System.out.println("Non hai abbastanza spazio nello zaino..");
-                    return;
-                }
-                if(!player.withdrawCoins(5)){
-                    IO.println("Eh troppo povero per comprare..?");
-                    return;
-                }
-                player.pick(new ScrollOfReturn());
-                IO.println("Hai comprato una pergamena del ritorno");
+                buyItem(new ScrollOfReturn(), player);
                 break;
             default:
                 IO.println("Arrivederci avventuriero!");
                 break;
         }
+    }
+
+    private void buyItem(Item item, Player player){
+        if(player.getInventoryWeight() + item.getWeight() > Inventory.MAX_WEIGHT){
+            System.out.println("Non hai abbastanza spazio nello zaino..");
+            return;
+        }
+        if(!player.withdrawCoins(item.getPrice())){
+            IO.println("Eh troppo povero per comprare..?");
+            return;
+        }
+        player.pick(item);
+        IO.println("Hai comprato " + item.getName());
+    }
+
+    private void buyItem(HealPotion healPotion, Player player){
+        buyItem(new HealPotionItem(healPotion), player);
     }
 }

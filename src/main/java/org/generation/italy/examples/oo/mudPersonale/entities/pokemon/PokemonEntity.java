@@ -13,7 +13,6 @@ public class PokemonEntity extends Entity {
     private int level;
     private int currentHp;
 
-
     public PokemonEntity(Pokemon pokemon, int level) {
         super(pokemon.getName());
         this.nature = getRandomNature();
