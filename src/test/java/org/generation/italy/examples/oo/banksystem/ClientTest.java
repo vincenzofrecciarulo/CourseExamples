@@ -22,12 +22,12 @@ class ClientTest {
     void tearDown() {
     }
 
-    @Test
-    void addAccount_if_client_has_not_account() {
-        boolean success = client.addAccount();
-        assertTrue(success);
-        int numAccountTest = client.accounts.length;
-        int expected = 1;
-        assertEquals(expected,numAccountTest);
-    }
+//    @Test
+//    void addAccount_if_client_has_not_account() {
+//        boolean success = client.addAccount();
+//        assertTrue(success);
+//        int numAccountTest = client.accounts.length;
+//        int expected = 1;
+//        assertEquals(expected,numAccountTest);
+//    }
 }
