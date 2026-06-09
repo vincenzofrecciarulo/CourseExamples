@@ -2,7 +2,7 @@ package org.generation.italy.examples.oo.collections;
 
 import java.time.LocalDate;
 
-public class Cat implements Comparable<Cat> {
+public class Cat implements Comparable<Cat>{
     private String name;
     private String color;
     private LocalDate dateOfBirth;
@@ -15,6 +15,10 @@ public class Cat implements Comparable<Cat> {
         this.weight = weight;
     }
 
+    public boolean isOlderThan(Cat other){
+        return this.dateOfBirth.isBefore(other.dateOfBirth);
+    }
+
     @Override
     public String toString() {
         return "Cat{" +
@@ -23,12 +27,25 @@ public class Cat implements Comparable<Cat> {
                 '}';
     }
 
-    public boolean isOlderThan(Cat other){
-        return this.dateOfBirth.isBefore(other.dateOfBirth);
-    }
-
+    // ordinamento naturale -> non cambiare se è gia stato definito -> utilizzare i comparatori
     @Override
     public int compareTo(Cat o) {
         return this.weight - o.weight;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public int getWeight() {
+        return weight;
     }
 }
