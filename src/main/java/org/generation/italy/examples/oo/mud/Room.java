@@ -76,7 +76,7 @@ public class Room {
         ArrayList<Entity> enemies = new ArrayList<>();
         for(Entity i : entities){
             if(i.isHostile()){
-                    enemies.add(i);
+                enemies.add(i);
             }
         }
         return enemies;

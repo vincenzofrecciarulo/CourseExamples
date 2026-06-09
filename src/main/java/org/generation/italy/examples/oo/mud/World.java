@@ -10,11 +10,14 @@ public class World {
 
 
     public World(){
+
         ArrayList<Entity> es = new ArrayList<>();
+
         NPC ciro = new NPC(50, "Ciro la Guardia", 7, 5, 6, "Benvenuto in città!");
         player = new Player(100, "Haru", 1, 3, 2);
 
         ArrayList<Item> os = new ArrayList<>();
+
         os.add(new Item(2, 10, "Bastone di legno"));
         os.add(new Item(3, 9, "Scudo di legno"));
 
