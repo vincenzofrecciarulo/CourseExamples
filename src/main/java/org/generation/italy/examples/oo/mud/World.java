@@ -15,7 +15,7 @@ public class World {
 
     public World(){
         ArrayList<Entity> es = new ArrayList<>();
-        es.add(new Entity(50, "Ciro la guardia", 7));
+//        es.add(new Entity(50, "Ciro la guardia", 7));
         ArrayList<Item> os = new ArrayList<>();
         os.add(new Item(2,10, "Bastone di legno"));
         os.add(new Item(3,9,"Scudo di ferro"));

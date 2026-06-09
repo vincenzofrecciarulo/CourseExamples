@@ -29,6 +29,6 @@ public class SuperHero implements Human, FlyingObject{
 
     @Override
     public void workForHours(int workHours) {
-        System.out.printfn("nun me va de lavorà %d voglio salvare il mondo%n", workHours);
+        System.out.printf("nun me va de lavorà %d voglio salvare il mondo%n", workHours);
     }
 }

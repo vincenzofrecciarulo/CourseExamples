@@ -4,32 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Ulteriori modifiche e tantissimi bug">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/abstractclasses/FullstackDeveloper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/abstractclasses/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/abstractclasses/UIDesigner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/Billionaire.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/FlyingObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/Human.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/Start.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/SuperHero.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/parkingterminal/Car.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/parkingterminal/Garage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/parkingterminal/Motorcycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/parkingterminal/Vehicle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/Cat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/ListExamples.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/SortingExamples.java" afterDir="false" />
+    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="aggiunto robe">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/ExerciseMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/CatComparatorByAge.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/GenericExamples.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/MapExamples.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise3.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise4.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise5.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise6.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise7.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/SuperHero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/SuperHero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/Cat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/SortingExamples.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/SortingExamples.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/World.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/oo/collections/SortingExamplesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/oo/collections/SortingExamplesTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,36 +63,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Circle.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise5.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise6.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise7.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MagicHat.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Operations.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Player.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RandomTestForMe.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Start.executor&quot;: &quot;Run&quot;,
-    &quot;Application.World.executor&quot;: &quot;Run&quot;,
-    &quot;Application.org.generation.italy.examples.oo.magic.Start.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AccountTest.deposit.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AccountTest.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;vincenzo__frecciarulo&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Circle.executor": "Run",
+    "Application.Client.executor": "Run",
+    "Application.Exercise2.executor": "Run",
+    "Application.Exercise5.executor": "Run",
+    "Application.Exercise6.executor": "Run",
+    "Application.Exercise7.executor": "Run",
+    "Application.MagicHat.executor": "Run",
+    "Application.MapExamples.executor": "Run",
+    "Application.Operations.executor": "Run",
+    "Application.Player.executor": "Run",
+    "Application.RandomTestForMe.executor": "Run",
+    "Application.Start.executor": "Run",
+    "Application.World.executor": "Run",
+    "Application.org.generation.italy.examples.oo.magic.Start.executor": "Run",
+    "JUnit.AccountTest.deposit.executor": "Run",
+    "JUnit.AccountTest.executor": "Run",
+    "JUnit.SortingExamplesTest.sortListCatsAge.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "vincenzo__frecciarulo",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -115,13 +103,13 @@
       <recent name="org.generation.italy.examples.oo.banksystem" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Exercise2">
-    <configuration name="Exercise2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.arrays.Exercise2" />
+  <component name="RunManager" selected="Application.MapExamples">
+    <configuration name="MapExamples" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.collections.MapExamples" />
       <module name="CourseExamples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.arrays.*" />
+          <option name="PATTERN" value="org.generation.italy.examples.oo.collections.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -168,26 +156,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="org.generation.italy.examples.oo.magic.Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.magic.Start" />
+    <configuration name="SortingExamplesTest.sortListCatsAge" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CourseExamples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.oo.magic.*" />
+          <option name="PATTERN" value="org.generation.italy.examples.oo.collections.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="org.generation.italy.examples.oo.collections" />
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.collections.SortingExamplesTest" />
+      <option name="METHOD_NAME" value="sortListCatsAge" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Exercise2" />
+        <item itemvalue="Application.MapExamples" />
+        <item itemvalue="JUnit.SortingExamplesTest.sortListCatsAge" />
         <item itemvalue="Application.World" />
-        <item itemvalue="Application.Player" />
-        <item itemvalue="Application.org.generation.italy.examples.oo.magic.Start" />
         <item itemvalue="Application.Start" />
+        <item itemvalue="Application.Player" />
       </list>
     </recent_temporary>
   </component>

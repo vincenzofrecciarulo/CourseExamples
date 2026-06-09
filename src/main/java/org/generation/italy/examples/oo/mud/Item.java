@@ -15,7 +15,7 @@ public class Item {
         return name;
     }
 
-    public int getWeight(){
+    public double getWeight(){
         return weight;
     }
 

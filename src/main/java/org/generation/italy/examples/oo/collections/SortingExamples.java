@@ -19,4 +19,14 @@ public class SortingExamples {
         // nelle classi custom non implementiamo di default l'interfaccia Comparable
         Collections.sort(cats);
     }
+
+    public static void sortListOfCatsByAge(List<Cat> cats){
+        CatComparatorByAge catComparatorByAge = new CatComparatorByAge();
+        /*Cat c1 = null;
+        Cat c2 = null;
+        int result = catComparatorByAge.compare(c1,c2);*/
+
+        //Metodo spostato direttamente sull'interfaccia List
+        cats.sort(catComparatorByAge);
+    }
 }
