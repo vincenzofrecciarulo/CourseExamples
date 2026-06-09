@@ -16,6 +16,10 @@ public class Cat implements Comparable<Cat> {
         this.weight = weight;
     }
 
+    public boolean isOlderThan(Cat other) {
+        return this.dateOfBirth.isBefore(other.dateOfBirth);
+    }
+
     @Override
     public String toString() {
         return "Cat{" +
@@ -30,5 +34,13 @@ public class Cat implements Comparable<Cat> {
     public int compareTo(Cat o) {  // we override compareTo how we need it
         // we decide we want to sort them by ascending weight
         return this.weight - o.weight;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getColor() {
+        return color;
     }
 }

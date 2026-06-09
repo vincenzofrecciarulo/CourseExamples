@@ -1,6 +1,7 @@
 package org.generation.italy.examples.oo.collections;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class SortingExamples {
@@ -19,4 +20,13 @@ public class SortingExamples {
         // Sort is a POLYMORPHIC METHOD on the Comparable interface.
         Collections.sort(cats);
     }
+
+    public static void sortListOfCatsByAge(List<Cat> cats) {
+        CatComparatorByAge comparatorByAge = new CatComparatorByAge();
+//        Cat c1 = null;
+//        Cat c2 = null;
+//        int result = comparator.compare(c1, c2);
+        cats.sort(comparatorByAge);
+    }
+
 }

@@ -26,9 +26,9 @@ class SortingExamplesTest {
         // in ordine alfabetico, e verranno comparati i loro valori ASCII.
         // questo perché le maiuscole hanno tutte codici ASCII minori delle minuscole.
         strings = new ArrayList<>(List.of("ciao", "Giovanni", "sono", "tutti", "a"));
-        c1 = new Cat("Cutiepie", "white", LocalDate.now(), 10);
-        c2 = new Cat("Fluffyshit", "yellow", LocalDate.now(), 8);
-        c3 = new Cat("Wowie", "black", LocalDate.now(), 4);
+        c1 = new Cat("Cutiepie", "white", LocalDate.of(2010, 5, 2), 10);
+        c2 = new Cat("Fluffyshit", "yellow", LocalDate.of(2015, 3, 1), 8);
+        c3 = new Cat("Wowie", "black", LocalDate.of(2009, 10, 11), 4);
         cats = new ArrayList<>(List.of(c1, c2, c3));
     }
 
@@ -52,5 +52,11 @@ class SortingExamplesTest {
     void sortListOfCats() { // we've overridden compareTo in Cat so sort them by ascending weight
         SortingExamples.sortListOfCats(cats);
         assertEquals(List.of(c3, c2, c1), cats);
+    }
+
+    @Test
+    void sortCatsByAge() {
+        SortingExamples.sortListOfCatsByAge(cats);
+        assertEquals(List.of(c2, c1, c3), cats);
     }
 }
