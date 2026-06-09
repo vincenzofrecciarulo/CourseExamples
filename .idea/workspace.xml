@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="aggiunto robe">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/ExerciseMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/CatComparatorByAge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/GenericExamples.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/MapExamples.java" afterDir="false" />
+    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Fatto modifiche su diverse classi, fatto, iniziato esempi sulle Maps e aperto ExerciseMap">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/exercisemap/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/exercisemap/EmployeeManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/SuperHero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/SuperHero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/Cat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/SortingExamples.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/SortingExamples.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/World.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/oo/collections/SortingExamplesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/oo/collections/SortingExamplesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/ExerciseMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/exercisemap/ExerciseMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/oo/mud/RoomTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/oo/mud/RoomTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +65,7 @@
     "Application.Exercise5.executor": "Run",
     "Application.Exercise6.executor": "Run",
     "Application.Exercise7.executor": "Run",
+    "Application.ExerciseMap.executor": "Run",
     "Application.MagicHat.executor": "Run",
     "Application.MapExamples.executor": "Run",
     "Application.Operations.executor": "Run",
@@ -92,6 +87,7 @@
     "git-widget-placeholder": "vincenzo__frecciarulo",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Dev/Java/Projects/EserciziPersonali/CourseExamples",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -103,13 +99,13 @@
       <recent name="org.generation.italy.examples.oo.banksystem" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MapExamples">
-    <configuration name="MapExamples" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.collections.MapExamples" />
+  <component name="RunManager" selected="Application.ExerciseMap">
+    <configuration name="ExerciseMap" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.arrays.exercisemap.ExerciseMap" />
       <module name="CourseExamples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.oo.collections.*" />
+          <option name="PATTERN" value="org.generation.italy.examples.arrays.exercisemap.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -174,7 +170,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MapExamples" />
+        <item itemvalue="Application.ExerciseMap" />
         <item itemvalue="JUnit.SortingExamplesTest.sortListCatsAge" />
         <item itemvalue="Application.World" />
         <item itemvalue="Application.Start" />
@@ -226,6 +222,7 @@
       <workItem from="1780924724854" duration="1453000" />
       <workItem from="1780931315605" duration="23000" />
       <workItem from="1780999839574" duration="1796000" />
+      <workItem from="1781016483149" duration="4438000" />
     </task>
     <task id="LOCAL-00001" summary="Implementato Exercise7 e 5, con alcune modifiche agli altri">
       <option name="closed" value="true" />
