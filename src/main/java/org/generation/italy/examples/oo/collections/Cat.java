@@ -27,4 +27,16 @@ public class Cat implements Comparable<Cat>{
     public int compareTo(Cat o) {
         return this.weight - o.weight;
     }
+
+    public boolean isOlderThan(Cat other) {
+        return this.dateOfBirth.isBefore(other.dateOfBirth);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getColor() {
+        return color;
+    }
 }
