@@ -22,19 +22,19 @@ public class EmployeeManagement {
         employees.add(e);
     }
 
-    public void getById(int id){
-        for(Employee i : employees) {
-            if(id == i.getId()) {
-                System.out.println(i.getName());
-                return;
+    public Employee getById(int id) {
+        for (Employee e : employees) {
+            if (e.getId() == id) {
+                return e;
             }
         }
-        System.out.println("Impiegato non trovato.");
+        return null;
     }
 
-    public static void getAllOrderedByAge(List<Employee> employees){
-        EmployeeComparatorByAge employeeComparatorByAge = new EmployeeComparatorByAge();
-        employees.sort(employeeComparatorByAge);
+    public List<Employee> getAllOrderedByAge() {
+        List<Employee> result = new ArrayList<>(employees);
+        result.sort(new EmployeeComparatorByAge());
+        return result;
     }
 
     public void getBySalary() {
@@ -53,8 +53,10 @@ public class EmployeeManagement {
         System.out.println("Secondo salario: " + max2);
     }
 
-    public void sortBySurname(){
-        Collections.sort(employees, );
+    public List<Employee> getAllOrderedBySurname() {
+        List<Employee> result = new ArrayList<>(employees);
+        result.sort(new EmployeeComparatorBySurname());
+        return result;
     }
 }
 

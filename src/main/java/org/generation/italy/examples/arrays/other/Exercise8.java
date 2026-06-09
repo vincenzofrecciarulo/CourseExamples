@@ -10,7 +10,7 @@ Ex4Tris (solitaria)
 Popolare l’array e stamparne solo gli elementi che distano più di 10 dalla media di tutto l’array
 */
 
-package org.generation.italy.examples.arrays;
+package org.generation.italy.examples.arrays.other;
 
 import java.util.Arrays;
 

@@ -7,7 +7,7 @@ Ex3Bis (solitaria)
 Rifarlo ma con valori (-100) - (+100)
  */
 
-package org.generation.italy.examples.arrays;
+package org.generation.italy.examples.arrays.other;
 
 import java.util.Arrays;
 

@@ -11,7 +11,7 @@ Dato un array di 10 elementi, scrivere una funzione che popola l’array con num
 Successivamente il programma deve stampare gli elementi duplicati
  */
 
-package org.generation.italy.examples.arrays;
+package org.generation.italy.examples.arrays.other;
 
 import java.util.Arrays;
 

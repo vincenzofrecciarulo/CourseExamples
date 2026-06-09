@@ -1,4 +1,4 @@
-package org.generation.italy.examples.arrays;
+package org.generation.italy.examples.arrays.other;
 
 // Dato un array di 10 elementi di qualunque tipo, invertire l’ordine degli elementi
 

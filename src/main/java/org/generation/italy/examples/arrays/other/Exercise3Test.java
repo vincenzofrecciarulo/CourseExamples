@@ -1,4 +1,4 @@
-package org.generation.italy.examples.arrays;
+package org.generation.italy.examples.arrays.other;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,6 +17,6 @@ class Exercise3Test {
         int[] numArrayTest = {1,2,3,4,5,6,7,8,9,10};
         Exercise3.invert(numArrayTest);
         int[] expected = {10,9,8,7,6,5,4,3,2,1};
-        assertArrayEquals(expected, numArrayTest);
+        Assertions.assertArrayEquals(expected, numArrayTest);
     }
 }
