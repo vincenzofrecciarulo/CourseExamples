@@ -1,5 +1,6 @@
 package org.generation.italy.examples.oo.collections;
 
+import org.generation.italy.examples.oo.collections.employee.Exercise1;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

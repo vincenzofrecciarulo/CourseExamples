@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.collections;
+package org.generation.italy.examples.oo.collections.employee;
 
 // esercizio 2:
 // creare una classe Employee.
@@ -17,19 +17,13 @@ package org.generation.italy.examples.oo.collections;
 // voglio poi un altro metodo che mi restituisca i due Employee con il salario
 // più alto
 
-
-
 // voglio poi un altro metodo che ritorni tutti gli impiegati, ordinati per cognome crescente
-
 // il cognome deve essere case insensitive.
-
 // siccome potremmo avere più impiegati con lo stesso cognome, a parità di cognome voglio che
-
 // abbiamo precedenza nel sort le donne rispetto agli uomini.
 
 
 import java.time.LocalDate;
-import java.util.Locale;
 
 public class Employee {
     private String id;

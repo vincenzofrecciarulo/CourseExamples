@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.collections;
+package org.generation.italy.examples.oo.collections.employee;
 
 import java.util.Comparator;
 
