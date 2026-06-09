@@ -6,7 +6,6 @@ public class BinarySearch {
         int[] nums = {12,45,65,78,89,90,123,124,456};
         int index =  indexOf(nums,456);
         System.out.println(index);
-
     }
     public static int indexOf(int[] num,int val){
         int start = 0;
