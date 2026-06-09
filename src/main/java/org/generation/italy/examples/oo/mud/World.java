@@ -1,7 +1,5 @@
 package org.generation.italy.examples.oo.mud;
 
-import java.lang.reflect.Array;
-import java.net.NoRouteToHostException;
 import java.util.ArrayList;
 
 public class World {
@@ -75,21 +73,21 @@ public class World {
                 default:
                     if (command.startsWith("pick ")) {
                         String itemName = command.substring(5).trim();
-                        if (current.findItem(itemName) == null) {
+                        Item item = current.findItem(itemName);
+                        if (item == null) {
                             IO.println("I didn't quite understand what you want to do...");
                             continue;
                         } else {
-                            Item item = current.findItem(itemName);
                             player.getInventory().addItem(item);
                             current.removeItem(item);
                             continue;
                         }
                     } else if (command.startsWith("drop ")) {
                         String itemName = command.substring(5).trim();
-                        if (player.getInventory().findItem(itemName) == null) {
+                        Item item = player.getInventory().findItem(itemName);
+                        if (item == null) {
                             IO.println("I didn't quite understand what you want to do...");
                         } else {
-                            Item item = player.getInventory().findItem(itemName);
                             current.addItem(item);
                             player.getInventory().removeItem(item);
                         }
@@ -98,7 +96,7 @@ public class World {
                         if (player.getInventory().getItemList().isEmpty()) {
                             System.out.println("Your inventory is empty!");
                         } else {
-                            System.out.println(player.getInventory().getItemList().toString());
+                            System.out.println(player.getInventory().getItemList()); // calls toString
                         }
                         continue;
                     } else {
@@ -124,7 +122,7 @@ public class World {
         return false;
     }
 
-    void main() {
+    public static void main(String[] args) {
         World w = new World();
         w.startGame();
     }
