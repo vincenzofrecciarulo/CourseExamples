@@ -51,4 +51,10 @@ class SortingExamplesTest {
         SortingExamples.sortListOfCats(cats);
         assertEquals(List.of(c3,c1,c2), cats);
     }
+
+    @Test
+    void sortListCatsAge(){
+        SortingExamples.sortListOfCatsByAge(cats);
+        assertEquals(List.of(c3,c1,c2), cats);
+    }
 }
