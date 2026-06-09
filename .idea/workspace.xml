@@ -4,10 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Iniziato mie modifiche sul gioco">
+    <list default="true" id="30fa16c3-673a-4482-9cdb-f01c3b5d6694" name="Changes" comment="Ulteriori modifiche e tantissimi bug">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/abstractclasses/FullstackDeveloper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/abstractclasses/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/abstractclasses/UIDesigner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/Billionaire.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/FlyingObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/Human.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/Start.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/examples/SuperHero.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/parkingterminal/Car.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/parkingterminal/Garage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/parkingterminal/Motorcycle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/abstraction/interfaces/parkingterminal/Vehicle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/Cat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/ListExamples.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/collections/SortingExamples.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise4.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise5.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise6.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise7.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/mud/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +40,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -54,36 +77,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Circle.executor": "Run",
-    "Application.Client.executor": "Run",
-    "Application.Exercise2.executor": "Run",
-    "Application.Exercise5.executor": "Run",
-    "Application.Exercise6.executor": "Run",
-    "Application.Exercise7.executor": "Run",
-    "Application.MagicHat.executor": "Run",
-    "Application.Operations.executor": "Run",
-    "Application.Player.executor": "Run",
-    "Application.RandomTestForMe.executor": "Run",
-    "Application.Start.executor": "Run",
-    "Application.World.executor": "Run",
-    "Application.org.generation.italy.examples.oo.magic.Start.executor": "Run",
-    "JUnit.AccountTest.deposit.executor": "Run",
-    "JUnit.AccountTest.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "vincenzo__frecciarulo",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Circle.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise5.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise6.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise7.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MagicHat.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Operations.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Player.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RandomTestForMe.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Start.executor&quot;: &quot;Run&quot;,
+    &quot;Application.World.executor&quot;: &quot;Run&quot;,
+    &quot;Application.org.generation.italy.examples.oo.magic.Start.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AccountTest.deposit.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AccountTest.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;vincenzo__frecciarulo&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -92,13 +115,13 @@
       <recent name="org.generation.italy.examples.oo.banksystem" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.World">
-    <configuration name="Player" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.mud.Player" />
+  <component name="RunManager" selected="Application.Exercise2">
+    <configuration name="Exercise2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.arrays.Exercise2" />
       <module name="CourseExamples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.oo.mud.*" />
+          <option name="PATTERN" value="org.generation.italy.examples.arrays.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -106,12 +129,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RandomTestForMe" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.arrays.RandomTestForMe" />
+    <configuration name="Player" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.mud.Player" />
       <module name="CourseExamples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.arrays.*" />
+          <option name="PATTERN" value="org.generation.italy.examples.oo.mud.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -160,11 +183,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Exercise2" />
         <item itemvalue="Application.World" />
         <item itemvalue="Application.Player" />
         <item itemvalue="Application.org.generation.italy.examples.oo.magic.Start" />
         <item itemvalue="Application.Start" />
-        <item itemvalue="Application.RandomTestForMe" />
       </list>
     </recent_temporary>
   </component>
@@ -203,7 +226,15 @@
       <workItem from="1779978391149" duration="5179000" />
       <workItem from="1780151660435" duration="1142000" />
       <workItem from="1780166406359" duration="4028000" />
-      <workItem from="1780171241882" duration="308000" />
+      <workItem from="1780171241882" duration="586000" />
+      <workItem from="1780574970312" duration="3144000" />
+      <workItem from="1780608282899" duration="1209000" />
+      <workItem from="1780645043896" duration="3094000" />
+      <workItem from="1780650191492" duration="3399000" />
+      <workItem from="1780692900103" duration="2468000" />
+      <workItem from="1780924724854" duration="1453000" />
+      <workItem from="1780931315605" duration="23000" />
+      <workItem from="1780999839574" duration="1796000" />
     </task>
     <task id="LOCAL-00001" summary="Implementato Exercise7 e 5, con alcune modifiche agli altri">
       <option name="closed" value="true" />
@@ -325,7 +356,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780170431731</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Ulteriori modifiche e tantissimi bug">
+      <option name="closed" value="true" />
+      <created>1780171820047</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1780171820047</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,7 +384,8 @@
     <MESSAGE value="Avevo messo un comando dentro una stringa" />
     <MESSAGE value="Commentato una cosa che mi dava errore, poi si vede..." />
     <MESSAGE value="Iniziato mie modifiche sul gioco" />
-    <option name="LAST_COMMIT_MESSAGE" value="Iniziato mie modifiche sul gioco" />
+    <MESSAGE value="Ulteriori modifiche e tantissimi bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ulteriori modifiche e tantissimi bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

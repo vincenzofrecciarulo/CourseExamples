@@ -27,7 +27,7 @@ public class Inventory {
 
     public void printInventory(){              //Far sì che stampa in tabella ordinata tutti item e dati, e weight/maxWeight
         for (Item i : items) {
-            System.out.println(items.get().getName());
+//            System.out.println(items.get().getName());
         }
     }
 
