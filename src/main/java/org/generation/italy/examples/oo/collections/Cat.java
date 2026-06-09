@@ -3,11 +3,10 @@ package org.generation.italy.examples.oo.collections;
 import java.time.LocalDate;
 
 public class Cat implements Comparable<Cat>{
-
-   private String name;
-   private String color;
-   private LocalDate dateOfBirth;
-   private int weight;
+    private String name;
+    private String color;
+    private LocalDate dateOfBirth;
+    private int weight;
 
     public Cat(String name, String color, LocalDate dateOfBirth, int weight) {
         this.name = name;

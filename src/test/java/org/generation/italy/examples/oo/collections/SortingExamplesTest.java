@@ -13,17 +13,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class SortingExamplesTest {
     List<Integer> numbers;
     List<String> strings;
-    List <Cat> cats;
-    Cat c1; Cat c2; Cat c3;
+    List<Cat> cats;
+    Cat c1;
+    Cat c2;
+    Cat c3;
     @BeforeEach
     void setUp() {
-        numbers= new ArrayList<>(List.of(27,2,6,56,23,15,83,8,17));
-        strings = new ArrayList<>(List.of("ciao","pippo","sono","a","tutti"));
-
-             c1=new Cat("silvestro","nero", LocalDate.of(2020,11,24), 15),
-             c2=new Cat("micio","bianco", LocalDate.of(2020,11,20), 20),
-             c3=new Cat("puffo","grigio", LocalDate.of(2020,11,21), 10)
-        cats = new ArrayList<>(List.of());
+        numbers = new ArrayList<>(List.of(27,13,2,67,15));
+        strings = new ArrayList<>(List.of("ciao", "pippo", "sono", "a", "tutti"));
+         c1 = new Cat("silvesto","nero", LocalDate.of(2025,7,12), 2 );
+         c2 = new Cat("pippo","bianco", LocalDate.of(2024,2,28), 6 );
+         c3 = new Cat("titti","arancione", LocalDate.of(2026,1,28), 1 );
+        cats = new ArrayList<>(List.of(c1,c2,c3));
     }
 
     @AfterEach
@@ -33,17 +34,21 @@ class SortingExamplesTest {
     @Test
     void sortList() {
         SortingExamples.sortList(numbers);
-        assertEquals(List.of(2,6,8,15,17,23,27,56,83), numbers);
+        assertEquals(List.of(2,13,15,27,67), numbers);
     }
 
+    // Abbiamo eseguito il metodo TDD(Test-Driven Development) -> prima nel test e poi nel codice di produzione
+    // Vantaggi -> fase creativa(forse), scrivere codice più utilizzabile sempre
     @Test
-    void SortingString() {
+    void sortListString(){
         SortingExamples.sortListOfStrings(strings);
-        assertEquals(List.of("a", "ciao", "pippo","sono","tutti"), strings);
+        // genera errore, le maiuscole hanno un valore hash minore delle minuscole
+        assertEquals(List.of("a", "ciao","pippo", "sono","tutti"),strings);
     }
 
     @Test
-    void sortListOfCats() {
-        SortingExamplesTest
+    void sortListCats(){
+        SortingExamples.sortListOfCats(cats);
+        assertEquals(List.of(c3,c1,c2), cats);
     }
 }
