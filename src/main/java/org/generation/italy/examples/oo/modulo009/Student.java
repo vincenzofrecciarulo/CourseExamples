@@ -9,7 +9,7 @@ public class Student extends Person {
     protected int costMensa = 2000;
     ArrayList<StudentVotes> votes = new ArrayList<>();
 
-    public Student(String name, String surname, LocalDate dateOfBirth, char gender) {
+    public Student(String name, String surname, LocalDate dateOfBirth, String gender) {
         super(name, surname, dateOfBirth, gender);
     }
 

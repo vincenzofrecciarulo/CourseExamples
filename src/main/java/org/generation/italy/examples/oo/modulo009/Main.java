@@ -5,9 +5,9 @@ import java.time.LocalDate;
 public class Main {
     void main() {
 
-        Student s = new Student("Mario", "Rossi", LocalDate.of(1998,11,24),'M');
-        Person k = new Teacher("Chiara","Rossi",LocalDate.of(1990,11,24),'F',1500);
-        Employee f = new Support("Carlo","Bianchi",LocalDate.of(1983,11,24),'M',1650);
+        Student s = new Student("Mario", "Rossi", LocalDate.of(1998,11,24),"M");
+        Person k = new Teacher("Chiara","Rossi",LocalDate.of(1990,11,24),"f",1500);
+        Employee f = new Support("Carlo","Bianchi",LocalDate.of(1983,11,24),"m",1650);
 
         s.addVote(8, "Matematica");
         s.addVote(7, "Italiano");

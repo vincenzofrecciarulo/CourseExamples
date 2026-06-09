@@ -6,7 +6,7 @@ public abstract class Employee extends Person{
     protected int cost;
 
 
-    protected Employee (String name, String surname, LocalDate dateOfBirth, char gender,int cost) {
+    protected Employee (String name, String surname, LocalDate dateOfBirth, String gender,int cost) {
         super(name,surname,dateOfBirth,gender);
         this.cost = cost;
     }

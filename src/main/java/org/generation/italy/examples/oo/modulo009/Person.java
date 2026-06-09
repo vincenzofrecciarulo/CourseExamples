@@ -6,9 +6,9 @@ public abstract class Person {
     String name;
     String surname;
     LocalDate dateOfBirth;
-    char gender;
+    String gender;
 
-    public Person (String name, String surname, LocalDate dateOfBirth, char gender) {
+    public Person (String name, String surname, LocalDate dateOfBirth, String gender) {
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
@@ -16,4 +16,22 @@ public abstract class Person {
     }
 
     public abstract int getCost();
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
 }
+
+
