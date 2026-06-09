@@ -27,6 +27,7 @@ public class Cat implements Comparable<Cat>{
                 '}';
     }
 
+    // ordinamento naturale -> non cambiare se è gia stato definito -> utilizzare i comparatori
     @Override
     public int compareTo(Cat o) {
         return this.weight - o.weight;
