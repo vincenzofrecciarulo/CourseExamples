@@ -1,6 +1,9 @@
 package org.generation.italy.examples.oo.collections;
 
+import java.awt.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cat implements Comparable<Cat>{
     private String name;
