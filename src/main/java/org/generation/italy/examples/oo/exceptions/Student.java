@@ -3,7 +3,6 @@ package org.generation.italy.examples.oo.exceptions;
 import java.time.LocalDate;
 
 public class Student implements Comparable<Student> {
-
     private long id;
     private String firstName;
     private String lastName;
@@ -20,21 +19,24 @@ public class Student implements Comparable<Student> {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
-    public String toString() {
-        return "ciao, sono "+this.firstName+" "+this.lastName;
+    public String toString(){
+        return "Ciao sono: " + this.firstName + " " + this.lastName;
     }
 
     @Override
     public int compareTo(Student o) {
+
+        // anche le localdate hanno il compareTo
         return o.birthDate.compareTo(this.birthDate);
+        // return -this.birthDate.compareTo(o.birthDate);
     }
 
-    public boolean isBornAfter(LocalDate birthDate) {
+    public boolean isBornAfter(LocalDate birthDate){
         return this.birthDate.isAfter(birthDate);
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 }

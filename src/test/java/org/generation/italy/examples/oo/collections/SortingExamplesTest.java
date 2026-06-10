@@ -21,7 +21,7 @@ class SortingExamplesTest {
     void setUp() {
         numbers = new ArrayList<>(List.of(27,13,2,67,15));
         strings = new ArrayList<>(List.of("ciao", "pippo", "sono", "a", "tutti"));
-         c1 = new Cat("silvestro","nero", LocalDate.of(2025,7,12), 2 );
+         c1 = new Cat("silvesto","nero", LocalDate.of(2025,7,12), 2 );
          c2 = new Cat("pippo","bianco", LocalDate.of(2024,2,28), 6 );
          c3 = new Cat("titti","arancione", LocalDate.of(2026,1,28), 1 );
         cats = new ArrayList<>(List.of(c1,c2,c3));
@@ -53,8 +53,8 @@ class SortingExamplesTest {
     }
 
     @Test
-    void sortListCatsByAge() {
-        SortingExamples.sortListOfCatByAge(cats);
+    void sortListCatsAge(){
+        SortingExamples.sortListOfCatsByAge(cats);
         assertEquals(List.of(c3,c1,c2), cats);
     }
 }
