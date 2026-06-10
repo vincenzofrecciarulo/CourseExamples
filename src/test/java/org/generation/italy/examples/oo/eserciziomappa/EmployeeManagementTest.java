@@ -36,4 +36,9 @@ class EmployeeManagementTest {
         Employee found = em.getById("1");
         assertEquals(e1,found);
     }
+    @Test
+    void sortEmployeesByAge(){
+        em.sortEmployeesByAge();
+    }
+
 }

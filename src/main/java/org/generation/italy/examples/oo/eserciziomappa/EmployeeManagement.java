@@ -1,6 +1,8 @@
 package org.generation.italy.examples.oo.eserciziomappa;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EmployeeManagement {
@@ -13,6 +15,16 @@ public class EmployeeManagement {
 
     public Employee getById(String id){
         return employeeMap.get(id);
+    }
+
+    public void sortEmployeesByAge(){
+       List<Employee> employeeList = new ArrayList<>();
+
+       for (Map.Entry<String,Employee> kv: employeeMap.entrySet()){
+           employeeList.add(kv.getValue());
+       }
+
+
     }
 
 }
