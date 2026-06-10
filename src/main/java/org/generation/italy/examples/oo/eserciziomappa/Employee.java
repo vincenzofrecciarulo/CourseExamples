@@ -19,19 +19,30 @@ package org.generation.italy.examples.oo.eserciziomappa;
     // siccome potremmo avere più impiegati con lo stesso cognome, a parità di cognome voglio che
     // abbiamo precedenza nel sort le donne rispetto agli uomini.
 */
-public class Employee {
+public class Employee implements Comparable<Employee>{
 
     private String id;
     private String name;
     private String surname;
     private String gender;
     private double salary;
+    private int age;
 
-    public Employee(String id, String name, String surname, String gender, double salary) {
+    public Employee(String id, String name, String surname, String gender, double salary,int age) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.gender = gender;
         this.salary = salary;
+        this.age = age;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public int compareTo(Employee o) {
+        return o.age - this.age;
     }
 }
