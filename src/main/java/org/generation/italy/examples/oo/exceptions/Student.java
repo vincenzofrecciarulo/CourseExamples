@@ -29,6 +29,6 @@ public class Student implements Comparable<Student> {
 
         // anche le localdate hanno il compareTo
         return o.birthDate.compareTo(this.birthDate);
-        // return -this.birthDate.compareTo(this.birthDate);
+        // return -this.birthDate.compareTo(o.birthDate);
     }
 }
