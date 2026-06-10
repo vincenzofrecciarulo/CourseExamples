@@ -15,12 +15,7 @@ public class EmployeeManagement {
     }
 
     private List<Employee> listEmployees(){
-       List<Employee> employeeList = new ArrayList<>();
-
-       for (Map.Entry<String,Employee> kv: employeeMap.entrySet()){
-           employeeList.add(kv.getValue());
-       }
-
+       List<Employee> employeeList = new ArrayList<>(employeeMap.values());
         return employeeList;
 
     }

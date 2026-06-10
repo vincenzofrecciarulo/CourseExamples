@@ -40,9 +40,9 @@ class EmployeeManagementTest {
     }
     @Test
     void sortEmployeesByAge(){
-      List<Employee> sorted =  em.sortEmployeesByAge();
+        em.sortEmployeesByAge();
       List<Employee> expeted = List.of(e4,e1,e2,e3);
-      assertEquals(expeted,sorted);
+      assertEquals(expeted,em);
     }
 
 }
