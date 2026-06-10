@@ -48,20 +48,24 @@ public class World {
                         System.out.println("Inventario vuoto...");
                         break;
                     }
-                    int input = Integer.parseInt(IO.readln("Seleziona un item ->"));
-                    Item item = player.findItem(input);
-                    if(item == null){
-                        IO.println("Item non trovato");
-                        break;
-                    }
-                    String useOrDrop = IO.readln("Usare (0) o buttare (1)? ");
-                    if(useOrDrop.equals("0")){
-                        item.interact(player);
-                    }else if(useOrDrop.equals("1")){
-                        player.drop(item);
-                        IO.println("Hai buttato " + item.getName());
-                    }
 
+                    try{
+                        int input = Integer.parseInt(IO.readln("Seleziona un item ->"));
+                        Item item = player.findItem(input);
+                        if(item == null){
+                            IO.println("Item non trovato");
+                            break;
+                        }
+                        String useOrDrop = IO.readln("Usare (0) o buttare (1)? ");
+                        if(useOrDrop.equals("0")){
+                            item.interact(player);
+                        }else if(useOrDrop.equals("1")){
+                            player.drop(item);
+                            IO.println("Hai buttato " + item.getName());
+                        }
+                    }catch (Exception e){
+                        IO.println("Item non valido");
+                    }
                     break;
                 case "p":
                     player.showPokemon();

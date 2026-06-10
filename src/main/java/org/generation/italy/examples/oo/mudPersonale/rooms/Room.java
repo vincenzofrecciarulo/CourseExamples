@@ -34,19 +34,28 @@ public abstract class Room {
         switch (input){
             case "1":
                 showNpc();
-                int index = Integer.parseInt(IO.readln("Inserisci l'npc con cui vuoi interagire\n->"));
-                getEntity(index).interact(player);
+                try{
+                    int index = Integer.parseInt(IO.readln("Inserisci l'npc con cui vuoi interagire\n->"));
+                    getEntity(index).interact(player);
+                }catch (Exception e){
+                    IO.println("Npc non valido");
+                }
                 break;
             case "2":
                 showItems();
-                int index2 = Integer.parseInt(IO.readln("Inserisci l'oggetto che vuoi raccogliere\n->"));
+                try{
+                    int index2 = Integer.parseInt(IO.readln("Inserisci l'oggetto che vuoi raccogliere\n->"));
 
-                Item item = getItem(index2);
-                if(!player.pick(item)){
-                    break;
+                    Item item = getItem(index2);
+                    if(!player.pick(item)){
+                        break;
+                    }
+                    removeItem(item);
+                    IO.println("Hai raccolto " + item.getName());
+                }catch (Exception e){
+                    IO.println("Item non valido");
                 }
-                removeItem(item);
-                IO.println("Hai raccolto " + item.getName());
+
                 break;
             default:
                 break;
