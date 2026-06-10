@@ -33,15 +33,10 @@ public class ConsoleInterface {
         Student s = new Student(0, firstname, lastname, birthDate);
         try {                                   //Faccio al suo interno operazioni che potrebbero lanciare eccezioni (anche se indirettamente, in catena di invocazioni)
             service.registerStudent(s);         //Se il metodo che ha chiamato non gestisce l'exception, arriva direttamente qui
-            IO.println("Congratulazioni, hai salvato lo studente.");        //Se linea 20 ha successo, si finisce il blocco di try e si ignora il catch
+            IO.println("Congratulazioni, hai salvato lo studente.");        //Se linea 35 ha successo, si finisce il blocco di try e si ignora il catch
         } catch (
-                IllegalArgumentException e) {                                //Se 20 non ha successo, salta nel blocco di catch in cui gestiamo l'eccezione (DOBBIAMO PREVEDERE IL TIPO DI ECCEZIONE)
+                StudentAlreadyExistsException e) {                 //Se riga 35 non ha successo, salta nel blocco di catch in cui gestiamo l'eccezione (DOBBIAMO PREVEDERE IL TIPO DI ECCEZIONE)
             IO.println(e.getMessage());
-        /*} catch(FileNotFoundException f){       //Si apre un catch per ogni possibile exception
-            IO.println(f.getMessage());
-        }*/
-
-
         }
     }
 }

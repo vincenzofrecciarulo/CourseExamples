@@ -55,9 +55,9 @@ public class StudentRepository {
         return all;
     }
 
-    public void addStudent(Student s){
+    public void addStudent(Student s) throws StudentAlreadyExistsException {
         if (students.containsKey(s.getId())){
-            throw new IllegalArgumentException("Lo studente che vuoi inserire ha un'ID già presente nella base dati.");
+            throw new StudentAlreadyExistsException("Lo studente che vuoi inserire ha un'ID già presente nella base dati.");
             // Crea un oggetto di tipo eccezione Illegal... poi lo lancia e blocca l'esecuzione della funzione e passa l'eccezione al metodo che l'ha chiamato
         }
         students.put(s.getId(), s);
