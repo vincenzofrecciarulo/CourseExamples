@@ -20,16 +20,28 @@ public class Employee {
         this.stipendio = stipendio;
     }
 
-    public int    getId()        { return id; }
-    public String getNome()      { return nome; }
-    public String getCognome()   { return cognome; }
-    public Sesso  getSesso()     { return sesso; }
-    public int    getEta()       { return eta; }
-    public double getStipendio() { return stipendio; }
+    public int    getId(){
+        return id;
+    }
+    public String getNome(){
+        return nome;
+    }
+    public String getCognome(){
+        return cognome;
+    }
+    public Sesso  getSesso(){
+        return sesso;
+    }
+    public int    getEta(){
+        return eta;
+    }
+    public double getStipendio(){
+        return stipendio;
+    }
 
     @Override
     public String toString() {
-        return String.format("[%d] %s %s | %s | età %d | €%.2f",
+        return String.format("%d %s %s | %s | età %d | €%.2f",
                 id, nome, cognome, sesso, eta, stipendio);
     }
 }
