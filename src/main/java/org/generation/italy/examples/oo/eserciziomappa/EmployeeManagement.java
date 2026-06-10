@@ -1,9 +1,6 @@
 package org.generation.italy.examples.oo.eserciziomappa;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class EmployeeManagement {
    private Map<String,Employee> employeeMap = new HashMap<>();
@@ -17,14 +14,20 @@ public class EmployeeManagement {
         return employeeMap.get(id);
     }
 
-    public void sortEmployeesByAge(){
+    private List<Employee> listEmployees(){
        List<Employee> employeeList = new ArrayList<>();
 
        for (Map.Entry<String,Employee> kv: employeeMap.entrySet()){
            employeeList.add(kv.getValue());
        }
 
+        return employeeList;
 
+    }
+
+    public void sortEmployeesByAge(){
+        List<Employee> employeeList = listEmployees();
+        Collections.sort(employeeList);
     }
 
 }

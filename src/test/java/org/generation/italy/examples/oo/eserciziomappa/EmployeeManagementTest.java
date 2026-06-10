@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmployeeManagementTest {
@@ -38,7 +40,9 @@ class EmployeeManagementTest {
     }
     @Test
     void sortEmployeesByAge(){
-        em.sortEmployeesByAge();
+      List<Employee> sorted =  em.sortEmployeesByAge();
+      List<Employee> expeted = List.of(e4,e1,e2,e3);
+      assertEquals(expeted,sorted);
     }
 
 }
