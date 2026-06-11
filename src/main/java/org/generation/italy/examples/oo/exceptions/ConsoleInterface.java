@@ -8,18 +8,21 @@ import java.time.format.DateTimeParseException;
 public class ConsoleInterface {
     private StudentService service = new StudentService(); // we instance the service, so the Console can talk to it
 
-    static void main() { // stack will look like:
-        ConsoleInterface ci = new ConsoleInterface();
-        try {
-            ci.registerStudent();
-        } catch (StudentAlreadyExistsException e ) {
-            IO.println("File for saving student doesn't exist! ");
-            IO.println(e.getMessage());
-            // prints a snapshot of the stack at the moment of the Exception throwing. we should be logging here for production code, not printing the stack trace.
-            // there are many levels of logging. we'll talk about it.
-            e.printStackTrace();
-        }
-    }
+//     this broke while demonstrating Exceptions, fix it
+//    static void main() { // stack will look like:
+//        ConsoleInterface ci = new ConsoleInterface();
+//        try {
+//            ci.registerStudent();
+//        } catch (StudentAlreadyExistsException e ) {
+//            IO.println("File for saving student doesn't exist! ");
+//            IO.println(e.getMessage());
+//            // prints a snapshot of the stack at the moment of the Exception throwing. we should be logging here for production code, not printing the stack trace.
+//            // there are many levels of logging. we'll talk about it.
+//            e.printStackTrace();
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public void registerStudent() throws FileNotFoundException {
         String firstName = IO.readln("Student first name: ");

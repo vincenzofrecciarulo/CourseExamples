@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Optional;
 
 public class StudentService {
     private StudentRepository studentRepo = new StudentRepository();
@@ -21,6 +22,14 @@ public class StudentService {
         // ipotizziamo che qui ci sia altra business logic. col controllo di sopra, EVITIAMO di sprecare "esecuzione",
         // e ritorniamo errore al metodo chiamante.
 //        return wasSaved;
+        Optional<Student> x = studentRepo.findById(92); // demonstrating Optional
+        x.ifPresent(student -> IO.println(student.getId()));
+//        // same as above
+//        if (x.isPresent()) {
+//            IO.println(x.get().getId());
+//        }
+
+
         studentRepo.addStudent(s);
         FileReader fr = new FileReader("nonEsisto.txt"); // FileNotFoundException is checked, we HAVE to catch it
         // immaginiamo mezza tonnellata di business logic successiva

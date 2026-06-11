@@ -19,8 +19,13 @@ public class StudentRepository {
         students.put(s3.getId(), s3);
     }
 
-    public Student findById(long id) {
-        return students.get(id);
+//    public Student findById(long id) {
+//        return students.get(id);
+//    }
+
+    // demonstrating optional
+    public Optional<Student> findById(long id) {
+        return Optional.ofNullable(students.get(id));
     }
 
     public List<Student> findAllOrderedByAge() {
