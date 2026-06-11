@@ -34,8 +34,13 @@ public class StudentRepository {
 
 
 
-    public Student findByID(long id){
-        return students.get(id);
+    public Optional<Student> findByID(long id){
+//        Student maybe = students.get(id);
+//        if (maybe == null){
+//            return Optional.empty();
+//        }
+//        return Optional.of(maybe);
+        return Optional.ofNullable(students.get(id));
     }
 
     public List<Student> findAllOrderedByAge (){

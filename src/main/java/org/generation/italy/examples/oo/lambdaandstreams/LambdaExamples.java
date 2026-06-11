@@ -31,6 +31,7 @@ public class LambdaExamples {
 
         // it's a way to create an object that behaves kinda like a function
         // we call these SYNTHETIC CLASSES (and their objects) - we don't write them explicitly, the compiler does
+
         Comparator<String> longerStringComparator = (a, b) -> (a.length() - b.length());
         String s1 = "Ciccio";
         String s2 = "Pasticcio";
