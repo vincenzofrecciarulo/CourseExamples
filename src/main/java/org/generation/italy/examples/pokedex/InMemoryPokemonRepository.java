@@ -1,22 +1,26 @@
 package org.generation.italy.examples.pokedex;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class InMemoryPokemonRepository implements PokemonRepository{
     private Map<Integer, Pokemon> pokemons = new HashMap<>();
 
 
     @Override
-    public Optional<Pokemon> findById(int id) {
-        return Optional.ofNullable(pokemons.get(id));
+    public Pokemon findById(int id) throws PokemonNotFoundException {
+        Pokemon pokemon = pokemons.get(id);
+        if (pokemon == null){
+            throw new PokemonNotFoundException(id);
+        }
+        return pokemon;
     }
 
     @Override
     public List<Pokemon> findAll() {
-        return List.of();
+        return new ArrayList<>(pokemons.values());
     }
 
     @Override
