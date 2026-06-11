@@ -66,6 +66,20 @@ public class StudentRepository {
         return result;
     }
 
+    public List<Student> findAllOrderedById() {
+        List<Student> result = new ArrayList<>(students.values());
+        // questa sintassi crea una nuova classe che implementa Comparator, ne istanzia un oggetto e overrida compare
+        // lo svantaggio di questo approccio è che non possiamo chiamare questo comparatore altrove, e dovremmo riscriverlo
+        result.sort(new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+//                return (int)(o1.getId() - o2.getId());
+                return Long.compare(o1.getId(), o2.getId());
+            }
+        });
+        return result;
+    }
+
     public void addStudent(Student s) throws StudentAlreadyExistsException {
         if (students.containsKey(s.getId())){
             throw new StudentAlreadyExistsException("Lo studente che vuoi inserire ha un'ID già presente nella base dati.");
