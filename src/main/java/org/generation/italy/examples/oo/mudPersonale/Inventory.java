@@ -1,6 +1,5 @@
 package org.generation.italy.examples.oo.mudPersonale;
 
-import org.generation.italy.examples.oo.mudPersonale.entities.Player;
 import org.generation.italy.examples.oo.mudPersonale.items.Item;
 import org.generation.italy.examples.oo.mudPersonale.items.MapItem;
 

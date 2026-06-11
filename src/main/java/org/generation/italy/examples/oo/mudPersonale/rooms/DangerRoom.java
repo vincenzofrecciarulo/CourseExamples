@@ -22,11 +22,11 @@ public class DangerRoom extends Room{
     @Override
     protected ArrayList<Entity> spawnEntities(){
         int randomNum = Helper.getRandomNumber(4, 1);
-        ArrayList<Entity> npcs = new ArrayList<>();
+        ArrayList<Entity> entities = new ArrayList<>();
         for(int i = 0; i < randomNum; i++){
-            npcs.add(PokemonEntity.getRandomPokemon(5, 10));
+            entities.add(PokemonEntity.getRandomPokemon(5, 10));
         }
-        return npcs;
+        return entities;
     }
 
 
