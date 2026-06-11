@@ -7,7 +7,7 @@ public class ExerciseMap {
     // creare una funzione statica che riceva in input
     // un array di stringhe, e restituisca la moda
     // di queste stringhe (l'elemento che appare più volte)
-    // l'algoritmo deve avere efficienza O(n) - ArrayList
+    // l'algoritmo deve avere efficienza O(n) - HashMap
     // se ci sono più mode, ne ritorna una a caso
 
     // esercizio 2: FATTO
@@ -29,14 +29,15 @@ public class ExerciseMap {
     // voglio poi un altro metodo che ritorni tutti gli impiegati, ordinati per cognome crescente
     // il cognome deve essere case insensitive.
     // siccome potremmo avere più impiegati con lo stesso cognome, a parità di cognome voglio che
-    // abbiamo precedenza nel sort le donne rispetto agli uomini.
+    // abbiano precedenza nel sort le donne rispetto agli uomini.
 
+    // WRONG: this has efficiency O(n^2), not O(n). I should use HashMap
     public static String getStringMode(List<String> strings) {
         int maxCounter = 0;
         int currentCounter = 0;
         String mode = strings.getFirst();
         if (strings.isEmpty()) {
-            return "";
+            return "";     // this is not ideal, we wouldn't know
         }
         for (int i = 0; i < strings.size() - 1; i++) {
             for (int j = 1; j < strings.size(); j++) {
