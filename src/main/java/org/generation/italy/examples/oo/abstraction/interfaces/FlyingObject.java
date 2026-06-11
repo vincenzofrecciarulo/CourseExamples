@@ -3,9 +3,15 @@ package org.generation.italy.examples.oo.abstraction.interfaces;
 public interface FlyingObject {
     void fly();//Nelle interface public e abstact sono ridondanti perciò possiamo non scriverli
     void takeOff();
-    void eat();
+    default void eat(){
+        System.out.println("mangio i moscerini");
+    }
     double MAX_VELOCITY = 3000; /*anche i valori costanti possiamo dichiararli senza utilizzare final(costante) e static
     (solo una istanza per tutti gli oggetti), poicchè nelle interfacce lo sono sempre,
     sarebbero ridondanti anche in questo caso
     */
+    double MAX_AIR_SPEED = 2000;
+    static double calcMaxHeight(double weight){
+        return Math.PI*MAX_AIR_SPEED*MAX_AIR_SPEED/Math.sqrt(weight);
+    }
 }
