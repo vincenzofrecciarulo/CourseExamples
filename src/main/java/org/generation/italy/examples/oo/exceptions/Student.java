@@ -19,6 +19,10 @@ public class Student implements Comparable<Student> {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString(){
         return "Ciao sono: " + this.firstName + " " + this.lastName;
@@ -29,6 +33,10 @@ public class Student implements Comparable<Student> {
 
         // anche le localdate hanno il compareTo
         return o.birthDate.compareTo(this.birthDate);
-        // return -this.birthDate.compareTo(this.birthDate);
+        // return -this.birthDate.compareTo(o.birthDate);
+    }
+
+    public boolean isBornAfter(LocalDate birthDate){
+        return this.birthDate.isAfter(birthDate);
     }
 }

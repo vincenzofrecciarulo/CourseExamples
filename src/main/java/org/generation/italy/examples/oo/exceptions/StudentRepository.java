@@ -21,16 +21,18 @@ public class StudentRepository {
     // "costruttore statico" (o "static block")
     static {
         Student s1 = new Student(
-                3000, "Riccardo", "Rossi", LocalDate.of(2026, 4,2));
+                1, "Riccardo", "Rossi", LocalDate.of(2026, 4,2));
         Student s2 = new Student(
-                3001, "Roberto", "Verdi", LocalDate.of(2026, 4,3));
+                2, "Roberto", "Verdi", LocalDate.of(2026, 4,3));
         Student s3 = new Student(
-                3002, "Cicalone", "Bianchi", LocalDate.of(2026, 4,4));
+                3, "Cicalone", "Bianchi", LocalDate.of(2026, 4,4));
 
         students.put(s1.getId(), s1);
         students.put(s2.getId(), s2);
         students.put(s3.getId(), s3);
     }
+
+
 
     public Student findByID(long id){
         return students.get(id);
@@ -41,6 +43,39 @@ public class StudentRepository {
         Collections.sort(all); // qui prende la lista e non il comparator
 
         return all;
+    }
+
+    public Collection<Student> findAllBornAfter (LocalDate birthDate ){
+        Collection<Student> all = new ArrayList<>();
+        for (Student s : students.values()){
+            if (s.isBornAfter(birthDate)) {
+                all.add(s);
+            }
+        }
+        return all;
+    }
+
+    public List<Student> findAllOrderedById() {
+        List<Student> result = new ArrayList<>(students.values());
+        // questa sintassi crea una nuova classe che implementa Comparator, ne istanzia un oggetto e overrida compare
+        // lo svantaggio di questo approccio è che non possiamo chiamare questo comparatore altrove, e dovremmo riscriverlo
+        result.sort(new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+//                return (int)(o1.getId() - o2.getId());
+                return Long.compare(o1.getId(), o2.getId());
+            }
+        });
+        return result;
+    }
+
+    public void addStudent(Student s) throws StudentAlreadyExistsException {
+        if (students.containsKey(s.getId())){
+            throw new StudentAlreadyExistsException("Lo studente che vuoi inserire ha un'ID già presente nella base dati.");
+            // Crea un oggetto di tipo eccezione Illegal... poi lo lancia e blocca l'esecuzione della funzione e passa l'eccezione al metodo che l'ha chiamato
+        }
+        students.put(s.getId(), s);
+
     }
 
 }
