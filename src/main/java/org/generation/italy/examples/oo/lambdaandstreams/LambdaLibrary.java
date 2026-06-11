@@ -39,9 +39,10 @@ public class LambdaLibrary {
     // Ex10 - accumula il prezzo nella variabile statica totalPrice
     static Consumer<Product> addPrice = p -> totalPrice += p.getPrice();
 
-    // Ex10 (Transaction) - data un Guest, restituisce un Predicate che filtra le sue transazioni
-    static Function<Guest, Predicate<Transaction>> filterByGuest =
-            target -> t -> t.getGuest().matches(target);
+    // Ex10 (Transaction) - dato un Guest, restituisce un Predicate che filtra le sue transazioni
+    static Predicate<Transaction> makeGuestFilter(Guest g) {
+        return t -> t.belongsTo(g);
+    }
 
     // Ex10 (Transaction) - applica sconto di 1 se il guest è minorenne
     static ToIntFunction<Transaction> applyMinorDiscount =

@@ -9,8 +9,9 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public Guest getGuest()  { return g; }
-    public int getAmount()   { return amount; }
+    public Guest getGuest()        { return g; }
+    public int getAmount()         { return amount; }
+    public boolean belongsTo(Guest guest) { return this.g.equals(guest); }
 
     @Override
     public String toString() {

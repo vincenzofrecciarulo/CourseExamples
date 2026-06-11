@@ -61,7 +61,7 @@ public class Start {
 
         // Stream 1: somma degli amount del target, con sconto di 1 se minorenne
         int total = transactions.stream()
-                .filter(LambdaLibrary.filterByGuest.apply(target))
+                .filter(LambdaLibrary.makeGuestFilter(target))
                 .mapToInt(LambdaLibrary.applyMinorDiscount)
                 .sum();
 
@@ -69,7 +69,7 @@ public class Start {
 
         // Stream 2: rimuove le transazioni del target
         List<Transaction> remaining = transactions.stream()
-                .filter(LambdaLibrary.filterByGuest.apply(target).negate())
+                .filter(LambdaLibrary.makeGuestFilter(target).negate())
                 .collect(Collectors.toList());
 
         System.out.println("Transazioni rimanenti: " + remaining);
@@ -87,7 +87,7 @@ public class Start {
         List<Product> products = data.stream()
                 .map(LambdaLibrary.parseProduct)
                 .peek(LambdaLibrary.addPrice)
-                .collect(Collectors.toList());
+                .toList();
 
         System.out.println("Prodotti: " + products);
         System.out.println("Totale: " + LambdaLibrary.getTotalPrice());

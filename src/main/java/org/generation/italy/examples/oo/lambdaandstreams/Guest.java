@@ -2,11 +2,12 @@ package org.generation.italy.examples.oo.lambdaandstreams;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 
 public class Guest {
-    String name;
-    String surname;
-    LocalDate dateOfBirth;
+    private String name;
+    private String surname;
+    private LocalDate dateOfBirth;
 
     public Guest(String name, String surname, LocalDate dateOfBirth) {
         this.name = name;
@@ -18,10 +19,20 @@ public class Guest {
         return Period.between(dateOfBirth, LocalDate.now()).getYears() < 18;
     }
 
-    public boolean matches(Guest other) {
-        return this.name.equals(other.name)
-            && this.surname.equals(other.surname)
-            && this.dateOfBirth.equals(other.dateOfBirth);
+    public String getName() { return name; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Guest guest = (Guest) o;
+        return Objects.equals(name, guest.name)
+            && Objects.equals(surname, guest.surname)
+            && Objects.equals(dateOfBirth, guest.dateOfBirth);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, dateOfBirth);
     }
 
     @Override
