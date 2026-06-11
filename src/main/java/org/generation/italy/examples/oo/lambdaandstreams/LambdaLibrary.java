@@ -5,6 +5,7 @@ import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.ToIntFunction;
 
 public class LambdaLibrary {
     private static int count;
@@ -37,6 +38,14 @@ public class LambdaLibrary {
 
     // Ex10 - accumula il prezzo nella variabile statica totalPrice
     static Consumer<Product> addPrice = p -> totalPrice += p.getPrice();
+
+    // Ex10 (Transaction) - data un Guest, restituisce un Predicate che filtra le sue transazioni
+    static Function<Guest, Predicate<Transaction>> filterByGuest =
+            target -> t -> t.getGuest().matches(target);
+
+    // Ex10 (Transaction) - applica sconto di 1 se il guest è minorenne
+    static ToIntFunction<Transaction> applyMinorDiscount =
+            t -> t.getGuest().isMinor() ? t.getAmount() - 1 : t.getAmount();
 
     public static int getCount()          { return count; }
     public static int getSum()            { return sum; }
