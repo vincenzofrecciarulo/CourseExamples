@@ -55,6 +55,17 @@ public class StudentRepository {
         return all;
     }
 
+    public List<Student> findAllOrderedById() {
+        List<Student> result = new ArrayList<>(students.values());
+        result.sort(new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+                return Long.compare(o1.getId(), o2.getId());
+            }
+        });
+        return result;
+    }
+
     public void addStudent(Student s) throws StudentAlreadyExistsException {
         if (students.containsKey(s.getId())){
             throw new StudentAlreadyExistsException("Lo studente che vuoi inserire ha un'ID già presente nella base dati.");

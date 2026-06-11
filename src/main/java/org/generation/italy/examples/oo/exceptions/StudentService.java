@@ -40,7 +40,7 @@ public class StudentService {
             }
         }
     }
-
+//1.
     public int connectToDatabase(){
         Connection con=null;
         try {
@@ -61,5 +61,15 @@ public class StudentService {
             }
         }
 //        con.close();              Errato anche qui, senza finally dopo trycatch
+    }
+//2.
+    public int connectToDatabaseTryWithResources(){
+        try(Connection con = DriverManager.getConnection("Indirizzo del database", "Utente", "Password")) {
+            Statement st = con.createStatement();
+            st.executeUpdate("DELETE FROM STUDENTS WHERE ID = 4");
+            return 4;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
