@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 public class LambdaLibrary {
     private static int count;
     private static int sum;
+    private static double totalPrice;
 
     // Ex1
     static Consumer<String> charCounter = (a) -> count += a.length();
@@ -28,6 +29,16 @@ public class LambdaLibrary {
     // Ex7
     static Function<Integer, Integer> square = n -> n * n;
 
-    public static int getCount() { return count; }
-    public static int getSum()   { return sum; }
+    // Ex9 - parsing "NomeProdotto - PrezzoDouble" -> Product
+    static Function<String, Product> parseProduct = s -> {
+        String[] parts = s.split(" - ");
+        return new Product(parts[0], Double.parseDouble(parts[1]));
+    };
+
+    // Ex10 - accumula il prezzo nella variabile statica totalPrice
+    static Consumer<Product> addPrice = p -> totalPrice += p.getPrice();
+
+    public static int getCount()          { return count; }
+    public static int getSum()            { return sum; }
+    public static double getTotalPrice()  { return totalPrice; }
 }

@@ -36,5 +36,23 @@ public class Start {
         System.out.println("Quadrati dei numeri pari: " + result);
         System.out.println("Somma dei numeri pari: " + LambdaLibrary.getSum());
     }
+
+    // Ex11
+    static void productStreamExample() {
+        List<String> data = Arrays.asList(
+            "Portatile - 999.99",
+            "Mouse - 29.99",
+            "Tastiera - 49.99",
+            "Monitor - 349.99"
+        );
+
+        List<Product> products = data.stream()
+                .map(LambdaLibrary.parseProduct)
+                .peek(LambdaLibrary.addPrice)
+                .collect(Collectors.toList());
+
+        System.out.println("Prodotti: " + products);
+        System.out.println("Totale: " + LambdaLibrary.getTotalPrice());
+    }
 }
 
