@@ -15,11 +15,11 @@ public class World {
         es.add(new Npc("Ciruzzo",
                 50,
                 ciroLoot,
+                "Ciao wagliu come stai? ",
                 2,
                 true,
-                "Ciao wagliu come stai? ",
                 "Ecco a te pigliatell nu bell "+babba.getName()));
-        es.add(new Npc("Nino il nullafacente",7,2,current,"Sono un fallito"));
+        es.add(new Npc("Nino il nullafacente",7,"Sono un fallito",2,current));
 
         List<Item> os = new ArrayList<>();
         os.add(new Item(2, 10, "Bastone di legno"));
@@ -50,111 +50,144 @@ public class World {
     public void startGame(){
         String playerName= IO.readln("Inserisci il tuo nick...");
         List<Item>backpack=new ArrayList<>();
-        Player player1=new Player("playerName",20,backpack,5);
+        Player player1=new Player("playerName",20,backpack,"Sono pronto a tutto!!",5);
         current=start;
         player1.setCurrent(start);
         while(player1.isAlive()) {
             IO.println(player1.getCurrent());
-            String pickCommand;
-            boolean picked;
+            IO.println(current);
+            String playerCommand = IO.readln("Cosa vuoi fare?");
             do {
-                pickCommand = IO.readln("Vuoi prendere un item? Y/N ");
-                switch (pickCommand.toLowerCase()) {
-                    case "n":
-                        IO.println("OK,non prenderai nessun item");
-                        break;
-                    case "y":
-                        String itemChoice = IO.readln("Scrivi il nome dell'item da prendere ");
-                        picked = player1.pickItem(itemChoice);
-                        if (picked) {
-                            IO.println("Item aggiunto correttamente all'inventario");
-                        } else {
-                            IO.println("Item non trovato");
-                        }
-                        break;
-                    default:
-                        IO.println("Errore scegli tra Y/N");
-                }
-            } while (!pickCommand.equalsIgnoreCase("N") && !player1.getCurrent().getItems().isEmpty());
-
-            String dropCommand;
-            boolean isDropped=false;
-            if(player1.getItems().isEmpty()) {
-                IO.println("Il tuo zaino è vuoto");
-            }else{
-                do {
-                    dropCommand = IO.readln("Vuoi droppare un item? Y/N");
-                    switch (dropCommand.toLowerCase()) {
-                        case "n":
-                            break;
-                        case "y":
-                            IO.println(player1.getItems());
-                            isDropped=player1.dropItem();
-                            if(isDropped){
-                                IO.println("Item droppato con successo");
+                switch (playerCommand.toLowerCase()) {
+                    case "pick":
+                        String itemChoice = "";
+                        boolean hasPicked;
+                        do {
+                            if (player1.getCurrent().getItems().isEmpty()) {
+                                IO.println("Non puoi pija nulla");
+                                break;
                             }
+                            IO.println("Qui ci sono"+current.getObjectNames());
+                            itemChoice = IO.readln("Scrivi il nome dell'item da prendere ");
+                            hasPicked = player1.pickItem(itemChoice);
+                            if (hasPicked) {
+                                IO.println("Item aggiunto correttamente all'inventario");
+                                break;
+                            } else {
+                                IO.println("Item non trovato");
+                            }
+                        } while (itemChoice.equalsIgnoreCase("quit"));
+                        player1.pickItem(itemChoice);
+                        break;
+
+                    case "drop":
+                        String itemDropped;
+                        boolean hasDropped = false;
+                        if(player1.getItems().isEmpty()){
+                            IO.println("Il tuo zaino è vuoto");
                             break;
-                        default:
-                            IO.println("Errore digita Y/N");
-                    }
-                } while (!dropCommand.equalsIgnoreCase("Y") && !dropCommand.equalsIgnoreCase("N"));
-            }
+                        }else {
+                            do {
+                                IO.println(player1.getItems());
+                                itemDropped=IO.readln("Ecco il tuo zaino,cosa vuoi droppare?" );
+                                hasDropped=player1.dropItem(itemDropped);
+                            }while(!itemDropped.equalsIgnoreCase("quit")&&!hasDropped);
+                            break;
+                        }
+
+                    case "move":
+                        String directionCommand;
+                        do {
+                            directionCommand = IO.readln("Scegli la direzione->");
+                            boolean success;
+                            switch (directionCommand.toLowerCase()) {
+                                case "n":
+                                    success = moveTo(Room.NORTH, player1);
+                                    break;
+                                case "e":
+                                    success = moveTo(Room.EAST, player1);
+                                    break;
+                                case "w":
+                                    success = moveTo(Room.WEST, player1);
+                                    break;
+                                case "s":
+                                    success = moveTo(Room.SOUTH, player1);
+                                    break;
+                                default:
+                                    IO.println("Non ho capito che cosa vuoi!");
+                                    continue;
+                            }
+                            if (success) {
+                                IO.println("Te ne vai a " + directionCommand);
+                            } else {
+                                IO.println("Non c'è nulla in quella direzione");
+                            }
+                        }while(directionCommand.equalsIgnoreCase("quit"));
+                        break;
+
+                    case "talk":
+                        boolean hasTalked = false;
+                        if(player1.getCurrent().getEntities().isEmpty()){
+                            IO.println("Non c'è nessuno al massimo puoi parlare da solo!!");
+                            break;
+                        }
+                        else if(player1.getCurrent().getEntities().size()==1){
+                            Entity target=player1.getCurrent().getEntities().getFirst();
+                            hasTalked=player1.talkTo(target);
+                        }else {
+                            IO.println("Ci sono "+player1.getCurrent().getEntityNames());
+                            String entityChosed;
+                            do{
+                                entityChosed=IO.readln("Con chi vuoi parlare?");
+                                Entity found =player1.getCurrent().findEntity(entityChosed);
+                                if(found!=null){
+                                   hasTalked=player1.talkTo(found);
+                                }else{
+                                    IO.println(("Non ho capito chi cerchi!!"));
+                                }
+                            }while(!hasTalked&&!entityChosed.equalsIgnoreCase("quit"));
+                            break;
+                        }
+
+                    case "attack":
+                        boolean hasAttacked=false;
+                        if(player1.getCurrent().getEntities().isEmpty()){
+                            IO.println("Non c'è nessuno da attaccare");
+                            break;
+                        }else if(player1.getCurrent().getEntities().size()==1){
+                            Entity found=player1.getCurrent().getEntities().getFirst();
+                            while(player1.isAlive()&&found.isAlive()){
+                                player1.attack(found);
+                                found.attack(player1);
+                            }
+                        }else {
+                            String entityAttacked;
+                            do {
+                                IO.println(player1.getCurrent().getEntityNames());
+                                entityAttacked=IO.readln("Chi attacchi tra questi?");
+                                Entity found=player1.getCurrent().findEntity(entityAttacked);
+                                if(found!=null){
+                                    while(player1.isAlive()&&found.isAlive()){
+                                        player1.attack(found);
+                                        found.attack(player1);
+                                    }
+                                }else {
+                                    IO.println("Non ho capito chi voi mena..");
+                                }
+
+                            }while(!entityAttacked.equalsIgnoreCase("quit"));
+                            break;
 
 
-           if(!player1.getCurrent().getEntities().isEmpty()){
-               boolean isValid=false;
-               do{
-                   String npcInput=IO.readln("Vuoi parlare con qualcuno? Y/N");
-                   switch(npcInput.toLowerCase()) {
-                   case "n":
-                       isValid=true;
-                       break;
-                   case "y":
-                       player1.talkToNpc();
-                       isValid=true;
-                       break;
-                   default:
-                       IO.println("Errore devi scegliere tra Y/N");
-                       break;
-               }
-               }while(!isValid);
-           }
+                        }
+                }
+            }while(true);
 
 
-
-
-
-
-            String directionCommand = IO.readln("Scegli la direzione->");
-            boolean success = false;
-            switch (directionCommand.toLowerCase()) {
-                case "n":
-                    success = moveTo(Room.NORTH, player1);
-                    break;
-                case "e":
-                    success = moveTo(Room.EAST, player1);
-                    break;
-                case "w":
-                    success = moveTo(Room.WEST, player1);
-                    break;
-                case "s":
-                    success = moveTo(Room.SOUTH, player1);
-                    break;
-                case "q":
-                    IO.println("Grazie per aver giocato");
-                    return;
-                default:
-                    IO.println("Non ho capito che cosa vuoi!");
-                    continue;
-
-            }
-            if (success) {
-                IO.println("Te ne vai a " + directionCommand);
-            } else {
-                IO.println("Non c'è nulla in quella direzione");
-            }
         }
-    }
+            }
+
+
 
     private boolean moveTo(int direction,Player player1) {
         Room destination = current.exitAt(direction);
@@ -166,8 +199,6 @@ public class World {
         return false;
     }
 
-    public void main(){
-        World w = new World();
-        w.startGame();
-    }
+
+
 }

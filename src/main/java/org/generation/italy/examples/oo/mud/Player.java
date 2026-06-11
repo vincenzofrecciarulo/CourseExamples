@@ -4,12 +4,12 @@ import java.util.List;
 
 public class Player extends Entity {
 
-
-
-    public Player(String name, int hp, List<Item> items, int damage) {
-        super(name,hp,items,5);
-
+    public Player(String name, int hp, List<Item> items, String text,int damage) {
+        super(name,hp,items,"",5);
     }
+
+
+
 
     public boolean pickItem(String itemName){
         for(Item item:currentRoom.getItems()){
@@ -24,55 +24,25 @@ public class Player extends Entity {
         return false;
         }
 
-    public boolean dropItem(){
-        do {
-            String itemDropped=IO.readln("Digita il nome dell' item vuoi droppare o quit?");
-            if(itemDropped.equalsIgnoreCase("quit")){
-                return false;
-            }
-            for(Item item: items){
-                if(itemDropped.equalsIgnoreCase(item.getName())){
+    public boolean dropItem(String itemDropped){
+            for(Item item: items) {
+                if (itemDropped.equalsIgnoreCase(item.getName())) {
                     items.remove(item);
                     currentRoom.addItem(item);
                     return true;
                 }
-                }
-                IO.println("Item non trovato");
-        }while(true);
+            }
+            return false;
+
     }
 
-    public void talkToNpc() {
-        boolean hasTalked=false;
-        java.util.ArrayList<Npc> npcsInRoom=new java.util.ArrayList<>();
-        for(Entity e: currentRoom.getEntities()) {
-            if(e instanceof Npc){
-                npcsInRoom.add((Npc)e);
-            }
+    public boolean talkTo(Entity e) {
+        if(e instanceof Npc){
+            ((Npc) e).interact(this);
+        }else {
+            IO.println(e.getText());
         }
-            if(npcsInRoom.isEmpty()){
-                return;
-            }
-            if(npcsInRoom.size()==1){
-                Npc alone=npcsInRoom.getFirst();
-                alone.interact(this);
-                hasTalked=true;
-            }else {
-                do {
-                    String npcChosed = IO.readln("Qui ci sono " + this.getCurrent().getEntityNames() +
-                            " con chi vuoi parlare? ");
-                    boolean found =false;
-                    for (Npc npc : npcsInRoom) {
-                        if (npcChosed.equalsIgnoreCase(npc.getName())) {
-                            npc.interact(this);
-                            hasTalked=true;
-                            found=true;
-                        }
-                    }
-                    if (!found) {
-                        IO.println("Non ho capito");
-                    }
-                }while(!hasTalked);
-            }
+        return true;
     }
 
 

@@ -88,4 +88,12 @@ public class Room {
     public List<Entity> getEntities() {
         return entities;
     }
+
+    public Entity findEntity(String inputName){
+        for(Entity e: entities){
+            if(e.getName().equalsIgnoreCase(inputName))
+                return e;
+        }
+        return null;
+    }
 }

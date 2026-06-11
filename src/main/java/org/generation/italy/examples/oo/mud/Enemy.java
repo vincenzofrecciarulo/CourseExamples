@@ -5,9 +5,11 @@ import java.util.List;
 
 public class Enemy extends Entity{
 
-    public Enemy(String name,int hp ,List<Item>items,Inventory item, int damage){
-        super(name,hp,items,damage);
+    public Enemy(String name,int hp ,List<Item>items,Inventory item,String text, int damage){
+        super(name,hp,items,text,damage);
     }
+
+
 
     @Override
     public void onDeath() {
