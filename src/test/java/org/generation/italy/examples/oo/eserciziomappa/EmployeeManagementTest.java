@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,11 +39,17 @@ class EmployeeManagementTest {
         Employee found = em.getById("1");
         assertEquals(e1,found);
     }
-    @Test
-    void sortEmployeesByAge(){
-        em.sortEmployeesByAge();
-      List<Employee> expeted = List.of(e4,e1,e2,e3);
-      assertEquals(expeted,em);
-    }
 
+    @Test
+    void sortByAge(){
+        em.sortEmployeesByAge();
+        List<Employee> expeted = new ArrayList<>();
+        expeted.add(e4);
+        expeted.add(e1);
+        expeted.add(e2);
+        expeted.add(e3);
+        assertEquals(expeted,);
+
+
+    }
 }

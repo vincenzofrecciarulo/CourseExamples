@@ -20,9 +20,11 @@ public class EmployeeManagement {
 
     }
 
-    public void sortEmployeesByAge(){
-        List<Employee> employeeList = listEmployees();
-        Collections.sort(employeeList);
+    public List sortEmployeesByAge(){
+        List<Employee> sortedByAge = listEmployees();
+         Collections.sort(sortedByAge);
+         return sortedByAge;
     }
+
 
 }
