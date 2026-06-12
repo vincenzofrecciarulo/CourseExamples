@@ -76,10 +76,11 @@ import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import static java.lang.Double.parseDouble;
 
 public class LambdaLibrary {
   private static int count;
-  private static int sum = 10;
+  private static int sum;
   static Consumer<String> usageCounter = (a)-> count+=a.length();
 
     public static int getSum() {
@@ -95,5 +96,9 @@ public class LambdaLibrary {
     static Predicate<Integer> isEven = (a)-> a % 2 ==0;
     static Consumer<Integer> addToSum = (a)-> sum += a;
     static Function<Integer,Integer> square = (a)-> a*a;
+    static Function<String,Product> convertToProduct = (s->{
+       String[] split = s.split("-");
+       return  new Product(split[0],parseDouble(split[1]));
+    });
 
 }

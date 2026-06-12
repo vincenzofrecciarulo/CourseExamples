@@ -36,9 +36,16 @@ public class Main {
         for (Integer i : risultato){
             IO.println(i);
         }
-        Map<String,Double> products = new HashMap<>();
-        products.put("Portadile",999.99);
-        products.put("Cuffie",10.0);
+        List<String> productList = Arrays.asList("Portatile - 99.99","Cuffie - 10.00");
+
+        List<Product> products = productList.stream()
+                .map(LambdaLibrary.convertToProduct)
+                .toList();
+
+        double total = products.stream().map(Product::getPrice).
+
+
+
 
 
 
