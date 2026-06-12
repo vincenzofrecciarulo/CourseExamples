@@ -10,17 +10,20 @@ public class SuperHero implements Human, FlyingObject{
     public void takeOff() {
         IO.println("sto decollando");
     }
+
     @Override
     public void eat() {
-        IO.println("Mangio le verdure come dice mamma");
+        Human.super.eat();
+        FlyingObject.super.eat();
     }
+
     @Override
     public void speak() {
         IO.println("Non ho tempo di parlare");
     }
     @Override
     public void walk() {
-        IO.println("cammino anche se s volare");
+        IO.println("cammino anche se so volare");
     }
     @Override
     public void workForHours(int workHours) {
