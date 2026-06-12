@@ -19,7 +19,7 @@ public enum Role {
             case CINICO :
                 Move commentoTagliente= new Move("Commento tagliente", 6, "Un commento tagliente sferza l'aria e l'ego dell'avversario!");
                 Move rifiutoTotale= new Move("Rifiuto Totale", 5, "Rigetti tutto ciò che l'avversario dice, fa e rappresenta");
-                Move svergognatezza= new Move("Svergognatezza", 10, "Mentre ti scaccoli dici la verità nuda e cruda. L'avversario piange.")
+                Move svergognatezza= new Move("Svergognatezza", 10, "Mentre ti scaccoli dici la verità nuda e cruda. L'avversario piange.");
 
                 moves.add(commentoTagliente);
                 moves.add(rifiutoTotale);
