@@ -1,7 +1,6 @@
 package org.generation.italy.examples.homework.steams;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class EsercizioStream {
@@ -45,13 +44,23 @@ public class EsercizioStream {
                 new Book("The Pragmatic Programmer", "Hunt", "Programming", 1999, 42.00, 352, 4.7, true),
                 new Book("Foundation", "Asimov", "Science Fiction", 1951, 15.00, 255, 4.4, false),
                 new Book("Harry Potter", "Rowling", "Fantasy", 1997, 20.00, 410, 4.9, true),
-                new Book("Effective Java", "Bloch", "Programming", 2018, 48.00, 416, 4.8, true)
+                new Book("Effective Java", "Bloch", "Programming", 2018, 48.00, 416, 4.8, true),
+                new Book("Effective Java 2", "Bloch", "Programming", 2019, 48.00, 416, 4.8, true)
+
         );
 
         IO.println(getTitles(books));
         IO.println(getTitlesByPriceUnder20(books));
+        IO.println(getBooksOrderedAscending(books));
         IO.println(getTitlesAsString(books));
-
+        IO.println(getTitlesAsStringV2(books));
+        IO.println(getLongestTitle(books));
+        IO.println(groupByGenre(books));
+        IO.println(groupByGenreThenCount(books));
+        IO.println(getBookStatistics(books));
+        IO.println(getThreeMostExpensiveTitlesExceptFirst(books));
+        IO.println(getAuthorsWithMultipleBooks(books));
+        IO.println(order(books));
     }
 
 
@@ -92,19 +101,19 @@ public class EsercizioStream {
     //    - ritorna tutti i libri ordinati per prezzo ascendente
 
     public static List<Book> getBooksOrderedAscending(List<Book> books){
-        return books.stream().sorted(Book::isMoreExpensiveThan).toList();
+        return books.stream().sorted(Comparator.comparingDouble(Book::getPrice)).toList();
     }
 
     //    - ritorna tutti i titoli dei libri ordinati per data di pubblicazione (prima i più recenti)
 
     public static List<String> getTitlesOfBooksOrderedByPublicationDate(List<Book> books){
-        return books.stream().sorted(Book::isOlderThan).map(Book::getTitle).toList();
+        return books.stream().sorted(Comparator.comparingInt(Book::getPublicationYear)).map(Book::getTitle).toList();
     }
 
     //    - ritorna il libro più costoso
 
     public static Optional<Book> getMostExpensive(List<Book> books){
-        return books.stream().max(Book::isMoreExpensiveThan);
+        return books.stream().max(Comparator.comparingDouble(Book::getPrice));
     }
 
     //    - ritorna true se tutti i libri hanno un rating superiore a 4
@@ -158,11 +167,44 @@ public class EsercizioStream {
                         StringBuilder::append).toString();
     }
 
+    public static String getTitlesAsStringV2(List<Book> books){
+        return books.stream()
+                .map(Book::getTitle)
+                .collect(Collectors.joining(", "));
+    }
+
     // ritorna il titolo più lungo di tutti i libri calcolandolo tramite una reduce
+
+    public static String getLongestTitle(List<Book> books){
+        return books.stream().map(Book::getTitle).reduce(
+                "",
+                (identity, s) -> {
+                    if(s.length() > identity.length()){
+                        return s;
+                    }
+                    return identity;
+                },
+                ((s, s2) -> {
+                    if(s.length() > s2.length()){
+                        return s;
+                    }
+                    return s2;
+                })
+        );
+    }
 
     // ritorna una mappa in cui la chiave è il genere e il valore è la lista di tutti i libri in quel genere
 
+    public static Map<String, List<Book>> groupByGenre(List<Book> books){
+        return books.stream().collect(Collectors.groupingBy(Book::getGenre));
+    }
+
     // ritorna una mappa in cui la chiave è il genere e il valore è il libro più costoso in quel genere
+
+    public static Map<String, Long> groupByGenreThenCount(List<Book> books){
+        return books.stream().collect(Collectors
+                .groupingBy(Book::getGenre, Collectors.counting()));
+    }
 
     /* avendo una classe
     public class BookStatistics {
@@ -173,17 +215,62 @@ public class EsercizioStream {
 
     // creare un metodo che calcola tutte queste statistiche con un solo reduce
 
+    */
+
+    public static BookStatistics getBookStatistics(List<Book> books){
+        return books.stream().reduce(
+                new BookStatistics(),
+                (bookStatistics, book) -> {
+                    bookStatistics.addToTotalBooks(1);
+                    bookStatistics.addToToralPrice(book.getPrice());
+                    bookStatistics.addToToralPages(book.getPages());
+                    return bookStatistics;
+                },
+                (s1, s2) -> {
+                    s1.addToTotalBooks(s2.getTotalBooks());
+                    s1.addToToralPrice(s2.getTotalPrice());
+                    s1.addToToralPages(s2.getTotalPages());
+                    return s1;
+                });
+    }
+
     // ritorna la lista dei titoli dei tre libri più costosi, ma ignorando il più costoso
+
+    public static List<String> getThreeMostExpensiveTitlesExceptFirst(List<Book> books){
+        return books.stream().sorted(Comparator.comparingDouble(Book::getPrice)
+                .reversed())
+                .skip(1)
+                .limit(3)
+                .map(Book::getTitle)
+                .toList();
+    }
 
     // ritorna la lista di libri ordinati:
     // 1. genere alfabetico
     // 2. a parità di genere, rating decrescente
     // 3. a parità di rating, titolo alfabetico
 
+    public static List<Book> order(List<Book> books){
+        return books.stream()
+                .sorted(
+                        Comparator
+                                .comparing(Book::getGenre)
+                                .thenComparing(Comparator.comparing(Book::getRating).reversed())
+                                .thenComparing(Book::getTitle)).toList();
+    }
+
     // con una sola istruzione di return:
     // ritorna la lista degli autori che hanno scritto più di un libro
 
+    public static Set<String> getAuthorsWithMultipleBooks(List<Book> books){
+        return books.stream()
+                .collect(Collectors.groupingBy(Book::getAuthor, Collectors.counting()))
+                .entrySet().stream()
+                .filter(e-> e.getValue()>1).collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue)).keySet();
+    }
     // correzione:
     // usare la classe BookStatistics invece del record
-     */
+
 }

@@ -30,16 +30,16 @@ public class Book {
     }
 
 
-    public int isMoreExpensiveThan(Book other){
-        return Double.compare(this.price, other.price);
+    public boolean isMoreExpensiveThan(Book other){
+        return this.price > other.price;
     }
 
-    public int isOlderThan(Book other){
-        return other.publicationYear - this.publicationYear;
+    public boolean isOlderThan(Book other){
+        return other.publicationYear > this.publicationYear;
     }
 
-    public int hasHigherRatingThan(Book other){
-        return Double.compare(this.rating, other.rating);
+    public boolean hasHigherRatingThan(Book other){
+        return this.rating > other.rating;
     }
 
     public String getTitle() {
@@ -72,5 +72,19 @@ public class Book {
 
     public boolean isEbookAvailable() {
         return ebookAvailable;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", genre='" + genre + '\'' +
+                ", publicationYear=" + publicationYear +
+                ", price=" + price +
+                ", pages=" + pages +
+                ", rating=" + rating +
+                ", ebookAvailable=" + ebookAvailable +
+                '}';
     }
 }
