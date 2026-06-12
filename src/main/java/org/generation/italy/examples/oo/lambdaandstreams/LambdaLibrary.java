@@ -1,9 +1,6 @@
 package org.generation.italy.examples.oo.lambdaandstreams;
 
-import java.util.function.BiFunction;
-import java.util.function.BinaryOperator;
-import java.util.function.Consumer;
-import java.util.function.Function;
+import java.util.function.*;
 
 public class LambdaLibrary {
     private static int count;
@@ -20,4 +17,11 @@ public class LambdaLibrary {
     static BinaryOperator<String> concat = (a, b) -> a + " " + b;
 
     public static int getCount()         {return count;}
+
+    static Predicate<Integer> isEven = (a) -> a % 2 == 0;
+
+    static int sum;
+    static Consumer<Integer> addToSum = (a) -> sum += a;
+
+    static Function<Integer, Integer> square = (a) -> a * a;
 }
