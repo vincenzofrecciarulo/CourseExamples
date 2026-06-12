@@ -6,15 +6,18 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class LambdaLibrary {
-    public static BinaryOperator<String> usageConcat;
     private static int count;
+
     static Consumer<String> charCounter = (a) -> count += a.length();
 
     static Function<String, String> standardize = a -> a.trim().toLowerCase();
+//      METODO 2: return a.trim().toLowerCase()
+//      METODO 3:
+//      a = a.trim();
+//      a = a.toLowerCase();
+//      return a;
+//    };
+    static BinaryOperator<String> concat = (a, b) -> a + " " + b;
 
-    static BiFunction<String, String, String> concat = (a,b) -> a + " "+b ;
-
-    public static int getCount() {
-        return count;
-    }
+    public static int getCount()         {return count;}
 }

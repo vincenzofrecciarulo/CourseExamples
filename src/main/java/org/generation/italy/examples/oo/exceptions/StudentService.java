@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 
 public class StudentService {
     private StudentRepository studentRepo = new StudentRepository();
@@ -17,6 +18,8 @@ public class StudentService {
         if (s.getId()==0) {
             s.setId(idGenerator++);
         }
+        Optional<Student> x = studentRepo.findByID(92);
+        x.ifPresent(student -> IO.println(student.getId()));
         studentRepo.addStudent(s);                                              //Aggiunge lo studente, se gli torna un eccezione e non fa nulla, la funzione si blocca qui
         FileReader fr = new FileReader("nonesisto.txt");                //Apre un file, siccome può non esistere per colpa dell'ambiente, siamo obbligati a gestire l'eccezione
         // Mezza tonnellata di business logic successiva al salvataggio di Student
@@ -40,7 +43,7 @@ public class StudentService {
             }
         }
     }
-//1.
+
     public int connectToDatabase(){
         Connection con=null;
         try {
@@ -62,8 +65,15 @@ public class StudentService {
         }
 //        con.close();              Errato anche qui, senza finally dopo trycatch
     }
-//2.
+
     public int connectToDatabaseTryWithResources(){
+        // possiamo dichiarare e inizializzare le risorse (da chiudere in seguito) tra le parentesi del try
+        // queste risorse verranno automaticamente chiuse correttamente appena usciremo dal try (in qualunque caso)
+        // è equivalente a un blocco finally
+        // è detto TRY WITH RESOURCES - derivato da C#
+        // posso dichiarare e istanziare solo oggetti tra le parentesi di un try with resources
+        // questi oggetti devono essere di una classe che implementa l’interfaccia AutoClosable
+        // AutoClosable ha un solo metodo: close()
         try(Connection con = DriverManager.getConnection("Indirizzo del database", "Utente", "Password")) {
             Statement st = con.createStatement();
             st.executeUpdate("DELETE FROM STUDENTS WHERE ID = 4");
@@ -73,3 +83,4 @@ public class StudentService {
         }
     }
 }
+
