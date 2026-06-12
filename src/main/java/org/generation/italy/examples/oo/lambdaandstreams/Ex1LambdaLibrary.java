@@ -12,13 +12,17 @@ public class Ex1LambdaLibrary {
     static Function<String, String> usageTrim = (a) -> a.trim().toLowerCase();
     static BiFunction<String, String, String> usageConcat = (a, b) -> a + " " + b;
 
-    static Predicate<Integer> isEven = (n) -> n % 2 == 0;
+    //static Predicate<Integer> isEven = (n) -> n % 2 == 0;
+    // & -> and binario
+    static Predicate<Integer> isEven = (n) -> (n & 1) == 0;
+    /*
+    1011
+    1101
+    ----
+    1001
+    */
     static Consumer<Integer> addToSum = (a) -> sum += a;
     static Function<Integer, Integer> doubleSquared = (a) -> a * a;
 
     // static BinaryOperator<Transaction> amountCount = (a, b) -> amountSum += a.getAmount();
-
-
-
-
 }

@@ -53,7 +53,7 @@ public class Ex1Start {
                 .toList();
 
         double tot = productList.stream()
-                .mapToDouble(p -> p.getPrice())
+                .mapToDouble(Product::getPrice)
                 .sum();
 
         System.out.println(productList);
