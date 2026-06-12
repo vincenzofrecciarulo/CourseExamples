@@ -14,9 +14,9 @@ public class MapExamples {
         Map<String,Cat> cats = new HashMap<>();
 
         // Tipo Dedotto -> keyword 'var' -> fa tutto il compilatore (NON ABUSARE)
-        var c1 = new Cat("silvestro","nero", LocalDate.of(2025,7,12), 2 );
-        var c2 = new Cat("pippo","bianco", LocalDate.of(2024,2,28), 6 );
-        var c3 = new Cat("titti","arancione", LocalDate.of(2026,1,28), 1 );
+        var c1 = new Cat("silvestro", LocalDate.of(2025,7,12), "Red" );
+        var c2 = new Cat("pippo", LocalDate.of(2024,2,28), "Yellow" );
+        var c3 = new Cat("titti", LocalDate.of(2026,1,28), "Blue" );
 
         // metodo delle Map per aggiungere elementi alla Map -> se la chiave è uguale vengono sovrascritti
         cats.put(c1.getName(), c1);

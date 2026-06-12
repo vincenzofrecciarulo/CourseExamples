@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SortingExamples {
     public static void sortList(List<Integer> numbers){
-        Collections.sort(numbers);
+        ;
     }
 
     public static void sortListOfStrings(List<String> strings){
