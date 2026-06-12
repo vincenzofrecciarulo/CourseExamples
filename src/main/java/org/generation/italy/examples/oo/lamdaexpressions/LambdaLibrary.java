@@ -101,4 +101,7 @@ public class LambdaLibrary {
        return  new Product(split[0],parseDouble(split[1]));
     });
 
+    static Predicate<Guest> isMinor = (g-> g.calculateAge() < 18);
+
+
 }

@@ -1,5 +1,6 @@
 package org.generation.italy.examples.oo.lamdaexpressions;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -42,12 +43,36 @@ public class Main {
                 .map(LambdaLibrary.convertToProduct)
                 .toList();
 
-        double total = products.stream().map(Product::getPrice).
+        double total = products.stream().mapToDouble(Product::getPrice).sum();
+        System.out.println(total);
+
+        List<Transaction> transactionList = Arrays.asList(
+
+              new Transaction(new Guest("Gennaro","Bullo", LocalDate.of(2016,12,9)),
+                      120),
+                new Transaction(new Guest("Roberto","Bolle", LocalDate.of(1998,10,4)),
+                        420),
+                new Transaction(new Guest("Marco","Carta", LocalDate.of(2005,5,2)),
+                        520),
+                new Transaction(new Guest("Gennaro","Bullo", LocalDate.of(2016,12,9)),
+                        140)
+        );
 
 
 
+       Guest toFind = transactionList.getFirst().getGuest();
+       int totalAmount = transactionList.stream()
+                    .filter(t->t.getGuest().equals(toFind))
+                    .mapToInt(t->{
+                      if(LambdaLibrary.isMinor.test(toFind)){
+                          return t.getAmount() -1;
+                      }
+                      return t.getAmount();
+                    })
+                    .sum();
+        System.out.println(totalAmount);
 
-
+       List<Transaction> filteredList = transactionList.stream().filter(t->!t.getGuest().equals(toFind)).toList();
 
 
     }
