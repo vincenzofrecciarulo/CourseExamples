@@ -1,8 +1,8 @@
-package org.generation.italy.examples.modulo8;
+package org.generation.italy.examples.moduli.modulo9;
 
 import java.util.Objects;
 
-public class Person {
+public abstract class Person {
     private String name;
     private String surname;
     private String dateOfBirth;
@@ -39,7 +39,7 @@ public class Person {
 
     // qui sovrascriviamo il metodo toString presente nella classe Object
     @Override
-    public String toString(){
+    public String toString() {
         // return name + " " + surname + " " + dateOfBirth;
         return getName() + " " + getSurname() + " " + getDateOfBirth();
     }
@@ -53,17 +53,17 @@ public class Person {
     @Override
     public boolean equals(Object obj) {
         // ora stabiliamo se this e obj sono la stessa cosa e se così allora sono uguali
-        if (this == obj){
+        if (this == obj) {
             return true;
         }
 
         // se l'oggetto è nullo
-        if (obj == null){
+        if (obj == null) {
             return false;
         }
 
         // se this è di classe Person e l'oggetto non lo è, allora non sono la stessa cosa
-        if (this.getClass() != obj.getClass()){
+        if (this.getClass() != obj.getClass()) {
             return false;
         }
 
@@ -74,4 +74,7 @@ public class Person {
                 Objects.equals(surname, person.surname) &&
                 Objects.equals(dateOfBirth, person.dateOfBirth);
     }
+
+    // questo è il metodo astratto
+    public abstract int getCost();
 }

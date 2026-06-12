@@ -1,4 +1,4 @@
-package org.generation.italy.examples.modulo9;
+package org.generation.italy.examples.moduli.modulo9;
 
 public class Main {
     public static void main (){

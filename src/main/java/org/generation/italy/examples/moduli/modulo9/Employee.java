@@ -1,13 +1,13 @@
-package org.generation.italy.examples.modulo8;
+package org.generation.italy.examples.moduli.modulo9;
 
 import java.util.Objects;
 
-public class ForeignEmployee extends Person{
+public class Employee extends Person{
     private String nativeLanguage;
     private String company;
     private double salary;
 
-    public ForeignEmployee(String name, String surname, String dateOfBirth, String nativeLanguage, String company, double salary) {
+    public Employee(String name, String surname, String dateOfBirth, String nativeLanguage, String company, double salary) {
         super(name, surname, dateOfBirth);
         this.nativeLanguage = nativeLanguage;
         this.company = company;
@@ -65,9 +65,16 @@ public class ForeignEmployee extends Person{
             return false;
         }
 
-        ForeignEmployee employee = (ForeignEmployee) obj;
+        Employee employee = (Employee) obj;
 
         return Objects.equals(company, employee.company) &&
                 salary == employee.salary;
+    }
+
+    // Il costo di un Employee per la scuola è la retribuzione annua moltiplicata per due.
+    // Abbiamo castato a int perchè salary è double e ci è stato richiesto che getCost fosse int
+    @Override
+    public int getCost() {
+        return (int) (salary * 2);
     }
 }
