@@ -29,14 +29,14 @@ public class StartExtended {
 //        System.out.println(" ");
 //        System.out.println(result);
 
-        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
-        List<Integer> result2 = numbers.stream()
-                .filter(LambdaLibraryExtended.isEven)
-                .peek(LambdaLibraryExtended.addToSum)
-                .reduce(LambdaLibraryExtended.returnSquared);
-        System.out.println(" ");
-        System.out.println(result2);
-
+//        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
+//        List<Integer> result2 = numbers.stream()
+//                .filter(LambdaLibraryExtended.isEven)
+//                .peek(LambdaLibraryExtended.addToSum)
+//                .reduce(LambdaLibraryExtended.returnSquared);
+//        System.out.println(" ");
+//        System.out.println(result2);
+//
 
 
 
