@@ -30,7 +30,22 @@ public class LambdaLibrary {
     // by making it return a BinaryOperator, we're good with our usual simple syntax
     static BinaryOperator<String> concatWithSpace = (a, b) -> a + " " + b;
 
-    static Predicate<Integer> isEven = a -> a % 2 == 0;
+//    static Predicate<Integer> isEven = a -> a % 2 == 0;
+
+    /*
+    n & 1 == 0 è un altro modo per verificare che un numero sia pari.
+    & è un AND BINARIO.
+    Perché?
+    Perché 1 in binario ha solo l’ultimo bit (la "potenza di 0" - 000001 ad esempio),
+    per cui n & 1 ritornerà false perché se nel nostro numero abbiamo l’ultimo bit vuol dire che c’è un 1, e siccome
+    le altre cifre binarie rappresentano potenze di 2 se abbiamo quel bit il numero è sicuramente dispari.
+    Stiamo confrontando direttamente i bit dentro l’intero.
+    AND binario ritornerà true solo per due 1.
+            1 - 1 = true
+            0 - 1 = false
+
+     */
+    static Predicate<Integer> isEven = a -> (a & 1) == 0;
 
     static Consumer<Integer> addToSum = a -> sum += a;
 
