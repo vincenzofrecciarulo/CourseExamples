@@ -22,7 +22,15 @@ public class LambdaLibrary {
     static BinaryOperator<String> concat = (a, b) -> a + " " + b;
 
     // Ex5
-    static Predicate<Integer> isEven = n -> n % 2 == 0;
+//    static Predicate<Integer> isEven = n -> n % 2 == 0;
+    static Predicate<Integer> isEven = n -> (n & 1) == 0;
+    /*
+    1011
+    1101
+
+    1001
+     */
+
 
     // Ex6
     static Consumer<Integer> addToSum = n -> sum += n;
@@ -36,15 +44,13 @@ public class LambdaLibrary {
         return new Product(parts[0], Double.parseDouble(parts[1]));
     };
 
-    // Ex10 - accumula il prezzo nella variabile statica totalPrice
+    //EX 10 accumula tutti i prezzi delle transaction in una variabile
     static Consumer<Product> addPrice = p -> totalPrice += p.getPrice();
-
-    // Ex10 (Transaction) - dato un Guest, restituisce un Predicate che filtra le sue transazioni
+    //Ex10 me lo ha spiegato Riccardo(da rivedere)
     static Predicate<Transaction> makeGuestFilter(Guest g) {
         return t -> t.belongsTo(g);
     }
-
-    // Ex10 (Transaction) - applica sconto di 1 se il guest è minorenne
+    //Ex10 applica sconto se minorenne
     static ToIntFunction<Transaction> applyMinorDiscount =
             t -> t.getGuest().isMinor() ? t.getAmount() - 1 : t.getAmount();
 

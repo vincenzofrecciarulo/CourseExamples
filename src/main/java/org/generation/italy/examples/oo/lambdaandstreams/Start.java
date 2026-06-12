@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Start {
     //strandardizziamo le stringhe, contiamo quante lettere contengono le parole, le concateniamo in una singola stringa
@@ -32,7 +33,7 @@ public class Start {
                 .filter(LambdaLibrary.isEven)
                 .peek(LambdaLibrary.addToSum)
                 .map(LambdaLibrary.square)
-                .collect(Collectors.toList());
+                .toList();
 
         System.out.println("Quadrati dei numeri pari: " + result);
         System.out.println("Somma dei numeri pari: " + LambdaLibrary.getSum());
@@ -70,7 +71,7 @@ public class Start {
         // Stream 2: rimuove le transazioni del target
         List<Transaction> remaining = transactions.stream()
                 .filter(LambdaLibrary.makeGuestFilter(target).negate())
-                .collect(Collectors.toList());
+                .toList();
 
         System.out.println("Transazioni rimanenti: " + remaining);
     }
@@ -84,11 +85,17 @@ public class Start {
             "Monitor - 349.99"
         );
 
-        List<Product> products = data.stream()
-                .map(LambdaLibrary.parseProduct)
-                .peek(LambdaLibrary.addPrice)
-                .toList();
+      List<Product> products = data.stream()
+                .map(LambdaLibrary.parseProduct).toList();
+        products.forEach(IO::println);
+        double sum = products.stream().map(Product::getPrice)
+                        .reduce(Double::sum).orElse(0.0);
 
+        double sum2 = products.stream().mapToDouble(Product::getPrice)
+                .sum();
+
+        String productNames = products.stream().map(Product::getProductName)
+                                               .reduce((s1, s2)-> s1 + s2).orElse(" ");
         System.out.println("Prodotti: " + products);
         System.out.println("Totale: " + LambdaLibrary.getTotalPrice());
     }
