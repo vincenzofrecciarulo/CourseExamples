@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.practiceexercises.lambdaexercise;
+package org.generation.italy.examples.oo.practiceexercises.streamexercise;
 
 public class BookStatistics {
         private int totalBooks;

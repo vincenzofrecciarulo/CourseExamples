@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.practiceexercises.lambdaexercise;
+package org.generation.italy.examples.oo.practiceexercises.streamexercise;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -159,7 +159,34 @@ public class BookReporter {
     //EX 20 con una sola istruzione di return...
     // ritorna la lista degli autori che hanno scritto piu di un libro
     public List<String>getListOfWriterThatWroteMoreThanOneBook(){
-        books.stream().map(Book::getAuthor).
+        return books.stream().collect(Collectors.groupingBy(Book::getAuthor))
+                        .entrySet().stream().filter(stringListEntry -> stringListEntry
+                        .getValue().size()>1)
+                        .map(Map.Entry::getKey).toList();
+    }
+    //Ritorna la media dei prezzi di tutti i libri
+    public OptionalDouble getTheAverage(){
+        return books.stream().mapToDouble(Book::getPrice).average();
+    }
+//    Ritorna la lista dei generi senza duplicati, in ordine alfabetico
+    public List<String>getGenderWithoutDuplicate(){
+        return books.stream().sorted(Comparator.comparing(Book::getGenre))
+                .map(Book::getGenre)
+                .distinct().toList();
+    }
+//Ritorna una mappa con chiave l'autore e valore il totale delle pagine scritte da quell'autore
+    public Map<String,Integer>getPagesWrotedByTheAuthors(){
+        return books.stream().collect(Collectors.groupingBy(Book::getAuthor
+                ,Collectors.summingInt(Book::getPages)));
+
+    }
+//    Ritorna il genere con più libri
+    public String getTheGenreModes(){
+        return books.stream().collect(Collectors.groupingBy(Book::getGenre))
+                .entrySet().stream().max(Comparator
+                        .comparingInt(entry->entry.getValue()
+                                .size())).orElseThrow().getKey();
+
     }
 
 

@@ -1,8 +1,5 @@
-package org.generation.italy.examples.oo.practiceexercises.lambdaexercise;
+package org.generation.italy.examples.oo.practiceexercises.streamexercise;
 
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Book{
     private String title;
@@ -28,9 +25,6 @@ public class Book{
     public boolean isOverFourRating(){
         return rating>4;
     }
-
-
-
 
     public String getTitle() {
         return title;
