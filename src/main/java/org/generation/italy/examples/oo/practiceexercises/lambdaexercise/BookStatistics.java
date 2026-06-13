@@ -11,6 +11,7 @@ public class BookStatistics {
                 this.totalPages = totalPages;
         }
 
+
         public int getTotalBooks(int book) {
                 return totalBooks+=book;
         }

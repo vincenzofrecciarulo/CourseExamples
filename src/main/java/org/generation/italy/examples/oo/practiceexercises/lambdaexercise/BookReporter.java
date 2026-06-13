@@ -99,11 +99,17 @@ public class BookReporter {
     // costoso in quel genere
     public Map<String,Optional<Book>>getTheMostExpensiveGroupedByGender(){
         return books.stream().collect(Collectors.groupingBy(Book::getGenre,Collectors.maxBy
-                            (Comparator.comparing(Book::getPrice))));
-
+                            (Comparator.comparing(Book::getPrice).reversed())));
     }
     //EX 16:ritorna la lista dei titoli dei tre libri piu costosi, ma ignorando il piu costoso
+    public List<String>getTheThreeMostexpensiveByTitle(){
+        return books.stream().sorted(Comparator.comparing(Book::getPrice).reversed())
+                .map(Book::getTitle)
+                .skip(1)
+                .limit(3)
+                .toList();
 
+    }
 
     //EX 17:ritorna l alista di libri ordinati prima per genere alfabetico,  a parita' di
     // genere per rating discendente, a parita di rating per titolo alfabetico
@@ -113,6 +119,13 @@ public class BookReporter {
                         .thenComparing(Book::getTitle))
                         .toList();
     }
+    //EX 18:creare un metodo che calcola tutte queste statistiche con un solo reduce
+//    public BookStatistics getStats(){
+//        return books.stream().reduce(new BookStatistics(0,0.0,0));
+
+
+
+    //}
 
 
 
