@@ -1,4 +1,4 @@
-package org.generation.italy.examples.moreexercises.ex03;
+package org.generation.italy.examples.exathome.abstraction.ex03;
 
 public abstract class Veicolo{
     protected int velocity;

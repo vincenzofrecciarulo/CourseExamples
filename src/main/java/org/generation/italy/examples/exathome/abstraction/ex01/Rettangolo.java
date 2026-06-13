@@ -1,4 +1,4 @@
-package org.generation.italy.examples.moreexercises.ex01;
+package org.generation.italy.examples.exathome.abstraction.ex01;
 
 public class Rettangolo extends Forma {
     private double base;

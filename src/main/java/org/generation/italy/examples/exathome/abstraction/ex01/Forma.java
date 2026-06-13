@@ -1,4 +1,4 @@
-package org.generation.italy.examples.moreexercises.ex01;
+package org.generation.italy.examples.exathome.abstraction.ex01;
 
 public abstract class Forma {
       protected String name; // nome della forma geometrica

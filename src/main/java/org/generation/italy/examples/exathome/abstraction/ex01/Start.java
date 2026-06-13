@@ -1,4 +1,4 @@
-package org.generation.italy.examples.moreexercises.ex01;
+package org.generation.italy.examples.exathome.abstraction.ex01;
 
 public class Start {
     public static void main(String[] args){
