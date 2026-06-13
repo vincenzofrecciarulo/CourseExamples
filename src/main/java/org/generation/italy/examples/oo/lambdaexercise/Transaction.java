@@ -1,5 +1,8 @@
 package org.generation.italy.examples.oo.lambdaexercise;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 public class Transaction {
     private Guest g;
     private int amount;
@@ -7,6 +10,14 @@ public class Transaction {
     public Transaction(Guest g, int amount) {
         this.g = g;
         this.amount = amount;
+    }
+
+    public boolean isMinor(Guest guest){
+        if (ChronoUnit.YEARS.between(g.getDateOfBirth(), LocalDate.now()) < 18){
+
+            return true;
+        }
+        return false;
     }
 
     @Override

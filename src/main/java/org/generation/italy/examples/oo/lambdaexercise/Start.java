@@ -1,5 +1,7 @@
 package org.generation.italy.examples.oo.lambdaexercise;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -68,11 +70,35 @@ public class Start {
 
         /*
     Dato un ArrayList di Transaction così definite:
-    Scrivere uno Stream che:
-    Filtra tutte le transazioni di un determinato Guest (identificato dal terzetto name, surname, dateOfBirth)
-    Applica uno sconto di 1€ se attualmente il Guest è minorenne (es. 15€ viene scontato a 14€)
-    Restituisce la somma di tutti gli amount del Guest
-    Poi scrivere un secondo Stream che rimuove le transazioni di quel Guest ed eseguirli entrambi
-         */
+        Scrivere uno Stream che:
+        Filtra tutte le transazioni di un determinato Guest (identificato dal terzetto name, surname, dateOfBirth)
+        Applica uno sconto di 1€ se attualmente il Guest è minorenne (es. 15€ viene scontato a 14€)
+        Restituisce la somma di tutti gli amount del Guest
+        Poi scrivere un secondo Stream che rimuove le transazioni di quel Guest ed eseguirli entrambi
+                */
+
+                // 1 - creare Transaction e guest
+                Guest g1 = new Guest("Jacopo","De Maio", LocalDate.of(2000,7,25));
+        Guest g2 = new Guest("Alice","Pastore", LocalDate.of(1999,2,17));
+        Guest g3 = new Guest("Aureliano","De Maio", LocalDate.of(2010,3, 2));
+
+        Transaction t1 = new Transaction(g1,130);
+        Transaction t2 = new Transaction(g1,150);
+        Transaction t3 = new Transaction(g1,50);
+        Transaction t4 = new Transaction(g2,250);
+        Transaction t5 = new Transaction(g3,20);
+
+        List<Transaction> transactions = new ArrayList<>();
+        transactions.add(t1);
+        transactions.add(t2);
+        transactions.add(t3);
+        transactions.add(t4);
+        transactions.add(t5);
+
+        Optional<Integer> gAmount = transactions.stream().filter(t -> t.getG().equals(g1))
+                .map(t -> t.isMinor(g1) ? t.getAmount() -1 : t.getAmount() ).reduce(Integer::sum);
+
+
+
     }
 }
