@@ -24,85 +24,101 @@ public class BookReporter {
             new Book("Effective Java", "Bloch", "Programming"
                     , 2018, 48.00, 416, 4.8, true)
     );
+
     //Ex 1: ritorna unalista di tutti i titoli dei libri List<String> getTitles(List<Book> books)
-    public List<String>getTitle(){
+    public List<String> getTitle() {
         return books.stream().map(Book::getTitle).toList();
     }
+
     //Ex 2:ritorna i titoli di tutti i libri che costano meno di 20
-    public List<String>getBookUnderTwentyDollar(){
-        return books.stream().filter(book -> book.getPrice()<20)
+    public List<String> getBookUnderTwentyDollar() {
+        return books.stream().filter(book -> book.getPrice() < 20)
                 .map(Book::getTitle)
                 .toList();
     }
+
     //Ex 3:ritorna il numero di libri che hanno come genere "Programming"
-    public Integer getProgrammingsBookNumber(){
-        return (int)books.stream().filter(book -> book.getGenre().
+    public Integer getProgrammingsBookNumber() {
+        return (int) books.stream().filter(book -> book.getGenre().
                 equalsIgnoreCase("Programming")).count();
     }
+
     //Ex 4:ritorna tutti i libri ordinati pre prezzo ascendente
-    public List<Book> getOrderedByPriceAscendent(){
+    public List<Book> getOrderedByPriceAscendent() {
         return books.stream().sorted(Comparator.comparing(Book::getPrice)).toList();
     }
+
     //Ex 5:ritorna tutti i titoli dei libri ordinati per data di pubblicazione (prima i piu recenti)
     public List<String> getBooksOrderedByTheLatest() {
         return books.stream().sorted(Comparator.comparing(Book::getPublicationYear).reversed())
                 .map(Book::getTitle)
                 .toList();
     }
+
     //Ex 6:ritorna il libro piu costoso
-    public Optional<Book> getTheMostExpensive(){
+    public Optional<Book> getTheMostExpensive() {
         return books.stream().max(Comparator.comparing(Book::getPrice));
     }
+
     //Ex 7:ritorna true se tutti i libri hanno un rating superiore a 4
-    public boolean getRatingOverFour(){
-          return books.stream().allMatch(b->b.getRating()>4);
+    public boolean getRatingOverFour() {
+        return books.stream().allMatch(b -> b.getRating() > 4);
         //return books.stream().allMatch(Book::isOverFourRating);
     }
+
     //EX 8:ritorna true se almeno un libro ha almeno 500 pagine
-    public boolean isThereA500PagesBook(){
-        return books.stream().anyMatch(b->b.getPages()>=500);
+    public boolean isThereA500PagesBook() {
+        return books.stream().anyMatch(b -> b.getPages() >= 500);
     }
+
     //EX 9:ritorna l autore del primo libro per cui e disponibile un ebook
-    public Optional<String>getFirstEbooksAuthorNameAveilable(){
+    public Optional<String> getFirstEbooksAuthorNameAveilable() {
         return books.stream().filter(Book::isEbookAvailable)
                 .findFirst()
                 .map(Book::getAuthor);
     }
+
     //EX 10:ritorna il numero totale di pagine di tutti i libri di programmazione
-    public int getTotalBooksPages(){
-        return books.stream().filter(b->b.getGenre().equalsIgnoreCase("Programming"))
+    public int getTotalBooksPages() {
+        return books.stream().filter(b -> b.getGenre().equalsIgnoreCase("Programming"))
                 .mapToInt(Book::getPages)
                 .sum();
     }
+
     //EX 11:ritorna il massimo rating mai ricevuto tra i libri di un genere che viene dato in input
-    public OptionalDouble getMaxRatingBetweenGender(String genre){
-        return books.stream().filter(b->b.getGenre().equalsIgnoreCase(genre))
+    public OptionalDouble getMaxRatingBetweenGender(String genre) {
+        return books.stream().filter(b -> b.getGenre().equalsIgnoreCase(genre))
                 .mapToDouble(Book::getRating)
                 .max();
     }
-     //EX 12 ritorna una stringa composta da tutti i titoli dei libri separati da una virgola
-    public String getAllTitle(){
+
+    //EX 12 ritorna una stringa composta da tutti i titoli dei libri separati da una virgola
+    public String getAllTitle() {
         return books.stream().map(Book::getTitle)
                 .collect(Collectors.joining(","));
     }
+
     //EX 13 ritorna il titolo piu lungo di tutti i libri calcolandolo tramite una reduce
-    public Optional<String> getLongestTitle(){
+    public Optional<String> getLongestTitle() {
         return books.stream().map(Book::getTitle)
-                .reduce((a,b)->a.length()>b.length()?a:b);
+                .reduce((a, b) -> a.length() > b.length() ? a : b);
     }
+
     //EX 14 ritorna una mappa in cui la chiave e. il genere e il valore la lista
     // di tutti i libri in quel genere
-    public Map<String,List<Book>>groupByGender(){
+    public Map<String, List<Book>> groupByGender() {
         return books.stream().collect(Collectors.groupingBy(Book::getGenre));
     }
+
     //EX 15 ritorna un amappa in cui la chaive è il genere e il valore e' il libro piu
     // costoso in quel genere
-    public Map<String,Optional<Book>>getTheMostExpensiveGroupedByGender(){
-        return books.stream().collect(Collectors.groupingBy(Book::getGenre,Collectors.maxBy
-                            (Comparator.comparing(Book::getPrice).reversed())));
+    public Map<String, Optional<Book>> getTheMostExpensiveGroupedByGender() {
+        return books.stream().collect(Collectors.groupingBy(Book::getGenre, Collectors.maxBy
+                (Comparator.comparing(Book::getPrice).reversed())));
     }
+
     //EX 16:ritorna la lista dei titoli dei tre libri piu costosi, ma ignorando il piu costoso
-    public List<String>getTheThreeMostexpensiveByTitle(){
+    public List<String> getTheThreeMostexpensiveByTitle() {
         return books.stream().sorted(Comparator.comparing(Book::getPrice).reversed())
                 .map(Book::getTitle)
                 .skip(1)
@@ -113,19 +129,42 @@ public class BookReporter {
 
     //EX 17:ritorna l alista di libri ordinati prima per genere alfabetico,  a parita' di
     // genere per rating discendente, a parita di rating per titolo alfabetico
-    public List<Book>getListOrderedByLetterAndDiscendentrating(){
+    public List<Book> getListOrderedByLetterAndDiscendentrating() {
         return books.stream().sorted(Comparator.comparing(Book::getGenre)
                         .thenComparing(Book::getRating).reversed()
                         .thenComparing(Book::getTitle))
                         .toList();
     }
+
     //EX 18:creare un metodo che calcola tutte queste statistiche con un solo reduce
-//    public BookStatistics getStats(){
-//        return books.stream().reduce(new BookStatistics(0,0.0,0));
+    public BookStatistics getStats() {
+        return books.stream().reduce(new BookStatistics(),
+                (BookStatistics stats, Book book) -> new BookStatistics(
+                        stats.getTotalBooks() + 1,
+                        stats.getTotalPrice() + book.getPrice(),
+                        stats.getTotalPages() + book.getPages()),
+                (stats1, stats2) -> new BookStatistics(
+                        stats1.getTotalBooks() + stats2.getTotalBooks(),
+                        stats1.getTotalPrice() + stats2.getTotalPrice(),
+                        stats1.getTotalPages() + stats2.getTotalPages()));
+    }
+    //EX 19 ritorna l alista di libri ordinati prima per genere alfabetico,
+    // a parita' di genere per rating discendente, a parita di rating per titolo alfabetico
+    public List<Book> getBooksByLecterAndGenreWithRatingDiscendingAndByLecter(){
+        return books.stream().sorted(Comparator.comparing(Book::getGenre)
+                .thenComparing(Comparator.comparing(Book::getRating).reversed())
+                .thenComparing(Book::getTitle))
+                .toList();
+    }
+    //EX 20 con una sola istruzione di return...
+    // ritorna la lista degli autori che hanno scritto piu di un libro
+    public List<String>getListOfWriterThatWroteMoreThanOneBook(){
+        books.stream().map(Book::getAuthor).
+    }
 
 
 
-    //}
+
 
 
 

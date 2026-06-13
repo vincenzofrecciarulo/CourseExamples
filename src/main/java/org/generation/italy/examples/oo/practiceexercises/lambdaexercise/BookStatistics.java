@@ -11,16 +11,19 @@ public class BookStatistics {
                 this.totalPages = totalPages;
         }
 
-
-        public int getTotalBooks(int book) {
-                return totalBooks+=book;
+        public BookStatistics() {
         }
 
-        public double getTotalPrice(double price) {
-                return totalPrice+=price;
+        public int getTotalBooks() {
+                return totalBooks;
         }
 
-        public int getTotalPages(int pages) {
-                return totalPages+pages;
+        public double getTotalPrice() {
+                return totalPrice;
+        }
+
+        public int getTotalPages() {
+                return totalPages;
         }
 }
+
