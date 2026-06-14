@@ -2,7 +2,10 @@ package org.generation.italy.examples.oo.lambdaandstreams.weekExcercise;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -94,5 +97,84 @@ public class BookReportMaker {
                 .mapToDouble(Book::getRating)
                 .max().orElse(0.0);
 
+    }
+
+    //12. Ritorna una stringa composta da tutti i titoli dei libri separati da una virgola
+    public String booksTitles(){
+        return books.stream()
+                .map(Book::getTitle)
+                .collect(Collectors.joining(", "));
+    }
+
+    //13. Ritorna il titolo più lungo di tutti i libri calcolato tramimite reduce
+    public String longerTitle(){
+        return books.stream()
+                .map(Book::getTitle)
+                .reduce((s, s2) -> {
+                    if (s.length() > s2.length()) {
+                        return s;
+                    } else {
+                        return s2;
+                    }
+                })
+                .orElse("");
+    }
+
+    //14. Ritorna una mappa in cui la chiave è il genere e il valore la lista di tutti i libri di quel genere
+    public Map<String, List<Book>> mapTitle(){
+        return books.stream()
+                .collect(Collectors.groupingBy(Book::getGenre));
+    }
+
+    //15. Ritorna una mappa in cui la chiave è il genere e il valore è il libro più costoso in quel genere
+    public Map<String, Book> expensiveBook(){
+        return books.stream()
+                .collect(Collectors.toMap(Book::getGenre, Function.identity(), BinaryOperator.maxBy(Comparator.comparingDouble(Book::getPrice))));
+    }
+
+    //16. Metodo che calcola tutte queste statistiche con un solo reduce
+    public BookStatistic report(List<Book> bookList){
+        return bookList.stream()
+                .reduce(new BookStatistic(), (acc, book) -> new BookStatistic(
+                        acc.getTotalBooks() + 1,
+                        acc.getTotalPrice() + book.getPrice(),
+                        acc.getTotalPage() + book.getPages()
+                ), (b1, b2) -> new BookStatistic(
+                        b1.getTotalBooks() + b2.getTotalBooks(),
+                        b1.getTotalPrice() + b2.getTotalPrice(),
+                        b1.getTotalPage() + b2.getTotalPage()
+                ));
+    }
+
+    //17.Ritorna la lista dei titoli dei tre libri più costosi ignornado il più costoso
+    public List<Book> expensiveBookLessFirst(){
+        return books.stream()
+                .sorted(Comparator.comparingDouble(Book::getPrice).reversed())
+                .skip(1)
+                .limit(3)
+                .toList();
+    }
+
+    //18.
+
+    public List<Book> sortedBooks(){
+        return books.stream()
+                .sorted(
+                        Comparator.comparing(Book::getGenre)
+                                .thenComparing(Book::getRating, Comparator.reverseOrder())
+                                .thenComparing(Book::getTitle)
+                )
+                .toList();
+    }
+
+    //19.
+
+    public List<String> getAuthor(){
+        return books.stream()
+                .collect(Collectors.groupingBy(Book::getAuthor, Collectors.counting()))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue() > 1)
+                .map(Map.Entry::getKey)
+                .toList();
     }
 }

@@ -12,7 +12,19 @@ public class BookStart {
                 new Book("The Pragmatic Programmer", "Hunt", "Programming", 1999, 42.00, 352, 4.7, true),
                 new Book("Foundation", "Asimov", "Science Fiction", 1951, 15.00, 255, 4.4, false),
                 new Book("Harry Potter", "Rowling", "Fantasy", 1997, 20.00, 410, 4.9, true),
+                new Book("Harry Potter", "Rowling", "Fantasy", 1997, 20.00, 410, 4.9, true),
                 new Book("Effective Java", "Bloch", "Programming", 2018, 48.00, 416, 4.8, true)
         );
+
+        BookReportMaker bookReportMaker = new BookReportMaker(books);
+        System.out.println(bookReportMaker.booksTitles());
+        System.out.println(bookReportMaker.longerTitle());
+        System.out.println(bookReportMaker.mapTitle());
+        System.out.println(bookReportMaker.expensiveBook());
+        System.out.println(bookReportMaker.expensiveBookLessFirst());
+        System.out.println(bookReportMaker.sortedBooks());
+        System.out.println(bookReportMaker.getAuthor());
+        System.out.println(bookReportMaker.report(books));
+
     }
 }

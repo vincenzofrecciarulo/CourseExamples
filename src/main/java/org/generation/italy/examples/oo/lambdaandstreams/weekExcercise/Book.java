@@ -55,4 +55,18 @@ public class Book {
     public boolean isEbookAvailable() {
         return ebookAvailable;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", genre='" + genre + '\'' +
+                ", publicationYear=" + publicationYear +
+                ", price=" + price +
+                ", pages=" + pages +
+                ", rating=" + rating +
+                ", ebookAvailable=" + ebookAvailable +
+                '}';
+    }
 }
