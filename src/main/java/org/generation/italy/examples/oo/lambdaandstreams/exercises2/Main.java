@@ -15,7 +15,7 @@ public class Main {
                 new Book("Effective Java", "Bloch", "Programming", 2018, 48.00, 416, 4.8, true)
         );
 
-        IO.println("All titles: " + BookService.getTitles(books));
+        IO.println("All titles: " + BookService.getAllTitles(books));
         IO.println("All titles under 20 dollars: " + BookService.getTitlesUnder20(books));
         IO.println("Number of titles on Programming: " + BookService.getNumberByGenre(books, "programming"));
         IO.println("All books by ascending price: " + BookService.getByAscendingPrice(books));
@@ -24,5 +24,10 @@ public class Main {
         IO.println("Do all books have a minimum rating of 4: " + BookService.allMinimumRating(books, 4));
         IO.println("Do any of the books have at least 500 pages: " + BookService.anyMinimumPages(books, 500));
         IO.println("Author of the first book available as an ebook: " + BookService.getFirstAvailableEbookAuthor(books));
+        IO.println("Total number of pages for Programming books: " + BookService.getNumberOfPagesByGenre(books, "programming"));
+        IO.println("Highest rating between Programming books: " + BookService.getMaxRatingByGenre(books, "programming"));
+        IO.println("All titles separated by a comma: " + BookService.getAllTitlesSeparatedByComma(books));
+        IO.println("Longest title: " + BookService.getLongestTitle(books));
+        IO.println("Map by genre: " + BookService.getMapAllBooksByGenre(books));
     }
 }
