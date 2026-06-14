@@ -10,12 +10,11 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class BookStoreOperations {
+
     /*
-fare una serie di funzioni che:
-ritorna il numero totale di pagine di tutti i lbri di programmazione
-ritorna il massimo rating mai ricevuto tra i libri di un genere che viene dato in input
- */
-    /*
+    Fare una serie di funzioni che:
+
+
     ritorna una lista di tutti i titoli dei libri List<String> getTitles(List<Book> books)
      */
 
@@ -65,8 +64,12 @@ ritorna il massimo rating mai ricevuto tra i libri di un genere che viene dato i
     ritorna il libro piu costoso
      */
 
-    public static Optional<Book> mostExpensive(List<Book> books){
-        return books.stream().max(Comparator.comparingDouble(Book::getPrice);
+    public static Optional<Book> singleMostExpensive(List<Book> books){
+        return books.stream().max(Comparator.comparingDouble(Book::getPrice));
+    }
+
+    public static List<String> mostExpensive(List<Book> books){
+        return  books.stream().filter(book -> book.getPrice()==singleMostExpensive(books).orElseThrow().getPrice()).map(Book::getTitle).collect(Collectors.toList());
     }
 
     /*
@@ -84,5 +87,19 @@ ritorna il massimo rating mai ricevuto tra i libri di un genere che viene dato i
         return books.stream().filter(Book::isEbookAvailable).map(Book::getAuthor).findFirst();
     }
 
+    /*
+    ritorna il numero totale di pagine di tutti i lbri di programmazione
+     */
+
+    public static int totalPagesGenre(List<Book> books, String genre){
+        return books.stream().filter(book -> book.getGenre().equals(genre)).mapToInt(Book::getPages).sum();
+    }
+
+        /*
+        ritorna il massimo rating mai ricevuto tra i libri di un genere che viene dato in input
+        */
+    public static double maxRatingWithinGenre(List<Book> books, String genre){
+        return books.stream().filter(book -> book.getGenre().equals(genre)).mapToDouble(Book::getRating).max().orElseThrow();
+    }
 
 }
