@@ -18,6 +18,11 @@ public class Start {
 
         List<String> cheap = BookStoreOperations.getBelowMaxPrice(books, 20);
         IO.println(cheap);
+
+        List<String> listaascendente= BookStoreOperations.putInAscendinOrder(books);
+        IO.println(listaascendente);
+
+        IO.println(BookStoreOperations.voteAbove(books,5));
     }
 
 
