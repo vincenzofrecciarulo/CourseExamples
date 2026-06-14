@@ -29,5 +29,7 @@ public class Main {
         IO.println("All titles separated by a comma: " + BookService.getAllTitlesSeparatedByComma(books));
         IO.println("Longest title: " + BookService.getLongestTitle(books));
         IO.println("Map by genre: " + BookService.getMapAllBooksByGenre(books));
+        IO.println("Book statistics: " + BookStatistics.getStats(books));
+        IO.println("Second and third priciest books: " + BookService.getSecondAndThirdPriciestBooks(books));
     }
 }

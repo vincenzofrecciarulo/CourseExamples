@@ -121,4 +121,13 @@ public class BookService {
                         (b1, b2) -> b1.getPrice() >= b2.getPrice() ? b1 : b2
                 ));
     }
+
+    // ritorna la lista dei titoli dei tre libri piu costosi, ma ignorando il piu costoso
+    public static List<Book> getSecondAndThirdPriciestBooks(List<Book> books) {
+        return books.stream()
+                .sorted(Comparator.comparingDouble(Book::getPrice).reversed())
+                .skip(1)
+                .limit(2)
+                .toList();
+    }
 }
