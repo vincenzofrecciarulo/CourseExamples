@@ -121,8 +121,22 @@ ritorna l alista di libri ordinati prima per genere alfabetico,
    }
 
    //con una sola istruzione di return...  ritorna la lista degli autori che hanno scritto piu di un libro
-  public Optional<String> getAuthorsThatWroteMultipleBooks (){
-       return books.stream().collect(Collectors.groupingBy(Book::getAuthor));
+  public List<String> getAuthorsThatWroteMultipleBooks (){
+ /*
+      var x = books.stream().collect(Collectors.groupingBy(Book::getAuthor,Collectors.counting()));//Mappa che come chiave il nome dell'autore
+                      x.entrySet()
+                      .stream()
+                      .filter(e->e.getValue()>1)
+                       .map(Map.Entry::getKey)
+                    .toList();
+       */
+       return books.stream().collect(Collectors.groupingBy(Book::getAuthor,Collectors.counting()))
+                                .entrySet().stream()
+                                .filter(e->e.getValue()>1)
+                                .map(Map.Entry::getKey)
+                                 .toList();
+
+
   }
 
  }
