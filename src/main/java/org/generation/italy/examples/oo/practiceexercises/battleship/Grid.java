@@ -25,6 +25,7 @@ public class Grid {
                 battleCamp [c.getRow() + i][c.getColumn()] ='n';
 
 
+
             }
 
         }
