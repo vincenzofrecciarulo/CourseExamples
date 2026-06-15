@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.practiceexercises.battleship;
+package org.generation.italy.examples.oo.battleship;
 
 public class Start {
     static void main() {

@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.practiceexercises.battleship;
+package org.generation.italy.examples.oo.battleship;
 
 import java.util.ArrayList;
 import java.util.List;

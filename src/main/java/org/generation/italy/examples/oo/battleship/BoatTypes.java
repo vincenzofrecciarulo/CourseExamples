@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.practiceexercises.battleship;
+package org.generation.italy.examples.oo.battleship;
 
 public enum BoatTypes {
     BIG(5),MEDIUM(3),SMALL(1);

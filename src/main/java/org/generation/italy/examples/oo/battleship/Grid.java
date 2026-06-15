@@ -1,6 +1,4 @@
-package org.generation.italy.examples.oo.practiceexercises.battleship;
-
-import java.util.HashMap;
+package org.generation.italy.examples.oo.battleship;
 
 public class Grid {
 
