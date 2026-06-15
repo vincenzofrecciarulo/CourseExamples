@@ -117,6 +117,58 @@ public class Library {
                 .collect(Collectors.groupingBy(Book::getGenre, Collectors.maxBy(Comparator.comparingDouble(Book::getPrice))));
     }
 
+    // 16 - creare un metodo che calcola tutte queste statistiche con un solo reduce
+    public Record getStatsRecord(){
+        // totale pagine, totale libri, totale prezzi
+        return books.stream()
+                // metodo terminale che ci da la possibilità di fare queste somme, prendiamo quello con 3 parametri
+                .reduce(
+                        new BookStatistics(0,0,0), // <- creiamo un modello base di partenza
+                        ((bookStatistics, book) -> {
+                            // facendo riferimento al record base creiamo delle nuove variabili
+                            int count = bookStatistics.totalBooks() + 1;
+                            int totalPages = bookStatistics.totalPages() + book.getPages();
+                            double totalPrice = bookStatistics.totalPrice() + book.getPrice();
+                            // essendo un record non possiamo direttamente modificarlo e ne istanziamo uno nuovo
+                            return new BookStatistics(count,totalPrice,totalPages);
+                        }), null
+                );
+    }
+
+    // 17 - ritorna la lista dei titoli dei tre libri piu costosi, ma ignorando il piu costoso
+    public List<String> iTreLibriPiuCostosiSenzaIlPiuCostoso(){
+        return books.stream()
+                .sorted(Comparator.comparingDouble(Book::getPrice).reversed())
+                .skip(1)
+                .limit(3)
+                .map(Book::getTitle)
+                .toList();
+
+    }
+
+    // 18 - ritorna la lista di libri ordinati prima per genere alfabetico, a parita' di genere per rating discendente,
+    // a parita di rating per titolo alfabetico
+    public List<Book> orderedBooks(){
+        return books.stream()
+                .sorted(Comparator.comparing(Book::getGenre)
+                .thenComparing(Book::getRating)
+                        .thenComparing(Book::getTitle))
+                .toList();
+    }
+
+    // - 19 con una sola istruzione di return...  ritorna la lista degli autori che hanno scritto piu di un libro
+    public List<String> autoriConPiuLibri(){
+        return books.stream()
+                .collect(Collectors.groupingBy(Book::getAuthor, Collectors.counting())) // <- creiamo una map<String,Long>
+                .entrySet(). // <- qui prendiamo un set solo <String, Long>
+                stream() // <- qui apriamo un altro strem di quella lista
+                .filter(e -> e.getValue() > 1) // <- filtriamo sull'entry che ha il valore maggiore di uno
+                .map(Map.Entry::getKey) // <- trasformiamo lo stream in stringhe grazie un interfaccia Map.Entry
+                .toList(); // trasformiamo in una lista
+    }
+
+
+
     @Override
     public String toString() {
         return "Library{" +
