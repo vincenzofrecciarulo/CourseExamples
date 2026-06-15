@@ -24,6 +24,7 @@ public class Grid {
             for(int i=0;i<bt.getDimension();i++){
                 battleCamp [c.getRow() + i][c.getColumn()] ='n';
 
+
             }
 
         }
