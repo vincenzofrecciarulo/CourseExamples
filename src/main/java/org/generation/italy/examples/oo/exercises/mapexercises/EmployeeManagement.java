@@ -6,7 +6,7 @@ import java.util.List;
 
 public class EmployeeManagement  {
     static void main() {
-        List<Employee> employers=new ArrayList<Employee>();
+        List<Employee> employers= new ArrayList<>();
         Employee e1=new Employee("Daniele","Sciarrini","male",1234,100);
         Employee e2=new Employee("Vincenzo","Frecciarulo","male",1235,1000);
         Employee e3=new Employee("Pippo","Poco","male",1233,1500);
