@@ -130,4 +130,31 @@ public class BookService {
                 .limit(2)
                 .toList();
     }
+
+    // questi ultimi due li ho presi da Andrea, per studiarli
+
+    // ritorna la lsta di libri ordinati prima per genere alfabetico,
+    // a parità di genere per rating discendente, a parità di rating per titolo alfabetico
+    public List<Book>  sortByGender (List<Book> books){
+        return books.stream().sorted(Comparator.comparing(Book::getGenre)
+                .thenComparing(Book::getRating).thenComparing(Book::getTitle)).toList();
+    }
+
+    // con una sola istruzione di return...  ritorna la lista degli autori che hanno scritto più di un libro
+    public List<String> getAuthorsThatWroteMultipleBooks (List<Book> books){
+      /*
+      var x = books.stream().collect(Collectors.groupingBy(Book::getAuthor,Collectors.counting()));//Mappa che come chiave il nome dell'autore
+                      x.entrySet()
+                      .stream()
+                      .filter(e->e.getValue()>1)
+                       .map(Map.Entry::getKey)
+                    .toList();
+       */
+        return books.stream().collect(Collectors.groupingBy(Book::getAuthor,Collectors.counting()))
+                .entrySet().stream()
+                .filter(e->e.getValue()>1)
+                .map(Map.Entry::getKey)
+                .toList();
+    }
+
 }
