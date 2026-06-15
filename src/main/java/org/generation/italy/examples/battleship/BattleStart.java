@@ -1,19 +1,12 @@
 package org.generation.italy.examples.battleship;
 
-import java.util.Arrays;
-
 public class BattleStart {
-
     public static void main() {
-
-        BattleShip battleShip = new BattleShip();
-
-        battleShip.initialSetUpTable();
-
-        battleShip.setUpShip();
-
-        battleShip.placeShips(battleShip.ships[0],Direction.VERTICAL,1,2);
-
-        System.out.println(Arrays.deepToString(battleShip.table)+"\n");
+        BattleShip battleship = new BattleShip();
+        battleship.initialization();
+        battleship.initShips();
+        battleship.placeShip(battleship.ships[0], Orientation.VERTICAL, 1, 2);
+        battleship.printTable();
     }
+
 }

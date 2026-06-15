@@ -1,94 +1,127 @@
 package org.generation.italy.examples.battleship;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public class BattleShip {
+    final int ROW = 8;
+    final int COL = 9;
 
-    Moves[][] table = new Moves[9][9];
-
+    Moves[][] table = new Moves[ROW][COL];
     Ship[] ships = new Ship[5];
 
-    public void setUpShip(){
-        Ship portaAerei = new Ship(5);
-        Ship corazzata = new Ship(4);
-        Ship incrociatori = new Ship(3);
-        Ship submarine = new Ship(2);
-        Ship yellowSubmarine = new Ship(2);
+    public void initShips() {
 
-        ships[0] = portaAerei;
-        ships[1] = corazzata;
-        ships[2] = incrociatori;
-        ships[3] = submarine;
-        ships[4] = yellowSubmarine;
+        Ship ship1 = new Ship(2);
+        Ship ship2 = new Ship(3);
+        Ship ship3 = new Ship(3);
+        Ship ship4 = new Ship(4);
+        Ship ship5 = new Ship(5);
+
+        ships[0] = ship1;
+        ships[1] = ship2;
+        ships[2] = ship3;
+        ships[3] = ship4;
+        ships[4] = ship5;
+
     }
 
-    public void initialSetUpTable(){
-        for (Moves[] table:table){
-            Arrays.fill(table,Moves.WATER);
+    public void initialization() {
+        for (Moves[] moves : table) {
+            Arrays.fill(moves, Moves.WATER);
         }
     }
 
-    public boolean placeShips(Ship ship, Direction direction, int row, int column){
-        int dim = ship.getDimension();
-        if (row < 0 || column < 0) return false;
-        if (direction == Direction.VERTICAL){
-            if (row + dim > table.length) return false;
-            for (int i = 0; i < dim; i++){
-                if (table[row+i][column] == Moves.SHIP) return false;
-            }
-            int[] rows = new int[dim];
-            int[] cols = new int[dim];
-            for (int i = 0; i < dim; i++){
-                table[row + i][column] = Moves.SHIP;
-                rows[i] = row + i;
-                cols[i] = column;
-            }
-            ship.setRows(rows);
-            ship.setColumns(cols);
-            ship.setDirection(direction);
-            return true;
-        } else {
-            if (column + dim > table[0].length) return false;
-            for (int i = 0; i < dim; i++){
-                if (table[row][column + i] == Moves.SHIP) return false;
-            }
-            int[] rows = new int[dim];
-            int[] cols = new int[dim];
-            for (int i = 0; i < dim; i++){
-                table[row][column + i] = Moves.SHIP;
-                rows[i] = row;
-                cols[i] = column + i;
-            }
-            ship.setRows(rows);
-            ship.setColumns(cols);
-            ship.setDirection(direction);
-            return true;
+    public boolean placeShip(Ship ship, Orientation orientation, int x, int y) {
+        int dim = ship.getSize();
+
+        if (x < 0 || y < 0) {
+            return false;
         }
 
-        /*if (direction==Direction.VERTICAL) {
-            for (int i=0; i<ship.getDimension() ; i++ ) {
-                if(table[row+i][column]==Moves.SHIP){
-                    return;
+        if (orientation == Orientation.VERTICAL) {
+            if (x + dim > table.length) {
+                return false;
+            }
+
+            //controlla se non si sovrappongono
+            for (int i = 0; i < dim; i++) {
+                if (table[x + i][y] == Moves.SHIP) {
+                    return false;
                 }
-                table[row+i][column]=Moves.SHIP;
             }
-        } else {
-            for (int i=0; i<ship.getDimension(); i++) {
-                if(table[row][column+i]==Moves.SHIP){
-                    return;
+
+            //posiziona e registra coordinate
+            int[] rows = new int[dim];
+            int[] col = new int[dim];
+
+            for (int i = 0; i < dim; i++) {
+                table[x + i][y] = Moves.SHIP;
+                rows[i] = x + i;
+                col[i] = y;
+            }
+            ship.setCoordinationX(rows);
+            ship.setCoordinationY(col);
+            ship.setOrientation(orientation);
+            return true;
+        } else { // HORIZONTAL
+            if (y + dim > table[0].length) {
+                return false;
+            }
+
+            for (int i = 0; i < dim; i++) {
+                if (table[x][y + i] == Moves.SHIP) {
+                    return false;
                 }
-                table[row][column+1]=Moves.SHIP;
+            }
+
+            int[] rows = new int[dim];
+            int[] col = new int[dim];
+
+            for (int i = 0; i < dim; i++) {
+                table[x][y + i] = Moves.SHIP;
+                rows[i] = x;
+                col[i] = y + i;
+            }
+            ship.setCoordinationX(rows);
+            ship.setCoordinationY(col);
+            ship.setOrientation(orientation);
+            return true;
+        }
+    }
+
+    public boolean isSunk(Ship ship) {
+        for (int i = 0; i < ship.getCoordinationX().length; i++) {
+            int row = ship.getCoordinationX()[i];
+            int col = ship.getCoordinationY()[i];
+            if (table[row][col] != Moves.HIT) {
+                return false;
             }
         }
-         */
+        return true;
     }
-    public void printTable(){
-        for (int r = 0; r < table.length; r++){
-            for (int c = 0; c < table[r].length; c++) {
-                System.out.print(table[r][c] == Moves.SHIP ? "S" : ". ");
+
+    public void fire(int x, int y) {
+        if (table[x][y] == Moves.SHIP) {
+            table[x][y] = Moves.HIT;
+            for (Ship ship : ships) {
+                if (isSunk(ship)) {
+                    for (int i = 0; i < ship.getCoordinationX().length; i++) {
+                        table[ship.getCoordinationX()[i]][ship.getCoordinationY()[i]] = Moves.SUNK;
+                    }
+                }
+            }
+        } else if (table[x][y] == Moves.WATER) {
+            table[x][y] = Moves.MISS;
+        }
+    }
+
+    public void printTable() {
+        for (Moves[] moves : table) {
+            for (Moves move : moves) {
+                System.out.print(move + " ");
             }
             System.out.println();
         }
+
     }
 }

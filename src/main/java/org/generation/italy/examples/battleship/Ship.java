@@ -1,48 +1,57 @@
 package org.generation.italy.examples.battleship;
 
 public class Ship {
+    private final int size;
+    private Orientation orientation;
+    private int[] coordinationX; // riga
+    private int[] coordinationY; // colonna
 
-    private final int dimension;
-    private int[] rows;
-    private int[] columns;
-    private Direction direction;
-
-    public Ship(int dimension, int[] rows, int[] columns, Direction direction){
-        this(dimension);
-        this.rows=rows;
-        this.columns=columns;
-        this.direction=direction;
+    public Ship(int size) {
+        this.size = size;
     }
 
-    public Ship(int dimension){
-        this.dimension=dimension;
+    public Ship(int size, Orientation orientation, int coordinationX, int coordinationY) {
+        this.size = size;
+        this.orientation = orientation;
+        this.coordinationX = new int[]{coordinationX};
+        this.coordinationY = new int[]{coordinationY};
     }
 
-    public int getDimension() {
-        return dimension;
+    public int getSize() {
+        return size;
     }
 
-    public int[] getRows() {
-        return rows;
+    public Orientation getOrientation() {
+        return orientation;
     }
 
-    public void setRows(int[] rows) {
-        this.rows = rows;
+    public int[] getCoordinationX() {
+        return coordinationX;
     }
 
-    public int[] getColumns() {
-        return columns;
+    public int[] getCoordinationY() {
+        return coordinationY;
     }
 
-    public void setColumns(int[] columns) {
-        this.columns = columns;
+    public void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
     }
 
-    public Direction getDirection() {
-        return direction;
+    public void setCoordinationX(int[] coordinationX) {
+        this.coordinationX = coordinationX;
     }
 
-    public void setDirection(Direction direction) {
-        this.direction = direction;
+    public void setCoordinationY(int[] coordinationY) {
+        this.coordinationY = coordinationY;
     }
+
+    public boolean isOccupied(int x, int y){
+        for(int i = 0; i < coordinationX.length; i++){
+            if(coordinationX[i] == x && coordinationY[i] == y){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

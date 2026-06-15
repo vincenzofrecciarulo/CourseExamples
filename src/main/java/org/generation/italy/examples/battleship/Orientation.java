@@ -1,5 +1,5 @@
 package org.generation.italy.examples.battleship;
 
-public enum Direction {
+public enum Orientation {
     VERTICAL,HORIZONTAL
 }
