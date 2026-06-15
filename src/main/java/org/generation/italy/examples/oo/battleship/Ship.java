@@ -1,13 +1,10 @@
 package org.generation.italy.examples.oo.battleship;
 
 public class Ship {
-    private int size;
+    private final int size;
     private Orientation orientation;
     private int coordinationX; // riga
     private int coordinationY; // colonna
-
-    public Ship() {
-    }
 
     public Ship(int size) {
         this.size = size;
@@ -34,10 +31,6 @@ public class Ship {
 
     public int getCoordinationY() {
         return coordinationY;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
 
     public void setOrientation(Orientation orientation) {

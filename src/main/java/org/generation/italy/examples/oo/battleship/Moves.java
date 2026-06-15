@@ -4,5 +4,6 @@ public enum Moves {
     MISS,
     HIT,
     SUNK,
-    WATER
+    WATER,
+    SHIP
 }
