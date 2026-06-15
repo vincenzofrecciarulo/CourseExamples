@@ -32,7 +32,7 @@ public class Player {
     }
 
 
-//    public void addBoat(BoatTypes bt, Coordinate c, String inputO) {
-//        this.playerGrid.addBoatToGrid(bt,c,inputO);
-//    }
+   public void addBoat(BoatTypes bt, Coordinate c, String inputO) {
+        this.playerGrid.addBoatToGrid(bt,c,inputO);
+    }
 }
