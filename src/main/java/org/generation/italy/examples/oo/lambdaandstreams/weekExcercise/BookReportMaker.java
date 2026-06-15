@@ -106,7 +106,7 @@ public class BookReportMaker {
                 .collect(Collectors.joining(", "));
     }
 
-    //13. Ritorna il titolo più lungo di tutti i libri calcolato tramimite reduce
+    //13. Ritorna il titolo più lungo di tutti i libri calcolato tramite reduce
     public String longerTitle(){
         return books.stream()
                 .map(Book::getTitle)
@@ -177,4 +177,6 @@ public class BookReportMaker {
                 .map(Map.Entry::getKey)
                 .toList();
     }
+
+    //riunione casata, buttare giu una piccola battaglia navale
 }
