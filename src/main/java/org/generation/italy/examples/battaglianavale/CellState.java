@@ -1,7 +1,7 @@
-package org.generation.italy.examples.arrays.Battaglia;
+package org.generation.italy.examples.battaglianavale;
 
 public enum CellState {
-        HIT('X'), MISS('O'), EMPTY('~'), SHIP('S');
+        HIT('X'), MISS('O'), EMPTY('~'), SHIP('S'), ALREADY_HIT('!');
         private final char symbol;
 
     CellState(char symbol) {

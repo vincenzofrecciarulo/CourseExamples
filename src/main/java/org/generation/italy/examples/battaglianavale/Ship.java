@@ -1,8 +1,9 @@
-package org.generation.italy.examples.arrays.Battaglia;
+package org.generation.italy.examples.battaglianavale;
 
 public class Ship {
     private ShipType type;
     private int hits;
+
 
     public Ship(ShipType type) {
         this.hits = 0;

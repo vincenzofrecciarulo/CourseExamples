@@ -1,4 +1,4 @@
-package org.generation.italy.examples.arrays.Battaglia;
+package org.generation.italy.examples.battaglianavale;
 
 import java.util.Arrays;
 import java.util.List;
