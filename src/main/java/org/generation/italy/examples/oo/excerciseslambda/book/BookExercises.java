@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.excerciseslambda;
+package org.generation.italy.examples.oo.excerciseslambda.book;
 
 import java.util.Comparator;
 import java.util.List;
@@ -147,4 +147,5 @@ public class BookExercises {
                 .map(Map.Entry::getKey)
                 .toList();
     }
+
 }

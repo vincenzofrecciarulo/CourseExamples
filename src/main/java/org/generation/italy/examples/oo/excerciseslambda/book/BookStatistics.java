@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.excerciseslambda;
+package org.generation.italy.examples.oo.excerciseslambda.book;
 
 public class BookStatistics {
     int totalBooks;
