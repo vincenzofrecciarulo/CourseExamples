@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.practiceexercises.streamexercise;
+package org.generation.italy.examples.oo.practiceexercises.streamandlambdaexercise.ricky;
 
 
 public class Book{

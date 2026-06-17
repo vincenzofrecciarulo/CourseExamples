@@ -1,4 +1,4 @@
-package org.generation.italy.examples.oo.practiceexercises.streamexercise;
+package org.generation.italy.examples.oo.practiceexercises.streamandlambdaexercise.ricky;
 
 import java.util.*;
 import java.util.stream.Collectors;

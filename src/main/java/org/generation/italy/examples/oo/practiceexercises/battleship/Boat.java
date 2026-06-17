@@ -5,19 +5,14 @@ import java.util.List;
 public class Boat {
     private char direction;
     private BoatTypes type;
-    private List<Coordinate>coordinates;
+
     private boolean present;
 
-    public Boat(char direction, BoatTypes type, List<Coordinate> coordinates) {
-        this.direction = direction;
+    public Boat( BoatTypes type) {
         this.type = type;
-        this.coordinates = coordinates;
         present=true;
     }
 
-    public List<Coordinate> getCoordinates() {
-        return coordinates;
-    }
 
     public BoatTypes getType() {
         return type;

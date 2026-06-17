@@ -29,10 +29,23 @@ public class Player {
     public Player(String name) {
         this.name = name;
         this.boats=new ArrayList<>();
+                boats.add(new Boat(BoatTypes.BIG));
+                boats.add(new Boat(BoatTypes.MEDIUM));
+                boats.add(new Boat(BoatTypes.MEDIUM));
+                boats.add(new Boat(BoatTypes.SMALL));
+                boats.add(new Boat(BoatTypes.SMALL));
+
     }
 
+    public Grid getPlayerGrid() {
+        return playerGrid;
+    }
 
-//    public void addBoat(BoatTypes bt, Coordinate c, String inputO) {
-//        this.playerGrid.addBoatToGrid(bt,c,inputO);
-//    }
+    public String getName() {
+        return name;
+    }
+
+    public List<Boat> getBoats() {
+        return boats;
+    }
 }
