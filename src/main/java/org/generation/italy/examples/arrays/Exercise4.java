@@ -116,4 +116,8 @@ public class Exercise4 {
      */
 
 
+    // // Creare una funzione che riceva in input un array di interi e mi ritorni il numero che appare piu volte
+
+    // // Creare una funzione che riceva in input un array di interi e mi ritorni il numero che appare piu volte
+
 }

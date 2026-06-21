@@ -107,8 +107,9 @@ public class EsercizioStream {
     //    - ritorna tutti i titoli dei libri ordinati per data di pubblicazione (prima i più recenti)
 
     public static List<String> getTitlesOfBooksOrderedByPublicationDate(List<Book> books){
-        return books.stream().sorted(Comparator.comparingInt(Book::getPublicationYear)).map(Book::getTitle).toList();
+        return books.stream().sorted(Comparator.comparingInt(Book::getPublicationYear).reversed()).map(Book::getTitle).toList();
     }
+
 
     //    - ritorna il libro più costoso
 
@@ -141,7 +142,7 @@ public class EsercizioStream {
     //    - ritorna l'autore del primo libro per cui è disponibile un ebook
 
     public static Optional<String> getAnyEbookAuthor(List<Book> books){
-        return books.stream().filter(Book::isEbookAvailable).map(Book::getAuthor).findFirst();
+        return books.stream().filter(Book::isEbookAvailable).findAny().map(Book::getAuthor);
     }
 
     //    - ritorna il numero totale di pagine di tutti i libri di programmazione
@@ -201,9 +202,9 @@ public class EsercizioStream {
 
     // ritorna una mappa in cui la chiave è il genere e il valore è il libro più costoso in quel genere
 
-    public static Map<String, Long> groupByGenreThenCount(List<Book> books){
+    public static Map<String, Optional<Book>> groupByGenreThenCount(List<Book> books){
         return books.stream().collect(Collectors
-                .groupingBy(Book::getGenre, Collectors.counting()));
+                .groupingBy(Book::getGenre, Collectors.maxBy(Comparator.comparing(Book::getPrice))));
     }
 
     /* avendo una classe
@@ -266,9 +267,9 @@ public class EsercizioStream {
         return books.stream()
                 .collect(Collectors.groupingBy(Book::getAuthor, Collectors.counting()))
                 .entrySet().stream()
-                .filter(e-> e.getValue()>1).collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue)).keySet();
+                .filter(e-> e.getValue()>1)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toSet());
     }
     // correzione:
     // usare la classe BookStatistics invece del record

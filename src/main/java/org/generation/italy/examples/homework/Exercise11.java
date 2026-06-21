@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Exercise11 {
+
     /*
     11) Crea una semplice implementazione di gioco di battaglia navale in cui il giocatore gioca contro il computer.
      */
@@ -206,9 +207,9 @@ public class Exercise11 {
             IO.println("=====================");
             IO.println("E' il turno del nemico");
 
-            if(cpuBoard[cellY][cellX] != 0){
+            if(playerBoard[cellY][cellX] != 0){
                 IO.println("Bersaglio colpito!");
-                cpuBoard[cellY][cellX] = 0;
+                playerBoard[cellY][cellX] = 0;
             }else{
                 IO.println("Acqua!");
             }
