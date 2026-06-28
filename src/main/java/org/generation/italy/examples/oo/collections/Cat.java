@@ -1,5 +1,5 @@
 package org.generation.italy.examples.oo.collections;
-
+//aggiunto per testare una commit
 import java.time.LocalDate;
 
 public class Cat implements Comparable<Cat>{
