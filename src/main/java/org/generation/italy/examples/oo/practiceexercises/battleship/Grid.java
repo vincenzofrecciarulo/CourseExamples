@@ -1,8 +1,5 @@
 package org.generation.italy.examples.oo.practiceexercises.battleship;
 
-import java.util.Arrays;
-import java.util.HashMap;
-
 public class Grid {
 
     private final static int dim=10;
@@ -35,41 +32,46 @@ public class Grid {
         }
     }
 
-    public boolean chooseDirectionAndPlaceBoat(BoatTypes bt,char direction,char row,int col) {
+    public boolean placeBoat(Player p,BoatTypes bt, String direction, char row, int col) {
         int r = row - 'A';
-        boolean isNotValid=true;
-        while (isNotValid) {
-            switch (direction) {
-                case 'V':
+        int c=col-1;
+        boolean isValid=false;
+
+            switch (direction.toUpperCase()) {
+                case "V":
                     for (int i = 0; i < bt.getDimension(); i++) {
-                        if (!isFreeCell(r + i, col))
-                            return isNotValid;
+                        if ((r+i)>=dim||!isFreeCell(r + i, c)) {
+                            IO.println("You cannot place it here!!");
+                            return false;
+                        }
                     }
                     for (int k = 0; k < bt.getDimension(); k++) {
-                        battleCamp[r + k][col] = 'N';
-                    }
+                        battleCamp[r + k][c] = 'N';
+                        }
+                    IO.println("Boat placed successfully");
+                    isValid=true;
                     break;
-                case 'H':
+                case "H":
                     for (int i = 0; i < bt.getDimension(); i++) {
-                        if (!isFreeCell(r, col + i))
-                            return isNotValid;
+                        if ((c+i)>=dim||!isFreeCell(r , c + i)) {
+                            IO.println("You cannot place it here!!");
+                            return false;
+                        }
                     }
                     for (int j = 0; j < bt.getDimension(); j++) {
-                        battleCamp[r][col + j] = 'N';
+                                battleCamp[r][c + j] = 'N';
                     }
+                    IO.println("Boat placed successfully");
+                    isValid=true;
                     break;
                 default:
                     IO.println("INPUT NOT VALID");
+                    isValid=false;
             }
-            isNotValid=true;
-            return isNotValid;
-        }
+        return isValid;
     }
 
     public boolean isFreeCell(int rows,int column){
-        if(rows<0||rows > dim||column<0||column > dim ){
-            return false;
-        }
         return battleCamp[rows][column]=='?';
     }
 

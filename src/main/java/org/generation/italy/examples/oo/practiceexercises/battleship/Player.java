@@ -26,15 +26,24 @@ public class Player {
     private Grid playerGrid;
     private Grid attackGrid;
 
-    public Player(String name) {
+    public Player(String name,List<Boat>boats,Grid playerGrid) {
         this.name = name;
         this.boats=new ArrayList<>();
-                boats.add(new Boat(BoatTypes.BIG));
-                boats.add(new Boat(BoatTypes.MEDIUM));
-                boats.add(new Boat(BoatTypes.MEDIUM));
-                boats.add(new Boat(BoatTypes.SMALL));
-                boats.add(new Boat(BoatTypes.SMALL));
+        this.playerGrid=playerGrid;
+        populateBoats();
+    }
 
+    private void populateBoats() {
+        boats.add(new Boat(BoatTypes.BIG));
+        boats.add(new Boat(BoatTypes.MEDIUM));
+        boats.add(new Boat(BoatTypes.MEDIUM));
+        boats.add(new Boat(BoatTypes.SMALL));
+        boats.add(new Boat(BoatTypes.SMALL));
+
+    }
+
+    public void setPlayerGrid(Grid playerGrid) {
+        this.playerGrid = playerGrid;
     }
 
     public Grid getPlayerGrid() {

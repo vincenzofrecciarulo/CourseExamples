@@ -1,6 +1,7 @@
 package org.generation.italy.examples.oo.practiceexercises.battleship;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Start {
 
@@ -8,25 +9,22 @@ public class Start {
     private Player bot;
 
 
-    public Start(Player player, Player bot) {
-        this.player = player;
-        this.bot = bot;
-    }
-
     public void start(){
         IO.println("======WELCOME IN THE BATTLESHIPGAME======");
         String name=IO.readln("Insert your name...");
-        Player player1=new Player(name);
-        System.out.printf("Welcome,%s ,are u ready??",name);
-        for(Boat b: player1.getBoats()){
-           String[]coordinate=getCoordinate();
-           char dir=getDirection();
-           char row =getRow(coordinate);
-           int col=getCol(coordinate);
-           player1.getPlayerGrid().chooseDirectionAndPlaceBoat(b.getType(),dir,row,col);
+        List<Boat>boats=new ArrayList<>();
+        Grid playerGrid=new Grid();
+        Player player1=new Player(name,boats,playerGrid);
+        player1.setPlayerGrid(playerGrid);
+        System.out.printf("Welcome,%s ,are u ready??%n",name);
+            for(Boat b: player1.getBoats()) {
+                player1.getPlayerGrid().printBattleCamp();
+                String[] coordinate = getCoordinate();
+                String dir = getDirection().toString();
+                char row = getRow(coordinate);
+                int col = getCol(coordinate);
+                player1.getPlayerGrid().placeBoat(player1, b.getType(), dir, row, col);
         }
-
-
     }
     public String[] getCoordinate(){
         String rowString="";
@@ -34,12 +32,11 @@ public class Start {
         boolean validPosition=false;
         while(!validPosition) {
             rowString = IO.readln("Choose your row.. ex(A-J)");
-            colString = IO.readln("Chose your column..ex(1-10");
-
+            colString = IO.readln("Chose your column..ex(1-10)");
             try {
                 int col=Integer.parseInt(colString);
-                char row=rowString.charAt(0);
-                if(row>= 'A' && row<= 'J' && col >= 1 && col<=10){
+                char row=rowString.toUpperCase().charAt(0);
+                if(row >= 'A' && row<= 'J' && col >= 1 && col<=10){
                     validPosition=true;
                 }else {
                     IO.println("ERROR WRONG INPUT");
@@ -49,17 +46,17 @@ public class Start {
             }
 
         }
-        return new String[]{rowString,colString};
+        return new String[]{rowString.toUpperCase(),colString};
     }
 
-    public char getDirection() {
+    public Object getDirection() {
         boolean validDirection = false;
-        char dir='N';
+        String dir="N";
         while (!validDirection) {
             String d = IO.readln("Choose direction H/V..");
             if(d.equalsIgnoreCase("H")||d.equalsIgnoreCase("V")){
                 validDirection=true;
-                dir=d.charAt(0);
+                dir= String.valueOf(d.charAt(0));
             }else{
                 IO.println("INVALID DIRECTION,RETRY..");
             }
@@ -74,3 +71,4 @@ public class Start {
         return Integer.parseInt(part[1]);
     }
 }
+
