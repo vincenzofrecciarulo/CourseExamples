@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostgresConnectionExample {
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/tropico";
-    private static final String DB_USER = "postgresMaster";
-    private static final String DB_PASSWORD = "goPostgresGo";
+    static final String DB_URL = "jdbc:postgresql://localhost:5432/Tropico";
+    static final String DB_USER = "postgresMaster";
+    static final String DB_PASSWORD = "goPostgresGo";
     public static String ALL_CITIZENS = """
               select first_name, last_name, gender, age, salary, education_level
               from citizen;
