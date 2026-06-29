@@ -16,6 +16,11 @@ public class PostgresConnectionExample {
             System.out.println("✓ Successfully connected to PostgreSQL!");
             System.out.println("Database: " + connection.getCatalog());
             System.out.println("Schema: " + connection.getSchema());
+            IO.println(connection.getClass().getName());
+
+            // factory method pattern
+            //Statement statement =
+
         } catch (SQLException e) {
             System.err.println("✗ Failed to connect to PostgreSQL");
             System.err.println("Error Code: " + e.getErrorCode());
