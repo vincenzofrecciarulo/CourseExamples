@@ -34,8 +34,13 @@ public class StudentRepository {
 
 
 
-    public Student findByID(long id){
-        return students.get(id);
+    public Optional<Student> findByID(long id){
+//        Student maybe = students.get(id);
+//        if (maybe == null){
+//            return Optional.empty();
+//        }
+//        return Optional.of(maybe);
+        return Optional.ofNullable(students.get(id));
     }
 
     public List<Student> findAllOrderedByAge (){
@@ -53,6 +58,20 @@ public class StudentRepository {
             }
         }
         return all;
+    }
+
+    public List<Student> findAllOrderedById() {
+        List<Student> result = new ArrayList<>(students.values());
+        // questa sintassi crea una nuova classe che implementa Comparator, ne istanzia un oggetto e overrida compare
+        // lo svantaggio di questo approccio è che non possiamo chiamare questo comparatore altrove, e dovremmo riscriverlo
+        result.sort(new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+//                return (int)(o1.getId() - o2.getId());
+                return Long.compare(o1.getId(), o2.getId());
+            }
+        });
+        return result;
     }
 
     public void addStudent(Student s) throws StudentAlreadyExistsException {
