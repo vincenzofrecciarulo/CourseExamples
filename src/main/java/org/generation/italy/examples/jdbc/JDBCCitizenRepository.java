@@ -32,6 +32,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
             """
             INSERT INTO citizen(first_name, last_name, gender, age, education_level, salary)
             VALUES (?, ?, ?, ?, ?, ?)
+            -- RETURNING citizen_id; questo però va solo per postgres
             """;
 
     @Override
