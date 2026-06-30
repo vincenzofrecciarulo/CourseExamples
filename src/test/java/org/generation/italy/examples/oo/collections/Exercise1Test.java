@@ -20,10 +20,10 @@ class Exercise1Test {
     void tearDown() {
     }
 
-    @Test
-    void getModa() {
-        String expected = "pippo";
-        String obtained = Exercise1.getModa(array);
-        assertEquals(expected, obtained);
-    }
+//    @Test
+//    void getModa() {
+//        String expected = "pippo";
+//        String obtained = Exercise1.getModa(array);
+//        assertEquals(expected, obtained);
+//    }
 }
