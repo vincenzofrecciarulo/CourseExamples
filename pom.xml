@@ -27,6 +27,14 @@
             <artifactId>postgresql</artifactId>
             <version>42.7.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.generation.library</groupId>
+            <artifactId>library</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>C:/Dev/Java/Project/Libraries/library.jar</systemPath>
+        </dependency>
     </dependencies>
 
 </project>
