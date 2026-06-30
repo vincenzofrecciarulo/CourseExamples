@@ -40,5 +40,10 @@ public class Coder {
 
     public double getSalary()        {return salary;}
     public char getGender()          {return gender;}
+    public String getFullName()      {return name+ " " + surname;}
+    public LocalDate getHiredate()     {return hiredate;}
 
+    public List<String> getLanguagesKnown() {
+        return languagesKnown;
+    }
 }
