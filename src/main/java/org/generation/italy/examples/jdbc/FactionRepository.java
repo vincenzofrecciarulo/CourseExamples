@@ -8,7 +8,7 @@ public interface FactionRepository {
 
     public List<Faction> getAllFactions() throws DataException;
 
-    public Optional<Faction> getFactionByName(String name) throws DataException;
+    public Optional<Faction> getFactionById(int id) throws DataException;
     //metto optional perché potrei ricevere nome di faction che non esiste
     //se come output lasciassi faction ritornerei un null potenzialmente pericoloso,
     // meglio ritornare optional vuoto
