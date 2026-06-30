@@ -33,6 +33,12 @@ public class JDBCFactionRepository implements FactionRepository{
             SET name = ?, description = ?
             WHERE id = ?
             """;
+
+    private final static String ADD_FACTION =
+            """
+            INSERT INTO faction (name, description)
+            VALUES (?, ?)
+            """;
     //anche se qua stiamo mettendo tutte le cose e potremmo quindi fare con * meglio
     //scriverli con l'ordine che vogliamo perché se si cambiassero poi le colonne
     // cambierebbe il risultato
@@ -109,7 +115,14 @@ public class JDBCFactionRepository implements FactionRepository{
 
     @Override
     public void addFaction(Faction faction) throws DataException {
-
+        try(PreparedStatement ps = con.prepareStatement(ADD_FACTION)){
+            ps.setString(1,faction.getName());
+            ps.setString(2,faction.getDescription());
+            ps.executeUpdate();
+        }
+        catch (SQLException e){
+            throw new DataException(e.getMessage(),e);
+        }
     }
 
     @Override
