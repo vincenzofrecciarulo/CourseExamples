@@ -11,165 +11,127 @@ public class ReportMaker {
     public ReportMaker(List<Coder> coders) {
         this.coders = coders;
     }
+    //crea un metodo che mi restituisce la media di tutti gli stipendi dei dipendenti senior e maschi nella lista coders
 
-    // metodo che restituisce la somma di tutti gli stipendi dei Coder.
-
-    public double vintageSeniorMaleAverageSalary(){
+    public double vintageSeniorMaleAverageSalary() {
         double sum = 0;
         int count = 0;
-
-        for (Coder c : coders){
-            if(c.getGender() == 'm' && c.isSenior()){
+        for (Coder c : coders) {
+            if (c.isMale() && c.isSenior()) {
                 sum += c.getSalary();
                 count++;
             }
         }
         return sum / count;
     }
-
-  /*  public double seniorMaleAverageSalary(){
-        return coders.stream()
-                .filter((c) -> c.isMale() && c.isSenior())
-                .mapToDouble(Coder::getSalary)
-                .average().orElse(0.0);
+//    public double seniorMaleAverageSalary() {
+//        return coders.stream().filter(c-> c.isMale() && c.isSenior())
+//                .mapToDouble(Coder::getSalary).average().orElse(0.0);
+//    }
+//    public double seniorFemaleAverageSalary() {
+//        return coders.stream().filter(c-> !c.isMale() && c.isSenior())
+//                .mapToDouble(Coder::getSalary).average().orElse(0.0);
+//    }
+    public double seniorAverageSalary(boolean forMales) {
+        return coders.stream().filter(c-> forMales? c.isMale() : !c.isMale() && c.isSenior())
+                .mapToDouble(Coder::getSalary).average().orElse(0.0);
     }
-
-    public double seniorFemaleAverageSalary(){
-        return coders.stream()
-                .filter((c) -> !c.isMale() && c.isSenior())
-                .mapToDouble(Coder::getSalary)
-                .average().orElse(0.0);
-    }*/
-
-    public double seniorAverageSalary(boolean forMales){
-        return coders.stream()
-                .filter((c) -> forMales ? c.isMale() : !c.isMale() && c.isSenior())
-                .mapToDouble(Coder::getSalary)
-                .average().orElse(0.0);
+    public double seniorAverageSalaryLambda (Predicate<Coder> coderFilter){
+        return coders.stream().filter(coderFilter)
+                              .filter(Coder::isSenior)
+                              .mapToDouble(Coder::getSalary)
+                              .average().orElse(0.0);
     }
-
-    public double seniorAverageSalaryLambda(Predicate<Coder> coderFilter){
-        return coders.stream()
-                .filter(coderFilter)
-                .filter(Coder::isSenior)
-                .mapToDouble(Coder::getSalary)
-                .average().orElse(0.0);
+    public double seniorAverageSalaryLambdaForAge (int age){
+        return seniorAverageSalaryLambda(c->c.getAge()>age);
     }
+    public boolean worldIsInOrder() {
+        double minMale = coders.stream().filter(Coder::isMale)
+                               .mapToDouble(Coder::getSalary)
+                               .min().orElse(0.0);
 
-    public double seniorAverageSalaryLambdaForAge(int age){
-        return seniorAverageSalaryLambda(c -> c.getAge() > age);
-    }
-
-    public boolean worldIsInOrder(){
-        double minMale = coders.stream()
-                .filter(Coder::isMale)
-                .mapToDouble(Coder::getSalary)
-                .min().orElse(0.0);
-
-        if(minMale == 0){
+        if (minMale == 0) {
             return true;
         }
 
-        double maxFemale = coders.stream()
-                .filter(Coder::isFemale)
-                .mapToDouble(Coder::getSalary)
-                .min().orElse(0.0);
+        double maxFemale = coders.stream().filter(c -> !c.isMale())
+                                 .mapToDouble(Coder::getSalary)
+                                 .max().orElse(0.0);
 
-        return minMale >= maxFemale;
+        return minMale>=maxFemale;
     }
-
-    // creare un metodo che ritorni un nome e cognome dei coder ordinati per salario
-
-    public List<String> getNamesOrderedBySalaryDescend(){
-        //return coders.stream().sorted((c1, c2) -> Double.compare(c2.getSalary() - c1.getSalary()))
-        return coders.stream()
-                .sorted(Comparator.comparingDouble(Coder::getSalary).reversed())
-                .map(Coder::getFullName)
-                .toList();
+    //crea un metodo che ritorna nome e cognome di tutti i coder, ordinati per il salario
+    public List<String> getNamesOrderedBySalaryDescendig(){
+       // return coders.stream().sorted((c1, c2) -> Double.compare(c2.getSalary(), c1.getSalary()))
+        return coders.stream().sorted(Comparator.comparingDouble(Coder::getSalary).reversed())
+                              .map(Coder::getFullName)
+                              .toList();
     }
-
-    // metodo che ritorna il coder più giovane
-
- /*   public Optional<Coder> getYoungerCoder(){
-        return coders.stream()
-                .sorted(Comparator.comparingDouble(Coder::getAge))
-                .findFirst();
-
-    }  */
-
+    //crea una funzione che ritorna il coder più giovane
+    public Optional<Coder> getYoungerCoder(){
+        return coders.stream().sorted(Comparator.comparingInt(Coder::getAge))
+                              .findFirst();
+    }
     public Optional<Coder> getYoungerCoder2(){
-        return coders.stream()
-                .min(Comparator.comparingInt(Coder::getAge));
-
+        return coders.stream().min(Comparator.comparingInt(Coder::getAge));
     }
-
-    // metodo che trova il primo sviluppatore assunto dopo una certa data che il metodo riceve in input
-
-    public Optional<Coder> getFirstNameByDate(LocalDate date){
-        return coders.stream()
-                .filter(c -> c.getHiredate().isAfter(date))
-                .min(Comparator.comparing(Coder::getHiredate));
+    //crea un metodo che trova il primo coder assunto dopo una certa data, che il metodo riceve in input
+    public Optional<Coder> getFirstCoderFrom(LocalDate date){
+        return coders.stream().filter(c->c.getHiredate().isAfter(date))
+                              .min(Comparator.comparing(Coder::getHiredate));
     }
-
-    // metodo che ritorna la lista di tutti i linguaggi conosciute dai miei coder senza ripetizioni
-
+    //creo un metodo che ritorna la lista di tutti i libguaggi conosciuti dai coder, senza ripetizioni
     public Set<String> getAllLanguages(){
-        var s = coders.stream()
-                .flatMap(c -> c.getLanguagesKnows().stream());
+        var s = coders.stream().flatMap(c->c.getLanguagesKnown().stream());
+        //return s.distinct().toList();
         return s.collect(Collectors.toSet());
     }
-
-    public int javaCoders(){
-       /* return (int) coders.stream()
-                .filter(c -> g.getLanguagesKnows().contains("Java"))
-                .count();*/
-        return (int) coders.stream()
-                .flatMap(c -> c.getLanguagesKnows().stream())
-                .filter(s -> s.equals("Java"))
-                .count();
+    public int howManyJavaCoders(){
+//        return (int) coders.stream().filter(c->c.getLanguagesKnown().contains("java"))
+//                              .count();
+        return (int) coders.stream().flatMap(c->c.getLanguagesKnown().stream())
+                              .filter(s-> s.equals("java"))
+                              .count();
     }
-
-    public boolean knowsPhytonJava(){
-        return coders.stream()
-                .anyMatch(c -> c.knowsAll("java", "phyton"));
+    public boolean someoneKnowsJavaPython(){
+//        return coders.stream().filter(c->c.getLanguagesKnown().contains("java") && c.getLanguagesKnown().contains("Python"))
+//                              .findAny().isPresent();
+        return coders.stream().anyMatch(c->c.knowsAll("java", "python"));
     }
-
-    // metodo che raggruppi i programmatori per sesso
+    //creo una funzione che raggruppi gli studenti per genere
     public Map<Character, List<Coder>> groupBySex(){
-        return coders.stream()
-                .collect(Collectors.groupingBy(Coder::getGender));
+        return coders.stream().collect(Collectors.groupingBy(Coder::getGender));
     }
-
-    // metodo che ritorna una mappa dei sessi e del numero di sviluppatori appartenenti a tale sesso
+    //creo un metodo che ritorna una mappa dei sessi e del numero di sviluppatori che hanno quel sesso;
     public Map<Character, Long> countBySex(){
-        return coders.stream()
-                .collect(Collectors.groupingBy(Coder::getGender, Collectors.counting()));
+        return coders.stream().collect(Collectors.groupingBy(Coder::getGender, Collectors.counting()));
+    }
+    //crea un metodo che in una sola iterazione mi crei un oggetto SalaryReport che contenga il totale dei salari
+    // per maschi e per femmine
+    public SalaryReport calcSalaryReport(){
+//        SalaryReport sr = new SalaryReport();
+//        for (Coder c : coders){
+//            if (c.isMale()){
+//                sr.addToMaleSalary(c.getSalary());
+//            } else {
+//                sr.addToFemaleSalary(c.getSalary());
+//            }
+//        }
+//        return sr;
+        return coders.stream().reduce(
+                new SalaryReport(),
+                (report, coder) -> {
+                    if(coder.isMale()){
+                        report.addToMaleSalary(coder.getSalary());
+                    } else {
+                        report.addToFemaleSalary(coder.getSalary());
+                    }
+                    return report;
+                } ,null
+        );
+
     }
 
-    // metodo con una sola iterazione mi crea un report che contiene il tot dei salari per maschi e femmine
-    public SalaryReport calculateSalaryReport(){
-       /* SalaryReport sr = new SalaryReport();
-        for (Coder c : coders){
-            if(c.isMale()){
-                sr.addToMaleSalary(c.getSalary());
-            } else{
-                sr.addToFemaleSalary(c.getSalary());
-            }
-        }
-        return sr;*/
 
-        return coders.stream()
-                .reduce(
-                        new SalaryReport(),
-                        (report, coder) -> {
-                            if(coder.isMale()){
-                                report.addToMaleSalary(coder.getSalary());
-                            } else{
-                                report.addToFemaleSalary(coder.getSalary());
-                            }
-                            return report;
-                        }, null
-                );
-    }
 
 }

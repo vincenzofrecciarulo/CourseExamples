@@ -4,27 +4,24 @@ public class SalaryReport {
     private double totMaleSalary;
     private double totFemaleSalary;
 
-    public SalaryReport() {
-    }
-
     public SalaryReport(double totMaleSalary, double totFemaleSalary) {
         this.totMaleSalary = totMaleSalary;
         this.totFemaleSalary = totFemaleSalary;
     }
 
-    public double getTotMaleSalary() {
-        return totMaleSalary;
+    public SalaryReport() {
+
     }
 
-    public double getTotFemaleSalary() {
-        return totFemaleSalary;
+    public void addToMaleSalary (double amount){
+        totMaleSalary+=amount;
     }
 
-    public void addToMaleSalary(double amount){
-        totMaleSalary += amount;
+    public void addToFemaleSalary (double amount){
+        totFemaleSalary+=amount;
     }
 
-    public void addToFemaleSalary(double amount){
-        totFemaleSalary += amount;
-    }
+    public double getTotMaleSalary() {return totMaleSalary;}
+
+    public double getTotFemaleSalary() {return totFemaleSalary;}
 }
