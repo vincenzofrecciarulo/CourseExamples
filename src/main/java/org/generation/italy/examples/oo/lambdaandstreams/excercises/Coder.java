@@ -3,6 +3,7 @@ package org.generation.italy.examples.oo.lambdaandstreams.excercises;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Coder {
@@ -24,6 +25,16 @@ public class Coder {
         this.hiredate = hiredate;
         this.languagesKnown = new ArrayList<>(List.of(languages));
     }
+    //crea un metodo che prende un var args di stringhe in input che torna true se li conosce tutti
+    public boolean knowsAll(String... languages){
+//        for (String s : languages){
+//            if (!languagesKnown.contains(s)){
+//                return false;
+//            }
+//        }
+//        return true;
+         return Arrays.stream(languages).allMatch(l->languagesKnown.contains(l));
+    }
 
     public int getWorkingYears(){
         return (int) ChronoUnit.YEARS.between(hiredate, LocalDate.now());
@@ -38,12 +49,9 @@ public class Coder {
         return (int) ChronoUnit.YEARS.between(birthdate, LocalDate.now());
     }
 
-    public double getSalary()        {return salary;}
-    public char getGender()          {return gender;}
-    public String getFullName()      {return name+ " " + surname;}
-    public LocalDate getHiredate()     {return hiredate;}
-
-    public List<String> getLanguagesKnown() {
-        return languagesKnown;
-    }
+    public LocalDate getHiredate()   { return hiredate; }
+    public String getFullName()      { return name + " " + surname; }
+    public double getSalary()        { return salary; }
+    public char getGender()          { return gender; }
+    public List<String> getLanguagesKnown() {return languagesKnown;}
 }
