@@ -1,14 +1,17 @@
 package org.generation.italy.examples.jdbc;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 public interface CitizenRepository {
 
-    List<Citizen> findAll() throws SQLException;
-    List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws SQLException;
+    List<Citizen> findAll() throws DataException;
+    List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException;
 
-    boolean updateCitizen(Citizen citizen) throws SQLException;
-    boolean deleteCitizen(int citizenId) throws SQLException;
-    Citizen createCitizen(Citizen newCitizen) throws SQLException;
+    boolean updateCitizen(Citizen citizen) throws DataException;
+    boolean deleteCitizen(int citizenId) throws DataException;
+    Citizen createCitizen(Citizen newCitizen) throws DataException;
+
+    void test() throws SQLException, DataException;
 }
