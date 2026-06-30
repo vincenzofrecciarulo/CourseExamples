@@ -21,16 +21,37 @@ public class JDBCFactionRepository implements FactionRepository{
             SELECT id, name, description
             FROM faction
             """;
-    //anche se qua stiamo mettendo tutte le cose e potremmo quindi fare con * meglio
-    //scriverli con l'ordine che vogliamo perché se si cambiassero poi le colonne
-    // cambierebbe il risultato
 
-    private final static String GET_FACTION_BY_NAME=
+    private static final String GET_NAMES =
             """
             SELECT id, name, description
             FROM faction
-            WHERE name = ?
+            WHERE ?
             """;
+
+    private static final String UPDATE_FACTION =
+            """
+                 UPDATE faction
+                SET name = ?,
+                description = ?
+                WHERE id = ?    
+            """;
+
+
+    private static final String ADD_FACTION =
+            """
+                    INSERT INTO faction(id, name, description)
+                    VALUES(?, ?, ?)
+                    """;
+
+    private static final String REMOVE_FACTION_BY_ID =
+            """
+                    DELETE FROM faction
+                    WHERE id = ?
+                    """;
+    //anche se qua stiamo mettendo tutte le cose e potremmo quindi fare con * meglio
+    //scriverli con l'ordine che vogliamo perché se si cambiassero poi le colonne
+    // cambierebbe il risultato
 
 
     public JDBCFactionRepository (Connection con){
@@ -69,37 +90,64 @@ public class JDBCFactionRepository implements FactionRepository{
 
     @Override
     public Optional<Faction> getFactionByName(String name) throws DataException {
-        try(PreparedStatement pst = con.prepareStatement(GET_FACTION_BY_NAME);
-            ResultSet rs = pst.executeQuery()){
-            pst.setString(1, name);
+        try(PreparedStatement pt = con.prepareStatement(GET_NAMES)){
+            pt.setString(1, name);
+            Optional<Faction> of = Optional.empty();
 
-            if(rs.next()){
-                return Optional.of(new Faction(
-                           rs.getInt("id"),
-                           rs.getString("name"),
-                           rs.getString("description")));
+            try(ResultSet rs = pt.executeQuery()){
+                if(rs.next()){
+                    Faction faction = new Faction(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"));
+                    of = Optional.of(faction);
+                }
             }
+            return of;
 
-            return Optional.empty();
-        }
-        catch(SQLException e){
+        }catch (SQLException e){
             throw new DataException(e.getMessage(),e);
         }
     }
 
     @Override
     public boolean updateFaction(Faction faction) throws DataException {
-        // try(Statement st =  )
-        return false;
+
+        try(PreparedStatement pt = con.prepareStatement(UPDATE_FACTION)){
+            pt.setString(1, faction.getName());
+            pt.setString(2, faction.getDescription());
+            pt.setInt(3, faction.getId());
+            return pt.executeUpdate() == 1;
+
+        } catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
+        }
     }
 
     @Override
     public void addFaction(Faction faction) throws DataException {
 
+        try(PreparedStatement pt = con.prepareStatement(ADD_FACTION)) {
+            pt.setInt(1, faction.getId());
+            pt.setString(2, faction.getName());
+            pt.setString(3, faction.getDescription());
+            pt.executeUpdate();
+
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
+        }
+
     }
 
     @Override
     public boolean removeFactionById(int id) throws DataException {
-        return false;
+
+        try(PreparedStatement pt = con.prepareStatement(REMOVE_FACTION_BY_ID)){
+            pt.setInt(1, id);
+            return pt.executeUpdate() == 1;
+
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
+        }
     }
 }
