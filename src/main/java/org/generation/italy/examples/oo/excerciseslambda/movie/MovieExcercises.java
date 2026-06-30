@@ -1,5 +1,6 @@
 package org.generation.italy.examples.oo.excerciseslambda.movie;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,13 +28,13 @@ public class MovieExcercises {
     }
     public List<String> titlesByYear(List<Movie> movies){
         return movies.stream()
-                .sorted((m1, m2) -> Integer.compare(m1.getReleaseYear(), m2.getReleaseYear()))
+                .sorted(Comparator.comparingInt(Movie::getReleaseYear))
                 .map(Movie::getTitle)
                 .toList();
     }
     public Optional<Movie> getHighestBoxOffice(List<Movie> movies) {
         return movies.stream()
-                .max((m1, m2) -> Double.compare(m1.getBoxOfficeMillions(), m2.getBoxOfficeMillions()));
+                .max(Comparator.comparingDouble(Movie::getBoxOfficeMillions));
 
     }
     public boolean allRatedAbove (List<Movie> movies, double treshold){
