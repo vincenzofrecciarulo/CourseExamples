@@ -18,8 +18,8 @@ class FileCitizenRepositoryTest {
     private FileCitizenRepository repo;
     @BeforeEach
     void setUp() {
-        c = new Citizen(1,"Gianni","Sperti",'M',33,
-                1200,"College");
+        c = new Citizen(4,"Lucia","Sperti",'F',33,
+                1400,"College");
         Path path = Path.of("data","test_citizens.csv");
         try {
             Files.createDirectories(path.getParent());
@@ -53,7 +53,7 @@ class FileCitizenRepositoryTest {
     @Test
     void findBySexAndEducationLevel() {
         try {
-            List<Citizen> allCitizens = repo.findAll();
+            List<Citizen> allCitizens = repo.findBySexAndEducationLevel('M', "College");
             for(Citizen c : allCitizens){
                 System.out.println(c);
             }
