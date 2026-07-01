@@ -1,20 +1,43 @@
 package org.generation.italy.examples.jdbc.mine;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class FileCitizenRepository implements CitizenRepository {
 
-    private static final String FILE_PATH = "data/Citizen.csv";
+    private final String filePath;
+
+    public FileCitizenRepository(String filePath) {
+        this.filePath = filePath;
+    }
 
     @Override
     public List<Citizen> findAll() throws DataException {
-        return List.of();
+        List<Citizen> citizens = new ArrayList<>();
+        try(BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+                Citizen citizen = new Citizen(
+                        Integer.parseInt(fields[0]),
+                        fields[1],
+                        fields[2],
+                        fields[3].charAt(0),
+                        Integer.parseInt(fields[4]),
+                        fields[5],
+                        Double.parseDouble(fields[6]),
+                        fields[7],
+                        Boolean.parseBoolean(fields[8]),
+                        Integer.parseInt(fields[9])
+                );
+                citizens.add(citizen);
+            }
+            return citizens;
+        } catch (IOException e) {
+            throw new DataException(e.getMessage(), e);
+        }
     }
 
     @Override
@@ -39,7 +62,7 @@ public class FileCitizenRepository implements CitizenRepository {
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        try(FileWriter fw = new FileWriter(FILE_PATH, true)) {
+        try(FileWriter fw = new FileWriter(filePath, true)) {
             int nextId = this.getNextId();
             newCitizen.setId(nextId);
             String citizen = newCitizen.getId() +","+
@@ -60,11 +83,7 @@ public class FileCitizenRepository implements CitizenRepository {
     }
 
     private int getNextId() throws DataException {
-        File file = new File(FILE_PATH);
-        if (!file.exists()) {
-            return 1;
-        }
-        try(BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+        try(BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             int maxId = 0;
             while ((line = reader.readLine()) != null) {
