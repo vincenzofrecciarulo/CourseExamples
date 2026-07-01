@@ -1,12 +1,13 @@
 package org.generation.italy.examples.jdbc;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 // questa è l'implementazione di citizen repository che mantiene i dati su un file in formato CSV (Comma-Separated-Values)
 
@@ -14,13 +15,36 @@ import java.util.List;
 
 public class FileCitizenRepository implements CitizenRepository{
 
+     private File citizenFile;
 
-
+    public FileCitizenRepository(File citizenFile) {
+        this.citizenFile = citizenFile;
+    }
 
 
     @Override
     public List<Citizen> findAll() throws DataException {
-        return List.of();
+        try(BufferedReader br = new BufferedReader(new FileReader(citizenFile))) {
+           List<Citizen> citizenList = new ArrayList<>();
+            String line = null;
+            while((line=br.readLine()) != null){
+                Citizen citizen = this.fromCsvLine(line);
+                citizenList.add(citizen);
+            }
+            return citizenList;
+
+        }catch (IOException e){
+            throw new DataException(e.getMessage(), e);
+        }
+
+    }
+
+    public List<Citizen> findAll2() throws DataException {
+        try(Stream<String> lineStream = Files.lines(citizenFile.toPath())){
+           return lineStream.map(this::fromCsvLine).toList();
+        } catch (IOException e) {
+            throw new DataException(e.getMessage(),e);
+        }
     }
 
     @Override
@@ -40,26 +64,34 @@ public class FileCitizenRepository implements CitizenRepository{
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        try(FileWriter fr = new FileWriter("citizens.csv")){
+           try(FileWriter fw = new FileWriter(this.citizenFile,true)){
 
-    }  catch (IOException e){
-            throw new DataException(e.getMessage(), e);
+               String citizen = newCitizen.getId() +","+
+                                newCitizen.getFirstName() +","+
+                                newCitizen.getLastName() +","+
+                                newCitizen.getGender() +","+
+                                newCitizen.getAge() +","+
+                                newCitizen.getSalary() +","+
+                                newCitizen.getEducationLevel() +System.lineSeparator();
+               fw.append(citizen);
+               // Restituiamo il cittadino salvato come richiesto dal metodo
+                 return newCitizen;
+           }catch (IOException e){
+               throw new DataException(e.getMessage(), e);
+           }
         }
-/*
-    @Override
-    public void addFaction(Faction faction) throws DataException {
-
-        try(PreparedStatement pt = con.prepareStatement(ADD_FACTION)) {
-            pt.setInt(1, faction.getId());
-            pt.setString(2, faction.getName());
-            pt.setString(3, faction.getDescription());
-            pt.executeUpdate();
-
-        }catch (SQLException e){
-            throw new DataException(e.getMessage(), e);
+        private Citizen fromCsvLine(String line){
+            String[] tokens = line.split(",");
+            Citizen citizen = new Citizen(
+                    Integer.parseInt(tokens[0]),
+                    tokens[1],
+                    tokens[2],
+                    tokens[3].charAt(0),
+                    Integer.parseInt(tokens[4]),
+                    Double.parseDouble(tokens[5]),
+                    tokens[6]
+            );
+            return citizen;
         }
-*/
     }
 
-
-}

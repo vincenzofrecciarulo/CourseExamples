@@ -21,8 +21,5 @@ public class DataMigracion {
         return fcR;
     }
 
-    public List<Citizen> transferCitizen() throws DataException {
-        return this.jdbcR.findAll();
-    }
 
 }
