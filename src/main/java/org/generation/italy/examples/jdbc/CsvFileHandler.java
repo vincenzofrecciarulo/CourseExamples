@@ -6,41 +6,47 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CsvFileHandler {
-    public static void creationFileCreate(){
-        try{
-            File myObj = new File("C:\\Users\\PC\\Desktop\\CSV\\CREATE\\createFile.csv");
-            if(myObj.createNewFile()){
-                System.out.println("File created: " + myObj.getName());
+
+    private static final String url = "src/main/resources/createFile.csv";
+    public static boolean isFileCreated() {
+        try {
+            File myObj = new File(url);
+            if (myObj.createNewFile()) {
+                return true;
             } else {
                 System.out.println("File already exists.");
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+        return false;
     }
 
-    public static void writeCitizensToCsv(List<Citizen> citizens) throws DataException {
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\PC\\Desktop\\CSV\\CREATE\\createFile.csv"))){
-            bw.write("id,first_name,last_name,gender,age,education_level,salary,wealth_level,is_rebel,happiness_total");
+    public static void writeCitizensToCsv(List<Citizen> citizens, boolean isUpdate) throws DataException {
+            if(!isFileCreated() && !isUpdate){
+                return;
+            }
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(url))) {
+            bw.write("id;first_name;last_name;gender; age;education_level;salary;wealth_level;is_rebel;happiness_total");
             bw.newLine();
-            for(Citizen c : citizens){
+            for (Citizen c : citizens) {
                 StringBuilder sb = new StringBuilder();
-                bw.write(sb.append(c.getId()).append(",").append(c.getFirstName()).append(",").append(c.getLastName()).append(",").append(c.getGender()).append(",").append(c.getAge()).append(",").append(c.getEducationLevel()).append(",").append(c.getSalary()).append(",").append(c.getWealthLevel()).append(",").append(c.isRebel()).append(",").append(c.getHappinessTotal()).toString());
+                bw.write(sb.append(c.getId()).append(";").append(c.getFirstName()).append(";").append(c.getLastName()).append(";").append(c.getGender()).append(";").append(c.getAge()).append(";").append(c.getEducationLevel()).append(";").append(c.getSalary()).append(";").append(c.getWealthLevel()).append(";").append(c.isRebel()).append(";").append(c.getHappinessTotal()).toString());
                 bw.newLine();
             }
-        }catch (IOException e){
+        } catch (IOException e) {
             throw new DataException(e.getMessage(), e);
         }
     }
 
-    public static List<Citizen> readFile() throws DataException{
-        File myObj = new File("C:\\Users\\PC\\Desktop\\CSV\\CREATE\\createFile.csv");
-        List<Citizen> c = new ArrayList<Citizen>();
-        try(Scanner scanner = new Scanner(myObj)){
+    public static List<Citizen> readFile() throws DataException {
+        File myObj = new File(url);
+        List<Citizen> c = new ArrayList<>();
+        try (Scanner scanner = new Scanner(myObj)) {
             scanner.nextLine();
-            while(scanner.hasNextLine()){
-                String[] citizen = scanner.nextLine().split(",");
+            while (scanner.hasNextLine()) {
+                String[] citizen = scanner.nextLine().split(";");
                 int id = Integer.parseInt(citizen[0]);
                 char gender = citizen[3].charAt(0);
                 int age = Integer.parseInt(citizen[4]);
@@ -50,13 +56,24 @@ public class CsvFileHandler {
                 String firstName = citizen[1];
                 String lastName = citizen[2];
                 String educationLevel = citizen[5];
-                String wealthLevel  = citizen[7];
-                Citizen citizen1 = new Citizen(id, firstName, lastName, gender, age, educationLevel, salary, wealthLevel, isRebel,happinessTotal);
+                String wealthLevel = citizen[7];
+                Citizen citizen1 = new Citizen(id, firstName, lastName, gender, age, educationLevel, salary, wealthLevel, isRebel, happinessTotal);
                 c.add(citizen1);
             }
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             throw new DataException(e.getMessage(), e);
         }
         return c;
     }
+
+    public static void appendCitizenToCsv(Citizen c) throws DataException {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(url, true))) {
+            StringBuilder sb = new StringBuilder();
+            bufferedWriter.write(sb.append(c.getId()).append(";").append(c.getFirstName()).append(";").append(c.getLastName()).append(";").append(c.getGender()).append(";").append(c.getAge()).append(";").append(c.getEducationLevel()).append(";").append(c.getSalary()).append(";").append(c.getWealthLevel()).append(";").append(c.isRebel()).append(";").append(c.getHappinessTotal()).toString());
+            bufferedWriter.newLine();
+        } catch (IOException e) {
+            throw new DataException(e.getMessage(), e);
+        }
+    }
+
 }
