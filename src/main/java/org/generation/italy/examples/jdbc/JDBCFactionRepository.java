@@ -1,9 +1,6 @@
 package org.generation.italy.examples.jdbc;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +24,12 @@ public class JDBCFactionRepository implements FactionRepository{
     //anche se qua stiamo mettendo tutte le cose e potremmo quindi fare con * meglio
     //scriverli con l'ordine che vogliamo perché se si cambiassero poi le colonne
     // cambierebbe il risultato
-
+    private final static String GET_FACTION_BY_NAME =
+            """
+                    SELECT id, name, description
+                    FROM faction
+                    WHERE name = ?
+                    """;
 
     public JDBCFactionRepository (Connection con){
         this.con = con;
@@ -65,7 +67,23 @@ public class JDBCFactionRepository implements FactionRepository{
 
     @Override
     public Optional<Faction> getFactionByName(String name) throws DataException {
-        return Optional.empty();
+        try(PreparedStatement preparedStatement = con.prepareStatement(GET_FACTION_BY_NAME)){
+            preparedStatement.setString(1, name);
+
+            try(ResultSet resultSet = preparedStatement.executeQuery()){
+                if(resultSet.next()){
+                    return Optional.of(new Faction(
+                            resultSet.getInt("id"),
+                            resultSet.getString("name"),
+                            resultSet.getString("description")
+                    ));
+                }
+                return Optional.empty();
+            }
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(),e);
+        }
+
     }
 
     @Override
