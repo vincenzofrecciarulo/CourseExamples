@@ -1,18 +1,18 @@
 package org.generation.italy.examples.jdbc;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JDBCCitizenRepository implements CitizenRepository {
-    // come attributi di questa repository vado a inserire delle query che utilizzeremo piu avanti
-    private final String FIND_ALL = """
-            SELECT first_name, last_name, gender, age, salary, education_level
-            FROM citizen
-            """;
+    private Connection con;
+
+    private static final String FIND_ALL =
+            """
+                    SELECT c.id as c_id, first_name, last_name, gender, age, education_level,salary, wealth_level,is_rebel, happiness_total, supported_faction_id, f.name, f.description
+                    FROM citizen as c
+                    LEFT JOIN faction as f ON c.supported_faction_id = f.id
+                    """;
 
     private final String FIND_BY_SEX_AND_EL = """
             SELECT first_name, last_name, gender, age, salary, education_level
@@ -36,17 +36,6 @@ public class JDBCCitizenRepository implements CitizenRepository {
             DELETE FROM citizen
             WHERE id = ?
             """;
-    private Connection con;
-
-    public JDBCCitizenRepository(Connection con){
-        this.con = con;
-    }
-    private static final String FIND_ALL =
-            """
-                    SELECT c.id as c_id, first_name, last_name, gender, age, education_level,salary, wealth_level,is_rebel, happiness_total, supported_faction_id, f.name, f.description
-                    FROM citizen as c
-                    LEFT JOIN faction as f ON c.supported_faction_id = f.id
-                    """;
 
     // Il metodo findAll() dovrà trattare le faction in maniera EAGER, in vece che in maniera LAZY
     private final String INSERT_CITIZEN = """
@@ -55,6 +44,9 @@ public class JDBCCitizenRepository implements CitizenRepository {
             VALUES (?,?,?,?,?,?)
             """;
 
+    public JDBCCitizenRepository(Connection con){
+        this.con = con;
+    }
     // metodo che ritorna una lista di citizen
     @Override
     public List<Citizen> findAll() throws DataException {
@@ -89,7 +81,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
     }
 
     @Override
-    public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws SQLException {
+    public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException{
         // qui istanziamo la lista prima dei try perchè ci potrebbe essere la possibilità di ritornarla vuota
         List<Citizen> citizens = new ArrayList<>();
         try(Connection connection = StartConnection.createConnection();
@@ -112,12 +104,14 @@ public class JDBCCitizenRepository implements CitizenRepository {
                         citizens.add(citizen);
                     }
                 }
+        } catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
         }
         return citizens;
     }
 
     @Override
-    public boolean updateCitizen(Citizen citizen) throws SQLException {
+    public boolean updateCitizen(Citizen citizen) throws DataException {
         try(Connection connection = StartConnection.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CITIZEN)) {
             preparedStatement.setString(1,citizen.getFirstName());
@@ -129,21 +123,25 @@ public class JDBCCitizenRepository implements CitizenRepository {
             // qua utilizziamo executeUpdate per sapere quante row sono state modificate
             // in questo caso siccome vogliamo modificare solo un citezen deve essere solo un row
             return preparedStatement.executeUpdate() == 1;
+        } catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
         }
     }
 
     @Override
-    public boolean deleteCitizen(int citizenId) throws SQLException {
+    public boolean deleteCitizen(int citizenId) throws DataException {
         try(Connection connection = StartConnection.createConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CITIZEN)){
             preparedStatement.setInt(1,citizenId);
             return preparedStatement.executeUpdate() == 1;
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
         }
 
     }
 
     @Override
-    public Citizen createCitizen(Citizen newCitizen) throws SQLException {
+    public Citizen createCitizen(Citizen newCitizen) throws DataException {
         try(Connection connection = StartConnection.createConnection();
             // Qua il preparedStatement avrà due valori -> 1: la query su cui deve lavorare, 2: gli diciamo di ritornare le chiavi generate
             // visto che il db usa un serial all'inserimento di un citizen, inoltre sono tutti valori nullable quindi non dobbiamo gestire nulla
@@ -163,7 +161,14 @@ public class JDBCCitizenRepository implements CitizenRepository {
                     // tramite il valore della colonna della riga appena generata
                     newCitizen.setId(resultSet.findColumn("citizen_id"));
                 }
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
         }
         return newCitizen;
+    }
+
+    @Override
+    public void test() throws SQLException, DataException {
+
     }
 }
