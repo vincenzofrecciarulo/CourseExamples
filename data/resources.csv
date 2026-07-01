@@ -1,0 +1,8 @@
+id,name,base_market_price,is_processed
+1,Mais,1000.00,f
+2,Tabacco,1500.00,f
+3,Zucchero,1200.00,f
+4,Legname,800.00,f
+5,Oro,10000.00,f
+6,Assi,2000.00,t
+7,Rum,4000.00,t

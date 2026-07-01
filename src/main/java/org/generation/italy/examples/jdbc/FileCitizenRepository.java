@@ -1,19 +1,44 @@
 package org.generation.italy.examples.jdbc;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-// questa è l'implementazione di citizen repository che mantiene i dati su un file in formato CSV (Comma-Separated-Values)
+public class FileCitizenRepository implements CitizenRepository {
 
-// csv -> tabella -> header(id, firstName..) - dati
+    private String filePath;
 
-public class FileCitizenRepository implements CitizenRepository{
+    public FileCitizenRepository(String filePath) {
+        this.filePath = filePath;
+    }
 
     @Override
     public List<Citizen> findAll() throws DataException {
-        return List.of();
+        List<Citizen> citizens = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            reader.readLine(); // salta l'intestazione
+            String riga;
+            while ((riga = reader.readLine()) != null) {
+                String[] colonne = riga.split(",");
+                int id                  = Integer.parseInt(colonne[0]);
+                String firstName        = colonne[1];
+                String lastName         = colonne[2];
+                char gender             = colonne[3].charAt(0);
+                int age                 = Integer.parseInt(colonne[4]);
+                String educationLevel   = colonne[5];
+                double salary           = Double.parseDouble(colonne[6]);
+                String wealthLevel      = colonne[7];
+                boolean isRebel         = Boolean.parseBoolean(colonne[8]);
+                int happinessTotal      = Integer.parseInt(colonne[9]);
+                citizens.add(new Citizen(id, firstName, lastName, gender, age,
+                        educationLevel, salary, wealthLevel, isRebel, happinessTotal));
+            }
+        } catch (IOException e) {
+            throw new DataException("Errore nella lettura del file " + filePath, e);
+        }
+        return citizens;
     }
 
     @Override
