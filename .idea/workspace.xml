@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="58ed345a-379c-4972-98b4-fa242c8f59e5" name="Changes" comment="Lavoro su JDBC con metodi">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Dev/Java/Projects/CourseExamples" value="3E2IUhoaG0cPr5ehPwOM0iCCNNB" />
+    </persistenceIdMap>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="andrea_ferraro" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;CatryPiano&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/vincenzofrecciarulo/CourseExamples.git&quot;,
+    &quot;accountId&quot;: &quot;61d14d88-1932-4c69-a7c8-246301e493b7&quot;
+  }
+}</component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="2.4782347014615223E-93" />
+      <entry key="MS500" value="3.011878437633577E-19" />
+      <entry key="S2" value="2.5005000193140306E-5" />
+      <entry key="S5" value="0.018835270720486505" />
+      <entry key="S10" value="0.1876996829835962" />
+      <entry key="S30" value="0.9259327345673636" />
+      <entry key="S60" value="1.564799638091035" />
+      <entry key="M2" value="2.83782189401326" />
+      <entry key="M5" value="8.339260624008618" />
+      <entry key="M10" value="17.5154147900103" />
+      <entry key="M15" value="26.36126893050286" />
+      <entry key="M30" value="51.994034615793645" />
+      <entry key="H1" value="91.6666517184076" />
+      <entry key="H2" value="153.66264024332784" />
+      <entry key="H4" value="309.4162859281889" />
+      <entry key="D1" value="1550.666791498211" />
+      <entry key="W1" value="2510.930815742737" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.000000000000044" />
+      <entry key="S30" value="1.0000355318414478" />
+      <entry key="S60" value="1.006796566205433" />
+      <entry key="M2" value="1.1363661204253592" />
+      <entry key="M5" value="2.3002640268360626" />
+      <entry key="M10" value="5.0245883762211285" />
+      <entry key="M15" value="8.211437952921605" />
+      <entry key="M30" value="18.71808849227135" />
+      <entry key="H1" value="36.33538825873736" />
+      <entry key="H2" value="64.27952864618422" />
+      <entry key="H4" value="132.24093152270294" />
+      <entry key="D1" value="578.4368442911409" />
+      <entry key="W1" value="886.6375814988573" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="3.6137499010810804E-7" />
+      <entry key="MS500" value="0.051474438579223306" />
+      <entry key="S2" value="0.47633452035242707" />
+      <entry key="S5" value="0.7592094668489362" />
+      <entry key="S10" value="1.03580619339575" />
+      <entry key="S30" value="1.853127732054466" />
+      <entry key="S60" value="2.5195491561976895" />
+      <entry key="M2" value="3.927461056864126" />
+      <entry key="M5" value="10.58077600966218" />
+      <entry key="M10" value="22.459088005929644" />
+      <entry key="M15" value="34.47752791018064" />
+      <entry key="M30" value="70.60857871733032" />
+      <entry key="H1" value="127.91385554346208" />
+      <entry key="H2" value="217.875115955985" />
+      <entry key="H4" value="441.59996836950154" />
+      <entry key="D1" value="2129.0702328998623" />
+      <entry key="W1" value="3397.561410141795" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="3E2IUhoaG0cPr5ehPwOM0iCCNNB" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Exercise1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise5.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise6.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise7.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise8.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ExerciseBinarySearch.executor&quot;: &quot;Run&quot;,
+    &quot;Application.InfoPoint.executor&quot;: &quot;Run&quot;,
+    &quot;Application.JDBCCitizenRepository.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LambdaExamples.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Library.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PostgresConnectionExample.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Start.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Domenico__Piano&quot;,
+    &quot;git.auto.fetch.suggestion.counter&quot;: &quot;1&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Dev/Java/Projects/CourseExamples/src/main/java/org/generation/italy/examples/oo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.generation.italy.examples.arrays.exericc" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.JDBCCitizenRepository">
+    <configuration name="JDBCCitizenRepository" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.JDBCCitizenRepository" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.jdbc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LambdaExamples" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.lambdaandstreams.LambdaExamples" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.oo.lambdaandstreams.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Library" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.lambdaandstreams.homeexercises.Library" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.oo.lambdaandstreams.homeexercises.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PostgresConnectionExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.PostgresConnectionExample" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.jdbc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.lambdaandstreams.Start" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.oo.lambdaandstreams.*" />
+          <option name="ENABLED" value="false" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Start" />
+        <item itemvalue="Application.PostgresConnectionExample" />
+        <item itemvalue="Application.Library" />
+        <item itemvalue="Application.LambdaExamples" />
+        <item itemvalue="Application.JDBCCitizenRepository" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="58ed345a-379c-4972-98b4-fa242c8f59e5" name="Changes" comment="" />
+      <created>1779370256319</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1779370256319</updated>
+      <workItem from="1779370258159" duration="5609000" />
+      <workItem from="1779432371522" duration="2798000" />
+      <workItem from="1779636499778" duration="1855000" />
+      <workItem from="1779660448725" duration="4379000" />
+      <workItem from="1779692551619" duration="9201000" />
+      <workItem from="1779779077327" duration="5691000" />
+      <workItem from="1779865524835" duration="680000" />
+      <workItem from="1779983679046" duration="150000" />
+      <workItem from="1780302357460" duration="1464000" />
+      <workItem from="1780402771038" duration="12040000" />
+      <workItem from="1780478319202" duration="3323000" />
+      <workItem from="1780559629199" duration="4520000" />
+      <workItem from="1780642425384" duration="3243000" />
+      <workItem from="1780819755690" duration="1313000" />
+      <workItem from="1780831150008" duration="6241000" />
+      <workItem from="1780911691530" duration="62000" />
+      <workItem from="1780931180571" duration="3377000" />
+      <workItem from="1780988480997" duration="13321000" />
+      <workItem from="1781092740740" duration="3747000" />
+      <workItem from="1781162371708" duration="15128000" />
+      <workItem from="1781247511926" duration="11051000" />
+      <workItem from="1781423860416" duration="14698000" />
+      <workItem from="1781506693664" duration="7330000" />
+      <workItem from="1781592274222" duration="292000" />
+    </task>
+    <task id="LOCAL-00001" summary="Creato esercizio 5">
+      <option name="closed" value="true" />
+      <created>1779433934918</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1779433934920</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Creato esercizio 6">
+      <option name="closed" value="true" />
+      <created>1779664830672</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1779664830673</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Creato esercizio 7 e 8">
+      <option name="closed" value="true" />
+      <created>1779710554598</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1779710554599</updated>
+    </task>
+    <task id="LOCAL-00004" summary="corregge errore in Client.java">
+      <option name="closed" value="true" />
+      <created>1780303678049</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1780303678049</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Crea classe Player.java.">
+      <option name="closed" value="true" />
+      <created>1780404700691</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1780404700692</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Crea classe DiceRoller.java. e aggiorna le restanti classi, aggiungendo codice.">
+      <option name="closed" value="true" />
+      <created>1780414881683</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1780414881683</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Crea classe Inventory, Mob, NPC e StartGame. Inoltre aggiorna le altre lassi.">
+      <option name="closed" value="true" />
+      <created>1780841589755</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1780841589756</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Crea progetto Sort">
+      <option name="closed" value="true" />
+      <created>1781007330526</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1781007330528</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Crea Esercizio Employee">
+      <option name="closed" value="true" />
+      <created>1781020771586</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1781020771586</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Lavoro su JDBC con metodi">
+      <option name="closed" value="true" />
+      <created>1782748836212</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1782748836212</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Creato esercizio 5" />
+    <MESSAGE value="Creato esercizio 6" />
+    <MESSAGE value="Creato esercizio 7 e 8" />
+    <MESSAGE value="corregge errore in Client.java" />
+    <MESSAGE value="Crea classe Player.java." />
+    <MESSAGE value="Crea classe DiceRoller.java. e aggiorna le restanti classi, aggiungendo codice." />
+    <MESSAGE value="Crea classe Inventory, Mob, NPC e StartGame. Inoltre aggiorna le altre lassi." />
+    <MESSAGE value="Crea progetto Sort" />
+    <MESSAGE value="Crea Esercizio Employee" />
+    <MESSAGE value="Lavoro su JDBC con metodi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lavoro su JDBC con metodi" />
+  </component>
+</project>
