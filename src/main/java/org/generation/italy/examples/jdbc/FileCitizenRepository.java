@@ -36,23 +36,11 @@ public class FileCitizenRepository implements CitizenRepository {
         }
     }
 
-    private Citizen fromLine(String riga) {
-        String[] colonne = riga.split(",");
-        int id                = Integer.parseInt(colonne[0]);
-        String firstName      = colonne[1];
-        String lastName       = colonne[2];
-        char gender           = colonne[3].charAt(0);
-        int age               = Integer.parseInt(colonne[4]);
-        double salary         = Double.parseDouble(colonne[5]);
-        String educationLevel = colonne[6];
-        return new Citizen(id, firstName, lastName, gender, age, salary, educationLevel);
-    }
-
     @Override
     public List<Citizen> findAll() throws DataException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             return reader.lines()
-                    .map(this::fromLine)
+                    .map(this::fromCsvLine)
                     .collect(Collectors.toList());
         } catch (IOException e) {
             throw new DataException("Errore nella lettura del file " + filePath, e);
@@ -106,13 +94,35 @@ public class FileCitizenRepository implements CitizenRepository {
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            writer.write(toLine(newCitizen));
-            writer.newLine();
-        } catch (IOException e) {
-            throw new DataException("Errore nella scrittura del file " + filePath, e);
+        try(FileWriter fw = new FileWriter(this.filePath,true)){
+
+            String citizen = newCitizen.getId() +","+
+                    newCitizen.getFirstName() +","+
+                    newCitizen.getLastName() +","+
+                    newCitizen.getGender() +","+
+                    newCitizen.getAge() +","+
+                    newCitizen.getSalary() +","+
+                    newCitizen.getEducationLevel() +System.lineSeparator();
+            fw.append(citizen);
+            // Restituiamo il cittadino salvato come richiesto dal metodo
+            return newCitizen;
+        }catch (IOException e){
+            throw new DataException(e.getMessage(), e);
         }
-        return newCitizen;
+    }
+
+    private Citizen fromCsvLine(String line){
+        String[] tokens = line.split(",");
+        Citizen citizen = new Citizen(
+                Integer.parseInt(tokens[0]),
+                tokens[1],
+                tokens[2],
+                tokens[3].charAt(0),
+                Integer.parseInt(tokens[4]),
+                Double.parseDouble(tokens[5]),
+                tokens[6]
+        );
+        return citizen;
     }
 
     @Override
