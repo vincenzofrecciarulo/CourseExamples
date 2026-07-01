@@ -1,5 +1,10 @@
 package org.generation.italy.examples.oo.mud;
 
+import org.generation.italy.examples.oo.mud.roles.CharacterStats;
+import org.generation.italy.examples.oo.mud.world.Entity;
+import org.generation.italy.examples.oo.mud.world.Item;
+import org.generation.italy.examples.oo.mud.world.Room;
+
 import java.util.ArrayList;
 import java.util.StringJoiner;
 
@@ -58,12 +63,12 @@ public class Player extends Entity {
         }
 
         // indice giusto chiamiamo il metodo per prendere l'item
-        Item item = currentRoom.getItemByIndex(realIndex);
+        Item item = null;
         // metodo per controllare se possiamo aggiungere l'oggetto
         boolean hasSuccess = tryPickItem(item);
         // se ha successo aggiungiamo
         if (hasSuccess){
-            currentRoom.removeItem(item);
+//            currentRoom.removeItem(item);
             return "Aggiunto al tuo inventario " + item.getName();
         }
         return "Inventario Pieno!";
@@ -99,6 +104,11 @@ public class Player extends Entity {
             return sb.toString();
         }
         return "Elemento non trovato!";
+    }
+
+    @Override
+    public CharacterStats getStats() {
+        return null;
     }
 
     @Override

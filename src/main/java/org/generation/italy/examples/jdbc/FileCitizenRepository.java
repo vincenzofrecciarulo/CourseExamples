@@ -32,8 +32,7 @@ public class FileCitizenRepository implements CitizenRepository{
     @Override
     public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException {
         try(Stream<String> lines = Files.lines(file.toPath())) {
-            return lines.skip(1)
-                    .map(this::CreateCitizenByLine)
+            return lines.map(this::CreateCitizenByLine)
                     .filter(c -> c.getGender() == sex && c.getEducationLevel().equals(educationLevel))
                     .toList();
         } catch(IOException e){
