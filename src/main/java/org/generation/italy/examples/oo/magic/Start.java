@@ -1,7 +1,7 @@
 package org.generation.italy.examples.oo.magic;
 
 public class Start {
-    static void main() {
+    public static void main(String[] args) {
         MagicHat hat = new MagicHat();
         hat.startAssignmentCeremony();
     }
