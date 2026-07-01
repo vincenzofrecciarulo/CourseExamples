@@ -34,7 +34,7 @@ public class FileCitizenRepository implements CitizenRepository{
             String line = null;
             List<Citizen> citizens = new ArrayList<>();
             while((line = bufferedReader.readLine()) != null){
-                fromCsvLine(line);
+                citizens.add(fromCsvLine(line));
             }
             return citizens;
         }catch (IOException e){
@@ -124,7 +124,7 @@ public class FileCitizenRepository implements CitizenRepository{
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        try(FileWriter fileWriter = new FileWriter(file)){
+        try(FileWriter fileWriter = new FileWriter(file, true)){
             fileWriter.append(newCitizen.toCsvRow());
             return  newCitizen;
         }catch (IOException e){
