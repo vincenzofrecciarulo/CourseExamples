@@ -27,15 +27,6 @@ public class FileCitizenRepository implements CitizenRepository {
                 c.getEducationLevel();
     }
 
-    private void rewriteFile(List<Citizen> citizens) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (Citizen c : citizens) {
-                writer.write(toLine(c));
-                writer.newLine();
-            }
-        }
-    }
-
     @Override
     public List<Citizen> findAll() throws DataException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -123,6 +114,14 @@ public class FileCitizenRepository implements CitizenRepository {
                 tokens[6]
         );
         return citizen;
+    }
+    private void rewriteFile(List<Citizen> citizens) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (Citizen c : citizens) {
+                writer.write(toLine(c));
+                writer.newLine();
+            }
+        }
     }
 
     @Override
