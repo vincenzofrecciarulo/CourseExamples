@@ -34,13 +34,4 @@ public class FileCitizenRepository implements CitizenRepository{
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
         return null;
     }
-
-    @Override
-    public void test() throws DataException {
-        try(FileReader fr = new FileReader("nonEsisto.txt")){
-
-        }catch (IOException e){
-            throw new DataException(e.getMessage(), e);
-        }
-    }
 }

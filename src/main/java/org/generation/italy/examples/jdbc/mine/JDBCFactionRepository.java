@@ -12,6 +12,7 @@ import java.util.Optional;
 public class JDBCFactionRepository implements FactionRepository {
 
     private Connection conn;
+
     private final static String GET_ALL_FACTIONS = """
             SELECT id, name, description
             FROM faction
