@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fa598994-008b-4d3c-bb0d-7b60bc8dbf4e" name="Changes" comment="Implemento parzialmente FileCitizenRepository">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/FileCitizenRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/FileCitizenRepositoryTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="manuel_sechi" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;andrea-ferraro&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/vincenzofrecciarulo/CourseExamples.git&quot;,
+    &quot;accountId&quot;: &quot;7c1dda68-2c48-4c6d-8b59-d09a73f1f76f&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="3FtdxpPoMUeWQtxKLZ42PLfjiqm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.FileCitizenRepositoryTest.createCitizen.executor": "Run",
+    "JUnit.FileCitizenRepositoryTest.findAll.executor": "Run",
+    "JUnit.FileCitizenRepositoryTest.findBySexAndEducationLevel.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "andrea__ferraro",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Dev/Java/Projects/Exercises/CourseExamples"
+  }
+}]]></component>
+  <component name="RunManager" selected="JUnit.FileCitizenRepositoryTest.findBySexAndEducationLevel">
+    <configuration name="AccountTest.deposit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.oo.banksystem.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.generation.italy.examples.oo.banksystem" />
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.banksystem.AccountTest" />
+      <option name="METHOD_NAME" value="deposit" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AccountTest.withdraw" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.oo.banksystem.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.generation.italy.examples.oo.banksystem" />
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.banksystem.AccountTest" />
+      <option name="METHOD_NAME" value="withdraw" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileCitizenRepositoryTest.createCitizen" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.jdbc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.generation.italy.examples.jdbc" />
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.FileCitizenRepositoryTest" />
+      <option name="METHOD_NAME" value="createCitizen" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileCitizenRepositoryTest.findAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.jdbc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.generation.italy.examples.jdbc" />
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.FileCitizenRepositoryTest" />
+      <option name="METHOD_NAME" value="findAll" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileCitizenRepositoryTest.findBySexAndEducationLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.jdbc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.generation.italy.examples.jdbc" />
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.FileCitizenRepositoryTest" />
+      <option name="METHOD_NAME" value="findBySexAndEducationLevel" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.FileCitizenRepositoryTest.findBySexAndEducationLevel" />
+        <item itemvalue="JUnit.FileCitizenRepositoryTest.findAll" />
+        <item itemvalue="JUnit.FileCitizenRepositoryTest.createCitizen" />
+        <item itemvalue="JUnit.AccountTest.withdraw" />
+        <item itemvalue="JUnit.AccountTest.deposit" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fa598994-008b-4d3c-bb0d-7b60bc8dbf4e" name="Changes" comment="" />
+      <created>1782898548736</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1782898548736</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Implemento parzialmente FileCitizenRepository">
+      <option name="closed" value="true" />
+      <created>1782904466836</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1782904466836</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implemento parzialmente FileCitizenRepository" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemento parzialmente FileCitizenRepository" />
+  </component>
+</project>

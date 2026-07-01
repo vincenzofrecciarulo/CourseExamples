@@ -49,12 +49,35 @@ public class FileCitizenRepository implements CitizenRepository{
 
     @Override
     public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException {
-        return List.of();
+        try(Stream<String> lineStream = Files.lines(citizenFile.toPath())){
+            return findAll().stream()
+                    .filter(c->c.getEducationLevel().equals(educationLevel)&&c.getGender()==sex)
+                    .toList();
+        }catch(IOException e){
+            throw new DataException(e.getMessage(),e);
+        }
     }
 
     @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
-        return false;
+        try{
+            List<Citizen> allCitizen = findAll();
+            boolean changed = false;
+            for(Citizen c : allCitizen){
+                if(c.getId() == citizen.getId()){
+                  c.setFirstName(citizen.getFirstName());
+                  changed = true;
+                  break;
+                }
+            }
+                if(changed){
+                    rewriteFile(allCitizen);
+                    return true;
+                }
+            return false;
+        }catch (DataException e){
+            throw new DataException(e.getMessage(),e);
+        }
     }
 
     @Override
@@ -93,5 +116,26 @@ public class FileCitizenRepository implements CitizenRepository{
             );
             return citizen;
         }
+        private String toCsvLine(Citizen citizen){
+              return citizen.getId() +","+
+                      citizen.getFirstName()+","+
+                      citizen.getLastName()+","+
+                      citizen.getGender()+","+
+                      citizen.getAge()+","+
+                      citizen.getSalary()+","+
+                      citizen.getEducationLevel() +"\n";
+        }
+        private void rewriteFile(List<Citizen> all) throws DataException{
+          try(BufferedWriter bf = new BufferedWriter(new FileWriter(citizenFile))){
+              for (Citizen c: all){
+                String line = toCsvLine(c);
+                bf.write(line);
+              }
+
+          }catch (IOException e){
+              throw new DataException(e.getMessage(), e);
+          }
+        }
+
     }
 

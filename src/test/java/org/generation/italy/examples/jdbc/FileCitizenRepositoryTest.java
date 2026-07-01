@@ -57,6 +57,12 @@ class FileCitizenRepositoryTest {
 
     @Test
     void findBySexAndEducationLevel() {
+        try{
+            List<Citizen> filteredBySexAndEducationalLevel = repo.findBySexAndEducationLevel('M',"College");
+        }catch (DataException e){
+            fail(e.getMessage());
+        }
+
     }
 
     @Test
