@@ -1,4 +1,4 @@
-package org.generation.italy.examples.jdbc;
+package org.generation.italy.examples.jdbc.frommaster;
 
 public class Citizen {
     private int id;

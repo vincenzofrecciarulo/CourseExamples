@@ -1,11 +1,9 @@
-package org.generation.italy.examples.jdbc2;
+package org.generation.italy.examples.jdbc.frommaster;
 
 public class Faction {
     private int id;
     private String name;
     private String description;
-
-    public Faction() {}
 
     public Faction(int id, String name, String description) {
         this.id = id;
@@ -17,23 +15,12 @@ public class Faction {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

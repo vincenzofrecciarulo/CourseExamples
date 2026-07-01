@@ -1,4 +1,4 @@
-package org.generation.italy.examples.jdbc;
+package org.generation.italy.examples.jdbc.frommaster;
 
 public class DataException extends Exception {
     public DataException (String message, Exception cause){

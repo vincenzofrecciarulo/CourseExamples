@@ -1,4 +1,4 @@
-package org.generation.italy.examples.jdbc2;
+package org.generation.italy.examples.jdbc.mine;
 
 // it should extend Exception, not RuntimeException,
 // cause we want this to be a checked exception.

@@ -1,4 +1,4 @@
-package org.generation.italy.examples.jdbc;
+package org.generation.italy.examples.jdbcfrommaster;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

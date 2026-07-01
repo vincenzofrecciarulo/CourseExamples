@@ -1,6 +1,5 @@
-package org.generation.italy.examples.jdbc2;
+package org.generation.italy.examples.jdbc.mine;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package org.generation.italy.examples.jdbc;
+package org.generation.italy.examples.jdbc.frommaster;
 
 import java.sql.*;
 import java.util.ArrayList;

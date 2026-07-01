@@ -1,7 +1,10 @@
-package org.generation.italy.examples.jdbc;
+package org.generation.italy.examples.jdbcfrommaster;
 
+import org.generation.italy.examples.jdbc.frommaster.Citizen;
+import org.generation.italy.examples.jdbc.frommaster.ConnectionFactory;
+import org.generation.italy.examples.jdbc.frommaster.DataException;
+import org.generation.italy.examples.jdbc.frommaster.JDBCCitizenRepository;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

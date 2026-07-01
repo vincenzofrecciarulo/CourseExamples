@@ -1,5 +1,8 @@
-package org.generation.italy.examples.jdbc;
+package org.generation.italy.examples.jdbcfrommaster;
 
+import org.generation.italy.examples.jdbc.frommaster.DataException;
+import org.generation.italy.examples.jdbc.frommaster.FactionRepository;
+import org.generation.italy.examples.jdbc.frommaster.JDBCFactionRepository;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;

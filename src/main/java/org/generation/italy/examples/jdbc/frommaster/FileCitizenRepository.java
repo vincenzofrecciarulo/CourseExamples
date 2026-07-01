@@ -1,8 +1,7 @@
-package org.generation.italy.examples.jdbc;
+package org.generation.italy.examples.jdbc.frommaster;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 // questa è l'implementazione di citizen repository che mantiene i dati su un file in formato CSV (Comma-Separated-Values)

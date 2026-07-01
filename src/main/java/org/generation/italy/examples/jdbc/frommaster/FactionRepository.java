@@ -1,6 +1,5 @@
-package org.generation.italy.examples.jdbc;
+package org.generation.italy.examples.jdbc.frommaster;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 

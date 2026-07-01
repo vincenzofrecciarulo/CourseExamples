@@ -1,7 +1,9 @@
 package org.generation.italy.examples.jdbc2;
 
+import org.generation.italy.examples.jdbc.mine.DataException;
+import org.generation.italy.examples.jdbc.mine.FactionRepository;
+import org.generation.italy.examples.jdbc.mine.JDBCFactionRepository;
 import org.junit.jupiter.api.Test;
-import org.postgresql.core.ConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
