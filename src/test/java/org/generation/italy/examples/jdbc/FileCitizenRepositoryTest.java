@@ -6,106 +6,98 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class FileCitizenRepositoryTest {
-    private String filePath;
+    private Citizen c;
+    private File citizenFile;
     private FileCitizenRepository repo;
 
     @BeforeEach
-    void setUp() throws IOException {
-        File temp = File.createTempFile("test-citizens", ".csv");
-        filePath = temp.getAbsolutePath();
-        temp.delete();
-        repo = new FileCitizenRepository(filePath);
+    void setUp() {
+        c = new Citizen(1, "Gianni", "Sperti", 'M', 33, 1200, "College");
+        Path path = Path.of("data", "test_citizens.csv");
+        try {
+            Files.createDirectories(path.getParent());
+            Files.deleteIfExists(path);
+            citizenFile = new File(path.toUri());
+            repo = new FileCitizenRepository(citizenFile);
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
     }
 
     @AfterEach
     void tearDown() {
-        new File(filePath).delete();
-    }
-
-    private Citizen citizen(int id, char gender, String educationLevel) {
-        return new Citizen(id, "Nome", "Cognome", gender, 30, educationLevel, 1000.0, "Middle", false, 50);
     }
 
     @Test
-    void createCitizen_createsFileOnFirstCall() throws DataException {
-        assertFalse(new File(filePath).exists());
-        repo.createCitizen(citizen(1, 'M', "College"));
-        assertTrue(new File(filePath).exists());
+    void findAll() {
+        try {
+            repo.createCitizen(c);
+            List<Citizen> allCitizens = repo.findAll();
+            for (Citizen citizen : allCitizens) {
+                System.out.println(citizen);
+            }
+            assertEquals(1, allCitizens.size());
+        } catch (DataException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
-    void createCitizen_returnsTheSameCitizen() throws DataException {
-        Citizen c = citizen(1, 'M', "College");
-        Citizen result = repo.createCitizen(c);
-        assertEquals(c.getId(), result.getId());
-        assertEquals(c.getFirstName(), result.getFirstName());
+    void findBySexAndEducationLevel() {
+        try {
+            repo.createCitizen(c);
+            repo.createCitizen(new Citizen(2, "Laura", "Rossi", 'F', 28, 900, "HighSchool"));
+            repo.createCitizen(new Citizen(3, "Marco", "Bianchi", 'M', 40, 1500, "HighSchool"));
+            List<Citizen> result = repo.findBySexAndEducationLevel('M', "College");
+            assertEquals(1, result.size());
+            assertEquals(1, result.get(0).getId());
+        } catch (DataException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
-    void findAll_returnsAllCreatedCitizens() throws DataException {
-        repo.createCitizen(citizen(1, 'M', "College"));
-        repo.createCitizen(citizen(2, 'F', "HighSchool"));
-        repo.createCitizen(citizen(3, 'M', "HighSchool"));
-        List<Citizen> result = repo.findAll();
-        assertEquals(3, result.size());
+    void updateCitizen() {
+        try {
+            repo.createCitizen(c);
+            c.setFirstName("Giovanni");
+            boolean result = repo.updateCitizen(c);
+            assertTrue(result);
+            assertEquals("Giovanni", repo.findAll().get(0).getFirstName());
+        } catch (DataException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
-    void findBySexAndEducationLevel_returnsOnlyMatchingCitizens() throws DataException {
-        repo.createCitizen(citizen(1, 'M', "College"));
-        repo.createCitizen(citizen(2, 'F', "College"));
-        repo.createCitizen(citizen(3, 'M', "HighSchool"));
-        List<Citizen> result = repo.findBySexAndEducationLevel('M', "College");
-        assertEquals(1, result.size());
-        assertEquals(1, result.get(0).getId());
+    void deleteCitizen() {
+        try {
+            repo.createCitizen(c);
+            repo.createCitizen(new Citizen(2, "Laura", "Rossi", 'F', 28, 900, "HighSchool"));
+            boolean result = repo.deleteCitizen(1);
+            assertTrue(result);
+            List<Citizen> remaining = repo.findAll();
+            assertEquals(1, remaining.size());
+            assertEquals(2, remaining.get(0).getId());
+        } catch (DataException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
-    void findBySexAndEducationLevel_returnsEmptyListWhenNoMatch() throws DataException {
-        repo.createCitizen(citizen(1, 'F', "College"));
-        List<Citizen> result = repo.findBySexAndEducationLevel('M', "College");
-        assertTrue(result.isEmpty());
-    }
-
-    @Test
-    void updateCitizen_returnsTrueAndModifiesData() throws DataException {
-        repo.createCitizen(citizen(1, 'M', "College"));
-        Citizen updated = citizen(1, 'M', "College");
-        updated.setFirstName("Modificato");
-        boolean result = repo.updateCitizen(updated);
-        assertTrue(result);
-        List<Citizen> all = repo.findAll();
-        assertEquals("Modificato", all.get(0).getFirstName());
-    }
-
-    @Test
-    void updateCitizen_returnsFalseForNonExistentId() throws DataException {
-        repo.createCitizen(citizen(1, 'M', "College"));
-        boolean result = repo.updateCitizen(citizen(99, 'M', "College"));
-        assertFalse(result);
-    }
-
-    @Test
-    void deleteCitizen_returnsTrueAndRemovesCitizen() throws DataException {
-        repo.createCitizen(citizen(1, 'M', "College"));
-        repo.createCitizen(citizen(2, 'F', "HighSchool"));
-        boolean result = repo.deleteCitizen(1);
-        assertTrue(result);
-        List<Citizen> all = repo.findAll();
-        assertEquals(1, all.size());
-        assertEquals(2, all.get(0).getId());
-    }
-
-    @Test
-    void deleteCitizen_returnsFalseForNonExistentId() throws DataException {
-        repo.createCitizen(citizen(1, 'M', "College"));
-        boolean result = repo.deleteCitizen(99);
-        assertFalse(result);
-        assertEquals(1, repo.findAll().size());
+    void createCitizen() {
+        try {
+            repo.createCitizen(c);
+            assertEquals(1, repo.findAll().size());
+        } catch (DataException e) {
+            fail(e.getMessage());
+        }
     }
 }

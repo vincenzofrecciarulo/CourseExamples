@@ -1,0 +1,2 @@
+id,first_name,last_name,gender,age,education_level,salary,wealth_level,is_rebel,happiness_total
+1,Gianni,Sperti,M,33,College,1200.0,null,false,0
