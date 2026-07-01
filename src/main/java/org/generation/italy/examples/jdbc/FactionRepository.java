@@ -13,6 +13,8 @@ public interface FactionRepository {
     //se come output lasciassi faction ritornerei un null potenzialmente pericoloso,
     // meglio ritornare optional vuoto
 
+    Optional<Faction> getFactionByName(String name) throws DataException;
+
     public boolean updateFaction(Faction faction) throws DataException;
 
     public void addFaction(Faction faction) throws DataException;

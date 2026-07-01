@@ -89,6 +89,11 @@ public class JDBCFactionRepository implements FactionRepository{
     }
 
     @Override
+    public Optional<Faction> getFactionById(int id) throws DataException {
+        return Optional.empty();
+    }
+
+    @Override
     public Optional<Faction> getFactionByName(String name) throws DataException {
         try(PreparedStatement pt = con.prepareStatement(GET_NAMES)){
             pt.setString(1, name);
