@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9c005b9c-8f72-4014-8fb0-15e94bb1023e" name="Changes" comment="amplia la LambdaLibrary ed aggiunge in auito una classe Product">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/FileCitizenRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/FileCitizenRepositoryTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Dev/Java/Projects/CourseExamples" value="3EK3nhvErTML5sbzHf5xExvPbI5" />
+    </persistenceIdMap>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="andrea_ferraro" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Marko-00&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/vincenzofrecciarulo/CourseExamples.git&quot;,
+    &quot;accountId&quot;: &quot;e444e863-efbf-4bcc-ad3d-3db6abd42b8e&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3EK3nhvErTML5sbzHf5xExvPbI5" />
+  <component name="ProjectSessionTemplates">
+    <option name="panelTemplate">
+      <template>
+        <option name="modeId" value="Agent" />
+        <option name="model">
+          <model>
+            <option name="modelType" value="builtin_id" />
+            <option name="modelValue" value="auto" />
+          </model>
+        </option>
+        <option name="targetType" value="BACKGROUND" />
+        <option name="worktreeMode" value="WORKSPACE" />
+      </template>
+    </option>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Car.executor": "Run",
+    "Application.ExerciseBinarySearch.executor": "Run",
+    "Application.Person.executor": "Run",
+    "Application.Rectangle.executor": "Run",
+    "Application.Start.executor": "Run",
+    "Application.World.executor": "Run",
+    "Application.org.generation.italy.examples.Exercises.Exercise1.Objects.ereditaryVehicle.Start.executor": "Run",
+    "Application.org.generation.italy.examples.Exercises.Exercise1.Objects.incapsulationExercise1.Start.executor": "Run",
+    "Application.org.generation.italy.examples.oo.lambdaandstreams.Start.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit6",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit6": "",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "marco__tamigi",
+    "git.auto.fetch.suggestion.counter": "2",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.generation.italy.examples.jdbc" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.org.generation.italy.examples.Exercises.Exercise1.Objects.ereditaryVehicle.Start">
+    <configuration name="Rectangle" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.Exercises.Exercise1.Objects.Rectangle" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.Exercises.Exercise1.Objects.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.Exercises.Exercise1.Objects.Animals.Start" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.Exercises.Exercise1.Objects.Animals.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="org.generation.italy.examples.Exercises.Exercise1.Objects.ereditaryVehicle.Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.Exercises.Exercise1.Objects.ereditaryVehicle.Start" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.Exercises.Exercise1.Objects.ereditaryVehicle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="org.generation.italy.examples.Exercises.Exercise1.Objects.incapsulationExercise1.Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.Exercises.Exercise1.Objects.incapsulationExercise1.Start" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.Exercises.Exercise1.Objects.incapsulationExercise1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="org.generation.italy.examples.oo.lambdaandstreams.Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.lambdaandstreams.Start" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.oo.lambdaandstreams.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Start" />
+        <item itemvalue="Application.Rectangle" />
+        <item itemvalue="Application.org.generation.italy.examples.oo.lambdaandstreams.Start" />
+        <item itemvalue="Application.org.generation.italy.examples.Exercises.Exercise1.Objects.incapsulationExercise1.Start" />
+        <item itemvalue="Application.org.generation.italy.examples.Exercises.Exercise1.Objects.ereditaryVehicle.Start" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.25134.95" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.25134.95" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task id="LOCAL-00001" summary="Continua a mostrare altri esempi di incapsulamento e programmazione oo">
+      <option name="closed" value="true" />
+      <created>1779898042314</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1779898042314</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c005b9c-8f72-4014-8fb0-15e94bb1023e" name="Changes" comment="Continua a mostrare altri esempi di incapsulamento e programmazione oo" />
+      <created>1779913609689</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1779913609689</updated>
+    </task>
+    <task id="LOCAL-00002" summary="aggiorna la classe Person con l'incapsulamento">
+      <option name="closed" value="true" />
+      <created>1779948906880</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1779948906880</updated>
+    </task>
+    <task id="LOCAL-00003" summary="aggiunge la classe Player al mud">
+      <option name="closed" value="true" />
+      <created>1780094550367</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1780094550367</updated>
+    </task>
+    <task id="LOCAL-00004" summary="completa la classe Player e aggiunge una base della classe Inventory">
+      <option name="closed" value="true" />
+      <created>1780135757910</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1780135757910</updated>
+    </task>
+    <task id="LOCAL-00005" summary="implementa esercizi di ripasso su incapsulamento e polimorfismo">
+      <option name="closed" value="true" />
+      <created>1780257837941</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1780257837941</updated>
+    </task>
+    <task id="LOCAL-00006" summary="implementa altri esercizi di ripasso su incapsulamento e polimorfismo">
+      <option name="closed" value="true" />
+      <created>1780338839853</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1780338839853</updated>
+    </task>
+    <task id="LOCAL-00007" summary="implementa un esercizio di binarySearch">
+      <option name="closed" value="true" />
+      <created>1781006645928</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1781006645928</updated>
+    </task>
+    <task id="LOCAL-00008" summary="implementa un esercizio di binarySearch">
+      <option name="closed" value="true" />
+      <created>1781188630529</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1781188630529</updated>
+    </task>
+    <task id="LOCAL-00009" summary="amplia la LambdaLibrary ed aggiunge in auito una classe Product">
+      <option name="closed" value="true" />
+      <created>1781248228498</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1781248228498</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/marinamaresca" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Continua a mostrare altri esempi di incapsulamento e programmazione oo" />
+    <MESSAGE value="aggiorna la classe Person con l'incapsulamento" />
+    <MESSAGE value="aggiunge la classe Player al mud" />
+    <MESSAGE value="completa la classe Player e aggiunge una base della classe Inventory" />
+    <MESSAGE value="implementa esercizi di ripasso su incapsulamento e polimorfismo" />
+    <MESSAGE value="implementa altri esercizi di ripasso su incapsulamento e polimorfismo" />
+    <MESSAGE value="implementa un esercizio di binarySearch" />
+    <MESSAGE value="amplia la LambdaLibrary ed aggiunge in auito una classe Product" />
+    <option name="LAST_COMMIT_MESSAGE" value="amplia la LambdaLibrary ed aggiunge in auito una classe Product" />
+  </component>
+</project>

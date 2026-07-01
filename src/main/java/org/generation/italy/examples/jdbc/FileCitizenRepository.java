@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 // questa è l'implementazione di citizen repository che mantiene i dati su un file in formato CSV (Comma-Separated-Values)
@@ -49,31 +50,61 @@ public class FileCitizenRepository implements CitizenRepository{
 
     @Override
     public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException {
-        return List.of();
+        return findAll().stream()
+                        .filter(c -> c.getGender() == sex && c.getEducationLevel().equals(educationLevel))
+                        .collect(Collectors.toList());
+    }
+
+    private String toCsvLine(Citizen citizen){
+        return citizen.getId() + ","
+                + citizen.getFirstName() + ","
+                + citizen.getLastName() + ","
+                + citizen.getGender() + ","
+                + citizen.getAge() + ","
+                + citizen.getSalary() + ","
+                + citizen.getEducationLevel() + System.lineSeparator();
+    }
+
+    private void writeAll(List<Citizen> citizens) throws DataException {
+        try(FileWriter fw = new FileWriter(this.citizenFile, false);
+            BufferedWriter bw = new BufferedWriter(fw)){
+            if(!citizens.isEmpty()){
+                for(Citizen c : citizens){
+                    bw.write(toCsvLine(c));
+                }
+            }
+        } catch (IOException e) {
+            throw new DataException(e.getMessage(), e);
+        }
     }
 
     @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
+        List<Citizen> citizens = findAll();
+        for(int i = 0; i < citizens.size(); i++){
+            if(citizens.get(i).getId() == citizen.getId()){
+                citizens.set(i, citizen);
+                writeAll(citizens);
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public boolean deleteCitizen(int citizenId) throws DataException {
-        return false;
+        List<Citizen> citizens = findAll();
+        boolean removed = citizens.removeIf(c -> c.getId() == citizenId);
+        if(removed){
+            writeAll(citizens);
+        }
+        return removed;
     }
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
            try(FileWriter fw = new FileWriter(this.citizenFile,true)){
-
-               String citizen = newCitizen.getId() +","+
-                                newCitizen.getFirstName() +","+
-                                newCitizen.getLastName() +","+
-                                newCitizen.getGender() +","+
-                                newCitizen.getAge() +","+
-                                newCitizen.getSalary() +","+
-                                newCitizen.getEducationLevel() +System.lineSeparator();
-               fw.append(citizen);
+               fw.append(toCsvLine(newCitizen));
                // Restituiamo il cittadino salvato come richiesto dal metodo
                  return newCitizen;
            }catch (IOException e){

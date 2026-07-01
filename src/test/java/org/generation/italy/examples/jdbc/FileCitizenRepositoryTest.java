@@ -76,4 +76,28 @@ class FileCitizenRepositoryTest {
         }
 
     }
+
+    @Test
+    void testFindAll() {
+    }
+
+    @Test
+    void findAll2() {
+    }
+
+    @Test
+    void testFindBySexAndEducationLevel() {
+    }
+
+    @Test
+    void testUpdateCitizen() {
+    }
+
+    @Test
+    void testDeleteCitizen() {
+    }
+
+    @Test
+    void testCreateCitizen() {
+    }
 }
