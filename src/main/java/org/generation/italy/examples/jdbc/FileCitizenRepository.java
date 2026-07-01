@@ -20,24 +20,21 @@ public class FileCitizenRepository implements CitizenRepository{
         this.file = file;
     }
 
+    public List<Citizen> findAll2() throws DataException {
+        try(Stream<String> lineStream = Files.lines(file.toPath())){
+            return lineStream.map(this::fromCsvLine).toList();
+        } catch (IOException e) {
+            throw new DataException(e.getMessage(),e);
+        }
+    }
+
     @Override
     public List<Citizen> findAll() throws DataException {
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(file))){
             String line = null;
             List<Citizen> citizens = new ArrayList<>();
             while((line = bufferedReader.readLine()) != null){
-                String[] citizenData = line.split(",");
-                citizens.add(
-                        new Citizen(
-                                Integer.parseInt(citizenData[0]),
-                                citizenData[1],
-                                citizenData[2],
-                                citizenData[3].charAt(0),
-                                Integer.parseInt(citizenData[4]),
-                                Double.parseDouble(citizenData[5]),
-                                citizenData[6]
-                        )
-                );
+                fromCsvLine(line);
             }
             return citizens;
         }catch (IOException e){
@@ -133,6 +130,21 @@ public class FileCitizenRepository implements CitizenRepository{
         }catch (IOException e){
             throw  new DataException(e.getMessage(),e);
         }
+    }
+
+
+    private Citizen fromCsvLine(String line){
+        String[] tokens = line.split(",");
+        Citizen citizen = new Citizen(
+                Integer.parseInt(tokens[0]),
+                tokens[1],
+                tokens[2],
+                tokens[3].charAt(0),
+                Integer.parseInt(tokens[4]),
+                Double.parseDouble(tokens[5]),
+                tokens[6]
+        );
+        return citizen;
     }
 
     @Override
