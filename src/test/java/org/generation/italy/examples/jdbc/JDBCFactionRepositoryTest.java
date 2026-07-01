@@ -31,11 +31,11 @@ class JDBCFactionRepositoryTest {
     }
 
     @Test
-    void getFactionById_throws_data_exception_containing_sql_exception() {
+    void getFactionByName_throws_data_exception_containing_sql_exception() {
         try(Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)){
             FactionRepository fr = new JDBCFactionRepository(con);
             DataException de =
-                assertThrows(DataException.class, () -> fr.getFactionById(1));
+                assertThrows(DataException.class, () -> fr.getFactionByName("test"));
             SQLException se = assertInstanceOf(SQLException.class, de.getCause());
             assertTrue(se.getMessage().contains("does not exist"));
         }

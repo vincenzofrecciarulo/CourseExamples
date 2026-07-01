@@ -2,6 +2,7 @@ package org.generation.italy.examples.jdbc;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,10 +11,36 @@ import java.util.stream.Collectors;
 
 public class FileCitizenRepository implements CitizenRepository {
 
+    private static final String HEADER = "id,first_name,last_name,gender,age,education_level,salary,wealth_level,is_rebel,happiness_total";
+
     private String filePath;
 
     public FileCitizenRepository(String filePath) {
         this.filePath = filePath;
+    }
+
+    private String toLine(Citizen c) {
+        return c.getId() + "," +
+                c.getFirstName() + "," +
+                c.getLastName() + "," +
+                c.getGender() + "," +
+                c.getAge() + "," +
+                c.getEducationLevel() + "," +
+                c.getSalary() + "," +
+                c.getWealthLevel() + "," +
+                c.isRebel() + "," +
+                c.getHappinessTotal();
+    }
+
+    private void rewriteFile(List<Citizen> citizens) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(HEADER);
+            writer.newLine();
+            for (Citizen c : citizens) {
+                writer.write(toLine(c));
+                writer.newLine();
+            }
+        }
     }
 
     private Citizen fromLine(String riga) {
@@ -24,6 +51,7 @@ public class FileCitizenRepository implements CitizenRepository {
         char gender           = colonne[3].charAt(0);
         int age               = Integer.parseInt(colonne[4]);
         String educationLevel = colonne[5];
+
         double salary         = Double.parseDouble(colonne[6]);
         String wealthLevel    = colonne[7];
         boolean isRebel       = Boolean.parseBoolean(colonne[8]);
@@ -46,33 +74,61 @@ public class FileCitizenRepository implements CitizenRepository {
 
     @Override
     public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException {
-        return List.of();
+        return findAll().stream()
+                .filter(c -> c.getGender() == sex && c.getEducationLevel().equals(educationLevel))
+                .collect(Collectors.toList());
     }
 
     @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
-        return false;
+        try {
+            List<Citizen> citizens = findAll();
+            boolean found = false;
+            for (int i = 0; i < citizens.size(); i++) {
+                if (citizens.get(i).getId() == citizen.getId()) {
+                    citizens.set(i, citizen);
+                    found = true;
+                    break;
+                }
+            }
+            if (found) {
+                rewriteFile(citizens);
+            }
+            return found;
+        } catch (IOException e) {
+            throw new DataException("Errore nell'aggiornamento del file " + filePath, e);
+        }
     }
 
     @Override
     public boolean deleteCitizen(int citizenId) throws DataException {
-        return false;
+        try {
+            List<Citizen> citizens = findAll();
+            List<Citizen> filtered = citizens.stream()
+                    .filter(c -> c.getId() != citizenId)
+                    .collect(Collectors.toList());
+            boolean found = filtered.size() < citizens.size();
+            if (found) {
+                rewriteFile(filtered);
+            }
+            return found;
+        } catch (IOException e) {
+            throw new DataException("Errore nell'eliminazione dal file " + filePath, e);
+        }
     }
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            writer.write(newCitizen.getId() + "," +
-                    newCitizen.getFirstName() + "," +
-                    newCitizen.getLastName() + "," +
-                    newCitizen.getGender() + "," +
-                    newCitizen.getAge() + "," +
-                    newCitizen.getEducationLevel() + "," +
-                    newCitizen.getSalary() + "," +
-                    newCitizen.getWealthLevel() + "," +
-                    newCitizen.isRebel() + "," +
-                    newCitizen.getHappinessTotal());
-            writer.newLine();
+        try {
+            boolean fileExists = new File(filePath).exists();
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+                if (!fileExists) {
+                    writer.write(HEADER);
+                    writer.newLine();
+                }
+                writer.write(toLine(newCitizen));
+                writer.newLine();
+            }
         } catch (IOException e) {
             throw new DataException("Errore nella scrittura del file " + filePath, e);
         }
