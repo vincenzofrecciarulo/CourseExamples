@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 
 public class FileCitizenRepository implements CitizenRepository {
 
-    private static final String HEADER = "id,first_name,last_name,gender,age,education_level,salary,wealth_level,is_rebel,happiness_total";
-
     private String filePath;
 
     public FileCitizenRepository(String filePath) {
@@ -29,17 +27,12 @@ public class FileCitizenRepository implements CitizenRepository {
                 c.getLastName() + "," +
                 c.getGender() + "," +
                 c.getAge() + "," +
-                c.getEducationLevel() + "," +
                 c.getSalary() + "," +
-                c.getWealthLevel() + "," +
-                c.isRebel() + "," +
-                c.getHappinessTotal();
+                c.getEducationLevel();
     }
 
     private void rewriteFile(List<Citizen> citizens) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write(HEADER);
-            writer.newLine();
             for (Citizen c : citizens) {
                 writer.write(toLine(c));
                 writer.newLine();
@@ -54,21 +47,15 @@ public class FileCitizenRepository implements CitizenRepository {
         String lastName       = colonne[2];
         char gender           = colonne[3].charAt(0);
         int age               = Integer.parseInt(colonne[4]);
-        String educationLevel = colonne[5];
-
-        double salary         = Double.parseDouble(colonne[6]);
-        String wealthLevel    = colonne[7];
-        boolean isRebel       = Boolean.parseBoolean(colonne[8]);
-        int happinessTotal    = Integer.parseInt(colonne[9]);
-        return new Citizen(id, firstName, lastName, gender, age,
-                educationLevel, salary, wealthLevel, isRebel, happinessTotal);
+        double salary         = Double.parseDouble(colonne[5]);
+        String educationLevel = colonne[6];
+        return new Citizen(id, firstName, lastName, gender, age, salary, educationLevel);
     }
 
     @Override
     public List<Citizen> findAll() throws DataException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             return reader.lines()
-                    .skip(1)
                     .map(this::fromLine)
                     .collect(Collectors.toList());
         } catch (IOException e) {
@@ -123,16 +110,9 @@ public class FileCitizenRepository implements CitizenRepository {
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        try {
-            boolean fileExists = new File(filePath).exists();
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-                if (!fileExists) {
-                    writer.write(HEADER);
-                    writer.newLine();
-                }
-                writer.write(toLine(newCitizen));
-                writer.newLine();
-            }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+            writer.write(toLine(newCitizen));
+            writer.newLine();
         } catch (IOException e) {
             throw new DataException("Errore nella scrittura del file " + filePath, e);
         }
@@ -141,9 +121,9 @@ public class FileCitizenRepository implements CitizenRepository {
 
     @Override
     public void test() throws DataException {
-        try(FileReader fr = new FileReader("nonEsisto.txt")){
+        try (FileReader fr = new FileReader("nonEsisto.txt")) {
 
-        }catch (IOException e){
+        } catch (IOException e) {
             throw new DataException(e.getMessage(), e);
         }
     }
