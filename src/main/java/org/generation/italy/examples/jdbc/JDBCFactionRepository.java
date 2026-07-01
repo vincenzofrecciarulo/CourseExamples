@@ -15,7 +15,7 @@ public class JDBCFactionRepository implements FactionRepository{
     // in alcuni database chiudere la connessione chiude anche in automatico
     // lo statement e il resultset ma non è garantito quindi chiudiamoli per sicurezza
 
-    private Connection con;
+    private final Connection con;
     private final static String GET_ALL_FACTIONS =
             """
             SELECT id, name, description
@@ -29,6 +29,25 @@ public class JDBCFactionRepository implements FactionRepository{
                     SELECT id, name, description
                     FROM faction
                     WHERE name = ?
+                    """;
+
+    private final static String UPDATE_FACTION =
+            """
+                    UPDATE faction
+                    SET name = ?, description = ?
+                    WHERE id = ?
+                    """;
+
+    private final static String ADD_FACTION =
+            """
+                    INSERT INTO faction(id,name,description)
+                    VALUES(?,?,?)
+                    """;
+
+    private final static String DELETE_FACTION =
+            """
+                    DELETE FROM faction
+                    WHERE id = ?
                     """;
 
     public JDBCFactionRepository (Connection con){
@@ -88,16 +107,35 @@ public class JDBCFactionRepository implements FactionRepository{
 
     @Override
     public boolean updateFaction(Faction faction) throws DataException {
-        return false;
+        try(PreparedStatement preparedStatement = con.prepareStatement(UPDATE_FACTION)){
+            preparedStatement.setString(1, faction.getName());
+            preparedStatement.setString(2, faction.getDescription());
+            preparedStatement.setInt(3, faction.getId());
+            return preparedStatement.executeUpdate() == 1;
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
+        }
     }
 
     @Override
     public void addFaction(Faction faction) throws DataException {
-
+        try(PreparedStatement preparedStatement = con.prepareStatement(ADD_FACTION)){
+            preparedStatement.setInt(1, faction.getId());
+            preparedStatement.setString(2, faction.getName());
+            preparedStatement.setString(3, faction.getDescription());
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(),e);
+        }
     }
 
     @Override
     public boolean removeFactionById(int id) throws DataException {
-        return false;
+        try(PreparedStatement preparedStatement = con.prepareStatement(DELETE_FACTION)){
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeUpdate() >= 1;
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
+        }
     }
 }

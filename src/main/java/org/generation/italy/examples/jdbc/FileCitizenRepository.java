@@ -1,5 +1,6 @@
 package org.generation.italy.examples.jdbc;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,9 +12,17 @@ import java.util.List;
 
 public class FileCitizenRepository implements CitizenRepository{
 
+    private File file;
+
+    public FileCitizenRepository(File file){
+        this.file = file;
+    }
+
+
+
     @Override
     public List<Citizen> findAll() throws DataException {
-        return List.of();
+        try
     }
 
     @Override
