@@ -1,9 +1,13 @@
 package org.generation.italy.examples.jdbc.mine;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 public class FileCitizenRepository implements CitizenRepository {
+
+    private static final String FILE_PATH = "data/Citizen.csv";
 
     @Override
     public List<Citizen> findAll() throws DataException {
@@ -32,6 +36,20 @@ public class FileCitizenRepository implements CitizenRepository {
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        return null;
+        try(FileWriter fw = new FileWriter(FILE_PATH, true)) {
+            String citizen = newCitizen.getId() +","+
+                    newCitizen.getFirstName() +","+
+                    newCitizen.getLastName() +","+
+                    newCitizen.getGender() +","+
+                    newCitizen.getAge() +","+
+                    newCitizen.getSalary() +","+
+                    newCitizen.getEducationLevel() + System.lineSeparator();
+            fw.append(citizen);
+            return newCitizen;
+        }catch (IOException e){
+            throw new DataException(e.getMessage(), e);
+        }
     }
 }
+
+

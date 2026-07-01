@@ -2,9 +2,8 @@ package org.generation.italy.examples.jdbc.mine;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
-public class JDBCTestMain {
+public class JDBCCitizenTestMain {
     void main() throws SQLException, DataException {
         Connection conn = ConnectionFactory.getConnection();
         JDBCCitizenRepository citizenRepository = new JDBCCitizenRepository(conn);

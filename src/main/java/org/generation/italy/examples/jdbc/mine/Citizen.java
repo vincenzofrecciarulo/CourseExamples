@@ -34,6 +34,10 @@ public class Citizen {
              wealthLevel, isRebel, happinessTotal);
     }
 
+    public Citizen(int id, String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
+        this(id, firstName, lastName, gender, age, educationLevel, salary, null, false, 0);
+    }
+
     public Citizen(int id, String firstName, String lastName, char gender, int age,
                    String educationLevel, double salary, String wealthLevel, boolean isRebel, int happinessTotal) {
         this.id = id;
