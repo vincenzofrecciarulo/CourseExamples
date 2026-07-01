@@ -1,9 +1,6 @@
 package org.generation.italy.examples.jdbc;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +25,19 @@ public class JDBCFactionRepository implements FactionRepository{
     //scriverli con l'ordine che vogliamo perché se si cambiassero poi le colonne
     // cambierebbe il risultato
 
+    private final static String GET_FACTIONS_BY_NAME =
+            """
+            SELECT id, name, description
+            FROM faction
+            WHERE name = ?
+            """;
+
+    private final static String UPDATE_FACTION =
+            """
+            UPDATE faction
+            SET name = ?, description = ? 
+            WHERE id = ?    
+            """;
 
     public JDBCFactionRepository (Connection con){
         this.con = con;
@@ -65,12 +75,34 @@ public class JDBCFactionRepository implements FactionRepository{
 
     @Override
     public Optional<Faction> getFactionByName(String name) throws DataException {
-        return Optional.empty();
+        try (PreparedStatement st = con.prepareStatement(GET_FACTIONS_BY_NAME)) {
+            st.setString(1, name);
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(new Faction(
+                            rs.getInt("id"),
+                            rs.getString("name"),
+                            rs.getString("description")));
+                } else {
+                    return Optional.empty();
+                }
+            }
+        } catch (SQLException e) {
+            throw new DataException(e.getMessage(), e);
+        }
     }
 
     @Override
     public boolean updateFaction(Faction faction) throws DataException {
-        return false;
+        try(PreparedStatement st = con.prepareStatement(UPDATE_FACTION)){
+            st.setString(1, faction.getName());
+            st.setString(2, faction.getDescription());
+            st.setInt(3, faction.getId());
+            return st.executeUpdate() == 1;
+        }
+        catch(SQLException e){
+            throw new DataException(e.getMessage(),e);
+        }
     }
 
     @Override
