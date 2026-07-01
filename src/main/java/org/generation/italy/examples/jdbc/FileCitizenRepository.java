@@ -13,10 +13,6 @@ public class FileCitizenRepository implements CitizenRepository {
 
     private String filePath;
 
-    public FileCitizenRepository(String filePath) {
-        this.filePath = filePath;
-    }
-
     public FileCitizenRepository(File file) {
         this.filePath = file.getAbsolutePath();
     }
