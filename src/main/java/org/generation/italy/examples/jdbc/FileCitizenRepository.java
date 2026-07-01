@@ -25,11 +25,17 @@ public class FileCitizenRepository implements CitizenRepository{
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(file))){
             String line = null;
             List<Citizen> citizens = new ArrayList<>();
-            if((line = bufferedReader.readLine()) != null){
+            while((line = bufferedReader.readLine()) != null){
                 String[] citizenData = line.split(",");
                 citizens.add(
                         new Citizen(
-                                citizenData[1]
+                                Integer.parseInt(citizenData[0]),
+                                citizenData[1],
+                                citizenData[2],
+                                citizenData[3].charAt(0),
+                                Integer.parseInt(citizenData[4]),
+                                Double.parseDouble(citizenData[5]),
+                                citizenData[6]
                         )
                 );
             }
@@ -41,25 +47,89 @@ public class FileCitizenRepository implements CitizenRepository{
 
     @Override
     public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException {
-        return List.of();
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(file))){
+            String line = null;
+            List<Citizen> citizens = new ArrayList<>();
+            while((line = bufferedReader.readLine()) != null){
+                String[] citizenData = line.split(",");
+                if(citizenData[3].charAt(0) == sex && citizenData[6].equals(educationLevel)){
+                    citizens.add(
+                            new Citizen(
+                                    Integer.parseInt(citizenData[0]),
+                                    citizenData[1],
+                                    citizenData[2],
+                                    citizenData[3].charAt(0),
+                                    Integer.parseInt(citizenData[4]),
+                                    Double.parseDouble(citizenData[5]),
+                                    citizenData[6]
+                            )
+                    );
+                }
+            }
+            return citizens;
+        }catch (IOException e){
+            throw new DataException(e.getMessage(), e);
+        }
     }
 
     @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
-        return false;
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(file))){
+            String line = null;
+            StringBuilder newCsv = new StringBuilder();
+            boolean isModified = false;
+            while((line = bufferedReader.readLine()) != null){
+                String[] citizenData = line.split(",");
+
+                if(Integer.parseInt(citizenData[0]) ==  citizen.getId()){
+                    newCsv.append(citizen.toCsvRow());
+                    isModified = true;
+                    continue;
+                }
+                newCsv.append(line);
+            }
+
+            if(isModified) {
+                Files.write(file.toPath(), newCsv.toString().getBytes());
+            }
+            return isModified;
+
+        }catch (IOException e){
+            throw new DataException(e.getMessage(), e);
+        }
     }
 
     @Override
     public boolean deleteCitizen(int citizenId) throws DataException {
-        return false;
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(file))){
+            String line = null;
+            StringBuilder newCsv = new StringBuilder();
+            boolean isModified = false;
+            while((line = bufferedReader.readLine()) != null){
+                String[] citizenData = line.split(",");
+
+                if(Integer.parseInt(citizenData[0]) ==  citizenId){
+                    isModified = true;
+                    continue;
+                }
+                newCsv.append(line);
+            }
+
+            if(isModified) {
+                Files.write(file.toPath(), newCsv.toString().getBytes());
+            }
+            return isModified;
+
+        }catch (IOException e){
+            throw new DataException(e.getMessage(), e);
+        }
     }
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
         try(FileWriter fileWriter = new FileWriter(file)){
-
             fileWriter.append(newCitizen.toCsvRow());
-
+            return  newCitizen;
         }catch (IOException e){
             throw  new DataException(e.getMessage(),e);
         }
