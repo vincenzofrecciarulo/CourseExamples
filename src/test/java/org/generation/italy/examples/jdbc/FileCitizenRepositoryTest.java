@@ -21,11 +21,14 @@ class FileCitizenRepositoryTest {
     private Citizen c;
     private File citizenFile;
     private FileCitizenRepository repo;
+    private Citizen toChange;
     @BeforeEach
     void setUp() {
         c = new Citizen(1,"Gianni","Sperti",'M',33,
                 1200,"College");
         Path path = Path.of("data","test_citizens.csv");
+        toChange = new Citizen(1,"Gennaro","Sperti",'M',34,
+                1500,"College");
         try {
             Files.createDirectories(path.getParent());
             Files.writeString(path,"", StandardOpenOption.CREATE);
@@ -67,10 +70,24 @@ class FileCitizenRepositoryTest {
 
     @Test
     void updateCitizen() {
+        try {
+          boolean isChanged = repo.updateCitizen(toChange);
+          assertTrue(isChanged);
+        }catch (DataException e){
+            fail(e.getMessage());
+        }
     }
+
+
 
     @Test
     void deleteCitizen() {
+        try {
+            boolean deleted = repo.deleteCitizen(1);
+            assertTrue(deleted);
+        } catch (DataException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test

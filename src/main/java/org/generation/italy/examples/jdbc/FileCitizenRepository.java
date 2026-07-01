@@ -66,6 +66,11 @@ public class FileCitizenRepository implements CitizenRepository{
             for(Citizen c : allCitizen){
                 if(c.getId() == citizen.getId()){
                   c.setFirstName(citizen.getFirstName());
+                  c.setLastName(citizen.getLastName());
+                  c.setGender(citizen.getGender());
+                  c.setAge(citizen.getAge());
+                  c.setSalary(citizen.getSalary());
+                  c.setEducationLevel(citizen.getEducationLevel());
                   changed = true;
                   break;
                 }
@@ -75,14 +80,31 @@ public class FileCitizenRepository implements CitizenRepository{
                     return true;
                 }
             return false;
-        }catch (DataException e){
+        }catch (IOException e){
             throw new DataException(e.getMessage(),e);
         }
     }
 
     @Override
     public boolean deleteCitizen(int citizenId) throws DataException {
-        return false;
+        try{
+            List<Citizen> allCitizens = findAll();
+            boolean deleted = false;
+             for(Citizen c:allCitizens){
+                 if(c.getId()==citizenId){
+                     allCitizens.remove(c);
+                     deleted = true;
+                     break;
+                  }
+            }
+            if(deleted){
+                rewriteFile(allCitizens);
+                return true;
+            }
+            return false;
+        }catch (IOException e){
+            throw new DataException(e.getMessage(),e);
+        }
     }
 
     @Override
@@ -125,7 +147,7 @@ public class FileCitizenRepository implements CitizenRepository{
                       citizen.getSalary()+","+
                       citizen.getEducationLevel() +"\n";
         }
-        private void rewriteFile(List<Citizen> all) throws DataException{
+        private void rewriteFile(List<Citizen> all) throws IOException{
           try(BufferedWriter bf = new BufferedWriter(new FileWriter(citizenFile))){
               for (Citizen c: all){
                 String line = toCsvLine(c);
@@ -133,7 +155,7 @@ public class FileCitizenRepository implements CitizenRepository{
               }
 
           }catch (IOException e){
-              throw new DataException(e.getMessage(), e);
+              throw new IOException(e.getMessage(), e);
           }
         }
 
