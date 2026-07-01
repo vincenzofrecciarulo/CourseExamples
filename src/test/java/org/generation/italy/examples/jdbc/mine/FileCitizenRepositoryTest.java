@@ -12,13 +12,15 @@ class FileCitizenRepositoryTest {
     @BeforeEach
     void setUp() {
          citizen = new Citizen(
-                1,
                 "John",
                 "Doe",
                 'M',
                 30,
+                "HighSchool",
                 50000.0,
-                "Illiterate"
+                "Broke",
+                false,
+                8
         );
     }
 
@@ -51,5 +53,7 @@ class FileCitizenRepositoryTest {
             e.printStackTrace();
             fail(e.getMessage());
         }
+
+        System.out.println("Created citizen" + citizen);
     }
 }
