@@ -125,6 +125,10 @@ public class Citizen {
         this.faction = faction;
     }
 
+    public Faction getFaction() {
+        return faction;
+    }
+
     @Override
     public String toString() {
         return "Citizen{" +
@@ -139,5 +143,13 @@ public class Citizen {
                 ", isRebel=" + isRebel +
                 ", happinessTotal=" + happinessTotal +
                 '}';
+    }
+
+    public String toCsvRow(){
+        return id + "," +
+                firstName + "," +
+                lastName + "," +
+                gender + "," +
+                age + "\n";
     }
 }

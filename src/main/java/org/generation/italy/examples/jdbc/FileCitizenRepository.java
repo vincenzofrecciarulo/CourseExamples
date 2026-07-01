@@ -1,10 +1,12 @@
 package org.generation.italy.examples.jdbc;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 // questa è l'implementazione di citizen repository che mantiene i dati su un file in formato CSV (Comma-Separated-Values)
 
@@ -18,11 +20,23 @@ public class FileCitizenRepository implements CitizenRepository{
         this.file = file;
     }
 
-
-
     @Override
     public List<Citizen> findAll() throws DataException {
-        try
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(file))){
+            String line = null;
+            List<Citizen> citizens = new ArrayList<>();
+            if((line = bufferedReader.readLine()) != null){
+                String[] citizenData = line.split(",");
+                citizens.add(
+                        new Citizen(
+                                citizenData[1]
+                        )
+                );
+            }
+            return citizens;
+        }catch (IOException e){
+            throw new DataException(e.getMessage(), e);
+        }
     }
 
     @Override
@@ -42,15 +56,17 @@ public class FileCitizenRepository implements CitizenRepository{
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        return null;
+        try(FileWriter fileWriter = new FileWriter(file)){
+
+            fileWriter.append(newCitizen.toCsvRow());
+
+        }catch (IOException e){
+            throw  new DataException(e.getMessage(),e);
+        }
     }
 
     @Override
     public void test() throws DataException {
-        try(FileReader fr = new FileReader("nonEsisto.txt")){
 
-        }catch (IOException e){
-            throw new DataException(e.getMessage(), e);
-        }
     }
 }
