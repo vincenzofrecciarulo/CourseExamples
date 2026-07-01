@@ -16,7 +16,29 @@ public class Citizen {
     public Citizen() {
     }
 
+    public Citizen(int id, String firstName, String lastName, char gender, int age, String educationLevel) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.age = age;
+        this.educationLevel = educationLevel;
+    }
+
+
+
+    public Citizen(int id, String firstName, String lastName, char gender, int age) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.age = age;
+    }
+
+
+
     public Citizen(String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -37,6 +59,16 @@ public class Citizen {
         this.wealthLevel = wealthLevel;
         this.isRebel = isRebel;
         this.happinessTotal = happinessTotal;
+
+    }
+
+    public void merge (Citizen other) {
+        this.firstName = other.firstName;
+        this.lastName = other.lastName;
+        this.gender = other.gender;
+        this.age = other.age;
+        this.salary = other.salary;
+        this.educationLevel = other.educationLevel;
 
     }
 
