@@ -1,8 +1,6 @@
 package org.generation.italy.examples.jdbc;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +19,13 @@ public class FileCitizenRepository implements CitizenRepository{
         // la prima cosa ci serve è una lista vuota, così mentre leggiamo il file, aggiungeremo un cittadino alla volta dentro la lista
         List<Citizen> citizens = new ArrayList<>();
 
-        // potevamo
         // try(FileReader fr = new FileReader("citizens.csv"))
-        // BufferedReader legge un buffer di caratteri
+        // FileReader legge i caratteri, invece a noi interessa leggere direttamente le righe
+        // e non un carattere alla volta
+        // Andiamo quindi a leggere un "buffer" di dati
         try (BufferedReader br = new BufferedReader(new FileReader("citizens.csv"))) {
 
-            // Salta l'intestazione
+            // Salta l'intestazione (l'header)
             br.readLine();
 
             String line = null;
@@ -61,9 +60,9 @@ public class FileCitizenRepository implements CitizenRepository{
         try (BufferedReader br = new BufferedReader(new FileReader("citizens.csv"))) {
 
             // Salta l'header
-            br.readLine();
+            // br.readLine();
 
-            String line;
+            String line = null;
 
             while ((line = br.readLine()) != null) {
 
@@ -75,8 +74,7 @@ public class FileCitizenRepository implements CitizenRepository{
                 char citizenSex = values[3].charAt(0);
                 String citizenEducationLevel = values[4];
 
-                if (citizenSex == sex &&
-                        citizenEducationLevel.equals(educationLevel)) {
+                if (citizenSex == sex && citizenEducationLevel.equals(educationLevel)) {
 
                     Citizen citizen = new Citizen(id, firstName, lastName, citizenSex, citizenEducationLevel);
 
@@ -88,11 +86,62 @@ public class FileCitizenRepository implements CitizenRepository{
             throw new DataException(e.getMessage(), e);
         }
 
-        return citizens;
+        // return citizens;
     }
 
     @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
+
+        List<Citizen> citizens = findAll();
+
+        // qui scorro tutta la lista dei cittadini, uno per uno, usando l’indice i
+        // cioè è il for classico
+        // potevamo anche usare un for each: for(Citizen citizen:citizens)
+        for (int i = 0; i < citizens.size(); i++) {
+
+            // ora prendo il cittadino nella posizione i (in particolare prendo il suo id)
+            // e confronto il suo id con quello del cittadino nuovo che sta in input
+            // cioè in sostanza sto cercando il citizen giusto da aggiornare?
+            if (citizens.get(i).getId() == citizen.getId()) {
+
+                // ora sostituiamo nella lista
+                // quindi il ora alla posizione i, metti il nuovo
+                // vado a impostare che sia proprio quello
+                citizens.set(i, citizen);
+
+                // ora cancello e riscrivo il CSV da zero
+                // riscriamo da zero solo quella riga o proprio tutto il file?
+                // FileWriter → apre il file in scrittura (e lo svuota)
+                // BufferedWriter → scrive il file in modo efficiente
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter("citizens.csv"))) {
+
+                    // scriviamo la prima riga del CSV
+                    // riscriviamo l'header
+                    bw.write("id,firstName,lastName,sex,educationLevel");
+                    bw.newLine(); // per andare a capo
+
+                    // per ogni cittadino nella lista, riscrivilo nel file
+                    for (Citizen c : citizens) {
+
+                        bw.write(
+                                c.getId() + "," +
+                                    c.getFirstName() + "," +
+                                    c.getLastName() + "," +
+                                    c.getGender() + "," +
+                                    c.getEducationLevel()
+                        );
+
+                        bw.newLine(); // qui andiamo a capo per scrivere il prossimo cittadino
+                    }
+
+                } catch (IOException e) {
+                    throw new DataException(e.getMessage(), e);
+                }
+
+                return true;
+            }
+        }
+
         return false;
     }
 
