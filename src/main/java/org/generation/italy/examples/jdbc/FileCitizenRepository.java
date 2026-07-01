@@ -1,7 +1,10 @@
 package org.generation.italy.examples.jdbc;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -10,6 +13,10 @@ import java.util.List;
 // csv -> tabella -> header(id, firstName..) - dati
 
 public class FileCitizenRepository implements CitizenRepository{
+
+
+
+
 
     @Override
     public List<Citizen> findAll() throws DataException {
@@ -33,15 +40,26 @@ public class FileCitizenRepository implements CitizenRepository{
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        return null;
-    }
+        try(FileWriter fr = new FileWriter("citizens.csv")){
 
-    @Override
-    public void test() throws DataException {
-        try(FileReader fr = new FileReader("nonEsisto.txt")){
-
-        }catch (IOException e){
+    }  catch (IOException e){
             throw new DataException(e.getMessage(), e);
         }
+/*
+    @Override
+    public void addFaction(Faction faction) throws DataException {
+
+        try(PreparedStatement pt = con.prepareStatement(ADD_FACTION)) {
+            pt.setInt(1, faction.getId());
+            pt.setString(2, faction.getName());
+            pt.setString(3, faction.getDescription());
+            pt.executeUpdate();
+
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
+        }
+*/
     }
+
+
 }

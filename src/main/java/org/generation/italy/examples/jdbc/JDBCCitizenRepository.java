@@ -73,12 +73,5 @@ public class JDBCCitizenRepository implements CitizenRepository {
         return null;
     }
 
-    @Override
-    public void test() throws DataException {
-        try(Connection con = ConnectionFactory.getConnection()){
 
-        }catch (SQLException e){
-            throw new DataException(e.getMessage(), e);
-        }
-    }
 }
