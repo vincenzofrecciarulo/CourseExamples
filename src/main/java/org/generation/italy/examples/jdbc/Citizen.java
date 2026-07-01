@@ -140,4 +140,14 @@ public class Citizen {
                 ", happinessTotal=" + happinessTotal +
                 '}';
     }
+
+    public String citizenOnFile(){
+        return firstName + "," +
+                lastName + "," +
+                gender + "," +
+                age + "," +
+                salary + "," +
+                educationLevel +
+                System.lineSeparator();
+    }
 }

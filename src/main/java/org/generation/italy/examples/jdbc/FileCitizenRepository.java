@@ -2,6 +2,7 @@ package org.generation.italy.examples.jdbc;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
@@ -21,12 +22,23 @@ public class FileCitizenRepository implements CitizenRepository{
 
     @Override
     public List<Citizen> findAll() throws DataException {
-        return List.of();
+        try(Stream<String> lines = Files.lines(file.toPath())) {
+            return lines.map(this::CreateCitizenByLine).toList();
+        } catch (IOException e) {
+            throw new DataException(e.getMessage(),e);
+        }
     }
 
     @Override
     public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException {
-        return List.of();
+        try(Stream<String> lines = Files.lines(file.toPath())) {
+            return lines.skip(1)
+                    .map(this::CreateCitizenByLine)
+                    .filter(c -> c.getGender() == sex && c.getEducationLevel().equals(educationLevel))
+                    .toList();
+        } catch(IOException e){
+            throw new DataException(e.getMessage(), e);
+        }
     }
 
     @Override
@@ -41,16 +53,15 @@ public class FileCitizenRepository implements CitizenRepository{
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        try(Stream<String> st = Files.lines(file.toPath())){
-            newCitizen = st.map(this::transformCitizenToLine).findFirst().get();
-
+        try(FileWriter fw = new FileWriter(file,true)){
+            fw.append(newCitizen.citizenOnFile());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return newCitizen;
     }
 
-    public Citizen transformCitizenToLine(String line){
+    public Citizen CreateCitizenByLine(String line){
         String[] strgs = line.split(",");
         return  new Citizen(
                 strgs[0],
