@@ -13,5 +13,4 @@ public interface CitizenRepository {
     boolean deleteCitizen(int citizenId) throws DataException;
     Citizen createCitizen(Citizen newCitizen) throws DataException;
 
-    void test() throws SQLException, DataException;
 }

@@ -15,14 +15,12 @@ public class Citizen {
 
     public Citizen() {
     }
-
     public Citizen(String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.age = age;
-        this.salary = salary;
-        this.educationLevel = educationLevel;
+        this(firstName,lastName,gender,age,salary,null,educationLevel,0);
+    }
+
+    public Citizen(String firstName, String lastName, char gender, int age, double salary,String wealthLevel, String educationLevel,int happinessTotal) {
+        this(0,firstName,lastName,gender,age,educationLevel,salary,wealthLevel,false,happinessTotal);
     }
 
     public Citizen(int id, String firstName, String lastName, char gender, int age,
@@ -39,6 +37,8 @@ public class Citizen {
         this.happinessTotal = happinessTotal;
 
     }
+
+
 
     // Getters and Setters
     public int getId() {
@@ -139,5 +139,15 @@ public class Citizen {
                 ", isRebel=" + isRebel +
                 ", happinessTotal=" + happinessTotal +
                 '}';
+    }
+
+    public static Citizen generateFromArray(String[] stringCitizen) {
+        return new Citizen(Integer.parseInt(stringCitizen[0]),stringCitizen[1],stringCitizen[2],stringCitizen[3].charAt(0),Integer.parseInt(stringCitizen[4]),stringCitizen[5],Double.parseDouble(stringCitizen[6]),stringCitizen[7],Boolean.parseBoolean(stringCitizen[8]),Integer.parseInt(stringCitizen[9]));
+    }
+
+    public String toCsv() {
+        return id + "," + firstName + "," + lastName + "," + gender + "," +
+                age + "," + educationLevel + "," + salary + "," +
+                wealthLevel + "," + isRebel + "," + happinessTotal;
     }
 }
