@@ -7,43 +7,34 @@ public class Citizen {
     private char gender;
     private int age;
     private String educationLevel;
-    private Integer jobBuildingId;
     private double salary;
-    private Integer homeBuildingId;
     private String wealthLevel;
-    private Integer supportedFactionId;
     private boolean isRebel;
     private int happinessTotal;
+    private Faction faction;
 
     public Citizen() {
     }
 
     public Citizen(String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.age = age;
-        this.salary = salary;
-        this.educationLevel = educationLevel;
+       this(0,firstName,lastName,gender,age,salary,educationLevel);
     }
-
+    public Citizen(int id,String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
+        this(id,firstName,lastName,gender,age,salary,educationLevel,null,false,0);
+    }
     public Citizen(int id, String firstName, String lastName, char gender, int age,
-                   String educationLevel, Integer jobBuildingId, double salary,
-                   Integer homeBuildingId, String wealthLevel, Integer supportedFactionId,
-                   boolean isRebel, int happinessTotal) {
+                   double salary, String educationLevel, String wealthLevel, boolean isRebel, int happinessTotal) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
         this.educationLevel = educationLevel;
-        this.jobBuildingId = jobBuildingId;
         this.salary = salary;
-        this.homeBuildingId = homeBuildingId;
         this.wealthLevel = wealthLevel;
-        this.supportedFactionId = supportedFactionId;
         this.isRebel = isRebel;
         this.happinessTotal = happinessTotal;
+
     }
 
     // Getters and Setters
@@ -95,14 +86,6 @@ public class Citizen {
         this.educationLevel = educationLevel;
     }
 
-    public Integer getJobBuildingId() {
-        return jobBuildingId;
-    }
-
-    public void setJobBuildingId(Integer jobBuildingId) {
-        this.jobBuildingId = jobBuildingId;
-    }
-
     public double getSalary() {
         return salary;
     }
@@ -111,28 +94,12 @@ public class Citizen {
         this.salary = salary;
     }
 
-    public Integer getHomeBuildingId() {
-        return homeBuildingId;
-    }
-
-    public void setHomeBuildingId(Integer homeBuildingId) {
-        this.homeBuildingId = homeBuildingId;
-    }
-
     public String getWealthLevel() {
         return wealthLevel;
     }
 
     public void setWealthLevel(String wealthLevel) {
         this.wealthLevel = wealthLevel;
-    }
-
-    public Integer getSupportedFactionId() {
-        return supportedFactionId;
-    }
-
-    public void setSupportedFactionId(Integer supportedFactionId) {
-        this.supportedFactionId = supportedFactionId;
     }
 
     public boolean isRebel() {
@@ -151,6 +118,10 @@ public class Citizen {
         this.happinessTotal = happinessTotal;
     }
 
+    public void setFaction(Faction faction) {
+        this.faction = faction;
+    }
+
     @Override
     public String toString() {
         return "Citizen{" +
@@ -160,11 +131,8 @@ public class Citizen {
                 ", gender=" + gender +
                 ", age=" + age +
                 ", educationLevel='" + educationLevel + '\'' +
-                ", jobBuildingId=" + jobBuildingId +
                 ", salary=" + salary +
-                ", homeBuildingId=" + homeBuildingId +
                 ", wealthLevel='" + wealthLevel + '\'' +
-                ", supportedFactionId=" + supportedFactionId +
                 ", isRebel=" + isRebel +
                 ", happinessTotal=" + happinessTotal +
                 '}';
