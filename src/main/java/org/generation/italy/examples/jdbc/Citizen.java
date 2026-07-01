@@ -17,16 +17,13 @@ public class Citizen {
     }
 
     public Citizen(String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.age = age;
-        this.salary = salary;
-        this.educationLevel = educationLevel;
+       this(0,firstName,lastName,gender,age,salary,educationLevel);
     }
-
+    public Citizen(int id,String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
+        this(id,firstName,lastName,gender,age,salary,educationLevel,null,false,0);
+    }
     public Citizen(int id, String firstName, String lastName, char gender, int age,
-                   String educationLevel, double salary, String wealthLevel, boolean isRebel, int happinessTotal) {
+                   double salary, String educationLevel, String wealthLevel, boolean isRebel, int happinessTotal) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

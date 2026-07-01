@@ -40,7 +40,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
                 Integer supportedFactionId = rs.getObject("supported_faction_id", Integer.class);
                 String name = rs.getString("name");
                 String description = rs.getString("description");
-                Citizen c = new Citizen(id, firstName, lastName, gender, age, educationLevel, salary, wealthLevel, isRebel,happinessTotal);
+                Citizen c = new Citizen(id, firstName, lastName, gender, age, salary, educationLevel, wealthLevel, isRebel,happinessTotal);
                 if(supportedFactionId != null){
                     Faction f = new Faction(supportedFactionId, name, description);
                     c.setFaction(f);
@@ -73,12 +73,5 @@ public class JDBCCitizenRepository implements CitizenRepository {
         return null;
     }
 
-    @Override
-    public void test() throws DataException {
-        try(Connection con = ConnectionFactory.getConnection()){
 
-        }catch (SQLException e){
-            throw new DataException(e.getMessage(), e);
-        }
-    }
 }

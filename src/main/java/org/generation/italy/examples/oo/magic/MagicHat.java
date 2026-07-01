@@ -29,8 +29,7 @@ public class MagicHat {
             new Student("Pietro Pinto", null),
             new Student("Corinne Mihai", null),
             new Student("Mattia Liguori", null),
-            new Student("Andrea Bruno", House.GRYFFINDOR),
-            new Student("Pippo", House.HUFFLEPUFF)
+            new Student("Andrea Bruno", House.GRYFFINDOR)
     };
 
      public Student[] prefects = new Student[] {
