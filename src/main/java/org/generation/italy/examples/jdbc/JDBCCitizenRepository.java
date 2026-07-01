@@ -1,6 +1,9 @@
 package org.generation.italy.examples.jdbc;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +36,19 @@ public class JDBCCitizenRepository implements CitizenRepository {
             DELETE FROM citizen
             WHERE id = ?
             """;
+    private Connection con;
 
+    public JDBCCitizenRepository(Connection con){
+        this.con = con;
+    }
+    private static final String FIND_ALL =
+            """
+                    SELECT c.id as c_id, first_name, last_name, gender, age, education_level,salary, wealth_level,is_rebel, happiness_total, supported_faction_id, f.name, f.description
+                    FROM citizen as c
+                    LEFT JOIN faction as f ON c.supported_faction_id = f.id
+                    """;
+
+    // Il metodo findAll() dovrà trattare le faction in maniera EAGER, in vece che in maniera LAZY
     private final String INSERT_CITIZEN = """
             INSERT INTO citizen
             (first_name, last_name, gender, age, salary, education_level)
@@ -42,31 +57,34 @@ public class JDBCCitizenRepository implements CitizenRepository {
 
     // metodo che ritorna una lista di citizen
     @Override
-    public List<Citizen> findAll() throws SQLException {
-        // abbiamo creato una classe StartConnection che crea una connessione cosi da non farlo ogni volta
-        // utilizziamo il try-whit resources cosi da evitare il finally per chiudere la connection
-        try(Connection connection = StartConnection.createConnection()){
-            // creiamo lo statement necessario poi per lanciare la query
-            Statement statement = connection.createStatement();
-            // il risultato che ci aspettiamo dalla query è la tabella con una lista di citizen
-            // quindi utilizzeremo l'interfaccia ResultSet
-            ResultSet resultSet = statement.executeQuery(FIND_ALL);
-            List<Citizen> citizens = new ArrayList<>();
-            // tramite il metodo presente nel rs possiamo controllare se c'è un successore nella tabella
-            while(resultSet.next()){
-                Citizen citizen = new Citizen(
-                        // sempre con i metodi di rs possiamo prendere i valori all'interno delle colonne delle tabelle
-                        // per ogni singolo citizen cosi da istanziarlo con quei valori
-                resultSet.getString("first_name"),
-                resultSet.getString("last_name"),
-                resultSet.getString("gender").charAt(0),
-                resultSet.getInt("age"),
-                resultSet.getDouble("salary"),
-                resultSet.getString("education_level")
-                );
-                citizens.add(citizen);
+    public List<Citizen> findAll() throws DataException {
+        try(Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(FIND_ALL)){
+            var citizens = new ArrayList<Citizen>();
+            while(rs.next()){
+                int id = rs.getInt("c_id");
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                char gender = rs.getString("gender").charAt(0);
+                int age = rs.getInt("age");
+                String educationLevel = rs.getString("education_level");
+                double salary = rs.getDouble("salary");
+                String wealthLevel = rs.getString("wealth_level");
+                boolean isRebel = rs.getBoolean("is_rebel");
+                int happinessTotal = rs.getInt("happiness_total");
+                Integer supportedFactionId = rs.getObject("supported_faction_id", Integer.class);
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                Citizen c = new Citizen(id, firstName, lastName, gender, age, educationLevel, salary, wealthLevel, isRebel,happinessTotal);
+                if(supportedFactionId != null){
+                    Faction f = new Faction(supportedFactionId, name, description);
+                    c.setFaction(f);
+                }
+                citizens.add(c);
             }
             return citizens;
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
         }
     }
 
