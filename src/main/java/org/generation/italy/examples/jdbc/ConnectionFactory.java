@@ -13,4 +13,5 @@ public class ConnectionFactory {
         return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
     }
+
 }

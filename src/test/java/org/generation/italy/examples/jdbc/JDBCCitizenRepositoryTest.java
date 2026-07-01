@@ -19,7 +19,7 @@ class JDBCCitizenRepositoryTest {
     @BeforeEach
     void setUp() {
         try {
-            con = ConnectionFactory.getConnection();
+            con = ConnectionFactory.createConnection();
             helper = new DbTestHelper(con);
             repo = new JDBCCitizenRepository(con);
         } catch (SQLException e) {
