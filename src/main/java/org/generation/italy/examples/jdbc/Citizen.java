@@ -14,6 +14,7 @@ public class Citizen {
     private Integer supportedFactionId;
     private boolean isRebel;
     private int happinessTotal;
+    private Faction faction;
 
     public Citizen() {
     }
@@ -150,6 +151,8 @@ public class Citizen {
     public void setHappinessTotal(int happinessTotal) {
         this.happinessTotal = happinessTotal;
     }
+
+    public void setFaction (Faction faction) {this.faction = faction;}
 
     @Override
     public String toString() {

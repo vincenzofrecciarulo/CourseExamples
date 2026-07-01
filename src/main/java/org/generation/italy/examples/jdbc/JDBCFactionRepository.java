@@ -30,7 +30,17 @@ public class JDBCFactionRepository implements FactionRepository{
     private final static String UPDATE_FACTION =
             """
             UPDATE faction
-            SET name = ?, description = ?
+            SET name = ?, 
+            description = ?
+            WHERE id = ?
+            """;
+    private final static String ADD_FACTION =
+            """
+            INSERT INTO faction (id, name, description) VALUES (?, ?, ?)
+            """;
+    private final static String REMOVE_FACTION_BY_ID =
+            """
+            DELETE FROM faction
             WHERE id = ?
             """;
     //anche se qua stiamo mettendo tutte le cose e potremmo quindi fare con * meglio
@@ -83,12 +93,11 @@ public class JDBCFactionRepository implements FactionRepository{
                     String description = rs.getString("description");
                     return Optional.of(new Faction(factionId, name, description));
                 }
-            }
+            } return Optional.empty();
         }
         catch (SQLException e){
             throw new DataException(e.getMessage(),e);
         }
-        return Optional.empty();
     }
 
     @Override
@@ -106,11 +115,25 @@ public class JDBCFactionRepository implements FactionRepository{
 
     @Override
     public void addFaction(Faction faction) throws DataException {
-
+        try(PreparedStatement st = con.prepareStatement(ADD_FACTION)){
+            st.setString(1, faction.getId());
+            st.setString(2, faction.getName());
+            st.setString(3, faction.getDescription());
+            st.executeUpdate();
+        }
+        catch (SQLException e){
+            throw new DataException(e.getMessage(),e);
+        }
     }
 
     @Override
     public boolean removeFactionById(int id) throws DataException {
-        return false;
+        try(PreparedStatement st = con.prepareStatement(REMOVE_FACTION_BY_ID)){
+            st.setInt(1, id);
+            return st.executeUpdate() > 0;
+        }
+        catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
+        }
     }
 }
