@@ -30,7 +30,8 @@ class FileCitizenRepositoryTest {
             }
             repository = new FileCitizenRepository(testFilePath);
         } catch (Exception e) {
-            fail(e.getMessage());
+            e.printStackTrace();
+            fail("errore nella creazione del file di test\n"+e.getMessage());
         }
     }
 
