@@ -147,7 +147,84 @@ public class FileCitizenRepository implements CitizenRepository{
 
     @Override
     public boolean deleteCitizen(int citizenId) throws DataException {
-        return false;
+        // Qui metterò solo i cittadini che devono rimanere
+        List<Citizen> citizens = new ArrayList<>();
+
+        // qui inizializzo un flag a false e questo flag ci serve per sapere se ho "rilevato"/trovato il cittadino da eliminare
+        boolean deleted = false;
+
+        try (BufferedReader br = new BufferedReader(new FileReader("citizens.csv"))) {
+
+            // Salta l'header
+            br.readLine();
+
+            String line = null;
+
+            while ((line = br.readLine()) != null) {
+
+                String[] values = line.split(",");
+
+                int id = Integer.parseInt(values[0]);
+                String firstName = values[1];
+                String lastName = values[2];
+                char gender = values[3].charAt(0);
+                String educationLevel = values[4];
+
+                Citizen citizen = new Citizen(id, firstName, lastName, gender, educationLevel);
+
+                // Se NON è il cittadino da eliminare, allora lo tengo,
+                // quindi tengo quel cittadino e lo aggiungo alla lista "citizens"
+                if (citizen.getId() != citizenId) {
+                    citizens.add(citizen);
+                } else {
+                    deleted = true; // quindi qui la flag la imposto a false
+                }
+            }
+
+        } catch (IOException e) {
+            throw new DataException(e.getMessage(), e);
+        }
+
+        // Se non è stato trovato alcun cittadino con quell'id che gli abbiamo dato in input,
+        // quindi in teoria sarebbe: abbiamo trovato qualcuno da eliminare? No
+        if (!deleted) {
+            return false;
+        }
+
+        // Fin qui il file non è cambiato
+        // Cioè in sostanza abbiamo solo modificato la memoria del programma
+        // Purtroppo il file contiene ancora quel cittadino, invece la lista contiene i cittadini meno quello tolto
+        // Ora per sistmare questo problema del file, mi tocca purtroppo riscrivere il file
+        // La prima cosa da fare è di riprendere il file e poi ci tocca svuotarlo
+        // Infine riscrivo dentro il file, tutta la lista
+        // FileWriter → apre il file in scrittura (e lo svuota)
+        // BufferedWriter → scrive il file
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("citizens.csv"))) {
+
+            // riscrivo l'header
+            bw.write("id,firstName,lastName,sex,educationLevel");
+            bw.newLine();
+
+            for (Citizen c : citizens) {
+
+                bw.write(
+                        c.getId() + "," +
+                            c.getFirstName() + "," +
+                            c.getLastName() + "," +
+                            c.getGender() + "," +
+                            c.getEducationLevel()
+                );
+
+                // qui faccio il newline per mettere i cittadini a capo uno sotto l'altro
+                bw.newLine();
+            }
+
+        } catch (IOException e) {
+            throw new DataException(e.getMessage(), e);
+        }
+
+        // In sostanza il cittadino è stato trovato ed eliminato con successo
+        return true;
     }
 
     @Override
