@@ -1,5 +1,6 @@
 package org.generation.italy.examples.jdbc;
 
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,7 +26,7 @@ class JDBCCitizenRepositoryTest {
         } catch (SQLException e) {
             fail(e.getMessage());
         }
-        created = new Citizen("Giovanni","Rana",'M',89,10000,"College");
+        created = new Citizen(10000,"Giovanni","Rana",'M',89,10000,"College");
     }
 
     @AfterEach
@@ -62,6 +63,23 @@ class JDBCCitizenRepositoryTest {
     }
     @Test
     void createCitizen(){
+         try {
+          List<Citizen> all = repo.findAll();
+             int expeted = helper.countCitizens() + 1;
+             repo.createCitizen(created);
+             assertEquals(expeted,all.size());
+         }catch (SQLException | DataException e){
+             fail(e.getMessage());
+         }
+    }
+    @Test
+    void deleteCitizen()  {
+        try {
+            List<Citizen> all = repo.findAll();
+            int expeted = helper.countCitizens() -1;
 
+        }catch (SQLException | DataException e){
+            fail(e.getMessage());
+        }
     }
 }
