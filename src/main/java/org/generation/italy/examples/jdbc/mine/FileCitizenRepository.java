@@ -1,6 +1,7 @@
 package org.generation.italy.examples.jdbc.mine;
 
 import java.io.*;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -52,12 +53,64 @@ public class FileCitizenRepository implements CitizenRepository {
 
     @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
-        return false;
+        Path inputPath = Paths.get(filePath);
+        Path tempPath = inputPath.getParent().resolve("Citizen_upd_temp.csv");
+        boolean hasBeenUpdated = false;
+        try (BufferedReader reader = Files.newBufferedReader(inputPath);
+        BufferedWriter writer = Files.newBufferedWriter(tempPath)) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+                if (Integer.parseInt(fields[0]) != citizen.getId()) {
+                    writer.write(line);
+                    writer.newLine();
+                } else {
+                    String updatedLine = citizen.getId() + "," +
+                            citizen.getFirstName() + "," +
+                            citizen.getLastName() + "," +
+                            citizen.getGender() + "," +
+                            citizen.getAge() + "," +
+                            citizen.getEducationLevel() + "," +
+                            citizen.getSalary() + "," +
+                            citizen.getWealthLevel() + "," +
+                            citizen.isRebel() + "," +
+                            citizen.getHappinessTotal();
+                    writer.write(updatedLine);
+                    writer.newLine();
+                    hasBeenUpdated = true;
+                }
+            }
+            writer.flush();
+            Files.move(tempPath, inputPath, StandardCopyOption.REPLACE_EXISTING);
+            return hasBeenUpdated;
+        } catch (IOException e) {
+            throw new DataException(e.getMessage(), e);
+        }
     }
 
     @Override
     public boolean deleteCitizen(int citizenId) throws DataException {
-        return false;
+        Path inputPath = Paths.get(filePath);
+        Path tempPath = inputPath.getParent().resolve("Citizen_del_temp.csv");
+        boolean found = false;
+        try (BufferedWriter writer = Files.newBufferedWriter(tempPath);
+             BufferedReader reader = Files.newBufferedReader(inputPath)) {
+            String line;
+            while((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+                if (Integer.parseInt(fields[0]) != citizenId) {
+                    writer.write(line);
+                    writer.newLine();
+                } else {
+                    found = true;
+                }
+            }
+            writer.flush();
+            Files.move(tempPath, inputPath, StandardCopyOption.REPLACE_EXISTING);
+            return found;
+        } catch (IOException e) {
+            throw new DataException(e.getMessage(), e);
+        }
     }
 
     @Override
