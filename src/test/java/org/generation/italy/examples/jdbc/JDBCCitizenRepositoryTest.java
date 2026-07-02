@@ -26,7 +26,7 @@ class JDBCCitizenRepositoryTest {
         } catch (SQLException e) {
             fail(e.getMessage());
         }
-        created = new Citizen(10000,"Giovanni","Rana",'M',89,10000,"College");
+        created = new Citizen("Giovanni","Rana",'M',89,10000,"College");
     }
 
     @AfterEach
@@ -67,7 +67,12 @@ class JDBCCitizenRepositoryTest {
           List<Citizen> all = repo.findAll();
              int expeted = helper.countCitizens() + 1;
              repo.createCitizen(created);
-             assertEquals(expeted,all.size());
+          List<Citizen> updated = repo.findAll();
+             for(Citizen c : updated){
+                 System.out.println(c.toString());
+             }
+             System.out.println(updated.getLast());
+             assertEquals(expeted,updated.size());
          }catch (SQLException | DataException e){
              fail(e.getMessage());
          }
@@ -77,7 +82,12 @@ class JDBCCitizenRepositoryTest {
         try {
             List<Citizen> all = repo.findAll();
             int expeted = helper.countCitizens() -1;
-
+            repo.deleteCitizen(95);
+            List<Citizen> updated = repo.findAll();
+            assertEquals(expeted,updated.size());
+            for(Citizen c: updated){
+                System.out.println(c.toString());
+            }
         }catch (SQLException | DataException e){
             fail(e.getMessage());
         }

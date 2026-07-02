@@ -12,12 +12,12 @@ public class JDBCCitizenRepository implements CitizenRepository {
     }
     private static final String FIND_ALL =
             """
-            SELECT c.id as c_id, c.first_name as c_name, c.last_name as c_surname, c.gender as c_gender, c.age as c_age, c.salary as c_salary,c.education_level as c_educational_level, c.wealth_level as c_wealth_level, c.is_rebel as c_rebel, c.happiness_total as c_happiness_total, c.supported_faction_id, f.name as faction, f.description as f_description
+            SELECT c.id as c_id, c.first_name as c_name, c.last_name as c_surname, c.gender as c_gender, c.age as c_age, c.salary as c_salary,c.education_level as c_educational_level, c.wealth_level as c_wealth_level, c.is_rebel as c_rebel, c.happiness_total as c_happiness_total, c.supported_faction_id as c_supported_id, f.name as faction_name, f.description as f_description
             FROM citizen as c
             LEFT JOIN faction as f ON c.supported_faction_id = f.id
                     """;
     private static final String FIND_BY_SEX_AND_EDUCATIONAL_LEVEL = """
-            SELECT c.id as c_id, c.first_name as c_name, c.last_name as c_surname, c.gender as c_gender, c.age as c_age, c.salary as c_salary,c.education_level as c_educational_level, c.wealth_level as c_wealth_level, c.is_rebel as c_rebel, c.happiness_total as c_happiness_total, c.supported_faction_id, f.name as faction, f.description as f_description
+            SELECT c.id as c_id, c.first_name as c_name, c.last_name as c_surname, c.gender as c_gender, c.age as c_age, c.salary as c_salary,c.education_level as c_educational_level, c.wealth_level as c_wealth_level, c.is_rebel as c_rebel, c.happiness_total as c_happiness_total, c.supported_faction_id as c_supported_faction, f.name as faction, f.description as f_description
             FROM citizen as c
             LEFT JOIN faction as f ON c.supported_faction_id = f.id
             WHERE c.gender = ? AND c.education_level = ?
@@ -46,14 +46,14 @@ public class JDBCCitizenRepository implements CitizenRepository {
                 String lastName = rs.getString("c_surname");
                 char gender = rs.getString("c_gender").charAt(0);
                 int age = rs.getInt("c_age");
+                double salary = rs.getDouble("c_salary");
                 String educationLevel = rs.getString("c_educational_level");
-                double salary = rs.getDouble("salary");
-                String wealthLevel = rs.getString("wealth_level");
-                boolean isRebel = rs.getBoolean("is_rebel");
-                int happinessTotal = rs.getInt("happiness_total");
-                Integer supportedFactionId = rs.getObject("supported_faction_id", Integer.class);
-                String name = rs.getString("name");
-                String description = rs.getString("description");
+                String wealthLevel = rs.getString("c_wealth_level");
+                boolean isRebel = rs.getBoolean("c_rebel");
+                int happinessTotal = rs.getInt("c_happiness_total");
+                Integer supportedFactionId = rs.getObject("c_supported_id", Integer.class);
+                String name = rs.getString("faction_name");
+                String description = rs.getString("f_description");
                 Citizen c = new Citizen(id, firstName, lastName, gender, age, salary, educationLevel, wealthLevel, isRebel,happinessTotal);
                 if(supportedFactionId != null){
                     Faction f = new Faction(supportedFactionId, name, description);

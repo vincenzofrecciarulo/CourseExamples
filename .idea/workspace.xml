@@ -7,7 +7,6 @@
     <list default="true" id="8f9f3e2a-e9b4-4767-a9f1-fadde18e7e03" name="Changes" comment="Continuo a implementare JDBCCitizenRepository">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/JDBCCitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/JDBCCitizenRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/DbTestHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/DbTestHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/JDBCCitizenRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/JDBCCitizenRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +41,7 @@
   "keyToString": {
     "JUnit.FileCitizenRepositoryTest.updateCitizen.executor": "Run",
     "JUnit.JDBCCitizenRepositoryTest.createCitizen.executor": "Run",
+    "JUnit.JDBCCitizenRepositoryTest.deleteCitizen.executor": "Run",
     "JUnit.JDBCCitizenRepositoryTest.executor": "Run",
     "JUnit.JDBCCitizenRepositoryTest.findAll.executor": "Run",
     "JUnit.JDBCCitizenRepositoryTest.findBySexAndEducation.executor": "Run",
@@ -53,23 +53,7 @@
     "last_opened_file_path": "C:/Dev/Java/Projects/Exercises/CourseExamples"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.JDBCCitizenRepositoryTest.findAll">
-    <configuration name="FileCitizenRepositoryTest.deleteCitizen" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CourseExamples" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.jdbc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.generation.italy.examples.jdbc" />
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.FileCitizenRepositoryTest" />
-      <option name="METHOD_NAME" value="deleteCitizen" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.JDBCCitizenRepositoryTest.deleteCitizen">
     <configuration name="JDBCCitizenRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CourseExamples" />
       <extension name="coverage">
@@ -96,6 +80,22 @@
       <option name="PACKAGE_NAME" value="org.generation.italy.examples.jdbc" />
       <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.JDBCCitizenRepositoryTest" />
       <option name="METHOD_NAME" value="createCitizen" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JDBCCitizenRepositoryTest.deleteCitizen" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.jdbc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.generation.italy.examples.jdbc" />
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.JDBCCitizenRepositoryTest" />
+      <option name="METHOD_NAME" value="deleteCitizen" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -135,11 +135,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.JDBCCitizenRepositoryTest.deleteCitizen" />
+        <item itemvalue="JUnit.JDBCCitizenRepositoryTest.createCitizen" />
         <item itemvalue="JUnit.JDBCCitizenRepositoryTest.findAll" />
         <item itemvalue="JUnit.JDBCCitizenRepositoryTest.findBySexAndEducation" />
         <item itemvalue="JUnit.JDBCCitizenRepositoryTest" />
-        <item itemvalue="JUnit.JDBCCitizenRepositoryTest.createCitizen" />
-        <item itemvalue="JUnit.FileCitizenRepositoryTest.deleteCitizen" />
       </list>
     </recent_temporary>
   </component>
@@ -175,7 +175,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782984915056</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Continuo a implementare JDBCCitizenRepository">
+      <option name="closed" value="true" />
+      <created>1782990503493</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1782990503493</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -200,6 +208,11 @@
           <url>file://$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/JDBCCitizenRepositoryTest.java</url>
           <line>14</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/JDBCCitizenRepository.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
