@@ -229,7 +229,25 @@ public class FileCitizenRepository implements CitizenRepository{
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        return null;
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("citizens.csv", true))) {
+
+            // qui vado a capo per sicurezza perchè sennò
+            bw.newLine();
+
+            bw.write(
+                    newCitizen.getId() + "," +
+                        newCitizen.getFirstName() + "," +
+                        newCitizen.getLastName() + "," +
+                        newCitizen.getGender() + "," +
+                        newCitizen.getEducationLevel()
+            );
+
+        } catch (IOException e) {
+            throw new DataException(e.getMessage(), e);
+        }
+
+        return newCitizen;
     }
 
     @Override
