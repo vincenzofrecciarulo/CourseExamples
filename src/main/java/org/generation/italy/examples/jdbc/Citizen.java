@@ -7,44 +7,51 @@ public class Citizen {
     private char gender;
     private int age;
     private String educationLevel;
-    private Integer jobBuildingId;
     private double salary;
-    private Integer homeBuildingId;
     private String wealthLevel;
-    private Integer supportedFactionId;
     private boolean isRebel;
     private int happinessTotal;
+    private Faction faction;
 
-    public Citizen() {
-    }
-
-    public Citizen(String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.age = age;
-        this.salary = salary;
-        this.educationLevel = educationLevel;
-    }
 
     public Citizen(int id, String firstName, String lastName, char gender, int age,
-                   String educationLevel, Integer jobBuildingId, double salary,
-                   Integer homeBuildingId, String wealthLevel, Integer supportedFactionId,
+                   double salary, String educationLevel, String wealthLevel,
                    boolean isRebel, int happinessTotal) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
-        this.educationLevel = educationLevel;
-        this.jobBuildingId = jobBuildingId;
         this.salary = salary;
-        this.homeBuildingId = homeBuildingId;
+        this.educationLevel = educationLevel;
         this.wealthLevel = wealthLevel;
-        this.supportedFactionId = supportedFactionId;
         this.isRebel = isRebel;
         this.happinessTotal = happinessTotal;
     }
+
+    public Citizen(int id, String firstName, String lastName, char gender, int age,
+                   double salary, String educationLevel) {
+        this(id, firstName, lastName, gender, age, salary, educationLevel, null, false, 0);
+    }
+
+
+
+    public Citizen(String firstName, String lastName, char gender, int age,
+                   double salary, String educationLevel) {
+        this(0, firstName, lastName, gender, age, salary, educationLevel);
+    }
+
+    public void merge(Citizen other) {
+        this.firstName=other.firstName;
+        this.lastName=other.lastName;
+        this.gender=other.gender;
+        this.age=other.age;
+        this.salary=other.salary;
+        this.educationLevel=other.educationLevel;
+    }
+
+
+
 
     // Getters and Setters
     public int getId() {
@@ -95,14 +102,6 @@ public class Citizen {
         this.educationLevel = educationLevel;
     }
 
-    public Integer getJobBuildingId() {
-        return jobBuildingId;
-    }
-
-    public void setJobBuildingId(Integer jobBuildingId) {
-        this.jobBuildingId = jobBuildingId;
-    }
-
     public double getSalary() {
         return salary;
     }
@@ -111,28 +110,12 @@ public class Citizen {
         this.salary = salary;
     }
 
-    public Integer getHomeBuildingId() {
-        return homeBuildingId;
-    }
-
-    public void setHomeBuildingId(Integer homeBuildingId) {
-        this.homeBuildingId = homeBuildingId;
-    }
-
     public String getWealthLevel() {
         return wealthLevel;
     }
 
     public void setWealthLevel(String wealthLevel) {
         this.wealthLevel = wealthLevel;
-    }
-
-    public Integer getSupportedFactionId() {
-        return supportedFactionId;
-    }
-
-    public void setSupportedFactionId(Integer supportedFactionId) {
-        this.supportedFactionId = supportedFactionId;
     }
 
     public boolean isRebel() {
@@ -160,11 +143,8 @@ public class Citizen {
                 ", gender=" + gender +
                 ", age=" + age +
                 ", educationLevel='" + educationLevel + '\'' +
-                ", jobBuildingId=" + jobBuildingId +
                 ", salary=" + salary +
-                ", homeBuildingId=" + homeBuildingId +
                 ", wealthLevel='" + wealthLevel + '\'' +
-                ", supportedFactionId=" + supportedFactionId +
                 ", isRebel=" + isRebel +
                 ", happinessTotal=" + happinessTotal +
                 '}';
