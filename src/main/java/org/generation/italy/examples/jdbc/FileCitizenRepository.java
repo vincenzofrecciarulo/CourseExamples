@@ -44,7 +44,7 @@ public class FileCitizenRepository implements CitizenRepository {
             List<Citizen> newUpdateList = list.stream()
                     .map(a -> a.getId() == citizen.getId() ? citizen : a)
                     .toList();
-            CsvFileHandler.writeCitizensToCsv(newUpdateList, true);
+            CsvFileHandler.writeCitizensToCsv(newUpdateList);
             return true;
         }
         return false;
@@ -57,7 +57,7 @@ public class FileCitizenRepository implements CitizenRepository {
                 .filter(a -> a.getId() != citizenId)
                 .toList();
         if (newList.size() != list.size()) {
-            CsvFileHandler.writeCitizensToCsv(newList, true);
+            CsvFileHandler.writeCitizensToCsv(newList);
             return true;
         }
         return false;

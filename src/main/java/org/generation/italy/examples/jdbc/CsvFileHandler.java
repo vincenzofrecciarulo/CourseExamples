@@ -23,12 +23,9 @@ public class CsvFileHandler {
         return false;
     }
 
-    public static void writeCitizensToCsv(List<Citizen> citizens, boolean isUpdate) throws DataException {
-            if(!isFileCreated() && !isUpdate){
-                return;
-            }
+    public static void writeCitizensToCsv(List<Citizen> citizens) throws DataException {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(url))) {
-            bw.write("id;first_name;last_name;gender; age;education_level;salary;wealth_level;is_rebel;happiness_total");
+            bw.write("id;first_name;last_name;gender;age;education_level;salary;wealth_level;is_rebel;happiness_total");
             bw.newLine();
             for (Citizen c : citizens) {
                 StringBuilder sb = new StringBuilder();

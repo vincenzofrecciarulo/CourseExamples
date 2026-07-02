@@ -8,7 +8,7 @@ public class Start {
     public static void main(String[] args) throws DataException {
         try (Connection con = ConnectionFactory.getConnection()) {
             JDBCCitizenRepository jdbcCitizenRepository = new JDBCCitizenRepository(con);
-            CsvFileHandler.writeCitizensToCsv(jdbcCitizenRepository.findAll(), false);
+            CsvFileHandler.writeCitizensToCsv(jdbcCitizenRepository.findAll());
             FileCitizenRepository fileCitizenRepository = new FileCitizenRepository();
             System.out.println(fileCitizenRepository.findAll());
            /* System.out.println(fileCitizenRepository.createCitizen(new Citizen(
