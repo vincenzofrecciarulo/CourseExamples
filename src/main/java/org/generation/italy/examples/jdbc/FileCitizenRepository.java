@@ -2,8 +2,6 @@ package org.generation.italy.examples.jdbc;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -83,7 +81,7 @@ public class FileCitizenRepository implements CitizenRepository{
                     isModified = true;
                     continue;
                 }
-                newCsv.append(line);
+                newCsv.append(line).append("\n");
             }
 
             if(isModified) {
@@ -109,7 +107,7 @@ public class FileCitizenRepository implements CitizenRepository{
                     isModified = true;
                     continue;
                 }
-                newCsv.append(line);
+                newCsv.append(line).append("\n");
             }
 
             if(isModified) {
