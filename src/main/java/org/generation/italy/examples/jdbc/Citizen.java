@@ -46,6 +46,21 @@ public class Citizen {
         this.happinessTotal = happinessTotal;
     }
 
+    public void merge(Citizen citizen) {
+        this.firstName = citizen.firstName;
+        this.lastName = citizen.lastName;
+        this.gender = citizen.gender;
+        this.age = citizen.age;
+        this.educationLevel = citizen.educationLevel;
+        this.jobBuildingId = citizen.jobBuildingId;
+        this.salary = citizen.salary;
+        this.homeBuildingId = citizen.homeBuildingId;
+        this.wealthLevel = citizen.wealthLevel;
+        this.supportedFactionId = citizen.supportedFactionId;
+        this.isRebel = citizen.isRebel;
+        this.happinessTotal = citizen.happinessTotal;
+    }
+
     // Getters and Setters
     public int getId() {
         return id;
