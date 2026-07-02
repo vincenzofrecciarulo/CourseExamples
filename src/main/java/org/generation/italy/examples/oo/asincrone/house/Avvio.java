@@ -1,6 +1,6 @@
 package org.generation.italy.examples.oo.asincrone.house;
 
-import org.generation.italy.examples.oo.asincrone.Person;
+import org.generation.italy.examples.oo.asincrone.ereditarietà.Person;
 
 public class Avvio {
     public static void main (String[] args){

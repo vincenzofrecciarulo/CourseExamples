@@ -1,6 +1,7 @@
 package org.generation.italy.examples.oo.banksystem;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Account {
     /*Creare una classe che rappresenti un conto corrente un saldo di tipo double
@@ -84,4 +85,6 @@ public class Account {
             balance = newBalance;
         }
     }
+
 }
+
