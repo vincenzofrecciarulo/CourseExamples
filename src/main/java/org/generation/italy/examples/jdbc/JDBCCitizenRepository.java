@@ -30,6 +30,9 @@ public class JDBCCitizenRepository implements CitizenRepository {
             INSERT INTO citizen (first_name,last_name,gender,age,salary,education_level)
             VALUES (?,?,?,?,?,?)
             """ ;
+    private final static String DELETE_CITIZEN = """
+            DELETE FROM citizen WHERE id = ?
+            """;
 
     // Il metodo findAll() dovrà trattare le faction in maniera EAGER, in vece che in maniera LAZY
     @Override
@@ -103,7 +106,12 @@ public class JDBCCitizenRepository implements CitizenRepository {
 
     @Override
     public boolean deleteCitizen(int citizenId) throws DataException {
-        return false;
+        try (PreparedStatement ps = con.prepareStatement(DELETE_CITIZEN)){
+            ps.setInt(1,citizenId);
+            return ps.executeUpdate() == 1;
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(),e);
+        }
     }
 
     @Override
