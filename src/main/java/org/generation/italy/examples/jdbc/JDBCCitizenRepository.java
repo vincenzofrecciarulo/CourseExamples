@@ -27,7 +27,8 @@ public class JDBCCitizenRepository implements CitizenRepository {
             """;
 
     private static final String CREATE_CITIZEN = """
-            INSERT INTO 
+            INSERT INTO citizen (first_name,last_name,gender,age,salary,education_level)
+            VALUES (?,?,?,?,?,?)
             """ ;
 
     // Il metodo findAll() dovrà trattare le faction in maniera EAGER, in vece che in maniera LAZY
@@ -107,7 +108,20 @@ public class JDBCCitizenRepository implements CitizenRepository {
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        return null;
+        try (PreparedStatement ps = con.prepareStatement(CREATE_CITIZEN,Statement.RETURN_GENERATED_KEYS)){
+              ps.setString(1, newCitizen.getFirstName());
+              ps.setString(2,newCitizen.getLastName());
+              ps.setString(3,String.valueOf(newCitizen.getGender()));
+              ps.setInt(4,newCitizen.getAge());
+              ps.setDouble(5,newCitizen.getSalary());
+              ps.setString(6,newCitizen.getEducationLevel());
+               int insert =  ps.executeUpdate();
+              if(insert==1){
+
+              }
+        } catch (SQLException e) {
+            throw new DataException(e.getMessage(),e);
+        }
     }
 
 
