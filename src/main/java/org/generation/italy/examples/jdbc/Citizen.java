@@ -1,5 +1,7 @@
 package org.generation.italy.examples.jdbc;
 
+import java.util.Objects;
+
 public class Citizen {
     private int id;
     private String firstName;
@@ -150,5 +152,17 @@ public class Citizen {
                 age + "," +
                 salary + "," +
                 educationLevel + "\n";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Citizen citizen = (Citizen) o;
+        return id == citizen.id && gender == citizen.gender && age == citizen.age && Double.compare(salary, citizen.salary) == 0 && isRebel == citizen.isRebel && happinessTotal == citizen.happinessTotal && Objects.equals(firstName, citizen.firstName) && Objects.equals(lastName, citizen.lastName) && Objects.equals(educationLevel, citizen.educationLevel) && Objects.equals(wealthLevel, citizen.wealthLevel) && Objects.equals(faction, citizen.faction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, gender, age, educationLevel, salary, wealthLevel, isRebel, happinessTotal, faction);
     }
 }
