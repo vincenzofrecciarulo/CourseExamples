@@ -35,6 +35,7 @@ class FileCitizenRepositoryTest {
 
     @AfterEach
     void tearDown() {
+
     }
 
     @Test
@@ -64,10 +65,23 @@ class FileCitizenRepositoryTest {
 
     @Test
     void updateCitizen() {
+        try {
+            repo.updateCitizen(new Citizen(4,"Lucianna","Sperti",'F',33,
+                    1400,"College"));
+
+        } catch (DataException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
     void deleteCitizen() {
+        try {
+            repo.deleteCitizen(2);
+
+        } catch (DataException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
