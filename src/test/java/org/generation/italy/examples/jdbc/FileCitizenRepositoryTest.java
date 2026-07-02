@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,7 +29,7 @@ class FileCitizenRepositoryTest {
         Path path = Path.of("data","test_citizens.csv");
         try {
             Files.createDirectories(path.getParent());
-            Files.writeString(path,"", StandardOpenOption.CREATE);
+            Files.writeString(path,"", StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
             citizenFile = new File(path.toUri());
             repo = new FileCitizenRepository(citizenFile);
         } catch (IOException e) {
@@ -40,6 +41,9 @@ class FileCitizenRepositoryTest {
 
     @AfterEach
     void tearDown() {
+        if (citizenFile != null && citizenFile.exists()) {
+            citizenFile.delete();
+        }
     }
 
     @Test
@@ -57,47 +61,62 @@ class FileCitizenRepositoryTest {
 
     @Test
     void findBySexAndEducationLevel() {
+        try{
+            repo.createCitizen(c);
+            Citizen f = new Citizen(2, "Maria", "Verdi", 'F', 23, 1300, "Diploma");
+            repo.createCitizen(f);
+            List<Citizen> search = repo.findBySexAndEducationLevel('M', "College");
+            assertEquals(1, search.size());
+            assertEquals("Gianni", search.getFirst().getFirstName());
+        }
+        catch(DataException e){
+            fail(e.getMessage());
+        }
     }
 
     @Test
     void updateCitizen() {
+        try{
+            repo.createCitizen(c);
+            Citizen updated = new Citizen(1,"Gianni", "Rossi", 'M',33,
+                    1200,"College");
+            boolean success = repo.updateCitizen(updated);
+            assertTrue(success);
+            List<Citizen> search = repo.findAll();
+            assertEquals("Rossi", search.getFirst().getLastName());
+            Citizen notc = new Citizen(999, "Dario", "Verdi", 'M', 40, 1800, "College");
+            boolean fail = repo.updateCitizen(notc);
+            assertFalse(fail);
+        }catch(DataException e){
+            fail(e.getMessage());
+        }
     }
 
     @Test
     void deleteCitizen() {
+        try{
+            repo.createCitizen(c);
+            boolean success = repo.deleteCitizen(1);
+            assertTrue(success);
+            List<Citizen> search = repo.findAll();
+            assertEquals(0, search.size());
+            boolean fail = repo.deleteCitizen(999);
+            assertFalse(fail);
+        }catch (DataException e){
+            fail(e.getMessage());
+        }
     }
 
     @Test
     void createCitizen() {
         try {
-            repo.createCitizen(c);
+            Citizen saved = repo.createCitizen(c);
+            assertNotNull(saved);
+            assertEquals("Gianni", saved.getFirstName());
+            List<Citizen> search =repo.findAll();
+            assertEquals(1, search.size());
         } catch (DataException e) {
             fail(e.getMessage());
         }
-
-    }
-
-    @Test
-    void testFindAll() {
-    }
-
-    @Test
-    void findAll2() {
-    }
-
-    @Test
-    void testFindBySexAndEducationLevel() {
-    }
-
-    @Test
-    void testUpdateCitizen() {
-    }
-
-    @Test
-    void testDeleteCitizen() {
-    }
-
-    @Test
-    void testCreateCitizen() {
     }
 }

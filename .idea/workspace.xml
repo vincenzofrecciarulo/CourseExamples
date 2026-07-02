@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c005b9c-8f72-4014-8fb0-15e94bb1023e" name="Changes" comment="amplia la LambdaLibrary ed aggiunge in auito una classe Product">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" afterDir="false" />
+    <list default="true" id="9c005b9c-8f72-4014-8fb0-15e94bb1023e" name="Changes" comment="implementa il resto dei metodi di FileCitizenRepository">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/FileCitizenRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/FileCitizenRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,6 +81,8 @@
     "Application.org.generation.italy.examples.Exercises.Exercise1.Objects.ereditaryVehicle.Start.executor": "Run",
     "Application.org.generation.italy.examples.Exercises.Exercise1.Objects.incapsulationExercise1.Start.executor": "Run",
     "Application.org.generation.italy.examples.oo.lambdaandstreams.Start.executor": "Run",
+    "JUnit.FileCitizenRepositoryTest.createCitizen.executor": "Run",
+    "JUnit.FileCitizenRepositoryTest.findAll.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
@@ -104,7 +106,7 @@
       <recent name="org.generation.italy.examples.jdbc" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.org.generation.italy.examples.Exercises.Exercise1.Objects.ereditaryVehicle.Start">
+  <component name="RunManager" selected="JUnit.FileCitizenRepositoryTest.createCitizen">
     <configuration name="Rectangle" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.Exercises.Exercise1.Objects.Rectangle" />
       <module name="CourseExamples" />
@@ -131,32 +133,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="org.generation.italy.examples.Exercises.Exercise1.Objects.ereditaryVehicle.Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.Exercises.Exercise1.Objects.ereditaryVehicle.Start" />
-      <module name="CourseExamples" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.Exercises.Exercise1.Objects.ereditaryVehicle.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="org.generation.italy.examples.Exercises.Exercise1.Objects.incapsulationExercise1.Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.Exercises.Exercise1.Objects.incapsulationExercise1.Start" />
-      <module name="CourseExamples" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.Exercises.Exercise1.Objects.incapsulationExercise1.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="org.generation.italy.examples.oo.lambdaandstreams.Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.lambdaandstreams.Start" />
       <module name="CourseExamples" />
@@ -170,13 +146,45 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FileCitizenRepositoryTest.createCitizen" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.jdbc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.generation.italy.examples.jdbc" />
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.FileCitizenRepositoryTest" />
+      <option name="METHOD_NAME" value="createCitizen" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileCitizenRepositoryTest.findAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.jdbc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.generation.italy.examples.jdbc" />
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.FileCitizenRepositoryTest" />
+      <option name="METHOD_NAME" value="findAll" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.FileCitizenRepositoryTest.createCitizen" />
+        <item itemvalue="JUnit.FileCitizenRepositoryTest.findAll" />
         <item itemvalue="Application.Start" />
         <item itemvalue="Application.Rectangle" />
         <item itemvalue="Application.org.generation.italy.examples.oo.lambdaandstreams.Start" />
-        <item itemvalue="Application.org.generation.italy.examples.Exercises.Exercise1.Objects.incapsulationExercise1.Start" />
-        <item itemvalue="Application.org.generation.italy.examples.Exercises.Exercise1.Objects.ereditaryVehicle.Start" />
       </list>
     </recent_temporary>
   </component>
@@ -268,7 +276,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781248228498</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="implementa il resto dei metodi di FileCitizenRepository">
+      <option name="closed" value="true" />
+      <created>1782914726453</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1782914726453</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,6 +322,7 @@
     <MESSAGE value="implementa altri esercizi di ripasso su incapsulamento e polimorfismo" />
     <MESSAGE value="implementa un esercizio di binarySearch" />
     <MESSAGE value="amplia la LambdaLibrary ed aggiunge in auito una classe Product" />
-    <option name="LAST_COMMIT_MESSAGE" value="amplia la LambdaLibrary ed aggiunge in auito una classe Product" />
+    <MESSAGE value="implementa il resto dei metodi di FileCitizenRepository" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementa il resto dei metodi di FileCitizenRepository" />
   </component>
 </project>
