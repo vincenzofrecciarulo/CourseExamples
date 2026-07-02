@@ -95,8 +95,15 @@ class FileCitizenRepositoryTest {
         }
     }
 
+    // finish
     @Test
     void findById() {
+        try {
+            createCitizen_test();
+            System.out.println(fcr.findById(c4.getId()));
+        } catch (DataException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test

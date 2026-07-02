@@ -17,22 +17,10 @@ public class FileCitizenRepository implements CitizenRepository {
     @Override
     public List<Citizen> findAll() throws DataException {
         List<Citizen> citizens = new ArrayList<>();
-        try(BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] fields = line.split(",");
-                Citizen citizen = new Citizen(
-                        Integer.parseInt(fields[0]),
-                        fields[1],
-                        fields[2],
-                        fields[3].charAt(0),
-                        Integer.parseInt(fields[4]),
-                        fields[5],
-                        Double.parseDouble(fields[6]),
-                        fields[7],
-                        Boolean.parseBoolean(fields[8]),
-                        Integer.parseInt(fields[9])
-                );
+                Citizen citizen = getCitizen(line);
                 citizens.add(citizen);
             }
             return citizens;
@@ -41,9 +29,37 @@ public class FileCitizenRepository implements CitizenRepository {
         }
     }
 
+    private static Citizen getCitizen(String line) {
+        String[] fields = line.split(",");
+        Citizen citizen = new Citizen(
+                Integer.parseInt(fields[0]),
+                fields[1],
+                fields[2],
+                fields[3].charAt(0),
+                Integer.parseInt(fields[4]),
+                fields[5],
+                Double.parseDouble(fields[6]),
+                fields[7],
+                Boolean.parseBoolean(fields[8]),
+                Integer.parseInt(fields[9])
+        );
+        return citizen;
+    }
+
     @Override
     public Optional<Citizen> findById(int id) throws DataException {
-        return Optional.empty();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+                if (Integer.parseInt(fields[0]) == id) {
+                    return Optional.of(getCitizen(line));
+                }
+            }
+            return Optional.empty();
+        } catch (IOException e) {
+            throw new DataException(e.getMessage(), e);
+        }
     }
 
     @Override
