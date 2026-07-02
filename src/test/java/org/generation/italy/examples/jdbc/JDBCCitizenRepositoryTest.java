@@ -15,7 +15,7 @@ class JDBCCitizenRepositoryTest {
     private Connection con;
     private DbTestHelper helper;
     private JDBCCitizenRepository repo;
-
+    private Citizen created;
     @BeforeEach
     void setUp() {
         try {
@@ -25,6 +25,7 @@ class JDBCCitizenRepositoryTest {
         } catch (SQLException e) {
             fail(e.getMessage());
         }
+        created = new Citizen("Giovanni","Rana",'M',89,10000,"College");
     }
 
     @AfterEach
@@ -47,5 +48,20 @@ class JDBCCitizenRepositoryTest {
         } catch (SQLException | DataException e) {
             fail(e.getMessage());
         }
+    }
+
+    @Test
+    void findBySexAndEducation(){
+        try {
+            List<Citizen> groupBySecAndeducation = repo.findBySexAndEducationLevel('M',"College");
+            int expeted = helper.countBySexAndEducation('M',"College");
+            assertEquals(expeted,groupBySecAndeducation.size());
+        }catch (SQLException | DataException e){
+            fail(e.getMessage());
+        }
+    }
+    @Test
+    void createCitizen(){
+
     }
 }
