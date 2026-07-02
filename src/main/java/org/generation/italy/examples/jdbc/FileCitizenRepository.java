@@ -133,7 +133,7 @@ public class FileCitizenRepository implements CitizenRepository{
 
     private Citizen fromCsvLine(String line){
         String[] tokens = line.split(",");
-        Citizen citizen = new Citizen(
+        return new Citizen(
                 Integer.parseInt(tokens[0]),
                 tokens[1],
                 tokens[2],
@@ -142,7 +142,6 @@ public class FileCitizenRepository implements CitizenRepository{
                 Double.parseDouble(tokens[5]),
                 tokens[6]
         );
-        return citizen;
     }
 
     @Override
