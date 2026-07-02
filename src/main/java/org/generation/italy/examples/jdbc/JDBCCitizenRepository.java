@@ -115,10 +115,17 @@ public class JDBCCitizenRepository implements CitizenRepository {
               ps.setInt(4,newCitizen.getAge());
               ps.setDouble(5,newCitizen.getSalary());
               ps.setString(6,newCitizen.getEducationLevel());
-               int insert =  ps.executeUpdate();
-              if(insert==1){
-
+              int insert = ps.executeUpdate();
+              if(insert >0){
+                  try (ResultSet rs = ps.getGeneratedKeys()){
+                      if(rs.next()){
+                          int generatedId = rs.getInt(1);
+                          newCitizen.setId(generatedId);
+                      }
+                  }
+                  return newCitizen;
               }
+              return null;
         } catch (SQLException e) {
             throw new DataException(e.getMessage(),e);
         }

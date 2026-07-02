@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f9f3e2a-e9b4-4767-a9f1-fadde18e7e03" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/JDBCCitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/JDBCCitizenRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,6 +95,10 @@
       <updated>1782920917204</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Continuo a implementare JDBCCitizenRepository" />
+    <option name="LAST_COMMIT_MESSAGE" value="Continuo a implementare JDBCCitizenRepository" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
