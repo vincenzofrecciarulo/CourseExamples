@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 
 public class FileCitizenRepository implements CitizenRepository {
 
-    private String filePath;
+    private File citizenFile;
 
-    public FileCitizenRepository(File file) {
-        this.filePath = file.getAbsolutePath();
+    public FileCitizenRepository(File citizenFile) {
+        this.citizenFile = citizenFile;
     }
 
     private String toLine(Citizen c) {
@@ -29,12 +29,12 @@ public class FileCitizenRepository implements CitizenRepository {
 
     @Override
     public List<Citizen> findAll() throws DataException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(citizenFile))) {
             return reader.lines()
                     .map(this::fromCsvLine)
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            throw new DataException("Errore nella lettura del file " + filePath, e);
+            throw new DataException("Errore nella lettura del file " + citizenFile, e);
         }
     }
 
@@ -62,7 +62,7 @@ public class FileCitizenRepository implements CitizenRepository {
             }
             return found;
         } catch (IOException e) {
-            throw new DataException("Errore nell'aggiornamento del file " + filePath, e);
+            throw new DataException("Errore nell'aggiornamento del file " + citizenFile, e);
         }
     }
 
@@ -79,13 +79,13 @@ public class FileCitizenRepository implements CitizenRepository {
             }
             return found;
         } catch (IOException e) {
-            throw new DataException("Errore nell'eliminazione dal file " + filePath, e);
+            throw new DataException("Errore nell'eliminazione dal file " + citizenFile, e);
         }
     }
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        try(FileWriter fw = new FileWriter(this.filePath,true)){
+        try(FileWriter fw = new FileWriter(this.citizenFile,true)){
 
             String citizen = newCitizen.getId() +","+
                     newCitizen.getFirstName() +","+
@@ -116,7 +116,7 @@ public class FileCitizenRepository implements CitizenRepository {
         return citizen;
     }
     private void rewriteFile(List<Citizen> citizens) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(citizenFile))) {
             for (Citizen c : citizens) {
                 writer.write(toLine(c));
                 writer.newLine();
