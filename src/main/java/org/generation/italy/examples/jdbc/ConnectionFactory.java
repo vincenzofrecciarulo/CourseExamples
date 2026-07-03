@@ -9,7 +9,7 @@ public class ConnectionFactory {
     private static final String DB_USER = "postgresMaster";
     private static final String DB_PASSWORD = "goPostgresGo";
 
-    static Connection createConnection() throws SQLException {
+    public static Connection createConnection() throws SQLException {
         return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
     }

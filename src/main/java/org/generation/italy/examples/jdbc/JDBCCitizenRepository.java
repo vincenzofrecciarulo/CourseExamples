@@ -51,7 +51,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
 
     private static final String CREATE_CITIZEN =
             """
-                    INSERT INTO citizen( first_name, last_name, gender, age, education_level, supported_faction_id)
+                    INSERT INTO citizen( first_name, last_name, gender, age, education_level, salary)
                     VALUES(?,?,?,?,?,?)
                     """;
 
@@ -139,12 +139,13 @@ public class JDBCCitizenRepository implements CitizenRepository {
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
         try(PreparedStatement preparedStatement = con.prepareStatement(CREATE_CITIZEN, Statement.RETURN_GENERATED_KEYS)){
-            preparedStatement.setString(2, newCitizen.getFirstName());
-            preparedStatement.setString(3, newCitizen.getLastName());
-            preparedStatement.setString(4, String.valueOf(newCitizen.getGender()));
-            preparedStatement.setInt(5, newCitizen.getAge());
-            preparedStatement.setString(6, newCitizen.getEducationLevel());
-            preparedStatement.setInt(7, newCitizen.getSupportedFaction().getId());
+            preparedStatement.setString(1, newCitizen.getFirstName());
+            preparedStatement.setString(2, newCitizen.getLastName());
+            preparedStatement.setString(3, String.valueOf(newCitizen.getGender()));
+            preparedStatement.setInt(4, newCitizen.getAge());
+            preparedStatement.setString(5, newCitizen.getEducationLevel());
+            preparedStatement.setBigDecimal(6, newCitizen.getSalary());
+            //preparedStatement.setInt(7, newCitizen.getSupportedFaction().getId());
 
             int rowAffected = preparedStatement.executeUpdate();
             if(rowAffected > 0){
