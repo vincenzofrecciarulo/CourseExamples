@@ -27,6 +27,33 @@ public class JDBCCitizenRepository implements CitizenRepository {
                 WHERE gender = ? AND education_level = ?
             """;
 
+    private static final String DELETE_CITIZEN =
+            """
+                 DELETE FROM citizen
+                 WHERE id = ?
+                 """;
+
+    private static final String UPDATE_CITIZEN =
+            """
+                UPDATE citizen
+                SET first_name = ?,
+                    last_name = ?,
+                    gender = ?,
+                    age = ?,
+                    education_level = ?,
+                    salary = ?,
+                    wealth_level = ?,
+                    is_rebel = ?,
+                    happiness_total = ?
+                WHERE id = ?
+                """;
+
+    private static final String CREATE_CITIZEN =
+            """
+               INSERT INTO citizen(first_name,last_name,gender,age)
+               VALUES (?,?,?,?)
+               """;
+
     // Il metodo findAll() dovrà trattare le faction in maniera EAGER, in vece che in maniera LAZY
     @Override
     public List<Citizen> findAll() throws DataException {
@@ -119,18 +146,60 @@ public class JDBCCitizenRepository implements CitizenRepository {
 
     @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
-        return false;
+        try(PreparedStatement ps = con.prepareStatement(UPDATE_CITIZEN)){
+            ps.setString(1, citizen.getFirstName());
+            ps.setString(2, citizen.getLastName());
+            ps.setString(3, String.valueOf(citizen.getGender()));
+            ps.setInt(4, citizen.getAge());
+            ps.setString(5, citizen.getEducationLevel());
+            ps.setDouble(6,citizen.getSalary());
+            ps.setString(7,citizen.getWealthLevel());
+            ps.setBoolean(8, citizen.isRebel());
+            ps.setInt(9,citizen.getHappinessTotal());
+            ps.setInt(10,citizen.getId());
+            return ps.executeUpdate() == 1;
+
+        }catch(SQLException e){
+            throw new DataException(e.getMessage(),e);
+        }
+
     }
 
     @Override
     public boolean deleteCitizen(int citizenId) throws DataException {
-        return false;
+        try(PreparedStatement ps = con.prepareStatement(DELETE_CITIZEN)){
+            ps.setInt(1,citizenId);
+            return ps.executeUpdate() == 1;
+
+        } catch (SQLException e) {
+            throw new DataException(e.getMessage(), e);
+        }
+
     }
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        return null;
+        try (PreparedStatement ps = con.prepareStatement(CREATE_CITIZEN , Statement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, newCitizen.getFirstName());
+            ps.setString(2, newCitizen.getLastName());
+            ps.setString(3, String.valueOf(newCitizen.getGender()));
+            ps.setInt(4, newCitizen.getAge());
+            ps.executeUpdate();
+            try(ResultSet rs = ps.getGeneratedKeys()){
+                if(rs.next()){
+                    int generatedId = rs.getInt(1);
+                    newCitizen.setId(generatedId);
+
+                }
+                return newCitizen;
+            }
+
+        } catch (SQLException e){
+            throw new DataException(e.getMessage(),e);
+        }
+
     }
+
 
     @Override
     public void test() throws DataException {
