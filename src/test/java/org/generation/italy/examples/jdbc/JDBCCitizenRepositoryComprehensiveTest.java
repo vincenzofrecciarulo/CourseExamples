@@ -1,5 +1,6 @@
 package org.generation.italy.examples.jdbc;
 
+import org.generation.italy.examples.model.Citizen;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,7 +63,7 @@ class JDBCCitizenRepositoryComprehensiveTest {
             assertEquals('M', created.getGender());
             assertEquals(30, created.getAge());
             assertEquals("HighSchool", created.getEducationLevel());
-            assertEquals(50000.0, created.getSalary());
+            assertEquals(new java.math.BigDecimal("50000.00"), created.getSalary());
             assertEquals("Poor", created.getWealthLevel());
 
             int countAfter = helper.countCitizens();
@@ -149,7 +151,7 @@ class JDBCCitizenRepositoryComprehensiveTest {
             // Modify the citizen
             created.setFirstName("Thomas");
             created.setAge(36);
-            created.setSalary(65000.0);
+            created.setSalary(new java.math.BigDecimal("65000.00"));
             created.setHappinessTotal(85);
             created.setRebel(true);
 
@@ -165,7 +167,7 @@ class JDBCCitizenRepositoryComprehensiveTest {
             assertNotNull(updated_citizen, "Citizen should exist after update");
             assertEquals("Thomas", updated_citizen.getFirstName());
             assertEquals(36, updated_citizen.getAge());
-            assertEquals(65000.0, updated_citizen.getSalary());
+            assertEquals(new java.math.BigDecimal("65000.00"), updated_citizen.getSalary());
             assertEquals(85, updated_citizen.getHappinessTotal());
             assertTrue(updated_citizen.isRebel());
         } catch (DataException e) {
@@ -302,7 +304,7 @@ class JDBCCitizenRepositoryComprehensiveTest {
             int id = created.getId();
 
             // Update
-            created.setSalary(60000.0);
+            created.setSalary(new java.math.BigDecimal("60000.00"));
             created.setHappinessTotal(85);
             boolean updated = repo.updateCitizen(created);
             assertTrue(updated);
@@ -373,7 +375,7 @@ class JDBCCitizenRepositoryComprehensiveTest {
             repo.updateCitizen(created);
             
             List<Citizen> all = repo.findAll();
-            Citizen updated = all.stream().filter(cit -> cit.getId() == created.getId()).findFirst().orElse(null);
+            Citizen updated = all.stream().filter(cit -> Objects.equals(cit.getId(), created.getId())).findFirst().orElse(null);
             assertNotNull(updated);
             assertEquals(0, updated.getHappinessTotal());
         } catch (DataException e) {

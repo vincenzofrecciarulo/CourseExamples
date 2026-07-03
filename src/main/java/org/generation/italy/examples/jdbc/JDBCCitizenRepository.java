@@ -1,5 +1,9 @@
 package org.generation.italy.examples.jdbc;
 
+import org.generation.italy.examples.model.Citizen;
+import org.generation.italy.examples.model.Faction;
+
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +37,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
                 char gender = rs.getString("gender").charAt(0);
                 int age = rs.getInt("age");
                 String educationLevel = rs.getString("education_level");
-                double salary = rs.getDouble("salary");
+                BigDecimal salary = rs.getBigDecimal("salary");
                 String wealthLevel = rs.getString("wealth_level");
                 boolean isRebel = rs.getBoolean("is_rebel");
                 int happinessTotal = rs.getInt("happiness_total");
@@ -43,7 +47,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
                 Citizen c = new Citizen(id, firstName, lastName, gender, age, educationLevel, salary, wealthLevel, isRebel,happinessTotal);
                 if(supportedFactionId != null){
                     Faction f = new Faction(supportedFactionId, name, description);
-                    c.setFaction(f);
+                    c.setSupportedFaction(f);
                 }
                 citizens.add(c);
             }
@@ -68,7 +72,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
                     char gender = rs.getString("gender").charAt(0);
                     int age = rs.getInt("age");
                     String educLevel = rs.getString("education_level");
-                    double salary = rs.getDouble("salary");
+                    BigDecimal salary = rs.getBigDecimal("salary");
                     String wealthLevel = rs.getString("wealth_level");
                     boolean isRebel = rs.getBoolean("is_rebel");
                     int happinessTotal = rs.getInt("happiness_total");
@@ -78,7 +82,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
                     Citizen c = new Citizen(id, firstName, lastName, gender, age, educLevel, salary, wealthLevel, isRebel, happinessTotal);
                     if(supportedFactionId != null){
                         Faction f = new Faction(supportedFactionId, name, description);
-                        c.setFaction(f);
+                        c.setSupportedFaction(f);
                     }
                     citizens.add(c);
                 }
@@ -110,7 +114,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
             pst.setString(3, String.valueOf(citizen.getGender()));
             pst.setInt(4, citizen.getAge());
             pst.setString(5, citizen.getEducationLevel());
-            pst.setDouble(6, citizen.getSalary());
+            pst.setBigDecimal(6, citizen.getSalary());
             pst.setString(7, citizen.getWealthLevel());
             pst.setBoolean(8, citizen.isRebel());
             pst.setInt(9, citizen.getHappinessTotal());
@@ -146,7 +150,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
             pst.setString(3, String.valueOf(newCitizen.getGender()));
             pst.setInt(4, newCitizen.getAge());
             pst.setString(5, newCitizen.getEducationLevel());
-            pst.setDouble(6, newCitizen.getSalary());
+            pst.setBigDecimal(6, newCitizen.getSalary());
             pst.setString(7, newCitizen.getWealthLevel());
             pst.setBoolean(8, newCitizen.isRebel());
             pst.setInt(9, newCitizen.getHappinessTotal());

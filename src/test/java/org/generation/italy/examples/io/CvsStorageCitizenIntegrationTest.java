@@ -1,6 +1,6 @@
 package org.generation.italy.examples.io;
 
-import org.generation.italy.examples.jdbc.Citizen;
+import org.generation.italy.examples.model.Citizen;
 import org.generation.italy.examples.jdbc.CitizenRepository;
 import org.generation.italy.examples.jdbc.DataException;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,7 +41,7 @@ public class CvsStorageCitizenIntegrationTest {
         c.setAge(age);
         c.setEducationLevel(education);
 
-        c.setSalary(30000);
+        c.setSalary(new java.math.BigDecimal("30000"));
         c.setWealthLevel("Middle");
         c.setRebel(false);
         c.setHappinessTotal(75);
@@ -104,7 +104,7 @@ public class CvsStorageCitizenIntegrationTest {
                 repository.createCitizen(
                         citizen("Mario", "Rossi", 'M', 30, "College"));
 
-        mario.setSalary(99999);
+        mario.setSalary(new java.math.BigDecimal("99999"));
 
         assertTrue(
                 repository.updateCitizen(mario));
@@ -113,7 +113,7 @@ public class CvsStorageCitizenIntegrationTest {
                 repository.findAll().getFirst();
 
         assertEquals(
-                99999,
+                new java.math.BigDecimal("99999"),
                 loaded.getSalary());
     }
 

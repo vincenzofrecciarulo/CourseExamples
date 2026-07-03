@@ -1,6 +1,6 @@
 package org.generation.italy.examples.io;
 
-import org.generation.italy.examples.jdbc.Citizen;
+import org.generation.italy.examples.model.Citizen;
 import org.generation.italy.examples.jdbc.DataException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -65,14 +65,14 @@ class CvsStorageCitizenRepositoryTest {
     @Test
     void shouldCreateCitizenAndGenerateNextId() throws DataException {
 
-        Citizen citizen = new Citizen();
+        Citizen citizen = createTestCitizen();
 
         citizen.setFirstName("Mario");
         citizen.setLastName("Rossi");
         citizen.setGender('M');
         citizen.setAge(35);
         citizen.setEducationLevel("University");
-        citizen.setSalary(50000);
+        citizen.setSalary(new java.math.BigDecimal("50000"));
 
         Citizen created =
                 repository.createCitizen(citizen);
@@ -92,7 +92,7 @@ class CvsStorageCitizenRepositoryTest {
         List<Citizen> all = repository.findAll();
         Citizen citizen = all.get(0);
 
-        citizen.setSalary(99999);
+        citizen.setSalary(new java.math.BigDecimal("99999"));
 
         boolean updated = repository.updateCitizen(citizen);
 
@@ -100,14 +100,14 @@ class CvsStorageCitizenRepositoryTest {
 
         Citizen updatedCitizen = repository.findAll().get(0);
 
-        assertEquals(99999, updatedCitizen.getSalary());
+        assertEquals(new java.math.BigDecimal("99999"), updatedCitizen.getSalary());
     }
 
     @Test
     void shouldReturnFalseWhenUpdatingUnknownCitizen()
             throws DataException {
 
-        Citizen citizen = new Citizen();
+        Citizen citizen = createTestCitizen();
 
         citizen.setId(999);
 
@@ -145,8 +145,8 @@ class CvsStorageCitizenRepositoryTest {
     void shouldGenerateIncreasingIds()
             throws DataException {
 
-        Citizen c1 = new Citizen();
-        Citizen c2 = new Citizen();
+        Citizen c1 = createTestCitizen();
+        Citizen c2 = createTestCitizen();
 
         repository.createCitizen(c1);
         repository.createCitizen(c2);
@@ -154,6 +154,15 @@ class CvsStorageCitizenRepositoryTest {
         assertEquals(4, c1.getId());
 
     }
+
+    private Citizen createTestCitizen() {
+        Citizen c = new Citizen("Test", "User", 'M', 30, 10000.0, "GradeSchool");
+        c.setWealthLevel("Poor");
+        c.setRebel(false);
+        c.setHappinessTotal(50);
+        return c;
+    }
+
         private static class FakeCitizenStorage implements CitizenStorage {
 
         private List<String> lines;

@@ -1,11 +1,10 @@
 package org.generation.italy.examples.io;
 
-import org.generation.italy.examples.jdbc.Citizen;
+import org.generation.italy.examples.model.Citizen;
 import org.generation.italy.examples.jdbc.CitizenRepository;
 import org.generation.italy.examples.jdbc.DataException;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
