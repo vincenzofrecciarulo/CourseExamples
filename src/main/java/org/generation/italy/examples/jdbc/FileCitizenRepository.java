@@ -37,6 +37,11 @@ public class FileCitizenRepository implements CitizenRepository {
     }
 
     @Override
+    public Citizen findById(int id) throws DataException {
+        return null;
+    }
+
+    @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
         List<Citizen> list = this.findAll();
         boolean exist = list.stream().anyMatch(a -> a.getId() == citizen.getId());
@@ -47,6 +52,11 @@ public class FileCitizenRepository implements CitizenRepository {
             CsvFileHandler.writeCitizensToCsv(newUpdateList);
             return true;
         }
+        return false;
+    }
+
+    @Override
+    public boolean updateHappinessTotal(int citizenId, int happinessTotal) throws DataException {
         return false;
     }
 

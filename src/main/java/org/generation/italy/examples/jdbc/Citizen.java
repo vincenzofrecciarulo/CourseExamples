@@ -25,6 +25,11 @@ public class Citizen {
         this.educationLevel = educationLevel;
     }
 
+    public Citizen(int id, String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
+        this(firstName, lastName, gender, age, salary, educationLevel);
+        this.id = id;
+    }
+
     public Citizen(int id, String firstName, String lastName, char gender, int age,
                    String educationLevel, double salary, String wealthLevel, boolean isRebel, int happinessTotal) {
         this.id = id;
@@ -39,6 +44,8 @@ public class Citizen {
         this.happinessTotal = happinessTotal;
 
     }
+
+
 
     // Getters and Setters
     public int getId() {
@@ -127,17 +134,25 @@ public class Citizen {
 
     @Override
     public String toString() {
-        return "Citizen{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", gender=" + gender +
-                ", age=" + age +
-                ", educationLevel='" + educationLevel + '\'' +
-                ", salary=" + salary +
-                ", wealthLevel='" + wealthLevel + '\'' +
-                ", isRebel=" + isRebel +
-                ", happinessTotal=" + happinessTotal +
-                '}';
+        return String.format(
+                "| %-4d | %-12s | %-12s | %-8s | %-3d | %-15s | %-10.2f | %-12s | %-7s | %-6d | \n",
+                id,
+                firstName,
+                lastName,
+                gender,
+                age,
+                educationLevel,
+                salary,
+                wealthLevel,
+                isRebel,
+                happinessTotal
+        );
+    }
+
+    public static String header() {
+        return String.format(
+                "| %-4s | %-12s | %-12s | %-8s | %-3s | %-15s | %-10s | %-12s | %-7s | %-6s |",
+                "ID", "FirstName", "LastName", "Gender", "Age", "EducationLvl", "Salary", "WealthLvl", "Rebel", "Happy"
+        ) + "\n" + "-".repeat(110);
     }
 }

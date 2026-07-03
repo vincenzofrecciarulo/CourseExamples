@@ -18,11 +18,17 @@ public class JDBCCitizenRepository implements CitizenRepository {
             ORDER BY c_id ASC
             """;
 
+    private static final String FIND_BY_ID = """
+            SELECT id, first_name, last_name, gender, age, education_level, salary
+            FROM citizen
+            WHERE id = ?;
+            """;
+
     private static final String FIND_BY_SEX_AND_EDUCATION_LEVEL = """
-            SELECT first_name, last_name, gender, age, education_level, salary
+            SELECT id, first_name, last_name, gender, age, education_level, salary
             FROM citizen
             WHERE  gender = ? AND education_level = ?
-            ORDER BY c_id ASC
+            ORDER BY id ASC
             """;
 
     private final static String UPDATE_CITIZEN = """
@@ -34,12 +40,18 @@ public class JDBCCitizenRepository implements CitizenRepository {
             education_level = ? ,
             salary = ? 
             WHERE citizen_id = ?
-            ORDER BY c_id ASC
             """;
+
+    private final static String UPDATE_HAPPINES_TOTAL =
+            """
+                    UPDATE citizen
+                    SET happiness_total = ?
+                    WHERE id = ?
+                    """;
 
     private final static String DELETE_CITIZEN = """
             DELETE FROM citizen
-            WHERE citizen_id = ?
+            WHERE id = ?
             """;
 
     private final static String CREATE_CITIZEN = """
@@ -80,6 +92,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
         }
     }
 
+
     @Override
     public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException {
         try (PreparedStatement preparedStatement = con.prepareStatement(FIND_BY_SEX_AND_EDUCATION_LEVEL)) {
@@ -88,12 +101,28 @@ public class JDBCCitizenRepository implements CitizenRepository {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 var citizens = new ArrayList<Citizen>();
                 while (resultSet.next()) {
-                    var citizen = new Citizen(resultSet.getString("first_name"), resultSet.getString("last_name"), resultSet.getString("gender").charAt(0), resultSet.getInt("age"), resultSet.getDouble("salary"), resultSet.getString("education_level"));
+                    var citizen = new Citizen(resultSet.getInt("id"), resultSet.getString("first_name"), resultSet.getString("last_name"), resultSet.getString("gender").charAt(0), resultSet.getInt("age"), resultSet.getDouble("salary"), resultSet.getString("education_level"));
                     citizens.add(citizen);
                 }
                 return citizens;
             }
         } catch (SQLException e) {
+            throw new DataException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public Citizen findById(int id) throws DataException {
+        try(PreparedStatement preparedStatement = con.prepareStatement(FIND_BY_ID)) {
+            preparedStatement.setInt(1, id);
+            try(ResultSet resultSet = preparedStatement.executeQuery()){
+                List<Citizen> citizen = new ArrayList<>();
+                while (resultSet.next()){
+                    citizen.add(new Citizen(resultSet.getInt("id"), resultSet.getString("first_name"), resultSet.getString("last_name"), resultSet.getString("gender").charAt(0), resultSet.getInt("age"), resultSet.getDouble("salary"), resultSet.getString("education_level")));
+                }
+                return citizen.getFirst();
+            }
+        }catch (SQLException e) {
             throw new DataException(e.getMessage(), e);
         }
     }
@@ -113,6 +142,18 @@ public class JDBCCitizenRepository implements CitizenRepository {
             throw new DataException(e.getMessage(), e);
         }
     }
+
+    @Override
+    public boolean updateHappinessTotal(int citizenId, int happinessTotal) throws DataException {
+        try(PreparedStatement ps = con.prepareStatement(UPDATE_HAPPINES_TOTAL)){
+            ps.setInt(1, happinessTotal);
+            ps.setInt(2, citizenId);
+            return ps.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new DataException(e.getMessage(), e);
+        }
+    }
+
 
     @Override
     public boolean deleteCitizen(int citizenId) throws DataException {
