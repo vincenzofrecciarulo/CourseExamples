@@ -21,14 +21,15 @@ class FileCitizenRepositoryTest {
     private Citizen c;
     private File citizenFile;
     private FileCitizenRepository repo;
+    private Path path;
     @BeforeEach
     void setUp() {
         c = new Citizen(1,"Gianni","Sperti",'M',33,
                 1200,"College");
-        Path path = Path.of("data","test_citizens.csv");
+        path = Path.of("data","test_citizens.csv");
         try {
             Files.createDirectories(path.getParent());
-            Files.writeString(path,"", StandardOpenOption.CREATE);
+            Files.writeString(path,"", StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
             citizenFile = new File(path.toUri());
             repo = new FileCitizenRepository(citizenFile);
         } catch (IOException e) {
@@ -40,19 +41,32 @@ class FileCitizenRepositoryTest {
 
     @AfterEach
     void tearDown() {
+        try{
+            Files.deleteIfExists(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail(e.getMessage());
+        }
     }
 
     @Test
     void findAll() {
         try {
+            // scrivo 2 righe di dati noti nel file di test
+            Files.writeString(citizenFile.toPath(),
+                    "1,Mario,Rossi,M,45,32000.0,Laurea" + System.lineSeparator() +
+                            "2,Anna,Bianchi,F,30,28000.0,Diploma" + System.lineSeparator());
+
+            // chiamo il metodo da testare
             List<Citizen> allCitizens = repo.findAll();
-            for(Citizen c : allCitizens){
-                System.out.println(c);
-            }
-        } catch (DataException e) {
+
+            // verifico che il risultato sia quello che mi aspetto
+            assertEquals(2, allCitizens.size());
+            assertEquals("Mario", allCitizens.get(0).getFirstName());
+            assertEquals("Anna", allCitizens.get(1).getFirstName());
+        } catch (DataException | IOException e) {
             fail(e.getMessage());
         }
-
     }
 
     @Test
@@ -71,6 +85,12 @@ class FileCitizenRepositoryTest {
     void createCitizen() {
         try {
             repo.createCitizen(c);
+            List<Citizen> allCitizen = repo.findAll();
+            assertEquals(1, allCitizen.size());
+            assertEquals(c.getId(), allCitizen.get(0).getId());
+            assertEquals(c.getFirstName(), allCitizen.get(0).getFirstName());
+            assertEquals(c.getLastName(), allCitizen.get(0).getLastName());
+            assertEquals(c.getGender(), allCitizen.get(0).getGender());
         } catch (DataException e) {
             fail(e.getMessage());
         }
