@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f9f3e2a-e9b4-4767-a9f1-fadde18e7e03" name="Changes" comment="Continuo a implementare JDBCCitizenRepository">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/Citizen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/Citizen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/CitizenRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/ConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/TropicoCitizen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +19,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -45,24 +48,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Start.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileCitizenRepositoryTest.updateCitizen.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCCitizenRepositoryTest.createCitizen.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCCitizenRepositoryTest.deleteCitizen.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCCitizenRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCCitizenRepositoryTest.findAll.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCCitizenRepositoryTest.findBySexAndEducation.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;andrea__ferraro&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Dev/Java/Projects/Exercises/CourseExamples&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.PostgresConnectionExample.executor": "Run",
+    "Application.Start.executor": "Run",
+    "JUnit.FileCitizenRepositoryTest.updateCitizen.executor": "Run",
+    "JUnit.JDBCCitizenRepositoryTest.createCitizen.executor": "Run",
+    "JUnit.JDBCCitizenRepositoryTest.deleteCitizen.executor": "Run",
+    "JUnit.JDBCCitizenRepositoryTest.executor": "Run",
+    "JUnit.JDBCCitizenRepositoryTest.findAll.executor": "Run",
+    "JUnit.JDBCCitizenRepositoryTest.findBySexAndEducation.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "andrea__ferraro",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Dev/Java/Projects/Exercises/CourseExamples"
   }
-}</component>
-  <component name="RunManager" selected="Application.Start">
+}]]></component>
+  <component name="RunManager" selected="Application.PostgresConnectionExample">
+    <configuration name="PostgresConnectionExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.PostgresConnectionExample" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.jdbc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.exeptionpracticeexercises.Start" />
       <module name="CourseExamples" />
@@ -124,29 +141,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JDBCCitizenRepositoryTest.findBySexAndEducation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CourseExamples" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.jdbc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.generation.italy.examples.jdbc" />
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.JDBCCitizenRepositoryTest" />
-      <option name="METHOD_NAME" value="findBySexAndEducation" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PostgresConnectionExample" />
         <item itemvalue="Application.Start" />
         <item itemvalue="JUnit.JDBCCitizenRepositoryTest.deleteCitizen" />
         <item itemvalue="JUnit.JDBCCitizenRepositoryTest.createCitizen" />
         <item itemvalue="JUnit.JDBCCitizenRepositoryTest.findAll" />
-        <item itemvalue="JUnit.JDBCCitizenRepositoryTest.findBySexAndEducation" />
       </list>
     </recent_temporary>
   </component>
@@ -198,7 +199,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783014012945</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Continuo a implementare JDBCCitizenRepository">
+      <option name="closed" value="true" />
+      <created>1783086732362</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1783086732362</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -223,11 +232,6 @@
           <url>file://$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/JDBCCitizenRepositoryTest.java</url>
           <line>13</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/JDBCCitizenRepository.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/exeptionpracticeexercises/Start.java</url>
