@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58ed345a-379c-4972-98b4-fa242c8f59e5" name="Changes" comment="Lavoro su JDBC con metodi">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/FileCitizenRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/FileCitizenRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/Citizen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/Citizen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="andrea_ferraro" />
+        <entry key="$PROJECT_DIR$" value="manuel_sechi" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -117,45 +119,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Exercise1.executor": "Run",
-    "Application.Exercise5.executor": "Run",
-    "Application.Exercise6.executor": "Run",
-    "Application.Exercise7.executor": "Run",
-    "Application.Exercise8.executor": "Run",
-    "Application.ExerciseBinarySearch.executor": "Run",
-    "Application.InfoPoint.executor": "Run",
-    "Application.JDBCCitizenRepository.executor": "Run",
-    "Application.LambdaExamples.executor": "Run",
-    "Application.Library.executor": "Run",
-    "Application.PostgresConnectionExample.executor": "Run",
-    "Application.Start.executor": "Run",
-    "JUnit.FileCitizenRepositoryTest.createCitizen.executor": "Run",
-    "JUnit.FileCitizenRepositoryTest.findAll.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "copilot.chat.legacySessionMetadata.migrated": "true",
-    "git-widget-placeholder": "Domenico__Piano",
-    "git.auto.fetch.suggestion.counter": "1",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Dev/Java/Projects/CourseExamples/src/main/java/org/generation/italy/examples/oo",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Exercise1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise5.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise6.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise7.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise8.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ExerciseBinarySearch.executor&quot;: &quot;Run&quot;,
+    &quot;Application.InfoPoint.executor&quot;: &quot;Run&quot;,
+    &quot;Application.JDBCCitizenRepository.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LambdaExamples.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Library.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PostgresConnectionExample.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Start.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileCitizenRepositoryTest.createCitizen.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileCitizenRepositoryTest.findAll.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Domenico__Piano&quot;,
+    &quot;git.auto.fetch.suggestion.counter&quot;: &quot;1&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Dev/Java/Projects/CourseExamples/src/main/java/org/generation/italy/examples/oo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.generation.italy.examples.arrays.exericc" />
