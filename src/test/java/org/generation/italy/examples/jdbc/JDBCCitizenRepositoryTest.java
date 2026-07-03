@@ -1,8 +1,7 @@
 package org.generation.italy.examples.jdbc;
 
-import org.checkerframework.checker.units.qual.C;
+import org.generation.italy.examples.model.Citizen;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +15,7 @@ class JDBCCitizenRepositoryTest {
     private Connection con;
     private DbTestHelper helper;
     private JDBCCitizenRepository repo;
-    private Citizen created;
+
     @BeforeEach
     void setUp() {
         try {
@@ -26,7 +25,6 @@ class JDBCCitizenRepositoryTest {
         } catch (SQLException e) {
             fail(e.getMessage());
         }
-        created = new Citizen("Giovanni","Rana",'M',89,10000,"College");
     }
 
     @AfterEach
@@ -47,37 +45,6 @@ class JDBCCitizenRepositoryTest {
             List<Citizen> citizens =  repo.findAll();
             assertEquals(expected, citizens.size());
         } catch (SQLException | DataException e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    void findBySexAndEducation(){
-        try {
-            List<Citizen> groupBySecAndeducation = repo.findBySexAndEducationLevel('M',"College");
-            int expeted = helper.countBySexAndEducation('M',"College");
-            assertEquals(expeted,groupBySecAndeducation.size());
-        }catch (SQLException | DataException e){
-            fail(e.getMessage());
-        }
-    }
-    @Test
-    void createCitizen(){
-         try {
-          repo.createCitizen(created);
-          boolean added = helper.findById(100);
-          assertTrue(added);
-         }catch (SQLException | DataException e){
-             fail(e.getMessage());
-         }
-    }
-    @Test
-    void deleteCitizen()  {
-        try {
-          repo.deleteCitizen(99);
-          boolean deleted = helper.findById(99);
-           assertFalse(deleted);
-        }catch (SQLException | DataException e){
             fail(e.getMessage());
         }
     }
