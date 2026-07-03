@@ -1,5 +1,7 @@
 package org.generation.italy.examples.jdbc;
 
+import org.generation.italy.examples.model.Faction;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ public class JDBCFactionRepository implements FactionRepository{
             """
             SELECT id, name, description
             FROM faction
-            WHERE ?
+            WHERE name = ?
             """;
 
     private static final String UPDATE_FACTION =
