@@ -26,7 +26,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
 
     // Il metodo findAll() dovrà trattare le faction in maniera EAGER, in vece che in maniera LAZY
     @Override
-    public List<Citizen> findAll() throws DataException {
+    public List<JDBCCitizen> findAll() throws DataException {
         try(Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(FIND_ALL)){
             var citizens = new ArrayList<Citizen>();
@@ -58,7 +58,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
     }
 
     @Override
-    public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException {
+    public List<JDBCCitizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException {
         String query = FIND_ALL + " WHERE c.gender = ? AND c.education_level = ?";
         try(var pst = con.prepareStatement(query)){
             pst.setString(1, String.valueOf(sex));
@@ -94,7 +94,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
     }
 
     @Override
-    public boolean updateCitizen(Citizen citizen) throws DataException {
+    public boolean updateCitizen(JDBCCitizen citizen) throws DataException {
         String query = """
                 UPDATE citizen SET
                     first_name = ?,
@@ -139,7 +139,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
     }
 
     @Override
-    public Citizen createCitizen(Citizen newCitizen) throws DataException {
+    public Citizen createCitizen(JDBCCitizen newCitizen) throws DataException {
         String query = """
                 INSERT INTO citizen (first_name, last_name, gender, age, education_level, salary, wealth_level, is_rebel, happiness_total, supported_faction_id)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
