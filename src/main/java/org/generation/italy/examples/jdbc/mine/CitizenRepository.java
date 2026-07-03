@@ -1,6 +1,5 @@
 package org.generation.italy.examples.jdbc.mine;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +10,6 @@ public interface CitizenRepository {
     List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException;
 
     boolean updateCitizen(Citizen citizen) throws DataException;
-    boolean deleteCitizen(int citizenId) throws DataException;
+    boolean deleteCitizenById(int citizenId) throws DataException;
     Citizen createCitizen(Citizen newCitizen) throws DataException;
 }

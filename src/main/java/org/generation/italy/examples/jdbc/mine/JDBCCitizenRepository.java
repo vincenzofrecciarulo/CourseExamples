@@ -129,7 +129,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
     }
 
     @Override
-    public boolean deleteCitizen(int citizenId) throws DataException {
+    public boolean deleteCitizenById(int citizenId) throws DataException {
         try (PreparedStatement ps = conn.prepareStatement(DELETE_CITIZEN)) {
             ps.setInt(1, citizenId);
             return ps.executeUpdate() == 1;

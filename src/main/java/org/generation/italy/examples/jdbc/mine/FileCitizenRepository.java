@@ -105,7 +105,7 @@ public class FileCitizenRepository implements CitizenRepository {
     }
 
     @Override
-    public boolean deleteCitizen(int citizenId) throws DataException {
+    public boolean deleteCitizenById(int citizenId) throws DataException {
         Path inputPath = Paths.get(filePath);
         Path tempPath = inputPath.getParent().resolve("Citizen_del_temp.csv");
         boolean found = false;

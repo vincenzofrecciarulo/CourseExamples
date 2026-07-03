@@ -123,10 +123,10 @@ class FileCitizenRepositoryTest {
     }
 
     @Test
-    void deleteCitizen() {
+    void deleteCitizenById() {
         try {
             createCitizen_test();
-            assertTrue(fcr.deleteCitizen(c5.getId()));
+            assertTrue(fcr.deleteCitizenById(c5.getId()));
         } catch (DataException e) {
             fail(e.getMessage());
         }

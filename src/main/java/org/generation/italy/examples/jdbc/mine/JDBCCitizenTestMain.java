@@ -29,7 +29,7 @@ public class JDBCCitizenTestMain {
         boolean updated = citizenRepository.updateCitizen(createdCitizen);
         System.out.println("Updated citizen: " + updated + "\n" + citizenRepository.findById(createdCitizen.getId()).orElse(null));
 
-        boolean deleted = citizenRepository.deleteCitizen(createdCitizen.getId());
+        boolean deleted = citizenRepository.deleteCitizenById(createdCitizen.getId());
         System.out.println("Deleted citizen: " + deleted + "\n" + citizenRepository.findById(createdCitizen.getId()).orElse(null));
     }
 }
