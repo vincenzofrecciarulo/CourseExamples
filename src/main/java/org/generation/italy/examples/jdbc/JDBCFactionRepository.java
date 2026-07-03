@@ -1,5 +1,7 @@
 package org.generation.italy.examples.jdbc;
 
+import org.generation.italy.examples.model.Faction;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

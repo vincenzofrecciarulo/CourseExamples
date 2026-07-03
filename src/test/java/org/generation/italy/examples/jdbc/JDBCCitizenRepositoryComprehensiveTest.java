@@ -23,7 +23,7 @@ class JDBCCitizenRepositoryComprehensiveTest {
     @BeforeEach
     void setUp() {
         try {
-            con = ConnectionFactory.getConnection();
+            con = ConnectionFactory.createConnection();
             con.setAutoCommit(false);
             helper = new DbTestHelper(con);
             repo = new JDBCCitizenRepository(con);
@@ -80,7 +80,7 @@ class JDBCCitizenRepositoryComprehensiveTest {
             String[] educationLevels = {"Illiterate", "GradeSchool", "HighSchool", "College"};
             
             for (String level : educationLevels) {
-                Citizen c = new Citizen("Test", "User", 'M', 25, 40000.0, level);
+                Citizen c = new Citizen("Test", "User", 'M', 25, 40000.0,  level);
                 c.setWealthLevel("Poor");
                 c.setRebel(false);
                 c.setHappinessTotal(50);
@@ -120,9 +120,10 @@ class JDBCCitizenRepositoryComprehensiveTest {
     void testCreateCitizenAllGenders() {
         try {
             char[] genders = {'M', 'F', 'N'};
-            
+
+
             for (int i = 0; i < genders.length; i++) {
-                Citizen c = new Citizen("Person" + i, "Doe", genders[i], 25, 40000.0, "Illiterate");
+                Citizen c = new Citizen("Person" + i, "Doe", genders[i], 25,   40000.0 ,"Illiterate");
                 c.setWealthLevel("Broke");
                 c.setRebel(false);
                 c.setHappinessTotal(50);
@@ -140,7 +141,7 @@ class JDBCCitizenRepositoryComprehensiveTest {
     @DisplayName("updateCitizen should modify existing citizen data")
     void testUpdateCitizen() {
         try {
-            Citizen newCitizen = new Citizen("Tom", "Wilson", 'M', 35, 55000.0, "GradeSchool");
+            Citizen newCitizen = new Citizen("Tom", "Wilson", 'M', 35, 55000.0, "GradeSchool" );
             newCitizen.setWealthLevel("Rich");
             newCitizen.setRebel(false);
             newCitizen.setHappinessTotal(80);
@@ -151,7 +152,7 @@ class JDBCCitizenRepositoryComprehensiveTest {
             // Modify the citizen
             created.setFirstName("Thomas");
             created.setAge(36);
-            created.setSalary(new java.math.BigDecimal("65000.00"));
+            created.setSalary(65000.00);
             created.setHappinessTotal(85);
             created.setRebel(true);
 

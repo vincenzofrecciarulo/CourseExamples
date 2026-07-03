@@ -1,5 +1,8 @@
 package org.generation.italy.examples.jdbc;
 
+import org.generation.italy.examples.model.Citizen;
+import org.generation.italy.examples.model.Faction;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +75,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
             Citizen c = new Citizen(id, firstName, lastName, gender, age, educationLevel, salary,  wealthLevel, isRebel,happinessTotal);
             if(supportedFactionId != null){
                 Faction f = new Faction(supportedFactionId, name, description);
-                c.setFaction(f);
+                c.setSupportedFaction(f);
             }
             citizens.add(c);
         }
@@ -111,7 +114,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
             preparedStatement.setString(3, String.valueOf(citizen.getGender()));
             preparedStatement.setInt(4, citizen.getAge());
             preparedStatement.setString(5, citizen.getEducationLevel());
-            preparedStatement.setDouble(6, citizen.getSalary());
+            preparedStatement.setBigDecimal(6, citizen.getSalary());
             preparedStatement.setString(7, citizen.getWealthLevel());
             preparedStatement.setBoolean(8, citizen.isRebel());
             preparedStatement.setInt(9, citizen.getHappinessTotal());
@@ -141,7 +144,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
             preparedStatement.setString(4, String.valueOf(newCitizen.getGender()));
             preparedStatement.setInt(5, newCitizen.getAge());
             preparedStatement.setString(6, newCitizen.getEducationLevel());
-            preparedStatement.setInt(7, newCitizen.getSupportedFactionId());
+            preparedStatement.setInt(7, newCitizen.getSupportedFaction().getId());
 
             int rowAffected = preparedStatement.executeUpdate();
             if(rowAffected > 0){
@@ -158,8 +161,4 @@ public class JDBCCitizenRepository implements CitizenRepository {
         }
     }
 
-    @Override
-    public void test() throws DataException {
-
-    }
 }

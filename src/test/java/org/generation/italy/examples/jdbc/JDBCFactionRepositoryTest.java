@@ -20,8 +20,8 @@ class JDBCFactionRepositoryTest {
     private Connection connection;
     private JDBCFactionRepository repository;
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/tropico";
-    private static final String DB_USER = "postgres";
-    private static final String DB_PASSWORD = "postgres";
+    private static final String DB_USER = "postgresMaster";
+    private static final String DB_PASSWORD = "goPostgresGo";
     
     private static final int TEST_FACTION_ID_1 = 999;
     private static final int TEST_FACTION_ID_2 = 998;

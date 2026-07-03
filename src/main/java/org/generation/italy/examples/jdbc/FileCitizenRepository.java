@@ -1,5 +1,7 @@
 package org.generation.italy.examples.jdbc;
 
+import org.generation.italy.examples.model.Citizen;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -165,8 +167,4 @@ public class FileCitizenRepository implements CitizenRepository{
         );
     }
 
-    @Override
-    public void test() throws DataException {
-
-    }
 }
