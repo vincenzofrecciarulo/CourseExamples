@@ -49,16 +49,12 @@ public class FileCitizenRepository implements CitizenRepository {
     public boolean updateCitizen(Citizen citizen) throws DataException {
         try {
             List<Citizen> citizens = findAll();
-            boolean found = false;
-            for (int i = 0; i < citizens.size(); i++) {
-                if (citizens.get(i).getId() == citizen.getId()) {
-                    citizens.set(i, citizen);
-                    found = true;
-                    break;
-                }
-            }
+            boolean found = citizens.stream().anyMatch(c -> c.getId() == citizen.getId());
             if (found) {
-                rewriteFile(citizens);
+                List<Citizen> updated = citizens.stream()
+                        .map(c -> c.getId() == citizen.getId() ? citizen : c)
+                        .collect(Collectors.toList());
+                rewriteFile(updated);
             }
             return found;
         } catch (IOException e) {
