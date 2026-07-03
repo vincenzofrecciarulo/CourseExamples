@@ -65,7 +65,7 @@ public class TropicoService {
             return repository.updateCitizen(citizenToUpdate);
 
         } catch (SQLException e) {
-            throw new DataException("Database connection error while updating happiness.", e);
+            throw new DataException("Errore di connessione al DB durante l'aggiornamento della felicità.", e);
         }
     }
 }
