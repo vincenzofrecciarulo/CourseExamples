@@ -1,9 +1,13 @@
 package org.generation.italy.examples.model;
 
 import jakarta.persistence.*;
+import org.generation.italy.examples.jdbc.DataException;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @Entity
 @Table(name = "Citizen")
@@ -65,6 +69,8 @@ public class Citizen implements Serializable {
         this.age = age;
         this.salary = salary;
         this.educationLevel = educationLevel;
+        this.isRebel=false;
+        this.happinessTotal=0;
     }
 
     public Citizen(int id, String firstName, String lastName, char gender, int age,
@@ -123,7 +129,10 @@ public class Citizen implements Serializable {
     private static BigDecimal moneyFromDouble(double value) {
         return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP);
     }
-
+    @Override
+    public boolean equals(Citizen citizen){
+        return this.id==citizen.getId();
+    }
     @Override
     public String toString() {
         return "Citizen{" +
@@ -138,5 +147,40 @@ public class Citizen implements Serializable {
                 ", isRebel=" + isRebel +
                 ", happinessTotal=" + happinessTotal +
                 '}';
+    }
+    public static Citizen citizenOrm(ResultSet row) throws DataException{
+        try{return new Citizen(
+                row.getInt("id"),
+                row.getString("first_name"),
+                row.getString("last_name"),
+                row.getString("gender").charAt(0),
+                row.getInt("age"),
+                row.getString("education_level"),
+                row.getDouble("salary"),
+                row.getString("wealth_level"),
+                row.getBoolean("is_rebel"),
+                row.getInt("happiness_total")
+        );} catch (SQLException e) {
+            throw new DataException(e.getMessage(), e);
+        }
+    }
+
+    public static Citizen generateFromArray(String[] strings) {
+        return  new Citizen(
+                Integer.parseInt(strings[0].trim()),
+                strings[1].trim(),
+                strings[2].trim(),
+                strings[3].trim().charAt(0),
+                Integer.parseInt(strings[4].trim()),
+                strings[5].trim(),
+                Double.parseDouble(strings[6].trim()),
+                strings[7].trim(),
+                Boolean.parseBoolean(strings[8].trim()),
+                Integer.parseInt(strings[9].trim())
+        );
+    }
+
+    public String toCsv() {
+        return id + "," + firstName + "," + lastName + "," + gender + "," + age + "," + educationLevel + "," + salary + "," + wealthLevel + "," + isRebel + "," + happinessTotal;
     }
 }

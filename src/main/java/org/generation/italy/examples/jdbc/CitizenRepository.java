@@ -1,6 +1,6 @@
 package org.generation.italy.examples.jdbc;
 
-
+import org.generation.italy.examples.model.Citizen;
 
 import java.util.List;
 
