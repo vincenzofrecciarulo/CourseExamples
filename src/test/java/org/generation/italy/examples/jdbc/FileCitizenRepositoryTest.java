@@ -32,7 +32,7 @@ class FileCitizenRepositoryTest {
     @BeforeEach
     void setUp() {
         c = new Citizen(6,"Carlos","Sperti",'F',33,
-                1400,"College");
+                "College", 25.0, "Rich", true, 0 );
         Path path = Path.of("data","test_citizens.csv");
         try {
             Files.createDirectories(path.getParent());
@@ -82,7 +82,7 @@ class FileCitizenRepositoryTest {
     void updateCitizen_return_true() {
         try {
             boolean result = repo.updateCitizen(new Citizen(4,"Lucianna","Sperti",'F',33,
-                    1400,"College"));
+                    "College", 1400, "Poor" , false, 50));
             assertTrue(result);
         } catch (DataException e) {
             fail(e.getMessage());
@@ -92,8 +92,8 @@ class FileCitizenRepositoryTest {
     @Test
     void updateCitizen_return_false() {
         try {
-            boolean result = repo.updateCitizen(new Citizen(27,"Lucianna","Sperti",'F',33,
-                    1400,"College"));
+            boolean result = repo.updateCitizen(new Citizen(44,"Lucianna","Sperti",'F', 33,
+                    "College", 2500.0, "Well-off", false, 70));
             assertFalse(result);
         } catch (DataException e) {
             fail(e.getMessage());
@@ -113,7 +113,7 @@ class FileCitizenRepositoryTest {
     @Test
     void deleteCitizen_return_false() {
         try {
-            boolean result = repo.deleteCitizen(29);
+            boolean result = repo.deleteCitizen(55);
             assertFalse(result);
         } catch (DataException e) {
             fail(e.getMessage());

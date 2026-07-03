@@ -22,12 +22,21 @@ public class JDBCCitizenRepository implements CitizenRepository {
                     SELECT c.id as c_id, first_name, last_name, gender, age, education_level,salary, wealth_level,is_rebel, happiness_total, supported_faction_id, f.name, f.description
                     FROM citizen as c
                     LEFT JOIN faction as f ON c.supported_faction_id = f.id
-                    WHERE sex = ? AND education_level = ?
+                    WHERE gender = ? AND education_level = ?
                     """;
 
     private static final String UPDATE_CITIZEN =
             """
-                    UPDATE citizen SET first_name = ?, last_name = ?
+                    UPDATE citizen 
+                    SET first_name = ?,
+                       last_name = ?,
+                       gender = ?,
+                       age = ?,
+                       education_level = ?,
+                       salary = ?,
+                       wealth_level = ?,
+                       is_rebel = ?,
+                       happiness_total = ?
                     WHERE id = ?
                     """;
 
@@ -60,7 +69,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
             Integer supportedFactionId = rs.getObject("supported_faction_id", Integer.class);
             String name = rs.getString("name");
             String description = rs.getString("description");
-            Citizen c = new Citizen(id, firstName, lastName, gender, age, salary, educationLevel,  wealthLevel, isRebel,happinessTotal);
+            Citizen c = new Citizen(id, firstName, lastName, gender, age, educationLevel, salary,  wealthLevel, isRebel,happinessTotal);
             if(supportedFactionId != null){
                 Faction f = new Faction(supportedFactionId, name, description);
                 c.setFaction(f);
@@ -99,7 +108,15 @@ public class JDBCCitizenRepository implements CitizenRepository {
         try(PreparedStatement preparedStatement = con.prepareStatement(UPDATE_CITIZEN)){
             preparedStatement.setString(1, citizen.getFirstName());
             preparedStatement.setString(2, citizen.getLastName());
-            preparedStatement.setInt(3, citizen.getId());
+            preparedStatement.setString(3, String.valueOf(citizen.getGender()));
+            preparedStatement.setInt(4, citizen.getAge());
+            preparedStatement.setString(5, citizen.getEducationLevel());
+            preparedStatement.setDouble(6, citizen.getSalary());
+            preparedStatement.setString(7, citizen.getWealthLevel());
+            preparedStatement.setBoolean(8, citizen.isRebel());
+            preparedStatement.setInt(9, citizen.getHappinessTotal());
+            preparedStatement.setInt(10, citizen.getId());
+
             return preparedStatement.executeUpdate() == 1;
         }catch (SQLException e){
             throw new DataException(e.getMessage(),e);
@@ -124,7 +141,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
             preparedStatement.setString(4, String.valueOf(newCitizen.getGender()));
             preparedStatement.setInt(5, newCitizen.getAge());
             preparedStatement.setString(6, newCitizen.getEducationLevel());
-            preparedStatement.setInt(7, newCitizen.getFaction().getId());
+            preparedStatement.setInt(7, newCitizen.getSupportedFactionId());
 
             int rowAffected = preparedStatement.executeUpdate();
             if(rowAffected > 0){

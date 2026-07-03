@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -47,5 +48,42 @@ class JDBCCitizenRepositoryTest {
         } catch (SQLException | DataException e) {
             fail(e.getMessage());
         }
+    }
+
+
+
+    @Test
+    void findBySexAndEducationLevel() {
+        try {
+            List<Citizen> result = repo.findBySexAndEducationLevel('M', "College");
+            for(Citizen citizen : result){
+                IO.println(citizen);
+            }
+        }catch (DataException e){
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    void updateCitizen() {
+        Citizen citizen = new Citizen(15,"Fidel", "Castro",'M', 56,"College", 2.0,  "Poor", false, 50);
+        try {
+            boolean result = repo.updateCitizen(citizen);
+            assertTrue(result);
+        } catch (DataException e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    void deleteCitizen() {
+    }
+
+    @Test
+    void createCitizen() {
+    }
+
+    @Test
+    void test1() {
     }
 }
