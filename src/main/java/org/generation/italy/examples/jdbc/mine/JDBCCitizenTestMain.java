@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class JDBCCitizenTestMain {
-    void main() throws SQLException, DataException {
+    public static void main(String[] args) throws SQLException, DataException {
         Connection conn = ConnectionFactory.getConnection();
         JDBCCitizenRepository citizenRepository = new JDBCCitizenRepository(conn);
 

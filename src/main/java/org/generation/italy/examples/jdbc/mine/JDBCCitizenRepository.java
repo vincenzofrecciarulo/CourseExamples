@@ -1,6 +1,6 @@
 package org.generation.italy.examples.jdbc.mine;
 
-import org.generation.italy.examples.jdbc.frommaster.Faction;
+import org.generation.italy.examples.jdbc.mine.Faction;
 
 import java.sql.*;
 import java.util.ArrayList;
