@@ -16,6 +16,23 @@ public class Citizen {
     public Citizen() {
     }
 
+    public Citizen(int id, String firstName, String lastName, char gender, int age) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.age = age;
+    }
+
+    public Citizen(int id, String firstName, String lastName, char gender, int age, String educationLevel) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.age = age;
+        this.educationLevel = educationLevel;
+    }
+
     public Citizen(String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
         this.firstName = firstName;
         this.lastName = lastName;
