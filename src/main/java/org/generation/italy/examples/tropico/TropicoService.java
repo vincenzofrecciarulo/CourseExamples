@@ -2,6 +2,7 @@ package org.generation.italy.examples.tropico;
 
 import org.generation.italy.examples.jdbc.mine.*;
 import java.util.List;
+import java.util.Optional;
 
 
 // TODO: add a findById method. TropicoConsole will need to find citizens by ID to change their happiness.
@@ -15,6 +16,10 @@ public class TropicoService {
 
     public List<Citizen> getAllCitizens() throws DataException {
         return citizenRepository.findAll();
+    }
+
+    public Optional<Citizen> getCitizenById(int citizenId) throws DataException {
+        return citizenRepository.findById(citizenId);
     }
 
     public boolean deleteCitizenById(int id) throws DataException {
