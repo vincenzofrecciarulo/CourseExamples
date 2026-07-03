@@ -1,5 +1,8 @@
 package org.generation.italy.examples.jdbc;
 
+import org.generation.italy.examples.model.Citizen;
+
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +34,7 @@ public class PostgresConnectionExample {
                         resultSet.getString("last_name"),
                         resultSet.getString("gender").charAt(0),
                         resultSet.getInt("age"),
-                        resultSet.getDouble("salary"),
+                        resultSet.getBigDecimal("salary"),
                         resultSet.getString("education_level")
                 );
                 citizens.add(citizen);
@@ -47,7 +50,7 @@ public class PostgresConnectionExample {
         }
     }
 
-    public static List<Citizen> getCitizensByGenderAndSalary(char gender, double salary) {
+    public static List<Citizen> getCitizensByGenderAndSalary(char gender, BigDecimal salary) {
         List<Citizen> citizens = new ArrayList<>();
 //          // ABOMINIO!!!
 //          String query = """
@@ -63,7 +66,7 @@ public class PostgresConnectionExample {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, String.valueOf(gender));
-            preparedStatement.setDouble(2, salary);
+            preparedStatement.setBigDecimal(2, salary);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
@@ -72,7 +75,7 @@ public class PostgresConnectionExample {
                         resultSet.getString("last_name"),
                         resultSet.getString("gender").charAt(0),
                         resultSet.getInt("age"),
-                        resultSet.getDouble("salary"),
+                        resultSet.getBigDecimal("salary"),
                         resultSet.getString("education_level")
                     );
                     citizens.add(citizen);
@@ -87,5 +90,9 @@ public class PostgresConnectionExample {
         }
 
         return citizens;
+    }
+
+    public static List<Citizen> getCitizensByGenderAndSalary(char gender, double salary) {
+        return getCitizensByGenderAndSalary(gender, BigDecimal.valueOf(salary));
     }
 }
