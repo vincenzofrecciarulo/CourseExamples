@@ -5,14 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f9f3e2a-e9b4-4767-a9f1-fadde18e7e03" name="Changes" comment="Continuo a implementare JDBCCitizenRepository">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/exeptionpracticeexercises/InvalidAgeException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/exeptionpracticeexercises/Start.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/DbTestHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/DbTestHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/JDBCCitizenRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/JDBCCitizenRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Record" />
+        <option value="Class" />
+        <option value="Exception" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -37,34 +46,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.FileCitizenRepositoryTest.updateCitizen.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCCitizenRepositoryTest.createCitizen.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCCitizenRepositoryTest.deleteCitizen.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCCitizenRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCCitizenRepositoryTest.findAll.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JDBCCitizenRepositoryTest.findBySexAndEducation.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;andrea__ferraro&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Dev/Java/Projects/Exercises/CourseExamples&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Start.executor": "Run",
+    "JUnit.FileCitizenRepositoryTest.updateCitizen.executor": "Run",
+    "JUnit.JDBCCitizenRepositoryTest.createCitizen.executor": "Run",
+    "JUnit.JDBCCitizenRepositoryTest.deleteCitizen.executor": "Run",
+    "JUnit.JDBCCitizenRepositoryTest.executor": "Run",
+    "JUnit.JDBCCitizenRepositoryTest.findAll.executor": "Run",
+    "JUnit.JDBCCitizenRepositoryTest.findBySexAndEducation.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "andrea__ferraro",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Dev/Java/Projects/Exercises/CourseExamples"
   }
-}</component>
-  <component name="RunManager" selected="JUnit.JDBCCitizenRepositoryTest.deleteCitizen">
-    <configuration name="JDBCCitizenRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+}]]></component>
+  <component name="RunManager" selected="Application.Start">
+    <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.exeptionpracticeexercises.Start" />
       <module name="CourseExamples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.jdbc.*" />
+          <option name="PATTERN" value="org.generation.italy.examples.oo.exeptionpracticeexercises.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.generation.italy.examples.jdbc" />
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.JDBCCitizenRepositoryTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -135,11 +143,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Start" />
         <item itemvalue="JUnit.JDBCCitizenRepositoryTest.deleteCitizen" />
         <item itemvalue="JUnit.JDBCCitizenRepositoryTest.createCitizen" />
         <item itemvalue="JUnit.JDBCCitizenRepositoryTest.findAll" />
         <item itemvalue="JUnit.JDBCCitizenRepositoryTest.findBySexAndEducation" />
-        <item itemvalue="JUnit.JDBCCitizenRepositoryTest" />
       </list>
     </recent_temporary>
   </component>
@@ -221,6 +229,15 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/JDBCCitizenRepository.java</url>
           <line>37</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/generation/italy/examples/oo/exeptionpracticeexercises/Start.java</url>
+          <line>9</line>
+          <properties class="org.generation.italy.examples.oo.exeptionpracticeexercises.Start" method="main">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
