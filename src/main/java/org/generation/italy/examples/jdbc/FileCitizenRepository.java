@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
-
+import org.generation.italy.examples.model.Citizen;
 // questa è l'implementazione di citizen repository che mantiene i dati su un file in formato CSV (Comma-Separated-Values)
 
 // csv -> tabella -> header(id, firstName..) - dati
