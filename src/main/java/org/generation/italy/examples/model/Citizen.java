@@ -129,10 +129,7 @@ public class Citizen implements Serializable {
     private static BigDecimal moneyFromDouble(double value) {
         return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP);
     }
-    @Override
-    public boolean equals(Citizen citizen){
-        return this.id==citizen.getId();
-    }
+
     @Override
     public String toString() {
         return "Citizen{" +
