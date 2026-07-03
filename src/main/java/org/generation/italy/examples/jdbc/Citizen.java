@@ -18,14 +18,15 @@ public class Citizen {
     public Citizen() {
     }
 
-    public Citizen(String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
-        this(0,firstName,lastName,gender,age,salary,educationLevel);
+    public Citizen(String firstName, String lastName, char gender, int age, String educationLevel, double salary) {
+        this(0,firstName,lastName,gender,age,educationLevel,salary);
     }
-    public Citizen(int id,String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
-        this(id,firstName,lastName,gender,age,salary,educationLevel,null,false,0);
+    public Citizen(int id,String firstName, String lastName, char gender, int age, String educationLevel, double salary) {
+        this(id,firstName,lastName,gender,age,educationLevel,salary,null,false,0);
     }
+
     public Citizen(int id, String firstName, String lastName, char gender, int age,
-                   double salary, String educationLevel, String wealthLevel, boolean isRebel, int happinessTotal) {
+                   String educationLevel, double salary, String wealthLevel, boolean isRebel, int happinessTotal) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -124,8 +125,8 @@ public class Citizen {
         this.faction = faction;
     }
 
-    public Faction getFaction() {
-        return faction;
+    public int getSupportedFactionId() {
+        return faction.getId();
     }
 
     @Override
@@ -142,16 +143,6 @@ public class Citizen {
                 ", isRebel=" + isRebel +
                 ", happinessTotal=" + happinessTotal +
                 '}';
-    }
-
-    public String toCsvRow(){
-        return id + "," +
-                firstName + "," +
-                lastName + "," +
-                gender + "," +
-                age + "," +
-                salary + "," +
-                educationLevel + "\n";
     }
 
     @Override

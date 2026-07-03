@@ -31,8 +31,8 @@ public class PostgresConnectionExample {
                         resultSet.getString("last_name"),
                         resultSet.getString("gender").charAt(0),
                         resultSet.getInt("age"),
-                        resultSet.getDouble("salary"),
-                        resultSet.getString("education_level")
+                        resultSet.getString("education_level"),
+                        resultSet.getDouble("salary")
                 );
                 citizens.add(citizen);
             }
@@ -72,8 +72,8 @@ public class PostgresConnectionExample {
                         resultSet.getString("last_name"),
                         resultSet.getString("gender").charAt(0),
                         resultSet.getInt("age"),
-                        resultSet.getDouble("salary"),
-                        resultSet.getString("education_level")
+                        resultSet.getString("education_level"),
+                        resultSet.getDouble("salary")
                     );
                     citizens.add(citizen);
                 }

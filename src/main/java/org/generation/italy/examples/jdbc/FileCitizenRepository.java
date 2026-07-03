@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 public class FileCitizenRepository implements CitizenRepository{
 
-    private File file;
+    private final File file;
 
     public FileCitizenRepository(File file){
         this.file = file;
@@ -55,8 +55,11 @@ public class FileCitizenRepository implements CitizenRepository{
                                     citizenData[2],
                                     citizenData[3].charAt(0),
                                     Integer.parseInt(citizenData[4]),
-                                    Double.parseDouble(citizenData[5]),
-                                    citizenData[6]
+                                    citizenData[5],
+                                    Double.parseDouble(citizenData[6]),
+                                    citizenData[7],
+                                    Boolean.getBoolean(citizenData[8]),
+                                    Integer.parseInt(citizenData[9])
                             )
                     );
                 }
@@ -77,7 +80,7 @@ public class FileCitizenRepository implements CitizenRepository{
                 String[] citizenData = line.split(",");
 
                 if(Integer.parseInt(citizenData[0]) ==  citizen.getId()){
-                    newCsv.append(citizen.toCsvRow());
+                    newCsv.append(toCsvString(citizen));
                     isModified = true;
                     continue;
                 }
@@ -123,11 +126,26 @@ public class FileCitizenRepository implements CitizenRepository{
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
         try(FileWriter fileWriter = new FileWriter(file, true)){
-            fileWriter.append(newCitizen.toCsvRow());
+            fileWriter.append(toCsvString(newCitizen));
             return  newCitizen;
         }catch (IOException e){
             throw  new DataException(e.getMessage(),e);
         }
+    }
+
+    private String toCsvString(Citizen citizen){
+        return String.format("%d,%s,%s,%s,%d,%s %f,%s,%b,%d",
+                citizen.getId(),
+                citizen.getFirstName(),
+                citizen.getLastName(),
+                citizen.getGender(),
+                citizen.getAge(),
+                citizen.getEducationLevel(),
+                citizen.getSalary(),
+                citizen.getWealthLevel(),
+                citizen.isRebel(),
+                citizen.getHappinessTotal()
+        );
     }
 
 
@@ -139,8 +157,11 @@ public class FileCitizenRepository implements CitizenRepository{
                 tokens[2],
                 tokens[3].charAt(0),
                 Integer.parseInt(tokens[4]),
-                Double.parseDouble(tokens[5]),
-                tokens[6]
+                tokens[5],
+                Double.parseDouble(tokens[6]),
+                tokens[7],
+                Boolean.getBoolean(tokens[8]),
+                Integer.parseInt(tokens[9])
         );
     }
 
