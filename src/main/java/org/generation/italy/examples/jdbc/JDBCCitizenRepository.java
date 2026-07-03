@@ -1,5 +1,8 @@
 package org.generation.italy.examples.jdbc;
 
+import org.generation.italy.examples.model.Citizen;
+import org.generation.italy.examples.model.Faction;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,7 +46,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
                 Citizen c = new Citizen(id, firstName, lastName, gender, age, educationLevel, salary, wealthLevel, isRebel,happinessTotal);
                 if(supportedFactionId != null){
                     Faction f = new Faction(supportedFactionId, name, description);
-                    c.setFaction(f);
+                    c.setSupportedFaction(f);
                 }
                 citizens.add(c);
             }

@@ -120,6 +120,7 @@ public class Citizen implements Serializable {
     public Faction getSupportedFaction() { return supportedFaction; }
     public void setSupportedFaction(Faction supportedFaction) { this.supportedFaction = supportedFaction; }
 
+
     private static BigDecimal moneyFromDouble(double value) {
         return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP);
     }
@@ -138,5 +139,13 @@ public class Citizen implements Serializable {
                 ", isRebel=" + isRebel +
                 ", happinessTotal=" + happinessTotal +
                 '}';
+    }
+    public static Citizen generateFromArray(String[] stringCitizen) {
+        return new Citizen(Integer.parseInt(stringCitizen[0]),stringCitizen[1],stringCitizen[2],stringCitizen[3].charAt(0),Integer.parseInt(stringCitizen[4]),stringCitizen[5],Double.parseDouble(stringCitizen[6]),stringCitizen[7],Boolean.parseBoolean(stringCitizen[8]),Integer.parseInt(stringCitizen[9]));
+    }
+    public String toCsv() {
+        return id + "," + firstName + "," + lastName + "," + gender + "," +
+                age + "," + educationLevel + "," + salary + "," +
+                wealthLevel + "," + isRebel + "," + happinessTotal;
     }
 }
