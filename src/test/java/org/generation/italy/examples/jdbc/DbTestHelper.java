@@ -15,6 +15,11 @@ public class DbTestHelper {
             FROM citizen
             WHERE gender = ? AND education_level = ?
             """;
+    private static final String FIND_BY_ID = """
+            SELECT *
+            FROM citizen
+            WHERE ID =?
+            """;
     public DbTestHelper(Connection con) {
         this.con = con;
     }
@@ -37,7 +42,13 @@ public class DbTestHelper {
         }
     }
 
-
+    public boolean findById (int id) throws SQLException {
+        try(PreparedStatement ps = con.prepareStatement(FIND_BY_ID)){
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        }
+    }
 
 
 }

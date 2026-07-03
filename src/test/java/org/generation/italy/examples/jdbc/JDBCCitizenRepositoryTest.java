@@ -64,15 +64,9 @@ class JDBCCitizenRepositoryTest {
     @Test
     void createCitizen(){
          try {
-          List<Citizen> all = repo.findAll();
-             int expeted = helper.countCitizens() + 1;
-             repo.createCitizen(created);
-          List<Citizen> updated = repo.findAll();
-             for(Citizen c : updated){
-                 System.out.println(c.toString());
-             }
-             System.out.println(updated.getLast());
-             assertEquals(expeted,updated.size());
+          repo.createCitizen(created);
+          boolean added = helper.findById(100);
+          assertTrue(added);
          }catch (SQLException | DataException e){
              fail(e.getMessage());
          }
@@ -80,14 +74,9 @@ class JDBCCitizenRepositoryTest {
     @Test
     void deleteCitizen()  {
         try {
-            List<Citizen> all = repo.findAll();
-            int expeted = helper.countCitizens() -1;
-            repo.deleteCitizen(95);
-            List<Citizen> updated = repo.findAll();
-            assertEquals(expeted,updated.size());
-            for(Citizen c: updated){
-                System.out.println(c.toString());
-            }
+          repo.deleteCitizen(99);
+          boolean deleted = helper.findById(99);
+           assertFalse(deleted);
         }catch (SQLException | DataException e){
             fail(e.getMessage());
         }
