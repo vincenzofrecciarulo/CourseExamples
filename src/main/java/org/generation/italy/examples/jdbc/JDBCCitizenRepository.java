@@ -8,18 +8,24 @@ public class JDBCCitizenRepository implements CitizenRepository {
 private Connection con;
 private static final String FIND_ALL=
             """
-           SELECT id
-           first_name
-           last_name
-           gender
-           age
-           education_level
-           salary
-           wealth_level
-           is_rebel
+           SELECT id,
+           first_name,
+           last_name,
+           gender,
+           age,
+           education_level,
+           salary,
+           wealth_level,
+           is_rebel,
            happiness_total
            FROM citizen
            """;
+private final static String UPDATE_HAPPINESS=
+        """
+        UPDATE citizen
+            SET happiness_total=?
+        WHERE id=?      
+        """;
 
     public JDBCCitizenRepository(Connection con) {
         this.con=con;
@@ -42,8 +48,8 @@ private static final String FIND_ALL=
              int age = rs.getInt("age");
              String educationLevel = rs.getString("education_level");
              double salary = rs.getDouble("salary");
-             String wealthLevel = rs.getString("wealth_total");
-             boolean isRebel = rs.getBoolean("isRebel");
+             String wealthLevel = rs.getString("wealth_level");
+             boolean isRebel = rs.getBoolean("is_rebel");
              int happinessTotal = rs.getInt("happiness_total");
              Citizen c = new Citizen(id, name, surname, gender, age,salary, educationLevel
                      ,  wealthLevel, isRebel, happinessTotal);
@@ -63,10 +69,10 @@ private static final String FIND_ALL=
                     WHERE gender=? AND education_level=?
                     """;
         List<Citizen>citizens=new ArrayList<>();
-        try(Connection con=ConnectionFactory.createConnection(); PreparedStatement ps=con.prepareStatement(query)){
-            ps.setString(1,String.valueOf("sex"));
-            ps.setString(2,("education_level"));
-            try(ResultSet resultset=ps.executeQuery(query)){;
+        try(PreparedStatement ps=con.prepareStatement(query)){
+            ps.setString(1,String.valueOf(sex));
+            ps.setString(2,(educationLevel));
+            try(ResultSet resultset=ps.executeQuery()){;
                 while(resultset.next()) {
                     Citizen c = new Citizen(
                             resultset.getString("first_name"),
@@ -99,8 +105,7 @@ private static final String FIND_ALL=
                         salary=?              
                     WHERE id=?
                     """;
-        try(Connection con=ConnectionFactory.createConnection();
-            PreparedStatement ps=con.prepareStatement(query)){
+        try(PreparedStatement ps=con.prepareStatement(query)){
             ps.setString(1,citizen.getFirstName());
             ps.setString(2,citizen.getLastName());
             ps.setString(3,String.valueOf(citizen.getGender()));
@@ -121,7 +126,7 @@ private static final String FIND_ALL=
                     FROM citizen
                 WHERE id=?
                 """;
-        try(Connection con=ConnectionFactory.createConnection();PreparedStatement ps=con.prepareStatement(query)){
+        try(PreparedStatement ps=con.prepareStatement(query)){
             ps.setInt(1,citizenId);
             try(ResultSet resultSet=ps.executeQuery()){
                 return true;
@@ -133,25 +138,36 @@ private static final String FIND_ALL=
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException, SQLException {
-        String query= """
-                INSERT INTO citizen
-                VALUES(?,?,?,?,?,?)
-                """;
-        try(Connection con=ConnectionFactory.createConnection();
-            PreparedStatement ps=con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS)){
+        String query = """
+        INSERT INTO citizen (first_name, last_name, gender, age,  education_level,salary)
+        VALUES (?, ?, ?, ?, ?, ?)
+        """;
+        try(PreparedStatement ps=con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1, newCitizen.getFirstName());
             ps.setString(2,newCitizen.getLastName());
-            ps.setInt(3,newCitizen.getAge());
-            ps.setString(4,String.valueOf(newCitizen.getGender()));
-            ps.setDouble(5,newCitizen.getSalary());
-            ps.setString(6, newCitizen.getEducationLevel());
+            ps.setString(3,String.valueOf(newCitizen.getGender()));
+            ps.setInt(4,newCitizen.getAge());
+            ps.setString(5, newCitizen.getEducationLevel());
+            ps.setDouble(6,newCitizen.getSalary());
 
             int updated=ps.executeUpdate();
 
             try(ResultSet resultSet=ps.getGeneratedKeys()){
-
-            }
+                if(resultSet.next()){
+                    newCitizen.setId(resultSet.getInt(1));
+                }
+                }
         }
         return newCitizen;
+    }
+
+    public boolean updateHappinessTotal(Citizen c,int newHappiness) throws DataException{
+        try(PreparedStatement pst=con.prepareStatement(UPDATE_HAPPINESS)){
+            pst.setInt(1,newHappiness);
+            pst.setInt(2,c.getId());
+            return pst.executeUpdate()==1;
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(),e);
+        }
     }
 }
