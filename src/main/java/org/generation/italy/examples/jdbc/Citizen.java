@@ -16,7 +16,8 @@ public class Citizen {
     public Citizen() {
     }
 
-    public Citizen(String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
+    public Citizen(int id, String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -27,18 +28,13 @@ public class Citizen {
 
     public Citizen(int id, String firstName, String lastName, char gender, int age,
                    String educationLevel, double salary, String wealthLevel, boolean isRebel, int happinessTotal) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.age = age;
-        this.educationLevel = educationLevel;
-        this.salary = salary;
+        this(id, firstName, lastName, gender, age, salary, educationLevel);
         this.wealthLevel = wealthLevel;
         this.isRebel = isRebel;
         this.happinessTotal = happinessTotal;
-
     }
+
+
 
     // Getters and Setters
     public int getId() {
