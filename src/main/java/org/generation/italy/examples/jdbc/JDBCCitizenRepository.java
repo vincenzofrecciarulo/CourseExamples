@@ -169,4 +169,46 @@ public class JDBCCitizenRepository implements CitizenRepository {
             throw new DataException(e.getMessage(), e);
         }
     }
+
+    @Override
+    public boolean updateHappiness(int citizenId, int newHappiness) throws DataException {
+        String query = "UPDATE citizen SET happiness_total = ? WHERE id = ?";
+        try(var pst = con.prepareStatement(query)){
+            pst.setInt(1, newHappiness);
+            pst.setInt(2, citizenId);
+            int affectedRows = pst.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            throw new DataException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public Citizen findById(int citizenId) throws DataException {
+        String query = "SELECT c.id AS c_id, first_name, last_name,  gender, age, education_level,salary, wealth_level,is_rebel, happiness_total FROM citizen WHERE id = ?";
+        try(var pst = con.prepareStatement(query)){
+            pst.setInt(1, citizenId);
+            try(ResultSet rs = pst.executeQuery()) {
+                if(rs.next()){
+                    var citizen = new Citizen();
+                    citizen.setId(rs.getInt("c_id"));
+                    citizen.setFirstName(rs.getString("first_name"));
+                    citizen.setLastName(rs.getString("last_name"));
+                    citizen.setGender(rs.getString("gender").charAt(0));
+                    citizen.setAge(rs.getInt("age"));
+                    citizen.setEducationLevel(rs.getString("education_level"));
+                    citizen.setSalary(rs.getBigDecimal("salary"));
+                    citizen.setWealthLevel(rs.getString("wealth_level"));
+                    citizen.setRebel(rs.getBoolean("is_rebel"));
+                    citizen.setHappinessTotal(rs.getInt("happiness_total"));
+                    return citizen;
+                }else{
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            throw new DataException(e.getMessage(), e);
+        }
+    }
+
 }

@@ -12,5 +12,6 @@ public interface CitizenRepository {
     boolean updateCitizen(Citizen citizen) throws DataException;
     boolean deleteCitizen(int citizenId) throws DataException;
     Citizen createCitizen(Citizen newCitizen) throws DataException;
-
+    boolean updateHappiness(int citizenId, int newHappiness) throws DataException;
+    Citizen findById(int citizenId) throws DataException;
 }

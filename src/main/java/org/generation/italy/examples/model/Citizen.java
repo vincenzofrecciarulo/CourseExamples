@@ -91,6 +91,9 @@ public class Citizen implements Serializable {
         this.happinessTotal = happinessTotal;
     }
 
+    public Citizen(String name, String surname, char gender, int age, String educationLevel, BigDecimal salary, String wealthLevel, boolean isRebel, int happiness) {
+    }
+
     // Getters and Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }

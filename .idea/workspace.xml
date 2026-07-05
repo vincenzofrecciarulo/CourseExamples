@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c005b9c-8f72-4014-8fb0-15e94bb1023e" name="Changes" comment="implementa il resto dei metodi di FileCitizenRepository">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/TropicoConsole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/TropicoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/FileCitizenRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/FileCitizenRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/CitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/CitizenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/JDBCCitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/JDBCCitizenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/Citizen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/Citizen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,34 +75,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Car.executor": "Run",
-    "Application.ExerciseBinarySearch.executor": "Run",
-    "Application.Person.executor": "Run",
-    "Application.Rectangle.executor": "Run",
-    "Application.Start.executor": "Run",
-    "Application.World.executor": "Run",
-    "Application.org.generation.italy.examples.Exercises.Exercise1.Objects.ereditaryVehicle.Start.executor": "Run",
-    "Application.org.generation.italy.examples.Exercises.Exercise1.Objects.incapsulationExercise1.Start.executor": "Run",
-    "Application.org.generation.italy.examples.oo.lambdaandstreams.Start.executor": "Run",
-    "JUnit.FileCitizenRepositoryTest.createCitizen.executor": "Run",
-    "JUnit.FileCitizenRepositoryTest.findAll.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit6",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit6": "",
-    "copilot.chat.legacySessionMetadata.migrated": "true",
-    "git-widget-placeholder": "marco__tamigi",
-    "git.auto.fetch.suggestion.counter": "2",
-    "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Car.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ExerciseBinarySearch.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Person.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Rectangle.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Start.executor&quot;: &quot;Run&quot;,
+    &quot;Application.World.executor&quot;: &quot;Run&quot;,
+    &quot;Application.org.generation.italy.examples.Exercises.Exercise1.Objects.ereditaryVehicle.Start.executor&quot;: &quot;Run&quot;,
+    &quot;Application.org.generation.italy.examples.Exercises.Exercise1.Objects.incapsulationExercise1.Start.executor&quot;: &quot;Run&quot;,
+    &quot;Application.org.generation.italy.examples.oo.lambdaandstreams.Start.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileCitizenRepositoryTest.createCitizen.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileCitizenRepositoryTest.findAll.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit6&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit6&quot;: &quot;&quot;,
+    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;marco__tamigi&quot;,
+    &quot;git.auto.fetch.suggestion.counter&quot;: &quot;2&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;,
+      &quot;mysql&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -180,8 +191,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.FileCitizenRepositoryTest.createCitizen" />
         <item itemvalue="JUnit.FileCitizenRepositoryTest.findAll" />
+        <item itemvalue="JUnit.FileCitizenRepositoryTest.createCitizen" />
         <item itemvalue="Application.Start" />
         <item itemvalue="Application.Rectangle" />
         <item itemvalue="Application.org.generation.italy.examples.oo.lambdaandstreams.Start" />
