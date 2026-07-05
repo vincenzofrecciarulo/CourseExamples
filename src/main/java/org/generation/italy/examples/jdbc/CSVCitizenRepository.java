@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
+import org.generation.italy.examples.model.Citizen;
 
 public class CSVCitizenRepository implements CitizenRepository{
 

@@ -1,5 +1,5 @@
 package org.generation.italy.examples.jdbc;
-
+import org.generation.italy.examples.model.Faction;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,34 @@ public class JDBCFactionRepository implements FactionRepository{
             SELECT id, name, description
             FROM faction
             """;
+
+    private static final String GET_NAMES =
+            """
+            SELECT id, name, description
+            FROM faction
+            WHERE name = ?
+            """;
+
+    private static final String UPDATE_FACTION =
+            """
+                 UPDATE faction
+                SET name = ?,
+                description = ?
+                WHERE id = ?    
+            """;
+
+
+    private static final String ADD_FACTION =
+            """
+                    INSERT INTO faction(id, name, description)
+                    VALUES(?, ?, ?)
+                    """;
+
+    private static final String REMOVE_FACTION_BY_ID =
+            """
+                    DELETE FROM faction
+                    WHERE id = ?
+                    """;
     //anche se qua stiamo mettendo tutte le cose e potremmo quindi fare con * meglio
     //scriverli con l'ordine che vogliamo perché se si cambiassero poi le colonne
     // cambierebbe il risultato
@@ -30,13 +58,6 @@ public class JDBCFactionRepository implements FactionRepository{
             SELECT id, name, description
             FROM faction
             WHERE name = ?
-            """;
-
-    private final static String UPDATE_FACTION =
-            """
-            UPDATE faction
-            SET name = ?, description = ? 
-            WHERE id = ?    
             """;
 
     public JDBCFactionRepository (Connection con){
@@ -75,43 +96,67 @@ public class JDBCFactionRepository implements FactionRepository{
 
     @Override
     public Optional<Faction> getFactionByName(String name) throws DataException {
-        try (PreparedStatement st = con.prepareStatement(GET_FACTIONS_BY_NAME)) {
-            st.setString(1, name);
-            try (ResultSet rs = st.executeQuery()) {
-                if (rs.next()) {
-                    return Optional.of(new Faction(
-                            rs.getInt("id"),
-                            rs.getString("name"),
-                            rs.getString("description")));
-                } else {
-                    return Optional.empty();
+
+        try(PreparedStatement pt = con.prepareStatement(GET_NAMES)){
+            pt.setString(1, name);
+            Optional<Faction> of = Optional.empty();
+
+            try(ResultSet rs = pt.executeQuery()){
+                if(rs.next()){
+                    Faction faction = new Faction(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"));
+                    of = Optional.of(faction);
                 }
             }
-        } catch (SQLException e) {
-            throw new DataException(e.getMessage(), e);
+            return of;
+
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(),e);
         }
     }
 
     @Override
     public boolean updateFaction(Faction faction) throws DataException {
-        try(PreparedStatement st = con.prepareStatement(UPDATE_FACTION)){
-            st.setString(1, faction.getName());
-            st.setString(2, faction.getDescription());
-            st.setInt(3, faction.getId());
-            return st.executeUpdate() == 1;
-        }
-        catch(SQLException e){
-            throw new DataException(e.getMessage(),e);
+
+
+        try(PreparedStatement pt = con.prepareStatement(UPDATE_FACTION)){
+            pt.setString(1, faction.getName());
+            pt.setString(2, faction.getDescription());
+            pt.setInt(3, faction.getId());
+            return pt.executeUpdate() == 1;
+
+        } catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
+
         }
     }
 
     @Override
     public void addFaction(Faction faction) throws DataException {
 
+        try(PreparedStatement pt = con.prepareStatement(ADD_FACTION)) {
+            pt.setInt(1, faction.getId());
+            pt.setString(2, faction.getName());
+            pt.setString(3, faction.getDescription());
+            pt.executeUpdate();
+
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
+        }
+
     }
 
     @Override
     public boolean removeFactionById(int id) throws DataException {
-        return false;
+
+        try(PreparedStatement pt = con.prepareStatement(REMOVE_FACTION_BY_ID)){
+            pt.setInt(1, id);
+            return pt.executeUpdate() == 1;
+
+        }catch (SQLException e){
+            throw new DataException(e.getMessage(), e);
+        }
     }
 }

@@ -1,160 +1,172 @@
 package org.generation.italy.examples.jdbc;
 
+import org.generation.italy.examples.model.Citizen;
+import org.generation.italy.examples.model.Faction;
 
-import java.sql.*;
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class JDBCCitizenRepository implements CitizenRepository {
-    private final Connection connection;
+    private Connection con;
 
-    public JDBCCitizenRepository(Connection connection){
-        this.connection = connection;
-    };
+    public JDBCCitizenRepository(Connection con){
+        this.con = con;
+    }
+    private static final String FIND_ALL =
+            """
+                    SELECT c.id as c_id, first_name, last_name, gender, age, education_level,salary, wealth_level,is_rebel, happiness_total, supported_faction_id, f.name, f.description
+                    FROM citizen as c
+                    LEFT JOIN faction as f ON c.supported_faction_id = f.id
+                    """;
 
-    private static final String FIND_ALL = "SELECT first_name, last_name, gender, age, education_level, salary FROM citizen";
-    private static final String FIND_BY_SEX_AND_EDUCATION_LEVEL =
-            """
-            SELECT first_name, last_name, gender, age, education_level, salary
-            FROM citizen
-            WHERE  gender = ? AND education_level = ?
-            """;
-    private final static String UPDATE_CITIZEN =
-            """
-            UPDATE citizen
-            SET first_name = ? ,
-            last_name = ? ,
-            gender = ? ,
-            age = ? ,
-            education_level = ? ,
-            salary = ?
-            WHERE citizen_id = ?
-            """;
-    private final static String DELETE_CITIZEN =
-            """
-            DELETE FROM citizen
-            WHERE citizen_id = ?
-            """;
-    private final static String CREATE_CITIZEN =
-            """
-            INSERT INTO citizen(first_name, last_name, gender, age, education_level, salary)
-            VALUES (?, ?, ?, ?, ?, ?)
-            -- RETURNING citizen_id; questo però va solo per postgres
-            """;
-
-
+    // Il metodo findAll() dovrà trattare le faction in maniera EAGER, in vece che in maniera LAZY
     @Override
     public List<Citizen> findAll() throws DataException {
-        try(Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(FIND_ALL)){
+        try(Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(FIND_ALL)){
             var citizens = new ArrayList<Citizen>();
-            while (resultSet.next()) {
-                var  citizen = new Citizen(
-                        resultSet.getString("first_name"),
-                        resultSet.getString("last_name"),
-                        resultSet.getString("gender").charAt(0),
-                        resultSet.getInt("age"),
-                        resultSet.getDouble("salary"),
-                        resultSet.getString("education_level")
-                );
-                citizens.add(citizen);
+            while(rs.next()){
+                int id = rs.getInt("c_id");
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                char gender = rs.getString("gender").charAt(0);
+                int age = rs.getInt("age");
+                String educationLevel = rs.getString("education_level");
+                BigDecimal salary = rs.getBigDecimal("salary");
+                String wealthLevel = rs.getString("wealth_level");
+                boolean isRebel = rs.getBoolean("is_rebel");
+                int happinessTotal = rs.getInt("happiness_total");
+                Integer supportedFactionId = rs.getObject("supported_faction_id", Integer.class);
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                Citizen c = new Citizen(id, firstName, lastName, gender, age, educationLevel, salary, wealthLevel, isRebel,happinessTotal);
+                if(supportedFactionId != null){
+                    Faction f = new Faction(supportedFactionId, name, description);
+                    c.setSupportedFaction(f);
+                }
+                citizens.add(c);
             }
             return citizens;
-        }
-        catch (SQLException e) {
+        }catch (SQLException e){
             throw new DataException(e.getMessage(), e);
         }
     }
-
 
     @Override
     public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException {
-        try(PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_SEX_AND_EDUCATION_LEVEL)){
-            preparedStatement.setString(1,String.valueOf(sex));
-            preparedStatement.setString(2,educationLevel);
-            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+        String query = FIND_ALL + " WHERE c.gender = ? AND c.education_level = ?";
+        try(var pst = con.prepareStatement(query)){
+            pst.setString(1, String.valueOf(sex));
+            pst.setString(2, educationLevel);
+            try(ResultSet rs = pst.executeQuery()){
                 var citizens = new ArrayList<Citizen>();
-                while (resultSet.next()) {
-                    var  citizen = new Citizen(
-                            resultSet.getString("first_name"),
-                            resultSet.getString("last_name"),
-                            resultSet.getString("gender").charAt(0),
-                            resultSet.getInt("age"),
-                            resultSet.getDouble("salary"),
-                            resultSet.getString("education_level")
-                    );
-                    citizens.add(citizen);
+                while(rs.next()){
+                    int id = rs.getInt("c_id");
+                    String firstName = rs.getString("first_name");
+                    String lastName = rs.getString("last_name");
+                    char gender = rs.getString("gender").charAt(0);
+                    int age = rs.getInt("age");
+                    String educLevel = rs.getString("education_level");
+                    BigDecimal salary = rs.getBigDecimal("salary");
+                    String wealthLevel = rs.getString("wealth_level");
+                    boolean isRebel = rs.getBoolean("is_rebel");
+                    int happinessTotal = rs.getInt("happiness_total");
+                    Integer supportedFactionId = rs.getObject("supported_faction_id", Integer.class);
+                    String name = rs.getString("name");
+                    String description = rs.getString("description");
+                    Citizen c = new Citizen(id, firstName, lastName, gender, age, educLevel, salary, wealthLevel, isRebel, happinessTotal);
+                    if(supportedFactionId != null){
+                        Faction f = new Faction(supportedFactionId, name, description);
+                        c.setSupportedFaction(f);
+                    }
+                    citizens.add(c);
                 }
                 return citizens;
             }
-        }
-        catch (SQLException e) {
+        }catch (SQLException e){
             throw new DataException(e.getMessage(), e);
         }
     }
-
 
     @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
-        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CITIZEN)){
-            preparedStatement.setString(1, citizen.getFirstName());
-            preparedStatement.setString(2, citizen.getLastName());
-            preparedStatement.setString(3,String.valueOf(citizen.getGender()));
-            preparedStatement.setInt(4,citizen.getAge());
-            preparedStatement.setString(5,citizen.getEducationLevel());
-            preparedStatement.setDouble(6, citizen.getSalary());
-            preparedStatement.setInt(7,citizen.getId());
-            return preparedStatement.executeUpdate() == 1;  /*exectuteUpdate ritorna il numero di righe updatate,
-                                                           che nel nostro caso se tutto va bene è una,
-                                                           quella del citizen che voglio modificare*/
-        }
-        catch (SQLException e) {
+        String query = """
+                UPDATE citizen SET
+                    first_name = ?,
+                    last_name = ?,
+                    gender = ?,
+                    age = ?,
+                    education_level = ?,
+                    salary = ?,
+                    wealth_level = ?,
+                    is_rebel = ?,
+                    happiness_total = ?
+                WHERE id = ?
+                """;
+        try(var pst = con.prepareStatement(query)){
+            pst.setString(1, citizen.getFirstName());
+            pst.setString(2, citizen.getLastName());
+            pst.setString(3, String.valueOf(citizen.getGender()));
+            pst.setInt(4, citizen.getAge());
+            pst.setString(5, citizen.getEducationLevel());
+            pst.setBigDecimal(6, citizen.getSalary());
+            pst.setString(7, citizen.getWealthLevel());
+            pst.setBoolean(8, citizen.isRebel());
+            pst.setInt(9, citizen.getHappinessTotal());
+            pst.setInt(10, citizen.getId());
+            int affectedRows = pst.executeUpdate();
+            return affectedRows > 0;
+        }catch (SQLException e){
             throw new DataException(e.getMessage(), e);
         }
     }
-
 
     @Override
     public boolean deleteCitizen(int citizenId) throws DataException {
-        try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CITIZEN)){
-            preparedStatement.setInt(1, citizenId);
-            return preparedStatement.executeUpdate() == 1;
-        }
-        catch (SQLException e) {
+        String query = "DELETE FROM citizen WHERE id = ?";
+        try(var pst = con.prepareStatement(query)){
+            pst.setInt(1, citizenId);
+            int affectedRows = pst.executeUpdate();
+            return affectedRows > 0;
+        }catch (SQLException e){
             throw new DataException(e.getMessage(), e);
         }
     }
-
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
-        try(connection;
-            PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CITIZEN,Statement.RETURN_GENERATED_KEYS)){
-            preparedStatement.setString(1, newCitizen.getFirstName());
-            preparedStatement.setString(2, newCitizen.getLastName());
-            preparedStatement.setString(3, String.valueOf(newCitizen.getGender()));
-            preparedStatement.setInt(4, newCitizen.getAge());
-            preparedStatement.setString(5, newCitizen.getEducationLevel());
-            preparedStatement.setDouble(6, newCitizen.getSalary());
-            preparedStatement.executeUpdate();
+        String query = """
+                INSERT INTO citizen (first_name, last_name, gender, age, education_level, salary, wealth_level, is_rebel, happiness_total, supported_faction_id)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """;
+        try(var pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)){
+            pst.setString(1, newCitizen.getFirstName());
+            pst.setString(2, newCitizen.getLastName());
+            pst.setString(3, String.valueOf(newCitizen.getGender()));
+            pst.setInt(4, newCitizen.getAge());
+            pst.setString(5, newCitizen.getEducationLevel());
+            pst.setBigDecimal(6, newCitizen.getSalary());
+            pst.setString(7, newCitizen.getWealthLevel());
+            pst.setBoolean(8, newCitizen.isRebel());
+            pst.setInt(9, newCitizen.getHappinessTotal());
+            pst.setNull(10, java.sql.Types.INTEGER);
+            int affectedRows = pst.executeUpdate();
+            if(affectedRows > 0){
+                try(ResultSet rs = pst.getGeneratedKeys()){
+                    if(rs.next()){
+                        newCitizen.setId(rs.getInt(1));
 
-
-            try(ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
-                if(resultSet.next()) {
-                    newCitizen.setId(resultSet.getInt(1));
+                    }
                 }
             }
-        }
-        catch (SQLException e) {
+            return newCitizen;
+        }catch (SQLException e){
             throw new DataException(e.getMessage(), e);
         }
-        // newCitizen.setId(idDalDatabase)
-        return newCitizen;
     }
-
-    /*@Override
-    public void test() throws SQLException, DataException {
-
-    }*/
 }

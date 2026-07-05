@@ -1,6 +1,7 @@
 package org.generation.italy.examples.jdbc;
 
-import java.sql.SQLException;
+import org.generation.italy.examples.model.Citizen;
+
 import java.util.List;
 
 public interface CitizenRepository {
