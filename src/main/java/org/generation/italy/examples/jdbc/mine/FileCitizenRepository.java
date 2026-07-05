@@ -63,6 +63,12 @@ public class FileCitizenRepository implements CitizenRepository {
     }
 
     @Override
+    // TODO: implement findByNameAndSurname here
+    public Optional<Citizen> findByNameAndSurname(String name, String surname) throws DataException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
     public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException {
         return List.of();
     }

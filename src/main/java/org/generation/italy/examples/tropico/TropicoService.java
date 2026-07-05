@@ -26,6 +26,14 @@ public class TropicoService {
         return citizenRepository.deleteCitizenById(id);
     }
 
+    public boolean deleteCitizenByNameAndSurname(String name, String surname) throws DataException {
+        Optional<Citizen> citizenOpt = citizenRepository.findByNameAndSurname(name, surname);
+        if (citizenOpt.isEmpty()) {
+            return false;
+        }
+        return citizenRepository.deleteCitizenById(citizenOpt.get().getId());
+    }
+
     public Citizen createCitizen(Citizen citizen) throws DataException {
         return citizenRepository.createCitizen(citizen);
     }

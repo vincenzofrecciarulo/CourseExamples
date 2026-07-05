@@ -18,6 +18,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
                    f.name, f.description
             FROM citizen c
             LEFT JOIN faction f ON c.supported_faction_id = f.id
+            ORDER BY c.id
             """;
 
     private final static String FIND_BY_ID = """
@@ -37,12 +38,23 @@ public class JDBCCitizenRepository implements CitizenRepository {
                    f.name, f.description
             FROM citizen c
             LEFT JOIN faction f ON c.supported_faction_id = f.id
-            WHERE c.gender = ? AND c.education_level = ?
+            WHERE c.gender = UPPER(?) AND c.education_level ILIKE ?
+            """;
+
+    private final static String FIND_BY_NAME_AND_SURNAME = """
+            SELECT c.id AS citizen_id, c.first_name, c.last_name, c.gender, c.age,
+                   c.education_level, c.salary, c.wealth_level, c.is_rebel,
+                   c.happiness_total, c.supported_faction_id,
+                   f.name, f.description
+            FROM citizen c
+            LEFT JOIN faction f ON c.supported_faction_id = f.id
+            WHERE LOWER(c.first_name) = LOWER(?)  
+            AND LOWER(c.last_name) = LOWER(?)
             """;
 
     private final static String UPDATE_CITIZEN = """
             UPDATE citizen
-            SET first_name = ?, last_name = ?, gender = ?, age = ?,
+            SET first_name = ?, last_name = ?, gender = UPPER(?), age = ?,
                 education_level = ?, salary = ?, wealth_level = ?,
                 is_rebel = ?, happiness_total = ?
             WHERE id = ?
@@ -56,7 +68,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
     private final static String INSERT_CITIZEN = """
             INSERT INTO citizen (first_name, last_name, gender, age, education_level,
                                  salary, wealth_level, is_rebel, happiness_total)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, UPPER(?), ?, ?, ?, ?, ?, ?)
             """;
 
     public JDBCCitizenRepository(Connection conn) {
@@ -77,9 +89,27 @@ public class JDBCCitizenRepository implements CitizenRepository {
         }
     }
 
+    @Override
     public Optional<Citizen> findById(int id) throws DataException {
         try (PreparedStatement ps = conn.prepareStatement(FIND_BY_ID)) {
             ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(mapCitizen(rs));
+                } else {
+                    return Optional.empty();
+                }
+            }
+        } catch (SQLException e) {
+            throw new DataException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public Optional<Citizen> findByNameAndSurname(String name, String surname) throws DataException {
+        try (PreparedStatement ps = conn.prepareStatement(FIND_BY_NAME_AND_SURNAME)) {
+            ps.setString(1, name);
+            ps.setString(2, surname);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     return Optional.of(mapCitizen(rs));

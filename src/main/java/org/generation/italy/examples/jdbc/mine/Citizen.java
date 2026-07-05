@@ -152,6 +152,16 @@ public class Citizen {
                 ", wealthLevel='" + wealthLevel + '\'' +
                 ", isRebel=" + isRebel +
                 ", happinessTotal=" + happinessTotal +
+                ", faction=" + faction +
                 '}';
+    }
+
+    public String formatForConsole() {
+        return "Citizen #" + id + ": " + firstName + " " + lastName
+                + " (" + gender + ", " + age + ")"
+                + " - " + educationLevel
+                + " - Rebel: " + (isRebel ? "Yes" : "No")
+                + " - Happy: " + happinessTotal
+                + " - " + (faction != null ? faction.getName() : "No faction");
     }
 }

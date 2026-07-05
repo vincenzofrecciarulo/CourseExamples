@@ -7,6 +7,7 @@ public interface CitizenRepository {
 
     List<Citizen> findAll() throws DataException;
     Optional<Citizen> findById(int id) throws DataException;
+    Optional<Citizen> findByNameAndSurname(String name, String surname) throws DataException;
     List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException;
 
     boolean updateCitizen(Citizen citizen) throws DataException;
