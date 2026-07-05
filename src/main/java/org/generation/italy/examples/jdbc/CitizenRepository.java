@@ -8,6 +8,7 @@ public interface CitizenRepository {
 
     List<Citizen> findAll() throws DataException;
     List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException;
+    Citizen findById (int citizenId) throws DataException;
 
     boolean updateCitizen(Citizen citizen) throws DataException;
     boolean deleteCitizen(int citizenId) throws DataException;
