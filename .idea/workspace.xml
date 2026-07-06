@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c005b9c-8f72-4014-8fb0-15e94bb1023e" name="Changes" comment="implementa il resto dei metodi di FileCitizenRepository">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/TropicoConsole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/TropicoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
+    <list default="true" id="9c005b9c-8f72-4014-8fb0-15e94bb1023e" name="Changes" comment="inserisce la prima versione di una console app che legge e scrive dei cittadini sul database">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/CitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/CitizenRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/JDBCCitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/JDBCCitizenRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/Citizen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/Citizen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782914726453</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="inserisce la prima versione di una console app che legge e scrive dei cittadini sul database">
+      <option name="closed" value="true" />
+      <created>1783245353507</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1783245353507</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,6 +336,7 @@
     <MESSAGE value="implementa un esercizio di binarySearch" />
     <MESSAGE value="amplia la LambdaLibrary ed aggiunge in auito una classe Product" />
     <MESSAGE value="implementa il resto dei metodi di FileCitizenRepository" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementa il resto dei metodi di FileCitizenRepository" />
+    <MESSAGE value="inserisce la prima versione di una console app che legge e scrive dei cittadini sul database" />
+    <option name="LAST_COMMIT_MESSAGE" value="inserisce la prima versione di una console app che legge e scrive dei cittadini sul database" />
   </component>
 </project>
