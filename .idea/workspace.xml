@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e45597f6-d993-4097-9d5e-378258e7bf8a" name="Changes" comment="es stream">
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/CitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/CitizenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/FileCitizenRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/FileCitizenRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/JDBCCitizenRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/JDBCCitizenRepositoryTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Dev/Java/Projects/CourseExamples" value="3E29jqfAowZZwXnmL6fYG6RVwr8" />
+    </persistenceIdMap>
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="165" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/master" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.8411127366560693" />
+      <entry key="MS500" value="3.9618211278724327" />
+      <entry key="S2" value="10.979745892179075" />
+      <entry key="S5" value="18.443797158022043" />
+      <entry key="S10" value="25.88436475458904" />
+      <entry key="S30" value="38.86469561127186" />
+      <entry key="S60" value="52.57612525455543" />
+      <entry key="M2" value="75.99158436762013" />
+      <entry key="M5" value="107.89332448427378" />
+      <entry key="M10" value="126.0725719595067" />
+      <entry key="M15" value="135.6901672889999" />
+      <entry key="M30" value="163.4062723959389" />
+      <entry key="H1" value="232.16734950863926" />
+      <entry key="H2" value="366.89701741884136" />
+      <entry key="H4" value="576.2020345762546" />
+      <entry key="D1" value="1061.9891853812424" />
+      <entry key="W1" value="1212.8014996426132" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="6.318763756936483E-151" />
+      <entry key="S5" value="8.322481671441114E-61" />
+      <entry key="S10" value="9.122763655596058E-31" />
+      <entry key="S30" value="9.701684572979241E-11" />
+      <entry key="S60" value="1.0210757635888802E-5" />
+      <entry key="M2" value="0.004549194237556997" />
+      <entry key="M5" value="0.3113901717598669" />
+      <entry key="M10" value="1.5732239023407586" />
+      <entry key="M15" value="3.2936934578510533" />
+      <entry key="M30" value="12.074958191965175" />
+      <entry key="H1" value="37.21640773261244" />
+      <entry key="H2" value="83.23574922493174" />
+      <entry key="H4" value="141.8376243033904" />
+      <entry key="D1" value="250.48612647998937" />
+      <entry key="W1" value="280.5096049063001" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="1.7714892277030174" />
+      <entry key="MS500" value="3.927902277470231" />
+      <entry key="S2" value="10.955962420584656" />
+      <entry key="S5" value="18.427827799618818" />
+      <entry key="S10" value="25.873316907066243" />
+      <entry key="S30" value="38.85927905473738" />
+      <entry key="S60" value="52.57246450654247" />
+      <entry key="M2" value="75.99338295836421" />
+      <entry key="M5" value="108.20051605311481" />
+      <entry key="M10" value="127.63746244318807" />
+      <entry key="M15" value="138.97243528820113" />
+      <entry key="M30" value="175.46008955955332" />
+      <entry key="H1" value="269.3484052018791" />
+      <entry key="H2" value="450.0883372130213" />
+      <entry key="H4" value="717.997181399673" />
+      <entry key="D1" value="1312.4610085249994" />
+      <entry key="W1" value="1493.308756945404" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3E29jqfAowZZwXnmL6fYG6RVwr8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AnimalsMain.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.ExcerciseModa.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Exercise1.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Exercise2.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Exercise3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Exercise4.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Exercise5.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Exercise6.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.MudMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Product.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Start.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Simone__Bergero&quot;,
+    &quot;git.auto.fetch.suggestion.counter&quot;: &quot;1&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JAVA&quot;
+    ]
+  }
+}</component>
+  <component name="RunManager" selected="Application.Product">
+    <configuration name="AnimalsMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.abstraction.interfaces.AnimalsMain" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.oo.abstraction.interfaces.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MudMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.mud.world.MudMain" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.oo.mud.world.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Product" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.lambdaandstreams.Product" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.oo.lambdaandstreams.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.lambdaandstreams.Start" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.oo.lambdaandstreams.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Product" />
+        <item itemvalue="Application.Start" />
+        <item itemvalue="Application.AnimalsMain" />
+        <item itemvalue="Application.MudMain" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e45597f6-d993-4097-9d5e-378258e7bf8a" name="Changes" comment="" />
+      <created>1779365940642</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1779365940642</updated>
+      <workItem from="1779365953627" duration="740000" />
+      <workItem from="1779366701950" duration="870000" />
+      <workItem from="1779393160470" duration="7356000" />
+      <workItem from="1779401315193" duration="6000" />
+      <workItem from="1779433781655" duration="1186000" />
+      <workItem from="1779704272125" duration="58000" />
+      <workItem from="1779710513862" duration="4624000" />
+      <workItem from="1779787151207" duration="1975000" />
+      <workItem from="1779797005753" duration="599000" />
+      <workItem from="1780478007617" duration="1467000" />
+      <workItem from="1780650339984" duration="1583000" />
+      <workItem from="1780669326491" duration="10080000" />
+      <workItem from="1781014464501" duration="6308000" />
+      <workItem from="1781181022423" duration="11037000" />
+      <workItem from="1781250527226" duration="4845000" />
+      <workItem from="1781520491790" duration="499000" />
+      <workItem from="1781521055290" duration="348000" />
+      <workItem from="1781870440068" duration="10000" />
+    </task>
+    <task id="LOCAL-00001" summary="es1-6">
+      <option name="closed" value="true" />
+      <created>1779712615826</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1779712615826</updated>
+    </task>
+    <task id="LOCAL-00002" summary="es stream">
+      <option name="closed" value="true" />
+      <created>1781256232721</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1781256232722</updated>
+    </task>
+    <task id="LOCAL-00003" summary="es stream">
+      <option name="closed" value="true" />
+      <created>1781256240132</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1781256240132</updated>
+    </task>
+    <task id="LOCAL-00004" summary="es stream">
+      <option name="closed" value="true" />
+      <created>1782811921578</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1782811921578</updated>
+    </task>
+    <task id="LOCAL-00005" summary="es stream">
+      <option name="closed" value="true" />
+      <created>1782908538498</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1782908538498</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="es1-6" />
+    <MESSAGE value="es stream" />
+    <option name="LAST_COMMIT_MESSAGE" value="es stream" />
+    <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/Exercise6.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/generation/italy/examples/arrays/ExcerciseModa.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
