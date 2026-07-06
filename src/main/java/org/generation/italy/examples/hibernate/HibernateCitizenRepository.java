@@ -14,7 +14,7 @@ import java.util.List;
 
 public class HibernateCitizenRepository implements CitizenRepository {
 
-    private final SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;    // in un programma avremo una SessionFactory, ma potenzialmente più sessions
 
     public HibernateCitizenRepository(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -22,12 +22,13 @@ public class HibernateCitizenRepository implements CitizenRepository {
 
     private Session current() {
         return sessionFactory.getCurrentSession();
-    }
+    }   // restituisce sessione corrente
 
     @Override
     public List<Citizen> findAll() throws DataException {
         try {
-            Query<Citizen> q = current().createQuery("from Citizen", Citizen.class);
+            // scriviamo le query in HQL - Hibernate Query Language - simile a SQL ma lavora con le entity e non con le tabelle
+            Query<Citizen> q = current().createQuery("from Citizen", Citizen.class);    // from Citizen si riferisce alla CLASSE, non alla tabella nel db
             return q.list();
         } catch (Exception ex) {
             throw new DataException("Error finding all citizens", ex);
@@ -37,6 +38,7 @@ public class HibernateCitizenRepository implements CitizenRepository {
     @Override
     public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException {
         try {
+            // query parametrizzata in HQL (gender è la variabile nella classe Citizen, ad es.)
             Query<Citizen> q = current().createQuery("from Citizen c where c.gender = :sex and c.educationLevel = :edu", Citizen.class);
             q.setParameter("sex", sex);
             q.setParameter("edu", educationLevel);
@@ -52,7 +54,7 @@ public class HibernateCitizenRepository implements CitizenRepository {
             if (citizen.getId() == null || current().get(Citizen.class, citizen.getId()) == null) {
                 return false;
             }
-            current().merge(citizen);
+            current().merge(citizen);     // merge() aggiorna l'entità se esiste, altrimenti la inserisce.
             return true;
         } catch (Exception ex) {
             throw new DataException("Error updating citizen", ex);

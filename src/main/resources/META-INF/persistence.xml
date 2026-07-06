@@ -4,8 +4,10 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
              version="3.1">
     <persistence-unit name="tropico-jpa" transaction-type="RESOURCE_LOCAL">
+        <!-- THIS is the engine we're using -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
+        <!-- List of all the entity classes in the project -->
         <class>org.generation.italy.examples.model.tropico.Citizen</class>
         <class>org.generation.italy.examples.model.tropico.Faction</class>
         <class>org.generation.italy.examples.model.tropico.Building</class>
@@ -13,6 +15,7 @@
         <class>org.generation.italy.examples.model.tropico.Resource</class>
         <class>org.generation.italy.examples.model.tropico.ProductionBatch</class>
 
+        <!-- Ignora eventuali altre entity -->
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
     </persistence-unit>
 
