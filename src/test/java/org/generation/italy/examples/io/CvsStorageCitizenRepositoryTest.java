@@ -1,6 +1,6 @@
 package org.generation.italy.examples.io;
 
-import org.generation.italy.examples.model.Citizen;
+import org.generation.italy.examples.model.tropico.Citizen;
 import org.generation.italy.examples.jdbc.DataException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

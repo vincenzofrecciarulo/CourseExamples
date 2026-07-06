@@ -1,4 +1,4 @@
-package org.generation.italy.examples.model;
+package org.generation.italy.examples.model.tropico;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
