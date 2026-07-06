@@ -35,7 +35,7 @@ public class CitizenService {
         filtered.forEach(System.out::println);
     }
 
-    public void addCitizen(Citizen c) throws DataException {
+    public void addCitizen(Citizen c) throws DataException,CitizenAlreadyExists {
         if(repo.findById(c.getId()).isPresent()){
             throw new CitizenAlreadyExists("Il cittaino con Id"+c.getId()+"già esiste");
         }

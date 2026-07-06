@@ -100,4 +100,5 @@ public class Console {
         service.seeCitizenBySexAndEducation(prompt,prompt2);
     }
 
+
 }
