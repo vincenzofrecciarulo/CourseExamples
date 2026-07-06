@@ -5,7 +5,7 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.generation.italy.examples.jdbc.CitizenRepository;
 import org.generation.italy.examples.jdbc.DataException;
-import org.generation.italy.examples.model.Citizen;
+import org.generation.italy.examples.model.tropico.Citizen;
 
 import java.util.List;
 
@@ -25,6 +25,14 @@ public class JpaCitizenRepository implements CitizenRepository {
             return query.getResultList();
         } catch (Exception ex) {
             throw new DataException("Error finding all citizens", ex);
+        }
+    }
+
+    public Citizen findById(Integer id) throws DataException {
+        try {
+            return entityManager.find(Citizen.class, id);
+        } catch (Exception ex) {
+            throw new DataException("Error finding citizen by id", ex);
         }
     }
 
