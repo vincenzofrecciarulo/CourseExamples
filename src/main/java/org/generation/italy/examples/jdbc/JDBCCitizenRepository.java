@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class JDBCCitizenRepository implements CitizenRepository {
     private Connection con;
@@ -168,5 +169,9 @@ public class JDBCCitizenRepository implements CitizenRepository {
         }catch (SQLException e){
             throw new DataException(e.getMessage(), e);
         }
+    }
+    public Optional<Citizen> findById(int id) throws DataException {
+        List<Citizen> all = this.findAll();
+        return all.stream().filter(c->c.getId() == id).findFirst();
     }
 }
