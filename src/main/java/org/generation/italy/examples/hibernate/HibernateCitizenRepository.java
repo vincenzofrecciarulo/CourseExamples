@@ -2,7 +2,7 @@ package org.generation.italy.examples.hibernate;
 
 import org.generation.italy.examples.jdbc.CitizenRepository;
 import org.generation.italy.examples.jdbc.DataException;
-import org.generation.italy.examples.model.Citizen;
+import org.generation.italy.examples.model.tropico.Citizen;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.hibernate.query.Query;

@@ -1,9 +1,7 @@
 package org.generation.italy.examples.hibernate;
 
-import org.generation.italy.examples.jdbc.CitizenRepository;
 import org.generation.italy.examples.jdbc.DataException;
-import org.generation.italy.examples.model.Citizen;
-import org.generation.italy.examples.model.Faction;
+import org.generation.italy.examples.model.tropico.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.Session;
@@ -32,8 +30,8 @@ public class HibernateCitizenRepositoryTest {
         Properties props = new Properties();
         props.put("hibernate.connection.driver_class", System.getProperty("db.driver", "org.postgresql.Driver"));
         props.put("hibernate.connection.url", System.getProperty("db.url", "jdbc:postgresql://localhost:5432/tropico"));
-        props.put("hibernate.connection.username", System.getProperty("db.user", "postgres"));
-        props.put("hibernate.connection.password", System.getProperty("db.pass", "postgres"));
+        props.put("hibernate.connection.username", System.getProperty("db.user", "postgresMaster"));
+        props.put("hibernate.connection.password", System.getProperty("db.pass", "goPostgresGo"));
         props.put("hibernate.dialect", System.getProperty("db.dialect", "org.hibernate.dialect.PostgreSQLDialect"));
         props.put("hibernate.hbm2ddl.auto", System.getProperty("db.hbm2ddl", "validate"));
         props.put("hibernate.show_sql", "false");
@@ -44,10 +42,10 @@ public class HibernateCitizenRepositoryTest {
         config.setProperties(props);
         config.addAnnotatedClass(Citizen.class);
         config.addAnnotatedClass(Faction.class);
-        config.addAnnotatedClass(org.generation.italy.examples.model.Building.class);
-        config.addAnnotatedClass(org.generation.italy.examples.model.BuildingType.class);
-        config.addAnnotatedClass(org.generation.italy.examples.model.Resource.class);
-        config.addAnnotatedClass(org.generation.italy.examples.model.ProductionBatch.class);
+        config.addAnnotatedClass(Building.class);
+        config.addAnnotatedClass(BuildingType.class);
+        config.addAnnotatedClass(Resource.class);
+        config.addAnnotatedClass(ProductionBatch.class);
 
         sessionFactory = config.buildSessionFactory();
     }
