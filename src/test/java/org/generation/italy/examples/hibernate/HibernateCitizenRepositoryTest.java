@@ -1,9 +1,7 @@
 package org.generation.italy.examples.hibernate;
 
-import org.generation.italy.examples.jdbc.CitizenRepository;
 import org.generation.italy.examples.jdbc.DataException;
-import org.generation.italy.examples.model.Citizen;
-import org.generation.italy.examples.model.Faction;
+import org.generation.italy.examples.model.tropico.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.Session;
@@ -44,10 +42,10 @@ public class HibernateCitizenRepositoryTest {
         config.setProperties(props);
         config.addAnnotatedClass(Citizen.class);
         config.addAnnotatedClass(Faction.class);
-        config.addAnnotatedClass(org.generation.italy.examples.model.Building.class);
-        config.addAnnotatedClass(org.generation.italy.examples.model.BuildingType.class);
-        config.addAnnotatedClass(org.generation.italy.examples.model.Resource.class);
-        config.addAnnotatedClass(org.generation.italy.examples.model.ProductionBatch.class);
+        config.addAnnotatedClass(Building.class);
+        config.addAnnotatedClass(BuildingType.class);
+        config.addAnnotatedClass(Resource.class);
+        config.addAnnotatedClass(ProductionBatch.class);
 
         sessionFactory = config.buildSessionFactory();
     }

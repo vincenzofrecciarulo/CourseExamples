@@ -1,6 +1,6 @@
 package org.generation.italy.examples.jdbc;
 
-import org.generation.italy.examples.model.Faction;
+import org.generation.italy.examples.model.tropico.Faction;
 
 import java.sql.*;
 import java.util.ArrayList;
