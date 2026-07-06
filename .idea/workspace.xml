@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f9f3e2a-e9b4-4767-a9f1-fadde18e7e03" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/Citizen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/CitizenRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/ConnectionFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/Faction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/JDBCCitizenRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/FileCitizenRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/examples/jdbc/FileCitizenRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/Citizen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/Citizen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/JDBCCitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/JDBCCitizenRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,26 +48,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.PostgresConnectionExample.executor": "Run",
-    "Application.Start.executor": "Run",
-    "JUnit.FileCitizenRepositoryTest.updateCitizen.executor": "Run",
-    "JUnit.JDBCCitizenRepositoryTest.createCitizen.executor": "Run",
-    "JUnit.JDBCCitizenRepositoryTest.deleteCitizen.executor": "Run",
-    "JUnit.JDBCCitizenRepositoryTest.executor": "Run",
-    "JUnit.JDBCCitizenRepositoryTest.findAll.executor": "Run",
-    "JUnit.JDBCCitizenRepositoryTest.findBySexAndEducation.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit6",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit6": "",
-    "git-widget-placeholder": "andrea__ferraro",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Dev/Java/Projects/Exercises/CourseExamples"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.PostgresConnectionExample.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Start.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileCitizenRepositoryTest.updateCitizen.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.JDBCCitizenRepositoryTest.createCitizen.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.JDBCCitizenRepositoryTest.deleteCitizen.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.JDBCCitizenRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.JDBCCitizenRepositoryTest.findAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.JDBCCitizenRepositoryTest.findBySexAndEducation.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit6&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit6&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;andrea__ferraro&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Dev/Java/Projects/Exercises/CourseExamples&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />

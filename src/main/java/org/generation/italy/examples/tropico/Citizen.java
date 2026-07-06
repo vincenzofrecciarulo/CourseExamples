@@ -10,6 +10,21 @@ public class Citizen {
     private double salary;
     private String wealthLevel;
     private boolean isRebel;
+
+    public Citizen(int id, String firstName, String lastName, char gender, int age, String educationLevel, double salary, String wealthLevel, boolean isRebel, int happinessTotal, Faction faction) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.age = age;
+        this.educationLevel = educationLevel;
+        this.salary = salary;
+        this.wealthLevel = wealthLevel;
+        this.isRebel = isRebel;
+        this.happinessTotal = happinessTotal;
+        this.faction = faction;
+    }
+
     private int happinessTotal;
     private Faction faction;
 

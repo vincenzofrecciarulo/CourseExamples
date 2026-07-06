@@ -1,6 +1,7 @@
 package org.generation.italy.examples.tropico;
 
 import org.generation.italy.examples.jdbc.DataException;
+import org.generation.italy.examples.model.Faction;
 
 
 import java.sql.Connection;
@@ -20,33 +21,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
                     LEFT JOIN faction as f ON c.supported_faction_id = f.id
                     """;
 
-    private static final String GET_NAMES =
-            """
-            SELECT id, name, description
-            FROM faction
-            WHERE name = ?
-            """;
 
-    private static final String UPDATE_FACTION =
-            """
-                 UPDATE faction
-                SET name = ?,
-                description = ?
-                WHERE id = ?    
-            """;
-
-
-    private static final String ADD_FACTION =
-            """
-                    INSERT INTO faction(id, name, description)
-                    VALUES(?, ?, ?)
-                    """;
-
-    private static final String REMOVE_FACTION_BY_ID =
-            """
-                    DELETE FROM faction
-                    WHERE id = ?
-                    """;
 
 
     @Override
