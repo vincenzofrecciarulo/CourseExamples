@@ -7,36 +7,35 @@ import org.generation.italy.examples.jdbc.DataException;
 import java.util.List;
 
 public class TropicoService {
-    private CitizenRepository cr;
+    private CitizenRepository citizenRepository;
 
 
 
     public TropicoService(CitizenRepository cr) {
-        this.cr = cr;
+        this.citizenRepository = cr;
     }
 
 
-
-
     public List<Citizen> findAllCitizens() throws DataException {
-    return cr.findAll();
+    return citizenRepository.findAll();
 
     }
 
     public boolean deleteCitizen(int citizenId) throws DataException{
-    return cr.deleteCitizen(citizenId);
+    return citizenRepository.deleteCitizen(citizenId);
     }
 
     public boolean addCitizen (Citizen newCitizen) throws DataException{
-    return cr.createCitizen(newCitizen);
+    return citizenRepository.createCitizen(newCitizen);
     }
 
 
     public List<Citizen> findAllBySexAndEducationLevel(char sex, String educationLevel) throws DataException{
-    return cr.findBySexAndEducationLevel(char sex, String educationLevel);
+    return citizenRepository.findBySexAndEducationLevel(sex,educationLevel);
     }
 
     public boolean changeCitizenHappinessLevel (int citizenId, int happiness) throws DataException{
+        return citizenRepository.
 
     }
 
