@@ -2,7 +2,6 @@ package org.generation.italy.examples.tropico;
 
 import org.generation.italy.examples.jdbc.CitizenRepository;
 import org.generation.italy.examples.jdbc.DataException;
-import org.generation.italy.examples.jdbc.JDBCCitizenRepository;
 import org.generation.italy.examples.model.Citizen;
 
 import java.util.List;

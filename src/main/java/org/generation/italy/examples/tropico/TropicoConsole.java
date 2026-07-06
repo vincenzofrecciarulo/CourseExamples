@@ -5,6 +5,7 @@ import org.generation.italy.examples.model.Citizen;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Locale;
 
 public class TropicoConsole {
 
@@ -41,8 +42,10 @@ public class TropicoConsole {
                     printCitizenBySexAndEducation();
                     break;
                 case "5":
+                    IO.println("Operazione non ancora disponibile");
                     break;
                 default:
+                    IO.println("Operazione non valida");
                     break;
             }
         }
@@ -53,7 +56,7 @@ public class TropicoConsole {
         try{
             printCitizens(service.getAllCitizen());
         }catch (DataException e){
-            IO.println("Qualcosa è andato storto");
+            IO.println(e.getMessage());
         }
     }
 
@@ -78,8 +81,8 @@ public class TropicoConsole {
             IO.println("Inserimento dell'utente in corso...");
             String firstName = IO.readln("Inserisci il nome: ");
             String lastName = IO.readln("Inserisci il cognome: ");
-            char gender = IO.readln("Inserisci il sesso (M o F): ").charAt(0);
-            if(gender != 'M' && gender != 'F'){
+            char gender = IO.readln("Inserisci il sesso (M o F): ").toLowerCase().charAt(0);
+            if(gender != 'm' && gender != 'f'){
                 IO.println("Il sesso inserito non è valido");
                 return;
             }
@@ -99,8 +102,8 @@ public class TropicoConsole {
     }
 
     private void printCitizenBySexAndEducation(){
-        char sex = IO.readln("Inserisci il sesso dei cittadini (F o M): ").charAt(0);
-        if(sex != 'M' && sex != 'F'){
+        char sex = IO.readln("Inserisci il sesso dei cittadini (F o M): ").toLowerCase().charAt(0);
+        if(sex != 'm' && sex != 'f'){
             IO.println("Non hai inserito un sesso valido");
             return;
         }

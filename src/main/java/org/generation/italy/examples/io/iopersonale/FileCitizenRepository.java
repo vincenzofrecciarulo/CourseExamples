@@ -1,5 +1,7 @@
-package org.generation.italy.examples.jdbc;
+package org.generation.italy.examples.io.iopersonale;
 
+import org.generation.italy.examples.jdbc.CitizenRepository;
+import org.generation.italy.examples.jdbc.DataException;
 import org.generation.italy.examples.model.Citizen;
 
 import java.io.*;
@@ -12,7 +14,7 @@ import java.util.stream.Stream;
 
 // csv -> tabella -> header(id, firstName..) - dati
 
-public class FileCitizenRepository implements CitizenRepository{
+public class FileCitizenRepository implements CitizenRepository {
 
     private final File file;
 
@@ -72,6 +74,20 @@ public class FileCitizenRepository implements CitizenRepository{
         }
     }
 
+
+    public List<Citizen> findBySexAndEducationLevel2(char sex, String educationLevel) throws DataException {
+        try(Stream<String> lineStream = Files.lines(file.toPath())){
+            return lineStream
+                    .map(this::fromCsvLine)
+                    .filter(citizen ->
+                            citizen.getGender() == sex &&
+                            citizen.getEducationLevel().equals(educationLevel))
+                    .toList();
+        }catch (IOException e){
+            throw new DataException(e.getMessage(), e);
+        }
+    }
+
     @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(file))){
@@ -98,6 +114,19 @@ public class FileCitizenRepository implements CitizenRepository{
             throw new DataException(e.getMessage(), e);
         }
     }
+
+    public boolean updateCitizen2(Citizen citizen) throws DataException {
+        try(Stream<String> lineStream = Files.lines(file.toPath())){
+            lineStream
+                    .map(this::fromCsvLine)
+                    .anyMatch(c -> c.getId().e)
+
+        }catch (IOException e){
+            throw new DataException(e.getMessage(), e);
+        }
+    }
+
+
 
     @Override
     public boolean deleteCitizen(int citizenId) throws DataException {
