@@ -1,5 +1,7 @@
 package org.generation.italy.examples.jdbc;
 
+import org.generation.italy.examples.model.tropico.Citizen;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;

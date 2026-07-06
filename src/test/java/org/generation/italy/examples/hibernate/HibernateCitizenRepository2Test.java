@@ -2,9 +2,9 @@ package org.generation.italy.examples.hibernate;
 
 import org.generation.italy.examples.jdbc.DataException;
 import org.generation.italy.examples.model.tropico.*;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.Session;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,8 +14,13 @@ import java.util.List;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HibernateCitizenRepositoryTest {
+public class HibernateCitizenRepository2Test {
 
     private static SessionFactory sessionFactory;
     private Session session;
