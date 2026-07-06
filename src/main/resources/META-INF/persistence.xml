@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+             version="3.1">
+    <persistence-unit name="tropico-jpa" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>org.generation.italy.examples.model.tropico.Citizen</class>
+        <class>org.generation.italy.examples.model.tropico.Faction</class>
+        <class>org.generation.italy.examples.model.tropico.Building</class>
+        <class>org.generation.italy.examples.model.tropico.BuildingType</class>
+        <class>org.generation.italy.examples.model.tropico.Resource</class>
+        <class>org.generation.italy.examples.model.tropico.ProductionBatch</class>
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    </persistence-unit>
+
+    <persistence-unit name="company-jpa" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>org.generation.italy.examples.model.company.Employee</class>
+        <class>org.generation.italy.examples.model.company.Supplier</class>
+        <class>org.generation.italy.examples.model.company.Category</class>
+        <class>org.generation.italy.examples.model.company.Product</class>
+        <class>org.generation.italy.examples.model.company.Customer</class>
+        <class>org.generation.italy.examples.model.company.Shipper</class>
+        <class>org.generation.italy.examples.model.company.Order</class>
+        <class>org.generation.italy.examples.model.company.OrderDetail</class>
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    </persistence-unit>
+</persistence>
