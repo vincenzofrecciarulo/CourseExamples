@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58ed345a-379c-4972-98b4-fa242c8f59e5" name="Changes" comment="Lavoro su JDBC con metodi">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/StartUp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/TropicoConsole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/tropico/TropicoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/jdbc/FileCitizenRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/Citizen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/Citizen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,61 +51,61 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.000000000000002" />
-      <entry key="MS500" value="1.001335852727574" />
-      <entry key="S2" value="1.2999381536080943" />
-      <entry key="S5" value="1.9302728213494946" />
-      <entry key="S10" value="2.362574734185211" />
-      <entry key="S30" value="2.8581040978043477" />
-      <entry key="S60" value="3.571132688922111" />
-      <entry key="M2" value="4.8191354271215605" />
-      <entry key="M5" value="8.013371503311692" />
-      <entry key="M10" value="16.36539412863806" />
-      <entry key="M15" value="25.86883751325194" />
-      <entry key="M30" value="53.73910201236512" />
-      <entry key="H1" value="98.34363449560185" />
-      <entry key="H2" value="165.83035293780998" />
-      <entry key="H4" value="322.36775440612416" />
-      <entry key="D1" value="1568.220557994441" />
-      <entry key="W1" value="2543.436507472926" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0000000045852895" />
+      <entry key="S30" value="1.003565100502763" />
+      <entry key="S60" value="1.126125486530089" />
+      <entry key="M2" value="1.9056649587574739" />
+      <entry key="M5" value="5.105959400421259" />
+      <entry key="M10" value="12.714564708305259" />
+      <entry key="M15" value="21.70030307791966" />
+      <entry key="M30" value="49.07179075384948" />
+      <entry key="H1" value="94.01354617106152" />
+      <entry key="H2" value="162.27386678624174" />
+      <entry key="H4" value="318.9080908156197" />
+      <entry key="D1" value="1565.5837211140117" />
+      <entry key="W1" value="2543.5930336893302" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="4.926850442736857E-102" />
-      <entry key="S2" value="4.7113171971111603E-26" />
-      <entry key="S5" value="7.400429708514128E-11" />
-      <entry key="S10" value="8.602575026417455E-6" />
-      <entry key="S30" value="0.020490041618016753" />
-      <entry key="S60" value="0.1432106476089637" />
-      <entry key="M2" value="0.40306854741197007" />
-      <entry key="M5" value="1.8466616260492672" />
-      <entry key="M10" value="5.900002003381088" />
-      <entry key="M15" value="10.068940767348481" />
-      <entry key="M30" value="21.894540782036685" />
-      <entry key="H1" value="41.38327510907163" />
-      <entry key="H2" value="71.48084942681923" />
-      <entry key="H4" value="139.76933462080004" />
-      <entry key="D1" value="589.1329601810392" />
-      <entry key="W1" value="903.0425289349622" />
+      <entry key="MS500" value="7.503856925921482E-172" />
+      <entry key="S2" value="1.6550881765414599E-43" />
+      <entry key="S5" value="7.718420841834158E-18" />
+      <entry key="S10" value="2.778221303469595E-9" />
+      <entry key="S30" value="0.0014313516769951457" />
+      <entry key="S60" value="0.04255183014349684" />
+      <entry key="M2" value="0.26938251286592624" />
+      <entry key="M5" value="1.4647599734028751" />
+      <entry key="M10" value="4.943404562864311" />
+      <entry key="M15" value="8.860587422991777" />
+      <entry key="M30" value="20.481873078517978" />
+      <entry key="H1" value="40.08710336217663" />
+      <entry key="H2" value="70.48979281845644" />
+      <entry key="H4" value="138.82216506989812" />
+      <entry key="D1" value="588.7644330657594" />
+      <entry key="W1" value="903.7427293959752" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.05953987487774649" />
-      <entry key="MS500" value="0.5697285784278917" />
-      <entry key="S2" value="1.13532823087902" />
-      <entry key="S5" value="1.830409512326918" />
-      <entry key="S10" value="2.300731844680952" />
-      <entry key="S30" value="2.8464713183242227" />
-      <entry key="S60" value="3.6743785063745253" />
-      <entry key="M2" value="5.178788631378064" />
-      <entry key="M5" value="9.814781816498593" />
-      <entry key="M10" value="22.203999284205214" />
-      <entry key="M15" value="35.86363771485957" />
-      <entry key="M30" value="75.54326783010471" />
-      <entry key="H1" value="139.64098034559268" />
-      <entry key="H2" value="237.24205630646063" />
-      <entry key="H4" value="462.07795004321906" />
-      <entry key="D1" value="2157.3194816413634" />
-      <entry key="W1" value="3446.4719111368245" />
+      <entry key="MS100" value="0.0016768856180424871" />
+      <entry key="MS500" value="0.2785484127048331" />
+      <entry key="S2" value="0.726482524785685" />
+      <entry key="S5" value="0.8800149877725064" />
+      <entry key="S10" value="0.9380911468463259" />
+      <entry key="S30" value="0.9837205326831309" />
+      <entry key="S60" value="1.1544951541742756" />
+      <entry key="M2" value="2.155874425850738" />
+      <entry key="M5" value="6.539241822329953" />
+      <entry key="M10" value="17.60866379854352" />
+      <entry key="M15" value="30.497657564191762" />
+      <entry key="M30" value="69.47068038956655" />
+      <entry key="H1" value="134.01825714836386" />
+      <entry key="H2" value="232.69584006967224" />
+      <entry key="H4" value="457.6716449716762" />
+      <entry key="D1" value="2154.3141477613135" />
+      <entry key="W1" value="3447.3286331914987" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -119,64 +120,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Exercise1.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise5.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise6.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise7.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise8.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ExerciseBinarySearch.executor&quot;: &quot;Run&quot;,
-    &quot;Application.InfoPoint.executor&quot;: &quot;Run&quot;,
-    &quot;Application.JDBCCitizenRepository.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LambdaExamples.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Library.executor&quot;: &quot;Run&quot;,
-    &quot;Application.PostgresConnectionExample.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Start.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileCitizenRepositoryTest.createCitizen.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileCitizenRepositoryTest.findAll.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Domenico__Piano&quot;,
-    &quot;git.auto.fetch.suggestion.counter&quot;: &quot;1&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Dev/Java/Projects/CourseExamples/src/main/java/org/generation/italy/examples/oo&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Exercise1.executor": "Run",
+    "Application.Exercise5.executor": "Run",
+    "Application.Exercise6.executor": "Run",
+    "Application.Exercise7.executor": "Run",
+    "Application.Exercise8.executor": "Run",
+    "Application.ExerciseBinarySearch.executor": "Run",
+    "Application.InfoPoint.executor": "Run",
+    "Application.JDBCCitizenRepository.executor": "Run",
+    "Application.LambdaExamples.executor": "Run",
+    "Application.Library.executor": "Run",
+    "Application.PostgresConnectionExample.executor": "Run",
+    "Application.Start.executor": "Run",
+    "Application.StartUp.executor": "Run",
+    "JUnit.FileCitizenRepositoryTest.createCitizen.executor": "Run",
+    "JUnit.FileCitizenRepositoryTest.findAll.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "Domenico__Piano",
+    "git.auto.fetch.suggestion.counter": "1",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Dev/Java/Projects/CourseExamples/src/main/java/org/generation/italy/examples",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.generation.italy.examples.arrays.exericc" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.FileCitizenRepositoryTest.findAll">
-    <configuration name="Library" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.lambdaandstreams.homeexercises.Library" />
-      <module name="CourseExamples" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.oo.lambdaandstreams.homeexercises.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.StartUp">
     <configuration name="PostgresConnectionExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.PostgresConnectionExample" />
       <module name="CourseExamples" />
@@ -197,6 +186,19 @@
         <pattern>
           <option name="PATTERN" value="org.generation.italy.examples.oo.lambdaandstreams.*" />
           <option name="ENABLED" value="false" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StartUp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.tropico.StartUp" />
+      <module name="CourseExamples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.examples.tropico.*" />
+          <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <method v="2">
@@ -237,11 +239,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StartUp" />
         <item itemvalue="JUnit.FileCitizenRepositoryTest.findAll" />
         <item itemvalue="JUnit.FileCitizenRepositoryTest.createCitizen" />
         <item itemvalue="Application.Start" />
         <item itemvalue="Application.PostgresConnectionExample" />
-        <item itemvalue="Application.Library" />
       </list>
     </recent_temporary>
   </component>
