@@ -1,6 +1,7 @@
 package org.generation.italy.examples.tropico;
 
 import org.generation.italy.examples.jdbc.DataException;
+import org.generation.italy.examples.jdbc.JDBCCitizenRepository;
 
 public class Console {
     CitizenService service;
@@ -30,6 +31,7 @@ public class Console {
               case "a":
                  try {
                      service.seeAll();
+                     break;
                  }catch (DataException e){
                      e.getMessage();
                  }
@@ -52,11 +54,12 @@ public class Console {
                   }
               case "D":
               case "d":
-                 break;
+
               case "E":
               case "e":
               try{
                   this.chooseToChangeHappiness();
+                  break;
               } catch (DataException | CitizenNotFound e) {
                   e.getMessage();
               }
@@ -99,6 +102,5 @@ public class Console {
         String prompt2 =IO.readln("Scegli il nuovo livello di educazione");
         service.seeCitizenBySexAndEducation(prompt,prompt2);
     }
-
 
 }

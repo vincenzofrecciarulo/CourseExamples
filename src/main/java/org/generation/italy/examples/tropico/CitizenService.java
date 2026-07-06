@@ -10,11 +10,10 @@ import java.util.Optional;
 public class CitizenService {
 
      JDBCCitizenRepository repo;
-     Citizen c;
 
-    public CitizenService(JDBCCitizenRepository repo, Citizen c) {
+
+    public CitizenService(JDBCCitizenRepository repo) {
         this.repo = repo;
-        this.c = c;
     }
 
     public void seeAll() throws DataException {
@@ -37,7 +36,7 @@ public class CitizenService {
 
     public void addCitizen(Citizen c) throws DataException,CitizenAlreadyExists {
         if(repo.findById(c.getId()).isPresent()){
-            throw new CitizenAlreadyExists("Il cittaino con Id"+c.getId()+"già esiste");
+            throw new CitizenAlreadyExists("Il cittadino con Id "+c.getId()+" già esiste");
         }
         repo.createCitizen(c);
     }
@@ -58,8 +57,6 @@ public class CitizenService {
       }else{
           throw new CitizenNotFound("Cittadino a "+id+"non trovato");
       }
-
-
     }
 
 }
