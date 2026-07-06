@@ -1,7 +1,7 @@
 package org.generation.italy.examples.tropico;
 
 import org.generation.italy.examples.jdbc.DataException;
-import org.generation.italy.examples.jdbc.JDBCCitizenRepository;
+
 
 public class Console {
     CitizenService service;
@@ -102,5 +102,6 @@ public class Console {
         String prompt2 =IO.readln("Scegli il nuovo livello di educazione");
         service.seeCitizenBySexAndEducation(prompt,prompt2);
     }
+
 
 }
