@@ -131,7 +131,7 @@ public class TropicoConsole {
 
 
        } catch (NumberFormatException e) {
-           IO.println("Input errato inserisci un numero");
+           printInputErrorNumber();
        }
     }
 
@@ -173,7 +173,7 @@ public class TropicoConsole {
                 IO.println("Età aggiunta con successo");
                 return age;
             } catch (NumberFormatException e) {
-                IO.println("Input non valido,inserisci un numero");
+                printInputErrorNumber();
             }
         }
     }
@@ -190,7 +190,7 @@ public class TropicoConsole {
                 IO.println("Salario aggiunto correttamente");
                 return salary;
             } catch(NumberFormatException e){
-                IO.println("Input non valido inserisci un numero!!");
+                printInputErrorNumber();
             }
         }
     }
@@ -225,8 +225,12 @@ public class TropicoConsole {
                 String h=IO.readln("Inserisci un nuovo parametro di felicità \n");
                 return Integer.parseInt(h);
             } catch (NumberFormatException e) {
-                IO.println("Input errato inserisci un numero");
+                printInputErrorNumber();
             }
         }
+    }
+
+    public void printInputErrorNumber() {
+        IO.println("Input errato, inserisci un numero");
     }
 }

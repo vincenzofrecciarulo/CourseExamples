@@ -26,13 +26,38 @@ private final static String UPDATE_HAPPINESS=
             SET happiness_total=?
         WHERE id=?      
         """;
+private final static String FIND_BY_GENDER_AND_HAPPINESS =
+                    """
+                    SELECT first_name,last_name,age,gender,salary,education_level
+                    FROM citizen
+                    WHERE gender=? AND education_level=?
+                    """;
+private final static String UPDATE_CITIZEN =
+            """
+            UPDATE citizen
+            SET
+            first_name=?,
+            last_name=?,
+            gender=?,
+            age=?,
+            education_level=?,
+            salary=?
+            WHERE id=?
+            """;
+private final static String DELETE_CITIZEN =
+               """
+               DELETE FROM citizen
+               WHERE id=?
+               """;
+private final static String CREATE_CITIZEN =
+        """
+        INSERT INTO citizen (first_name, last_name, gender, age,  education_level,salary)
+        VALUES (?, ?, ?, ?, ?, ?)
+        """;
 
     public JDBCCitizenRepository(Connection con) {
         this.con=con;
     }
-
-
-
 
 
     @Override
@@ -63,13 +88,8 @@ private final static String UPDATE_HAPPINESS=
 
     @Override
     public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException {
-        String query= """
-                    SELECT first_name,last_name,age,gender,salary,education_level
-                    FROM citizen
-                    WHERE gender=? AND education_level=?
-                    """;
         List<Citizen>citizens=new ArrayList<>();
-        try(PreparedStatement ps=con.prepareStatement(query)){
+        try(PreparedStatement ps=con.prepareStatement(FIND_BY_GENDER_AND_HAPPINESS)){
             ps.setString(1,String.valueOf(sex));
             ps.setString(2,(educationLevel));
             try(ResultSet resultset=ps.executeQuery()){;
@@ -94,18 +114,7 @@ private final static String UPDATE_HAPPINESS=
 
     @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
-        String query= """
-                    UPDATE citizen
-                        SET 
-                        first_name=?,
-                        last_name=?,
-                        gender=?,
-                        age=?,
-                        education_level=?,
-                        salary=?              
-                    WHERE id=?
-                    """;
-        try(PreparedStatement ps=con.prepareStatement(query)){
+        try(PreparedStatement ps=con.prepareStatement(UPDATE_CITIZEN)){
             ps.setString(1,citizen.getFirstName());
             ps.setString(2,citizen.getLastName());
             ps.setString(3,String.valueOf(citizen.getGender()));
@@ -121,12 +130,7 @@ private final static String UPDATE_HAPPINESS=
 
     @Override
     public boolean deleteCitizen(int citizenId) throws DataException {
-        String query= """
-                DELETE 
-                    FROM citizen
-                WHERE id=?
-                """;
-        try(PreparedStatement ps=con.prepareStatement(query)){
+        try(PreparedStatement ps=con.prepareStatement(DELETE_CITIZEN)){
             ps.setInt(1,citizenId);
             try(ResultSet resultSet=ps.executeQuery()){
                 return true;
@@ -138,11 +142,7 @@ private final static String UPDATE_HAPPINESS=
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException, SQLException {
-        String query = """
-        INSERT INTO citizen (first_name, last_name, gender, age,  education_level,salary)
-        VALUES (?, ?, ?, ?, ?, ?)
-        """;
-        try(PreparedStatement ps=con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS)){
+        try(PreparedStatement ps=con.prepareStatement(CREATE_CITIZEN,Statement.RETURN_GENERATED_KEYS)){
             ps.setString(1, newCitizen.getFirstName());
             ps.setString(2,newCitizen.getLastName());
             ps.setString(3,String.valueOf(newCitizen.getGender()));

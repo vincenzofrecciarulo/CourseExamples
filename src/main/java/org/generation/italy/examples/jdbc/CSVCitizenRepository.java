@@ -43,7 +43,7 @@ public class CSVCitizenRepository implements CitizenRepository{
         List<Citizen>citizens=new ArrayList<>();
         try(BufferedReader br=new BufferedReader(source)){
             br.readLine();
-            String line=null;
+            String line;
             while((line=br.readLine())!=null){
                 Citizen citizen=fromCsvString(line);
                 citizens.add(citizen);
