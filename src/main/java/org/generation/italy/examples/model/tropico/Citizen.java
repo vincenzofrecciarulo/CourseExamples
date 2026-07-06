@@ -91,8 +91,6 @@ public class Citizen implements Serializable {
         this.happinessTotal = happinessTotal;
     }
 
-    public Citizen(int i, String token, String token1, char c, int i1, double v, String token2) {
-    }
 
     // Getters and Setters
     public Integer getId() { return id; }
