@@ -5,6 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c005b9c-8f72-4014-8fb0-15e94bb1023e" name="Changes" comment="inserisce la prima versione di una console app che legge e scrive dei cittadini sul database">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/tropicoEx/Building.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/tropicoEx/BuildingType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/tropicoEx/Citizen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/tropicoEx/Faction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/tropicoEx/ProductionBatch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/tropicoEx/Resource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
