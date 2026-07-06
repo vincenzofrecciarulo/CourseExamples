@@ -4,8 +4,6 @@ import org.generation.italy.examples.jdbc.mine.*;
 import java.util.List;
 import java.util.Optional;
 
-
-// TODO: add a findById method. TropicoConsole will need to find citizens by ID to change their happiness.
 public class TropicoService {
 
     private CitizenRepository citizenRepository;

@@ -14,21 +14,22 @@ public class TropicoConsole {
     }
 
     public void start() {
-        int choice = 0;
+        int choice = -1;
         while (choice != ConsoleChoices.QUIT.getNumber()) {
             for (ConsoleChoices choices : ConsoleChoices.values()) {
                 System.out.println(choices.getNumber() + ": " + choices.getPrompt());
             }
             try {
                 choice = Integer.parseInt(IO.readln("Enter choice: "));
-                switch (choice) {
-                    case 1:
+                ConsoleChoices option = ConsoleChoices.fromNumber(choice);
+                switch (option) {
+                    case SHOW_ALL:
                         List<Citizen> citizens = service.getAllCitizens();
                         for (Citizen c : citizens) {
                             System.out.println(c.formatForConsole());
                         }
                         break;
-                    case 2:
+                    case DELETE:
                         int deleteChoice = Integer.parseInt(IO.readln("Do you want to " +
                                 "delete the citizen by id (1) or name and surname (2)? "));
                         switch (deleteChoice) {
@@ -58,18 +59,18 @@ public class TropicoConsole {
                                 break;
                         }
                         break;
-                    case 3:
+                    case ADD:
                         String firstName = IO.readln("First name: ");
                         String lastName = IO.readln("Last name: ");
                         String genderChoice;
                         do { // to prevent empty gender string, which was the only unhandled exception
-                            genderChoice = IO.readln("Gender: ");
+                            genderChoice = IO.readln("Gender (m or f): ");
                         } while (genderChoice.isEmpty());
                         // TODO: implement supported faction eager loading in createCitizen
                         Citizen citizen = service.createCitizen(new Citizen(
                                     firstName,
                                     lastName,
-                                    genderChoice.toUpperCase().charAt(0),
+                                    genderChoice.charAt(0),
                                     Integer.parseInt(IO.readln("Age (integer): ")),
                                     IO.readln("Education Level: "),
                                     Double.parseDouble(IO.readln("Salary (double): ")),
@@ -79,7 +80,7 @@ public class TropicoConsole {
                             ));
                             System.out.println("Citizen successfully created:\n" + citizen.formatForConsole());
                         break;
-                    case 4:
+                    case FIND_BY_GENDER_EDU:
                         String genderInput;
                         do {
                             genderInput = IO.readln("Gender (m or f): ");
@@ -99,24 +100,21 @@ public class TropicoConsole {
                             System.out.println(c.formatForConsole());
                         }
                         break;
-                    case 5:
-                            int id = Integer.parseInt(IO.readln("ID of citizen to update: "));
-                            Optional<Citizen> optCitizen = service.getCitizenById(id);
-                            if (optCitizen.isPresent()) {
-                                int happiness = Integer.parseInt(IO.readln("New happiness total (integer): "));
-                                service.changeHappiness(optCitizen.get(), happiness);
-                                System.out.println("Citizen successfully updated:\n" + optCitizen.get().formatForConsole());
-                            } else {
-                                System.out.println("Citizen not found.");
-                            }
+                    case CHANGE_HAPPINESS:
+                        int id = Integer.parseInt(IO.readln("ID of citizen to update: "));
+                        Optional<Citizen> optCitizen = service.getCitizenById(id);
+                        if (optCitizen.isPresent()) {
+                            int happiness = Integer.parseInt(IO.readln("New happiness total (integer): "));
+                            service.changeHappiness(optCitizen.get(), happiness);
+                            System.out.println("Citizen successfully updated:\n" + optCitizen.get().formatForConsole());
+                        } else {
+                            System.out.println("Citizen not found.");
+                        }
                         break;
-                    case 6:
-                        break;
-                    default:
-                        System.out.println("Invalid choice.");
+                    case QUIT:
                         break;
                 }
-            } catch (DataException | NumberFormatException e) {
+            } catch (DataException | IllegalArgumentException e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
