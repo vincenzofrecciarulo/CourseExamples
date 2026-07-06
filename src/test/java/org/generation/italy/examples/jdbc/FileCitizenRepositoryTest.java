@@ -1,7 +1,7 @@
 package org.generation.italy.examples.jdbc;
 
 import org.generation.italy.examples.io.iopersonale.FileCitizenRepository;
-import org.generation.italy.examples.model.Citizen;
+import org.generation.italy.examples.model.tropico.Citizen;
 import org.junit.jupiter.api.*;
 
 import java.io.File;

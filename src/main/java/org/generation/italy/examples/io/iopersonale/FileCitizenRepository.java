@@ -2,7 +2,7 @@ package org.generation.italy.examples.io.iopersonale;
 
 import org.generation.italy.examples.jdbc.CitizenRepository;
 import org.generation.italy.examples.jdbc.DataException;
-import org.generation.italy.examples.model.Citizen;
+import org.generation.italy.examples.model.tropico.Citizen;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -117,10 +117,12 @@ public class FileCitizenRepository implements CitizenRepository {
 
     public boolean updateCitizen2(Citizen citizen) throws DataException {
         try(Stream<String> lineStream = Files.lines(file.toPath())){
+            /*
             lineStream
                     .map(this::fromCsvLine)
                     .anyMatch(c -> c.getId().e)
-
+*/
+            return false;
         }catch (IOException e){
             throw new DataException(e.getMessage(), e);
         }

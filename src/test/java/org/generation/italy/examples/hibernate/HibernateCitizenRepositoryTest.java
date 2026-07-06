@@ -30,8 +30,8 @@ public class HibernateCitizenRepositoryTest {
         Properties props = new Properties();
         props.put("hibernate.connection.driver_class", System.getProperty("db.driver", "org.postgresql.Driver"));
         props.put("hibernate.connection.url", System.getProperty("db.url", "jdbc:postgresql://localhost:5432/tropico"));
-        props.put("hibernate.connection.username", System.getProperty("db.user", "postgres"));
-        props.put("hibernate.connection.password", System.getProperty("db.pass", "postgres"));
+        props.put("hibernate.connection.username", System.getProperty("db.user", "postgresMaster"));
+        props.put("hibernate.connection.password", System.getProperty("db.pass", "goPostgresGo"));
         props.put("hibernate.dialect", System.getProperty("db.dialect", "org.hibernate.dialect.PostgreSQLDialect"));
         props.put("hibernate.hbm2ddl.auto", System.getProperty("db.hbm2ddl", "validate"));
         props.put("hibernate.show_sql", "false");
