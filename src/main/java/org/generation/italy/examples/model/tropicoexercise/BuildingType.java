@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "building_type")
@@ -23,6 +24,7 @@ public class BuildingType implements Serializable {
     private Integer maxWorkers;
   @Column(name = "production_rate")
     private BigDecimal productionRate;
-
+    @OneToMany(mappedBy = "buildings", fetch = FetchType.LAZY)
+    private List<Building> buildings;
 
 }
