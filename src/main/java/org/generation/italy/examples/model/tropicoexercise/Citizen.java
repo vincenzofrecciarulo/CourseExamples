@@ -53,6 +53,8 @@ public class Citizen implements Serializable {
         this.salary = salary;
     }
 
+
+
     public int getId() {
         return id;
     }
