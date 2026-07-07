@@ -16,7 +16,7 @@ public class JDBCCitizenRepository implements CitizenRepository {
 
     public JDBCCitizenRepository(Connection con){
         this.con = con;
-    }
+    } //permette l'autoclosable
     private static final String FIND_ALL =
             """
                     SELECT c.id as c_id, first_name, last_name, gender, age, education_level,salary, wealth_level,is_rebel, happiness_total, supported_faction_id, f.name, f.description
