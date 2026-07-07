@@ -12,8 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// questa è la classe con tutta la business logic
 public class PeopleService {
 
+    // questa factory corrisponde alla session factory
     private final EntityManagerFactory entityManagerFactory;
 
     public PeopleService() {
@@ -66,8 +68,9 @@ public class PeopleService {
             transaction.commit();
             return created;
         } catch (DataException | RuntimeException ex) {
+            // JPA lancia delle figlie di runtime, delle unchecked
             rollback(transaction);
-            throw ex;
+            throw ex; // quindi catchiamo una eccezione, facciamo un rollback e la faccio propagare rilanciandola
         } finally {
             entityManager.close();
         }
@@ -120,15 +123,15 @@ public class PeopleService {
         props.put("jakarta.persistence.jdbc.url",
                 System.getProperty("db.url", "jdbc:postgresql://localhost:5432/tropico"));
         props.put("jakarta.persistence.jdbc.user",
-                System.getProperty("db.user", "postgres"));
+                System.getProperty("db.user", "postgresMaster"));
         props.put("jakarta.persistence.jdbc.password",
-                System.getProperty("db.pass", "postgres"));
+                System.getProperty("db.pass", "goPostgresGo"));
         props.put("hibernate.dialect",
                 System.getProperty("db.dialect", "org.hibernate.dialect.PostgreSQLDialect"));
         props.put("hibernate.hbm2ddl.auto",
                 System.getProperty("db.hbm2ddl", "validate"));
-        props.put("hibernate.show_sql", "false");
-        props.put("hibernate.format_sql", "false");
+        props.put("hibernate.show_sql", "true");
+        props.put("hibernate.format_sql", "true");
         return props;
     }
 
