@@ -1,4 +1,4 @@
-package org.generation.italy.examples.jdbc;
+/* package org.generation.italy.examples.jdbc;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
-import org.generation.italy.examples.model.Citizen;
+import org.generation.italy.examples.model.tropico.Citizen;
 
 public class CSVCitizenRepository implements CitizenRepository{
 
@@ -167,3 +167,5 @@ public class CSVCitizenRepository implements CitizenRepository{
         return null;
     }
 }
+
+ */
