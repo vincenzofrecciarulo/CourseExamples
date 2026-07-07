@@ -1,6 +1,6 @@
 package org.generation.italy.examples.io;
 
-import org.generation.italy.examples.model.Citizen;
+import org.generation.italy.examples.model.tropico.Citizen;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;

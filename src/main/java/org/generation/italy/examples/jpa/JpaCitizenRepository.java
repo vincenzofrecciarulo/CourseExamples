@@ -5,13 +5,13 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.generation.italy.examples.jdbc.CitizenRepository;
 import org.generation.italy.examples.jdbc.DataException;
-import org.generation.italy.examples.model.Citizen;
+import org.generation.italy.examples.model.tropico.Citizen;
 
 import java.util.List;
 
 public class JpaCitizenRepository implements CitizenRepository {
 
-    private final EntityManager entityManager;
+    private final EntityManager entityManager;  // corrispettivo di session in hibernate
 
     public JpaCitizenRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -20,11 +20,20 @@ public class JpaCitizenRepository implements CitizenRepository {
     @Override
     public List<Citizen> findAll() throws DataException {
         try {
+            // questo non è HQL (HibernateQueryLanguage), ma JPQL (JPAQueryLanguage)
             TypedQuery<Citizen> query = entityManager.createQuery(
                     "select c from Citizen c", Citizen.class);
             return query.getResultList();
         } catch (Exception ex) {
             throw new DataException("Error finding all citizens", ex);
+        }
+    }
+
+    public Citizen findById(Integer id) throws DataException {
+        try {
+            return entityManager.find(Citizen.class, id);  // invece di .get in Hibernate
+        } catch (Exception ex) {
+            throw new DataException("Error finding citizen by id", ex);
         }
     }
 
