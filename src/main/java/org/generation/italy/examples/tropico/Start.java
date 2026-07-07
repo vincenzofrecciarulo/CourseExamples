@@ -11,6 +11,7 @@ public class Start {
             JDBCCitizenRepository citizenRepo = new JDBCCitizenRepository(con);
             TropicoService service = new TropicoService(citizenRepo);
 
+
             TropicoConsole console = new TropicoConsole(service);
             console.start();
         }catch (Exception e){
