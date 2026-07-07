@@ -18,9 +18,12 @@ public class AppConfig {
     }
 
     public CitizenConsoleController citizenConsoleController() {
+        // "inietto" la unit of work dentro la repository
         PeopleRepository peopleRepository = new JpaPeopleRepository(unitOfWork);
+        // qui invece "inietto" il repository dentro il servizio
         PeopleService peopleService =
                 new DefaultPeopleService(peopleRepository, unitOfWork);
+        // infine inietto il servizio dentro il controller
         return new CitizenConsoleController(peopleService);
     }
 
@@ -35,15 +38,15 @@ public class AppConfig {
         props.put("jakarta.persistence.jdbc.url",
                 System.getProperty("db.url", "jdbc:postgresql://localhost:5432/tropico"));
         props.put("jakarta.persistence.jdbc.user",
-                System.getProperty("db.user", "postgres"));
+                System.getProperty("db.user", "postgresMaster"));
         props.put("jakarta.persistence.jdbc.password",
-                System.getProperty("db.pass", "postgres"));
+                System.getProperty("db.pass", "goPostgresGo"));
         props.put("hibernate.dialect",
                 System.getProperty("db.dialect", "org.hibernate.dialect.PostgreSQLDialect"));
         props.put("hibernate.hbm2ddl.auto",
                 System.getProperty("db.hbm2ddl", "validate"));
-        props.put("hibernate.show_sql", "false");
-        props.put("hibernate.format_sql", "false");
+        props.put("hibernate.show_sql", "true");
+        props.put("hibernate.format_sql", "true");
         return props;
     }
 }
