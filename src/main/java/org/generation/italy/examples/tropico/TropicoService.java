@@ -6,6 +6,7 @@ import java.util.Optional;
 
 public class TropicoService {
 
+    // could implement a setRepo() method to change implementation at runtime
     private CitizenRepository citizenRepository;
 
     public TropicoService(CitizenRepository citizenRepository) {
