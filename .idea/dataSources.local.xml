@@ -3,6 +3,7 @@
   <component name="dataSourceStorageLocal" created-in="IU-261.24374.151">
     <data-source name="tropico@localhost" uuid="0ff1ae95-ca59-4b8f-aa34-917bf63762bc">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
+      <user-name>PostgresMaster</user-name>
       <schema-mapping />
     </data-source>
   </component>
