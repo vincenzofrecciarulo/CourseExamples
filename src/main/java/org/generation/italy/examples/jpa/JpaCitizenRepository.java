@@ -53,6 +53,11 @@ public class JpaCitizenRepository implements CitizenRepository {
     }
 
     @Override
+    public Citizen findById(int citizenId) throws DataException {
+        return null;
+    }
+
+    @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
         try {
             if (citizen.getId() == null

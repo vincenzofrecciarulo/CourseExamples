@@ -1,6 +1,6 @@
 package org.generation.italy.examples.tropico;
 
-import org.generation.italy.examples.jdbc.Citizen;
+
 import org.generation.italy.examples.jdbc.CitizenRepository;
 import org.generation.italy.examples.jdbc.DataException;
 

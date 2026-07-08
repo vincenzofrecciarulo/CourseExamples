@@ -49,6 +49,11 @@ public class HibernateCitizenRepository implements CitizenRepository {
     }
 
     @Override
+    public Citizen findById(int citizenId) throws DataException {
+        return null;
+    }
+
+    @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
         try {
             if (citizen.getId() == null || current().get(Citizen.class, citizen.getId()) == null) {

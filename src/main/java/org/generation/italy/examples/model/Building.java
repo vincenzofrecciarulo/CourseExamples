@@ -1,7 +1,7 @@
 package org.generation.italy.examples.model;
 
 import jakarta.persistence.*;
-import org.generation.italy.examples.jdbc.Citizen;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,5 +1,9 @@
 package org.generation.italy.examples.jdbc;
 
+
+
+import org.generation.italy.examples.model.tropico.Citizen;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -41,7 +45,8 @@ public class FileCitizenRepository implements CitizenRepository{
                  String lastName = values[2];
                  char gender = values[3].charAt(0);
                  int age = Integer.parseInt(values[4]);
-                 Citizen citizen = new Citizen(id,firstName,lastName,gender,age);
+                 String level = values[5];
+                 Citizen citizen = new Citizen(id,firstName,lastName,gender,age,level);
                  citizens.add(citizen);
              }
 
@@ -64,9 +69,9 @@ public class FileCitizenRepository implements CitizenRepository{
                 String lastName = values[2];
                 char gender = values[3].charAt(0);
                 int age = Integer.parseInt(values[4]);
-                String educationLevel1 = values[5];
-                if( gender == sex && educationLevel1.equals(educationLevel)){
-                    Citizen citizen = new Citizen(id,firstName,lastName,gender,age,educationLevel1);
+                String level = values[5];
+                if( gender == sex && level.equals(educationLevel)){
+                    Citizen citizen = new Citizen(id,firstName,lastName,gender,age,level);
                     citizens.add(citizen);
                 }
 
@@ -77,6 +82,11 @@ public class FileCitizenRepository implements CitizenRepository{
             throw new DataException(e.getMessage(),e);
         }
 
+    }
+
+    @Override
+    public Citizen findById(int citizenId) throws DataException {
+        return null;
     }
 
     public List<Citizen> findBySexAndEducationLevel2 (char sex, String educationLevel) throws DataException { //stesso metodo di prima ma con lambda e stream, il risultato è lo stesso.
@@ -204,12 +214,5 @@ public class FileCitizenRepository implements CitizenRepository{
 
     }
 
-    @Override
-    public void test() throws DataException {
-        try(FileReader fr = new FileReader("nonEsisto.txt")){
 
-        }catch (IOException e){
-            throw new DataException(e.getMessage(), e);
-        }
-    }
 }

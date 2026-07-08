@@ -54,6 +54,12 @@ public class Citizen implements Serializable {
     public Citizen() {
     }
 
+    public Citizen(int id, String firstName, String lastName, char gender, int age, String educationLevel) {
+        this(id,firstName,lastName,gender,age,educationLevel,0,null,false,0);
+
+    }
+
+
     public Citizen(String firstName, String lastName, char gender, int age, double salary, String educationLevel) {
         this(firstName, lastName, gender, age, moneyFromDouble(salary), educationLevel);
     }
@@ -90,6 +96,7 @@ public class Citizen implements Serializable {
         this.isRebel = isRebel;
         this.happinessTotal = happinessTotal;
     }
+
 
     // Getters and Setters
     public Integer getId() { return id; }
@@ -138,5 +145,17 @@ public class Citizen implements Serializable {
                 ", isRebel=" + isRebel +
                 ", happinessTotal=" + happinessTotal +
                 '}';
+    }
+
+    public void merge(Citizen citizen) {
+        this.firstName = citizen.firstName;
+        this.lastName = citizen.lastName;
+        this.gender = citizen.gender;
+        this.age = citizen.age;
+        this.educationLevel = citizen.educationLevel;
+        this.salary = citizen.salary;
+        this.wealthLevel = citizen.wealthLevel;
+        this.isRebel = citizen.isRebel;
+        this.happinessTotal = citizen.happinessTotal;
     }
 }

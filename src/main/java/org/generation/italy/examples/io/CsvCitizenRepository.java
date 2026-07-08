@@ -43,6 +43,11 @@ public class CsvCitizenRepository implements CitizenRepository {
     }
 
     @Override
+    public Citizen findById(int citizenId) throws DataException {
+        return null;
+    }
+
+    @Override
     public Citizen createCitizen(Citizen newCitizen)
             throws DataException {
 
