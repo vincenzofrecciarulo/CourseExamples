@@ -18,9 +18,11 @@ public class JpaCrudRepository<T, ID> {
 
     public List<T> findAll() throws DataException {
         try {
+            // metamodel le classi con cui lavora
             String entityName = entityManager.getMetamodel()
                     .entity(entityClass)
                     .getName();
+            // la concatenazione non è pericolosa
             TypedQuery<T> query = entityManager.createQuery(
                     "select e from " + entityName + " e", entityClass);
             return query.getResultList();
