@@ -94,6 +94,16 @@ public class JpaCitizenRepository implements CitizenRepository {
         }
     }
 
+    @Override
+    public boolean updateHappiness(int citizenId, int newHappiness) throws DataException {
+        return false;
+    }
+
+    @Override
+    public Citizen findById(int citizenId) throws DataException {
+        return null;
+    }
+
     private void insertWithExplicitId(Citizen citizen) {
         Query query = entityManager.createNativeQuery("""
                 INSERT INTO citizen
