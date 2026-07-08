@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f9f3e2a-e9b4-4767-a9f1-fadde18e7e03" name="Changes" comment="Correggo errore package di tropico">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/dependencyinjectionexercise/EmailNotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/dependencyinjectionexercise/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/dependencyinjectionexercise/NotificationManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/dependencyinjectionexercise/NotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/dependencyinjectionexercise/SmsNotificationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/tropico/Citizen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/tropico/Citizen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/tropicoexercise/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/tropicoexercise/Building.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/tropicoexercise/BuildingType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/model/tropicoexercise/BuildingType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,9 +21,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
-        <option value="Interface" />
         <option value="JUnit6 Test Class" />
         <option value="Exception" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -56,6 +58,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "Application.PostgresConnectionExample.executor": "Run",
     "Application.Start.executor": "Run",
     "JUnit.CvsStorageCitizenIntegrationTest.executor": "Run",
@@ -86,13 +89,13 @@
       <recent name="org.generation.italy.examples.tropico" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CvsStorageCitizenIntegrationTest">
-    <configuration name="PostgresConnectionExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.PostgresConnectionExample" />
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.dependencyinjectionexercise.Main" />
       <module name="CourseExamples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.jdbc.*" />
+          <option name="PATTERN" value="org.generation.italy.examples.dependencyinjectionexercise.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -100,12 +103,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.oo.exeptionpracticeexercises.Start" />
+    <configuration name="PostgresConnectionExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.PostgresConnectionExample" />
       <module name="CourseExamples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.generation.italy.examples.oo.exeptionpracticeexercises.*" />
+          <option name="PATTERN" value="org.generation.italy.examples.jdbc.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -161,11 +164,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.CvsStorageCitizenIntegrationTest" />
         <item itemvalue="JUnit.TrovaModaArrayStringheTest.trovaModaStringhe" />
         <item itemvalue="JUnit.HibernateCitizenRepositoryTest" />
         <item itemvalue="Application.PostgresConnectionExample" />
-        <item itemvalue="Application.Start" />
       </list>
     </recent_temporary>
   </component>
