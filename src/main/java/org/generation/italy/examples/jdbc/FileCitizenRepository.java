@@ -1,5 +1,6 @@
 package org.generation.italy.examples.jdbc;
 import org.generation.italy.examples.model.*;
+import org.generation.italy.examples.model.tropico.Citizen;
 
 import java.awt.dnd.DropTarget;
 import java.io.*;
