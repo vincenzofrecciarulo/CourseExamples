@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58ed345a-379c-4972-98b4-fa242c8f59e5" name="Changes" comment="Lavoro su JDBC con metodi">
+    <list default="true" id="fb5e2e20-5f23-461b-8ae4-b456331d155a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -15,101 +15,34 @@
   </component>
   <component name="CopilotPersistence">
     <persistenceIdMap>
-      <entry key="_C:/Dev/Java/Projects/CourseExamples" value="3E2IUhoaG0cPr5ehPwOM0iCCNNB" />
+      <entry key="_C:/Dev/Java/Projects/CourseExamples" value="3GDATGHEn1YAEGvag4ExvOE71gr" />
     </persistenceIdMap>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="manuel_sechi" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;CatryPiano&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "CatryPiano"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/vincenzofrecciarulo/CourseExamples.git&quot;,
-    &quot;accountId&quot;: &quot;61d14d88-1932-4c69-a7c8-246301e493b7&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/vincenzofrecciarulo/CourseExamples.git",
+    "accountId": "61d14d88-1932-4c69-a7c8-246301e493b7"
   }
-}</component>
-  <component name="NextEditCompletionFeaturesState">
-    <decayedCancelled>
-      <entry key="MS100" value="1.0000000000000138" />
-      <entry key="MS500" value="1.001690798724084" />
-      <entry key="S2" value="1.2416478491515215" />
-      <entry key="S5" value="1.8342689578075717" />
-      <entry key="S10" value="2.4323002129717404" />
-      <entry key="S30" value="3.2726216620520407" />
-      <entry key="S60" value="3.6045057750044536" />
-      <entry key="M2" value="3.8953107006467245" />
-      <entry key="M5" value="5.273943081838599" />
-      <entry key="M10" value="9.658164366385149" />
-      <entry key="M15" value="14.45248373331763" />
-      <entry key="M30" value="30.338561240853863" />
-      <entry key="H1" value="67.60347450000165" />
-      <entry key="H2" value="137.57356315944327" />
-      <entry key="H4" value="291.546259605884" />
-      <entry key="D1" value="1547.256573867667" />
-      <entry key="W1" value="2569.122426907614" />
-    </decayedCancelled>
-    <decayedSelected>
-      <entry key="MS100" value="9.690921139104077E-19" />
-      <entry key="MS500" value="2.496163415242259E-4" />
-      <entry key="S2" value="0.1267224281473021" />
-      <entry key="S5" value="0.5174760995450001" />
-      <entry key="S10" value="1.0998892618374518" />
-      <entry key="S30" value="2.409644677433863" />
-      <entry key="S60" value="3.0768524060557834" />
-      <entry key="M2" value="3.5457679682653955" />
-      <entry key="M5" value="4.230223066975076" />
-      <entry key="M10" value="5.862779464771262" />
-      <entry key="M15" value="7.899594880074847" />
-      <entry key="M30" value="15.058573723112445" />
-      <entry key="H1" value="31.731934793320935" />
-      <entry key="H2" value="63.00209528370464" />
-      <entry key="H4" value="130.4916807922344" />
-      <entry key="D1" value="588.0959620504659" />
-      <entry key="W1" value="919.9392418892631" />
-    </decayedSelected>
-    <decayedShown>
-      <entry key="MS100" value="0.5140569133280338" />
-      <entry key="MS500" value="0.8763220654446939" />
-      <entry key="S2" value="1.233939949863664" />
-      <entry key="S5" value="2.13330872501506" />
-      <entry key="S10" value="3.2987394985556384" />
-      <entry key="S30" value="5.519422391142886" />
-      <entry key="S60" value="6.579195792298337" />
-      <entry key="M2" value="7.382076507231752" />
-      <entry key="M5" value="9.472381646008758" />
-      <entry key="M10" value="15.492933345624916" />
-      <entry key="M15" value="22.323509455319627" />
-      <entry key="M30" value="45.36132328405275" />
-      <entry key="H1" value="99.28697264463858" />
-      <entry key="H2" value="200.52365636900979" />
-      <entry key="H4" value="421.98638908686604" />
-      <entry key="D1" value="2135.318941957044" />
-      <entry key="W1" value="3489.054457645586" />
-    </decayedShown>
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 3
-}</component>
-  <component name="ProjectId" id="3E2IUhoaG0cPr5ehPwOM0iCCNNB" />
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="3GDATGHEn1YAEGvag4ExvOE71gr" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -117,54 +50,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Exercise1.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise5.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise6.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise7.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Exercise8.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ExerciseBinarySearch.executor&quot;: &quot;Run&quot;,
-    &quot;Application.InfoPoint.executor&quot;: &quot;Run&quot;,
-    &quot;Application.JDBCCitizenRepository.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LambdaExamples.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Library.executor&quot;: &quot;Run&quot;,
-    &quot;Application.PostgresConnectionExample.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Start.executor&quot;: &quot;Run&quot;,
-    &quot;Application.StartUp.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileCitizenRepositoryTest.createCitizen.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileCitizenRepositoryTest.findAll.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Domenico__Piano&quot;,
-    &quot;git.auto.fetch.suggestion.counter&quot;: &quot;1&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Dev/Java/Projects/CourseExamples/src/main/java/org/generation/italy/examples&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "Domenico__Piano",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="org.generation.italy.examples.model.tropico2" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="org.generation.italy.examples.arrays.exericc" />
-    </key>
-  </component>
+}]]></component>
   <component name="RunManager" selected="Application.StartUp">
     <configuration name="PostgresConnectionExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.generation.italy.examples.jdbc.PostgresConnectionExample" />
@@ -257,133 +159,15 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="58ed345a-379c-4972-98b4-fa242c8f59e5" name="Changes" comment="" />
-      <created>1779370256319</created>
+      <changelist id="fb5e2e20-5f23-461b-8ae4-b456331d155a" name="Changes" comment="" />
+      <created>1783495782954</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1779370256319</updated>
-      <workItem from="1779370258159" duration="5609000" />
-      <workItem from="1779432371522" duration="2798000" />
-      <workItem from="1779636499778" duration="1855000" />
-      <workItem from="1779660448725" duration="4379000" />
-      <workItem from="1779692551619" duration="9201000" />
-      <workItem from="1779779077327" duration="5691000" />
-      <workItem from="1779865524835" duration="680000" />
-      <workItem from="1779983679046" duration="150000" />
-      <workItem from="1780302357460" duration="1464000" />
-      <workItem from="1780402771038" duration="12040000" />
-      <workItem from="1780478319202" duration="3323000" />
-      <workItem from="1780559629199" duration="4520000" />
-      <workItem from="1780642425384" duration="3243000" />
-      <workItem from="1780819755690" duration="1313000" />
-      <workItem from="1780831150008" duration="6241000" />
-      <workItem from="1780911691530" duration="62000" />
-      <workItem from="1780931180571" duration="3377000" />
-      <workItem from="1780988480997" duration="13321000" />
-      <workItem from="1781092740740" duration="3747000" />
-      <workItem from="1781162371708" duration="15128000" />
-      <workItem from="1781247511926" duration="11051000" />
-      <workItem from="1781423860416" duration="14698000" />
-      <workItem from="1781506693664" duration="7330000" />
-      <workItem from="1781592274222" duration="292000" />
+      <updated>1783495782954</updated>
     </task>
-    <task id="LOCAL-00001" summary="Creato esercizio 5">
-      <option name="closed" value="true" />
-      <created>1779433934918</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1779433934920</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Creato esercizio 6">
-      <option name="closed" value="true" />
-      <created>1779664830672</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1779664830673</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Creato esercizio 7 e 8">
-      <option name="closed" value="true" />
-      <created>1779710554598</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1779710554599</updated>
-    </task>
-    <task id="LOCAL-00004" summary="corregge errore in Client.java">
-      <option name="closed" value="true" />
-      <created>1780303678049</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1780303678049</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Crea classe Player.java.">
-      <option name="closed" value="true" />
-      <created>1780404700691</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1780404700692</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Crea classe DiceRoller.java. e aggiorna le restanti classi, aggiungendo codice.">
-      <option name="closed" value="true" />
-      <created>1780414881683</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1780414881683</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Crea classe Inventory, Mob, NPC e StartGame. Inoltre aggiorna le altre lassi.">
-      <option name="closed" value="true" />
-      <created>1780841589755</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1780841589756</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Crea progetto Sort">
-      <option name="closed" value="true" />
-      <created>1781007330526</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1781007330528</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Crea Esercizio Employee">
-      <option name="closed" value="true" />
-      <created>1781020771586</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1781020771586</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Lavoro su JDBC con metodi">
-      <option name="closed" value="true" />
-      <created>1782748836212</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1782748836212</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Creato esercizio 5" />
-    <MESSAGE value="Creato esercizio 6" />
-    <MESSAGE value="Creato esercizio 7 e 8" />
-    <MESSAGE value="corregge errore in Client.java" />
-    <MESSAGE value="Crea classe Player.java." />
-    <MESSAGE value="Crea classe DiceRoller.java. e aggiorna le restanti classi, aggiungendo codice." />
-    <MESSAGE value="Crea classe Inventory, Mob, NPC e StartGame. Inoltre aggiorna le altre lassi." />
-    <MESSAGE value="Crea progetto Sort" />
-    <MESSAGE value="Crea Esercizio Employee" />
-    <MESSAGE value="Lavoro su JDBC con metodi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lavoro su JDBC con metodi" />
   </component>
 </project>
