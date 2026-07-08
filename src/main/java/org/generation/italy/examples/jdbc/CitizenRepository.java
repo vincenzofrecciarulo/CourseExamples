@@ -1,7 +1,7 @@
 package org.generation.italy.examples.jdbc;
 
-import java.io.IOException;
-import java.sql.SQLException;
+import org.generation.italy.examples.model.tropico.Citizen;
+
 import java.util.List;
 
 public interface CitizenRepository {
@@ -14,5 +14,4 @@ public interface CitizenRepository {
     boolean deleteCitizen(int citizenId) throws DataException;
     Citizen createCitizen(Citizen newCitizen) throws DataException;
 
-    void test() throws SQLException, DataException;
 }
