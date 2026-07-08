@@ -1,4 +1,4 @@
-package org.generation.italy.examples.introarchitecture.rough;
+package org.generation.italy.examples.introarchitecture.abstractfactory;
 
 import org.generation.italy.examples.jdbc.DataException;
 import org.generation.italy.examples.model.tropico.Citizen;
@@ -7,33 +7,17 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
-// Design pattern di alto livello, archittetturale MVC ("model view controller").
-// Questo pattern raccomanda di suddividere l'applicazione in 3 strati, cioè model, view e controller
-// View è la parte che mostra i risultati desiderati dall'utente, è la parte di input e output dell'applicazione
-//
-// Controller serve da "interprete", il controller non soddisfa le richieste,
-// chiede al model di soddisfare queste richieste
-// controlla/dirige il flusso dell'applicazione
-// è come se fosse un vigile all'incrocio
-//
-// Model è l'insieme delle classi che noi creiamo per modellare il problema che vogliamo risolvere
-// Creare un software è una sorta di "modelizzazione della realtà"
-// il model è il cuore fondamentale dove c'è tutta la logica di business
-// le classi del model non devono dipendere ne dal controller ne dalla view
-// così posso riciclare lo stesso model per altre applicazioni
-// N.B. spring mvc
-
 public class CitizenConsoleController {
 
-    // crea uno scanner perchè deve parlare con system.in, cioè con la console
     private final Scanner scanner = new Scanner(System.in);
+    private final PeopleService peopleService;
 
-    // il model non deve dipendere dal controller quindi riga 33 non va bene
-    // N.B. mock/stub object
-    private final PeopleService peopleService = new PeopleService();
+    public CitizenConsoleController(PeopleService peopleService) {
+        this.peopleService = peopleService;
+    }
 
     public void start() {
-        boolean running = true; // vado avanti finchè l'utente non decide di smettere
+        boolean running = true;
         while (running) {
             printMenu();
             String choice = readString("Choose: ");
@@ -54,13 +38,12 @@ public class CitizenConsoleController {
                 System.out.println("Invalid input: " + ex.getMessage());
             }
         }
-        peopleService.close();
         System.out.println("Goodbye.");
     }
 
     private void printMenu() {
         System.out.println();
-        System.out.println("Tropico People Console");
+        System.out.println("Tropico People Console - abstract factory version");
         System.out.println("1. List citizens");
         System.out.println("2. Find citizen by id");
         System.out.println("3. Search by sex and education level");
@@ -71,12 +54,8 @@ public class CitizenConsoleController {
     }
 
     private void listCitizens() throws DataException {
-        // qui vediamo il controller:
         List<Citizen> citizens = peopleService.getAllPeople();
-        // ora vediamo la view:
         citizens.forEach(this::printCitizen);
-        // qui c'è la versione con la lambda:
-        // citizens.forEach(c-> printCitizen(c));
         System.out.println("Total: " + citizens.size());
     }
 
@@ -153,12 +132,9 @@ public class CitizenConsoleController {
                 citizen.getHappinessTotal());
     }
 
-
-    // da qui in poi sono scritti alcuni UTILITY METHODS
-
     private String readString(String prompt) {
         System.out.print(prompt);
-        return scanner.nextLine().trim(); // ci dà la line di input che abbiamo dato, tolti gli spazi
+        return scanner.nextLine().trim();
     }
 
     private String readOptionalString(String prompt) {
