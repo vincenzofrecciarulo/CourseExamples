@@ -4,4 +4,12 @@ package org.generation.italy.examples.oo.patterns.factory.factorymethod.exercice
 // i tre ambienti saranno tre casi particolari di Level e ogni level deve essere inm grado di creare enemies per il suo ambiente in maniera polimorfica
 // la classe level dovrà avere dei metodi per poter attaccare l'enemy
 public class Start {
+    static void main() {
+        Level lvF = new Forest();
+        lvF.enemyAttack();
+        Level lvS = new Space();
+        lvS.enemyAttack();
+        Level lvD = new Dungeon();
+        lvD.enemyAttack();
+    }
 }

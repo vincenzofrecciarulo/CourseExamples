@@ -34,6 +34,11 @@ public class CvsStorageCitizenRepository implements CitizenRepository {
                 .toList();
     }
 
+    @Override
+    public Citizen findById(int id) throws DataException {
+        return null;
+    }
+
 
     @Override
     public Citizen createCitizen(Citizen newCitizen) throws DataException {
@@ -69,6 +74,11 @@ public class CvsStorageCitizenRepository implements CitizenRepository {
         }
 
         return updated;
+    }
+
+    @Override
+    public boolean updateHappinessTotal(int citizenId, int happinessTotal) throws DataException {
+        return false;
     }
 
     @Override

@@ -94,6 +94,11 @@ public class JDBCCitizenRepository implements CitizenRepository {
     }
 
     @Override
+    public Citizen findById(int id) throws DataException {
+        return null;
+    }
+
+    @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
         String query = """
                 UPDATE citizen SET
@@ -124,6 +129,11 @@ public class JDBCCitizenRepository implements CitizenRepository {
         }catch (SQLException e){
             throw new DataException(e.getMessage(), e);
         }
+    }
+
+    @Override
+    public boolean updateHappinessTotal(int citizenId, int happinessTotal) throws DataException {
+        return false;
     }
 
     @Override

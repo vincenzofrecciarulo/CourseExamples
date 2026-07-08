@@ -49,6 +49,11 @@ public class HibernateCitizenRepository implements CitizenRepository {
     }
 
     @Override
+    public Citizen findById(int id) throws DataException {
+        return null;
+    }
+
+    @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
         try {
             if (citizen.getId() == null || current().get(Citizen.class, citizen.getId()) == null) {
@@ -59,6 +64,11 @@ public class HibernateCitizenRepository implements CitizenRepository {
         } catch (Exception ex) {
             throw new DataException("Error updating citizen", ex);
         }
+    }
+
+    @Override
+    public boolean updateHappinessTotal(int citizenId, int happinessTotal) throws DataException {
+        return false;
     }
 
     @Override
