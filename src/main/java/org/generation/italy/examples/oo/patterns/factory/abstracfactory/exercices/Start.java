@@ -5,4 +5,13 @@ package org.generation.italy.examples.oo.patterns.factory.abstracfactory.exercic
 // space avrà enemy alienSoldier, boss alienQueen e il critsallo di antimateria
 // dungeon avrà enemy goblin, boss necromancer e treasure magicCoin
 public class Start {
+    public static void main(String[] args) {
+        Level forest = new Level(new ForestLevelFactory());
+        Level space = new Level(new SpaceLevelFactory());
+        Level dungeon = new Level(new DungeonLevelFactory());
+
+        IO.println("Forest: " + forest.describe());
+        IO.println("Space: " + space.describe());
+        IO.println("Dungeon: " + dungeon.describe());
+    }
 }
