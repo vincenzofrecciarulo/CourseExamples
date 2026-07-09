@@ -5,13 +5,13 @@ package org.generation.italy.examples.oo.patterns.factory.simplefactory.exercice
 public class Start {
     public static void main (String[] args){
         Notification sms = NotificationSender.createNotification("SMS");
-        System.out.println(sms.send("ciao"));
+        System.out.println(sms.send());
 
         Notification whatsapp = NotificationSender.createNotification("WHATSAPP");
-        System.out.println(whatsapp.send("ciao"));
+        System.out.println(whatsapp.send());
 
         Notification email = NotificationSender.createNotification("EMAIL");
-        System.out.println(email.send("ciao"));
+        System.out.println(email.send());
 
     }
 }
