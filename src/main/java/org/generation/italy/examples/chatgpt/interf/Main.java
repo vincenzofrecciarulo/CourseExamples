@@ -24,6 +24,12 @@ public class Main {
         // if (a instanceof Swimmable s_a){
         //     s_a.swim();
         //     }
+
+        Bird bird = new Bird("titty");
+        bird.eat();
+        bird.fly();
+        bird.makeSound();
+
         }
     }
 }
