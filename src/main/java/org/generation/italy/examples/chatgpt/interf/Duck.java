@@ -11,6 +11,12 @@ public class Duck extends Animal implements Swimmable, Flyable{
     }
 
     @Override
+    public void eat(){
+        System.out.println(name + " mangia.");
+
+    }
+
+    @Override
     public void swim(){
         System.out.println(name + " nuota.");
     }
