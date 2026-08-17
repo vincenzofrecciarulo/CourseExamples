@@ -1,4 +1,4 @@
-package org.generation.italy.examples.chatgpt.functionalInterface2;
+package org.generation.italy.examples.chatgpt.lambda.exercise1;
 
 @FunctionalInterface
 public interface CalculatorInterface {

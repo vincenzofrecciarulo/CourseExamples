@@ -1,4 +1,4 @@
-package org.generation.italy.examples.chatgpt.functionalInterface;
+package org.generation.italy.examples.chatgpt.functionalInterface.functionalInterface1;
 
 public class Main {
     public static void main(String[] args){

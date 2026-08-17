@@ -1,4 +1,4 @@
-package org.generation.italy.examples.chatgpt.functionalInterface;
+package org.generation.italy.examples.chatgpt.functionalInterface.functionalInterface1;
 
 // Questa classe sta dicendo: "Ok, io implemento quell'interfaccia ed ecco come eseguo apply()"
 public class SumOperation implements CalculatorOperation{
