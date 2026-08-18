@@ -5,19 +5,20 @@ import org.generation.italy.examples.model.tropico.Faction;
 import java.util.List;
 import java.util.Optional;
 
+// Questo repository dice cosa deve saper fare un repository delle Faction, senza specificare come.
 public interface FactionRepository {
 
     public List<Faction> getAllFactions() throws DataException;
 
     public Optional<Faction> getFactionByName(String name) throws DataException;
-    //metto optional perché potrei ricevere nome di faction che non esiste
-    //se come output lasciassi faction ritornerei un null potenzialmente pericoloso,
+    // metto optional perché potrei ricevere nome di faction che non esiste
+    // se come output lasciassi faction ritornerei un null potenzialmente pericoloso,
     // meglio ritornare optional vuoto
 
     public boolean updateFaction(Faction faction) throws DataException;
 
     public void addFaction(Faction faction) throws DataException;
-    //se fallisce crea eccezione
+    // se fallisce crea eccezione
 
     public boolean removeFactionById(int id) throws DataException;
 

@@ -7,17 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-// le transazioni possiamo farle su una sola connessione,
+// le "transazioni" possiamo farle su una sola connessione,
 // quindi se ogni metodo del repository ha la sua connessione adios alle transizioni
-// per cui bisogna fare che la connessione la crea qualcun altro e la passa alla repository
+// per cui bisogna fare che la connessione la crea qualcun altro e la passa al repository
 // che la tiene come variabile di classe rendendola disponibile a tutti i suoi metodi
 
+// La Connection viene creata fuori dal repositor: Connection con = ConnectionFactory.getConnection();
+// JDBCFactionRepository repo = new JDBCFactionRepository(con);
+// Poi viene passata al costruttore e salvata nell'attributo "private Connection con",
+// così tutti i metodi di quell'istanza del repository possono utilizzare quella stessa connessione.
 
 public class JDBCFactionRepository implements FactionRepository{
     // in alcuni database chiudere la connessione chiude anche in automatico
     // lo statement e il resultset ma non è garantito quindi chiudiamoli per sicurezza
 
     private Connection con;
+
     private final static String GET_ALL_FACTIONS =
             """
             SELECT id, name, description
@@ -33,7 +38,7 @@ public class JDBCFactionRepository implements FactionRepository{
 
     private static final String UPDATE_FACTION =
             """
-                 UPDATE faction
+                UPDATE faction
                 SET name = ?,
                 description = ?
                 WHERE id = ?    
@@ -51,31 +56,34 @@ public class JDBCFactionRepository implements FactionRepository{
                     DELETE FROM faction
                     WHERE id = ?
                     """;
-    //anche se qua stiamo mettendo tutte le cose e potremmo quindi fare con * meglio
-    //scriverli con l'ordine che vogliamo perché se si cambiassero poi le colonne
+    // anche se qua stiamo mettendo tutte le cose e potremmo quindi fare con * meglio
+    // scriverli con l'ordine che vogliamo perché se si cambiassero poi le colonne
     // cambierebbe il risultato
 
-
+    // Dependency Injection tramite costruttore ("constructor injection")
     public JDBCFactionRepository (Connection con){
         this.con = con;
     }
 
-    @Override //ATTENZIONE: quando faccio override non posso aggiungere che lancia
+    @Override // ATTENZIONE: quando faccio override non posso aggiungere che lancia
     // eccezioni checked solo qua, ma anche nell'interfaccia che implemento
     public List<Faction> getAllFactions() throws DataException{
-        try(Statement st= con.createStatement();                //questo crea lo statement che poi viene
-                                                                // usato per mandare la query
-            ResultSet rs = st.executeQuery(GET_ALL_FACTIONS)){  //questo legge i risultati della query
-            //che manda chiamando sullo Statement il metodo executeQuery
+        try(Statement st = con.createStatement();                // questo crea lo statement che poi viene
+                                                                 // usato per mandare la query
+            ResultSet rs = st.executeQuery(GET_ALL_FACTIONS)){
+            // questo legge i risultati della query
+            // che manda chiamando sullo Statement il metodo executeQuery
             // il result set ha l'indirizzo della tabella generata dalla query: il puntatore
             // ai risultati dki una query si chiama cursore, e il result set è collegato a quel cursore
 
             List<Faction> factions = new ArrayList<>();
+
             while(rs.next()){   //Nota: il .next() parte da prima della prima riga,
                                 // dato che potrebbe non esistere
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String description = rs.getString("description");
+
                 Faction faction = new Faction(id,name,description);
                 factions.add(faction);
             }
@@ -83,10 +91,10 @@ public class JDBCFactionRepository implements FactionRepository{
         }
         catch (SQLException e){
             throw new DataException(e.getMessage(),e);
-            //nel catch lanciamo una scatoletta con l'eccezione originaria
-            //non la stiamo davvero gestendo qua, ma implementando l'interfaccia
-            //dobbiamo fare throw DataException, però in particolare per questo metodo
-            //deve essere una SQLException, e la lanciamo come causa della DataException
+            // nel catch lanciamo una scatoletta con l'eccezione originaria
+            // non la stiamo davvero gestendo qua, ma implementando l'interfaccia
+            // dobbiamo fare throw DataException, però in particolare per questo metodo
+            // deve essere una SQLException, e la lanciamo come causa della DataException
         }
     }
 
