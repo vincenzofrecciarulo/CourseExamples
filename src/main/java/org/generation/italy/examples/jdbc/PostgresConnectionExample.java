@@ -11,19 +11,32 @@ public class PostgresConnectionExample {
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/tropico";
     private static final String DB_USER = "postgresMaster";
     private static final String DB_PASSWORD = "goPostgresGo";
+
+    // Qui stiamo semplicemente salvando una query SQL dentro una String Java
+    // Qui compare anche un "text block" (cioè possiamo scrivere la query su più righe)
     public static String ALL_CITIZENS = """
               select first_name, last_name, gender, age, salary, education_level
               from citizen;
             """;
+
     public static void main(String[] args) {
         // simple factory idiom
+        // A sinistra abbiamo il tipo dell'interfaccia Connection; a destra riceviamo un oggetto concreto prodotto dal driver PostgreSQL
+        // Il driver PostgreSQL ha creato dietro le quinte un oggetto di una sua classe concreta che implementa Connection
+        // cIl driver PostgreSQL ti consegna un oggetto concreto che implementa quell'interfaccia
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);){
 
             System.out.println("✓ Successfully connected to PostgreSQL!");
+
+            // "connection.getCatalog()" restituisce il catalogo corrente.
+            // Con PostgreSQL/JDBC, in questo contesto corrisponde sostanzialmente al database a cui siamo collegati, quindi nel nostro caso ci aspettiamo "tropico"
             System.out.println("Database: " + connection.getCatalog());
-            System.out.println("Schema: " + connection.getSchema());
-            IO.println(connection.getClass().getName());
+            System.out.println("Schema: " + connection.getSchema()); // qui otteniamo lo "schema" della connessione
+            IO.println(connection.getClass().getName()); // dimmi il nome della classe concreta di questo oggetto
+
             // factory method pattern
+            // La Connection crea un oggetto che posso utilizzare per mandare istruzioni SQL al database.
+            // Il metodo restituisce un oggetto che implementa l'interfaccia JDBC: "Statement".
             Statement statement = connection.createStatement();
             IO.println(statement.getClass().getName());
             ResultSet resultSet = statement.executeQuery(ALL_CITIZENS);
