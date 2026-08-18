@@ -11,7 +11,7 @@ import java.util.List;
 
 public class JpaCitizenRepository implements CitizenRepository {
 
-    private final EntityManager entityManager;  // corrispettivo di session in hibernate
+    private final EntityManager entityManager;  // corrispettivo di "session" in hibernate
 
     public JpaCitizenRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -38,14 +38,15 @@ public class JpaCitizenRepository implements CitizenRepository {
     }
 
     @Override
-    public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel)
-            throws DataException {
+    public List<Citizen> findBySexAndEducationLevel(char sex, String educationLevel) throws DataException {
         try {
             TypedQuery<Citizen> query = entityManager.createQuery(
                     "select c from Citizen c where c.gender = :sex and c.educationLevel = :educationLevel",
                     Citizen.class);
+
             query.setParameter("sex", sex);
             query.setParameter("educationLevel", educationLevel);
+
             return query.getResultList();
         } catch (Exception ex) {
             throw new DataException("Error finding by sex and education level", ex);
@@ -55,8 +56,7 @@ public class JpaCitizenRepository implements CitizenRepository {
     @Override
     public boolean updateCitizen(Citizen citizen) throws DataException {
         try {
-            if (citizen.getId() == null
-                    || entityManager.find(Citizen.class, citizen.getId()) == null) {
+            if (citizen.getId() == null || entityManager.find(Citizen.class, citizen.getId()) == null) {
                 return false;
             }
             entityManager.merge(citizen);
